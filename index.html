@@ -9,1447 +9,1612 @@
 
 <title>ARTIFY — Votre vision devient une œuvre</title>
 
-
 <style>
 
+/* ================================
+   RESET
+================================ */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 :root{
---bg:#05050b;
---panel:#0b0b14;
---panel2:#10101a;
---line:rgba(255,255,255,.10);
---text:#f5f5f7;
---muted:#aaaab9;
---purple:#8b5cf6;
---pink:#ec4899;
+    --bg:#05050b;
+    --panel:#0b0b14;
+    --panel2:#10101a;
+    --line:rgba(255,255,255,.10);
+    --text:#f5f5f7;
+    --muted:#aaaab9;
+    --purple:#8b5cf6;
+    --pink:#ec4899;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
-font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:var(--bg);
 
-background:#05050b;
+    color:var(--text);
 
-color:var(--text);
-
-overflow-x:hidden;
-
+    overflow-x:hidden;
 }
+
+
+/* ================================
+   FOND
+================================ */
 
 body:before{
 
-content:"";
+    content:"";
 
-position:fixed;
+    position:fixed;
 
-inset:0;
+    inset:0;
 
-pointer-events:none;
+    pointer-events:none;
 
-z-index:-2;
+    z-index:-2;
 
-background-image:
+    background-image:
 
-linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+    ),
 
-linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,.035) 1px,
+        transparent 1px
+    );
 
-background-size:90px 90px;
+    background-size:90px 90px;
 
 }
+
 
 body:after{
 
-content:"";
+    content:"";
 
-position:fixed;
+    position:fixed;
 
-width:700px;
+    width:700px;
 
-height:700px;
+    height:700px;
 
-top:-400px;
+    top:-400px;
 
-left:-300px;
+    left:-300px;
 
-z-index:-3;
+    z-index:-3;
 
-background:
+    background:
 
-radial-gradient(
-
-circle,
-
-rgba(124,58,237,.15),
-
-transparent 70%
-
-);
+    radial-gradient(
+        circle,
+        rgba(124,58,237,.15),
+        transparent 70%
+    );
 
 }
 
+
+/* ================================
+   IMAGES QUALITÉ MAX
+================================ */
+
+img{
+
+    image-rendering:auto;
+
+    image-rendering:high-quality;
+
+    max-width:100%;
+
+}
+
+
+/* ================================
+   CONTAINER
+================================ */
+
 .container{
 
-max-width:1180px;
+    max-width:1180px;
 
-margin:auto;
+    margin:auto;
 
-padding:0 28px;
+    padding:0 28px;
 
 }
 
 section{
 
-scroll-margin-top:90px;
+    scroll-margin-top:90px;
 
 }
 
 
-/* NAVIGATION */
+/* ================================
+   NAVIGATION
+================================ */
 
 nav{
 
-position:sticky;
+    position:sticky;
 
-top:0;
+    top:0;
 
-z-index:1000;
+    z-index:1000;
 
-height:58px;
+    height:65px;
 
-padding:0 4%;
+    padding:0 4%;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-background:rgba(5,5,11,.92);
+    background:rgba(5,5,11,.92);
 
-backdrop-filter:blur(18px);
+    backdrop-filter:blur(18px);
 
-border-bottom:1px solid rgba(255,255,255,.07);
+    border-bottom:
+
+    1px solid rgba(255,255,255,.07);
 
 }
+
 
 .logo{
 
-font-size:22px;
+    font-size:22px;
 
-font-weight:900;
+    font-weight:900;
 
-letter-spacing:9px;
+    letter-spacing:9px;
 
 }
+
 
 .logo span{
 
-background:linear-gradient(
+    background:
 
-90deg,
+    linear-gradient(
+        90deg,
+        #8b5cf6,
+        #ec4899
+    );
 
-#8b5cf6,
+    -webkit-background-clip:text;
 
-#ec4899
-
-);
-
--webkit-background-clip:text;
-
-color:transparent;
+    color:transparent;
 
 }
+
 
 .navlinks{
 
-display:flex;
+    display:flex;
 
-gap:34px;
+    gap:25px;
 
 }
+
 
 .navlinks a{
 
-color:#c0c0cc;
+    color:#c0c0cc;
 
-text-decoration:none;
+    text-decoration:none;
 
-font-size:12px;
+    font-size:12px;
 
 }
+
 
 .navlinks a:hover{
 
-color:#fff;
+    color:#fff;
 
 }
+
 
 .cart{
 
-display:flex;
+    display:flex;
 
-gap:9px;
+    gap:9px;
 
-align-items:center;
+    align-items:center;
 
-background:#090911;
+    background:#090911;
 
-color:white;
+    color:white;
 
-border:1px solid var(--line);
+    border:
 
-border-radius:13px;
+    1px solid var(--line);
 
-padding:9px 14px;
+    border-radius:13px;
 
-cursor:pointer;
+    padding:9px 14px;
+
+    cursor:pointer;
 
 }
+
 
 .cartcount{
 
-width:19px;
+    width:19px;
 
-height:19px;
+    height:19px;
 
-border-radius:50%;
+    border-radius:50%;
 
-display:grid;
+    display:grid;
 
-place-items:center;
+    place-items:center;
 
-font-size:11px;
+    font-size:11px;
 
-background:linear-gradient(
+    background:
 
-135deg,
-
-var(--purple),
-
-var(--pink)
-
-);
+    linear-gradient(
+        135deg,
+        var(--purple),
+        var(--pink)
+    );
 
 }
+
+
+/* ================================
+   BADGE
+================================ */
 
 .badge{
 
-display:inline-flex;
+    display:inline-flex;
 
-padding:7px 13px;
+    padding:7px 13px;
 
-border-radius:999px;
+    border-radius:999px;
 
-color:#dbcaff;
+    color:#dbcaff;
 
-font-size:10px;
+    font-size:10px;
 
-border:1px solid rgba(139,92,246,.45);
+    border:
 
-background:rgba(139,92,246,.08);
+    1px solid rgba(139,92,246,.45);
 
-box-shadow:0 0 25px rgba(139,92,246,.10);
+    background:
+
+    rgba(139,92,246,.08);
 
 }
+
 
 .grad{
 
-background:linear-gradient(
+    background:
 
-90deg,
+    linear-gradient(
+        90deg,
+        #8b5cf6,
+        #c66cf4,
+        #ec4899
+    );
 
-#8b5cf6,
+    -webkit-background-clip:text;
 
-#c66cf4,
-
-#ec4899
-
-);
-
--webkit-background-clip:text;
-
-color:transparent;
+    color:transparent;
 
 }
 
 
-/* HERO */
+/* ================================
+   HERO
+================================ */
 
 .hero{
 
-min-height:385px;
+    min-height:450px;
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1.05fr .95fr;
+    grid-template-columns:
+    1.05fr .95fr;
 
-gap:25px;
+    gap:25px;
 
-border-bottom:1px solid var(--line);
+    border-bottom:
+    1px solid var(--line);
 
 }
+
 
 .heroText{
 
-padding:24px 0 22px;
+    padding:55px 0;
 
 }
+
 
 .hero h1{
 
-font-size:52px;
+    font-size:55px;
 
-line-height:.98;
+    line-height:.98;
 
-letter-spacing:-2.5px;
+    letter-spacing:-2.5px;
 
-margin:18px 0;
+    margin:18px 0;
 
 }
+
 
 .hero p{
 
-color:var(--muted);
+    color:var(--muted);
 
-font-size:15px;
+    font-size:15px;
 
-line-height:1.55;
+    line-height:1.55;
 
-max-width:440px;
+    max-width:440px;
 
-margin-bottom:16px;
+    margin-bottom:20px;
 
 }
+
 
 .btns{
 
-display:flex;
+    display:flex;
 
-gap:12px;
+    gap:12px;
 
 }
+
 
 .btn{
 
-border:none;
+    border:none;
 
-color:white;
+    color:white;
 
-padding:14px 22px;
+    padding:14px 22px;
 
-border-radius:12px;
+    border-radius:12px;
 
-font-weight:700;
+    font-weight:700;
 
-cursor:pointer;
+    cursor:pointer;
 
-background:linear-gradient(
+    background:
 
-135deg,
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #ec4899
+    );
 
-#7c3aed,
+    box-shadow:
 
-#ec4899
-
-);
-
-box-shadow:0 10px 30px rgba(139,92,246,.18);
+    0 10px 30px
+    rgba(139,92,246,.18);
 
 }
+
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
 
 .btn.alt{
 
-background:#090912;
+    background:#090912;
 
-border:1px solid rgba(139,92,246,.55);
+    border:
 
-box-shadow:none;
+    1px solid rgba(139,92,246,.55);
+
+    box-shadow:none;
 
 }
+
 
 .features{
 
-display:flex;
+    display:flex;
 
-gap:28px;
+    gap:25px;
 
-margin-top:24px;
+    margin-top:25px;
 
-color:#c6c6d0;
+    color:#c6c6d0;
 
-font-size:11px;
+    font-size:11px;
+
+    flex-wrap:wrap;
 
 }
+
+
+/* ================================
+   HERO IMAGE
+================================ */
 
 .heroVisual{
 
-min-height:385px;
+    min-height:450px;
 
-position:relative;
+    position:relative;
 
-overflow:hidden;
+    overflow:hidden;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
+    justify-content:center;
 
-background:
+    background:
 
-radial-gradient(
+    radial-gradient(
+        circle at 60% 30%,
+        rgba(236,72,153,.20),
+        transparent 40%
+    ),
 
-circle at 60% 30%,
+    linear-gradient(
+        90deg,
+        rgba(18,8,30,.55),
+        rgba(42,7,26,.50)
+    );
 
-rgba(236,72,153,.20),
-
-transparent 40%
-
-),
-
-linear-gradient(
-
-90deg,
-
-rgba(18,8,30,.55),
-
-rgba(42,7,26,.50)
-
-);
-
-border-left:1px solid var(--line);
+    border-left:
+    1px solid var(--line);
 
 }
 
-.heroVisual:before{
-
-content:"";
-
-position:absolute;
-
-inset:0;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-transparent 49.7%,
-
-rgba(255,255,255,.07) 50%,
-
-transparent 50.3%
-
-),
-
-linear-gradient(
-
-rgba(255,255,255,.04) 1px,
-
-transparent 1px
-
-);
-
-background-size:
-
-100% 100%,
-
-100% 60px;
-
-opacity:.5;
-
-}
 
 .frame{
 
-position:relative;
+    position:relative;
 
-width:218px;
+    width:min(330px,80%);
 
-padding:7px;
+    padding:8px;
 
-background:#211722;
+    background:#211722;
 
-border:2px solid #9b5b48;
+    border:
+    2px solid #9b5b48;
 
-box-shadow:
+    box-shadow:
 
-0 0 18px rgba(236,72,153,.6),
+    0 0 25px
+    rgba(236,72,153,.6),
 
-0 0 45px rgba(124,58,237,.45);
+    0 0 70px
+    rgba(124,58,237,.45);
 
 }
+
 
 .frame img{
 
-width:100%;
+    width:100%;
 
-display:block;
+    display:block;
+
+    object-fit:contain;
 
 }
 
 
-/* SECTIONS */
+/* ================================
+   SECTIONS
+================================ */
 
 .section{
 
-padding:22px 0;
+    padding:50px 0;
 
-border-bottom:1px solid var(--line);
+    border-bottom:
+    1px solid var(--line);
 
 }
+
 
 .two{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:290px 1fr;
+    grid-template-columns:
+    290px 1fr;
 
-gap:24px;
+    gap:24px;
 
 }
+
 
 .title{
 
-font-size:29px;
+    font-size:30px;
 
-line-height:1.15;
+    line-height:1.15;
 
-letter-spacing:-1.2px;
+    letter-spacing:-1.2px;
 
-margin:12px 0;
+    margin:12px 0;
 
 }
+
 
 .sub{
 
-color:var(--muted);
+    color:var(--muted);
 
-font-size:13px;
+    font-size:13px;
 
-line-height:1.65;
+    line-height:1.65;
 
 }
 
 
-/* AVANT APRES */
+/* ================================
+   AVANT APRÈS
+================================ */
 
 .compare{
 
-position:relative;
+    position:relative;
 
-border-radius:16px;
+    border-radius:16px;
 
-overflow:hidden;
+    overflow:hidden;
 
-height:193px;
+    height:330px;
 
-background:#111;
+    background:#111;
+
+    border:
+    1px solid var(--line);
 
 }
+
 
 .compare img{
 
-position:absolute;
+    position:absolute;
 
-width:100%;
+    inset:0;
 
-height:100%;
+    width:100%;
 
-object-fit:cover;
+    height:100%;
+
+    object-fit:cover;
 
 }
+
 
 .compare .after{
 
-clip-path:inset(0 0 0 50%);
+    clip-path:
+    inset(0 0 0 50%);
 
 }
+
 
 .compare input{
 
-position:absolute;
+    position:absolute;
 
-z-index:5;
+    z-index:5;
 
-bottom:18px;
+    bottom:20px;
 
-left:14%;
+    left:10%;
 
-width:72%;
+    width:80%;
 
-accent-color:#fff;
+    accent-color:#ec4899;
 
 }
+
 
 .label{
 
-position:absolute;
+    position:absolute;
 
-z-index:4;
+    z-index:4;
 
-top:14px;
+    top:14px;
 
-padding:8px 13px;
+    padding:8px 13px;
 
-border-radius:20px;
+    border-radius:20px;
 
-background:rgba(7,7,14,.86);
+    background:
+    rgba(7,7,14,.86);
 
-font-size:10px;
+    font-size:10px;
 
-border:1px solid rgba(255,255,255,.08);
+    border:
+    1px solid rgba(255,255,255,.08);
 
 }
+
 
 .beforelab{
 
-left:15px;
+    left:15px;
 
 }
+
 
 .afterlab{
 
-right:15px;
+    right:15px;
 
 }
 
 
-/* PRODUITS */
+/* ================================
+   PRODUITS
+================================ */
 
 .productRow{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+    repeat(3,1fr);
 
-gap:10px;
+    gap:10px;
 
-margin-top:13px;
+    margin-top:30px;
 
 }
+
 
 .card{
 
-background:linear-gradient(
+    background:
 
-145deg,
+    linear-gradient(
+        145deg,
+        #0b0b15,
+        #090910
+    );
 
-#0b0b15,
+    border:
+    1px solid var(--line);
 
-#090910
+    border-radius:14px;
 
-);
+    padding:18px;
 
-border:1px solid var(--line);
-
-border-radius:14px;
-
-padding:18px;
-
-transition:.2s;
+    transition:.2s;
 
 }
+
 
 .card:hover{
 
-transform:translateY(-2px);
+    transform:
+    translateY(-4px);
 
-border-color:rgba(168,85,247,.5);
+    border-color:
+    rgba(168,85,247,.5);
 
 }
+
 
 .card h3{
 
-font-size:15px;
+    font-size:15px;
 
-margin-bottom:7px;
+    margin-bottom:7px;
 
 }
+
 
 .card p{
 
-font-size:12px;
+    font-size:12px;
 
-color:var(--muted);
+    color:var(--muted);
 
-line-height:1.5;
+    line-height:1.5;
 
 }
+
 
 .price{
 
-display:block;
+    display:block;
 
-margin-top:12px;
+    margin-top:12px;
 
-color:#e879c2;
+    color:#e879c2;
 
-font-weight:800;
+    font-weight:800;
 
 }
 
 
-/* ROOMS */
+/* ================================
+   INTERIEURS
+================================ */
 
 .rooms{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:280px repeat(3,1fr);
+    grid-template-columns:
+    280px repeat(3,1fr);
 
-gap:10px;
+    gap:12px;
 
-align-items:stretch;
+    align-items:stretch;
 
 }
+
 
 .roomIntro{
 
-padding-top:5px;
+    padding-top:5px;
 
 }
+
 
 .room{
 
-min-height:195px;
+    min-height:260px;
 
-border-radius:12px;
+    border-radius:12px;
 
-overflow:hidden;
+    overflow:hidden;
 
-position:relative;
+    position:relative;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-background:#111;
+    background:#111;
 
 }
+
 
 .room img{
 
-width:100%;
+    width:100%;
 
-height:100%;
+    height:100%;
 
-object-fit:cover;
+    object-fit:cover;
 
-display:block;
+    display:block;
+
+    transition:.4s;
 
 }
+
+
+.room:hover img{
+
+    transform:scale(1.05);
+
+}
+
 
 .room span{
 
-position:absolute;
+    position:absolute;
 
-bottom:0;
+    bottom:0;
 
-left:0;
+    left:0;
 
-right:0;
+    right:0;
 
-padding:8px 10px;
+    padding:12px 10px;
 
-font-size:11px;
+    font-size:11px;
 
-background:linear-gradient(
+    background:
 
-transparent,
-
-rgba(0,0,0,.85)
-
-);
+    linear-gradient(
+        transparent,
+        rgba(0,0,0,.9)
+    );
 
 }
 
 
-/* COMMENT CA MARCHE */
+/* ================================
+   COMMENT ÇA MARCHE
+================================ */
 
 .how{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1.5fr 1fr;
+    grid-template-columns:
+    1.5fr 1fr;
 
-gap:22px;
+    gap:22px;
 
 }
+
 
 .steps{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+    repeat(3,1fr);
 
-gap:10px;
+    gap:10px;
 
-margin-top:14px;
+    margin-top:14px;
 
 }
+
 
 .step{
 
-padding:14px;
+    padding:14px;
 
-border-radius:12px;
+    border-radius:12px;
 
-background:#0a0a12;
+    background:#0a0a12;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-min-height:145px;
+    min-height:145px;
 
 }
+
 
 .num{
 
-width:29px;
+    width:29px;
 
-height:29px;
+    height:29px;
 
-border-radius:50%;
+    border-radius:50%;
 
-display:grid;
+    display:grid;
 
-place-items:center;
+    place-items:center;
 
-margin-bottom:10px;
+    margin-bottom:10px;
 
-background:linear-gradient(
+    background:
 
-135deg,
+    linear-gradient(
+        135deg,
+        #8b5cf6,
+        #ec4899
+    );
 
-#8b5cf6,
+    font-size:12px;
 
-#ec4899
-
-);
-
-font-size:12px;
-
-font-weight:800;
+    font-weight:800;
 
 }
+
 
 .step h4{
 
-font-size:12px;
+    font-size:12px;
 
-margin-bottom:7px;
+    margin-bottom:7px;
 
 }
+
 
 .step p{
 
-font-size:11px;
+    font-size:11px;
 
-color:var(--muted);
+    color:var(--muted);
 
-line-height:1.5;
+    line-height:1.5;
 
 }
 
 
-/* LED */
+/* ================================
+   LED
+================================ */
 
 .ledbox{
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:14px;
+    border-radius:14px;
 
-padding:14px;
+    padding:14px;
 
-background:#090910;
+    background:#090910;
 
 }
+
 
 .ledImages{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1fr 1fr;
+    grid-template-columns:
+    1fr 1fr;
 
-gap:18px;
+    gap:18px;
 
-margin-top:15px;
+    margin-top:15px;
 
-text-align:center;
+    text-align:center;
 
-font-size:11px;
+    font-size:11px;
 
 }
+
 
 .ledImages img{
 
-width:100%;
+    width:100%;
 
-height:145px;
+    height:220px;
 
-object-fit:cover;
+    object-fit:cover;
 
-border-radius:4px;
+    border-radius:4px;
 
-border:4px solid #241810;
+    border:
+    4px solid #241810;
 
 }
+
 
 .glow{
 
-padding:6px;
+    padding:6px;
 
-background:#1b1023;
+    background:#1b1023;
 
-box-shadow:
+    box-shadow:
 
-0 0 24px rgba(192,83,255,.8),
+    0 0 24px
+    rgba(192,83,255,.8),
 
-0 0 50px rgba(192,83,255,.35);
+    0 0 50px
+    rgba(192,83,255,.35);
 
 }
 
 
-/* COMMANDE */
+/* ================================
+   COMMANDE
+================================ */
 
 .order{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:280px 1fr;
+    grid-template-columns:
+    280px 1fr;
 
-gap:22px;
+    gap:22px;
 
-align-items:start;
+    align-items:start;
 
 }
+
 
 .orderPanel{
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:14px;
+    border-radius:14px;
 
-padding:15px;
+    padding:15px;
 
-background:#090910;
+    background:#090910;
 
 }
+
 
 .orderGrid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1.1fr 1fr 140px;
+    grid-template-columns:
+    1.1fr 1fr 140px;
 
-gap:10px;
+    gap:10px;
 
 }
+
 
 .choiceRow{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1fr 1fr;
+    grid-template-columns:
+    1fr 1fr;
 
-gap:8px;
+    gap:8px;
 
 }
+
 
 .choice{
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:10px;
+    border-radius:10px;
 
-padding:12px;
+    padding:12px;
 
-cursor:pointer;
+    cursor:pointer;
 
-min-height:92px;
+    min-height:92px;
 
-background:#0b0b13;
+    background:#0b0b13;
 
 }
+
 
 .choice.selected{
 
-border-color:#d34ca0;
+    border-color:#d34ca0;
 
-background:linear-gradient(
+    background:
 
-145deg,
-
-rgba(124,58,237,.12),
-
-rgba(236,72,153,.08)
-
-);
+    linear-gradient(
+        145deg,
+        rgba(124,58,237,.12),
+        rgba(236,72,153,.08)
+    );
 
 }
+
 
 .choice h4{
 
-font-size:12px;
+    font-size:12px;
 
-margin-bottom:7px;
+    margin-bottom:7px;
 
 }
+
 
 .choice p{
 
-font-size:10px;
+    font-size:10px;
 
-color:var(--muted);
+    color:var(--muted);
 
-line-height:1.5;
+    line-height:1.5;
 
 }
+
 
 .sizes{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(3,1fr);
+    grid-template-columns:
+    repeat(3,1fr);
 
-gap:6px;
+    gap:6px;
 
-margin-top:8px;
+    margin-top:8px;
 
 }
+
 
 .smallchoice{
 
-padding:9px 5px;
+    padding:9px 5px;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:8px;
+    border-radius:8px;
 
-text-align:center;
+    text-align:center;
 
-font-size:10px;
+    font-size:10px;
 
-cursor:pointer;
+    cursor:pointer;
 
 }
+
 
 .smallchoice.selected{
 
-border-color:#ec4899;
+    border-color:#ec4899;
 
-color:#f3a3d2;
+    color:#f3a3d2;
 
 }
+
 
 .totalBox{
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:10px;
+    border-radius:10px;
 
-padding:10px;
+    padding:10px;
 
 }
+
 
 .totalBox img{
 
-width:62px;
+    width:100%;
 
-height:62px;
+    height:100px;
 
-object-fit:cover;
+    object-fit:cover;
 
-display:block;
+    display:block;
 
-margin:5px auto;
+    margin:10px auto;
 
-border-radius:5px;
+    border-radius:5px;
 
 }
+
 
 .total{
 
-font-size:17px;
+    font-size:17px;
 
-font-weight:900;
+    font-weight:900;
 
-color:#f077bb;
+    color:#f077bb;
 
-margin:12px 0;
+    margin:12px 0;
 
 }
+
 
 .full{
 
-width:100%;
+    width:100%;
 
 }
 
 
-/* GENERATEUR */
+/* ================================
+   GENERATEUR
+================================ */
 
 .generator{
 
-margin-top:20px;
+    margin-top:20px;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:16px;
+    border-radius:16px;
 
-padding:16px;
+    padding:16px;
 
-background:#090910;
+    background:#090910;
 
-display:grid;
+    display:grid;
 
-grid-template-columns:1fr 1fr;
+    grid-template-columns:
+    1fr 1fr;
 
-gap:12px;
+    gap:12px;
 
 }
+
 
 .upload{
 
-border:1px dashed rgba(139,92,246,.55);
+    border:
+    1px dashed rgba(139,92,246,.55);
 
-border-radius:12px;
+    border-radius:12px;
 
-padding:16px;
+    padding:16px;
 
-min-height:160px;
+    min-height:220px;
 
-display:grid;
+    display:grid;
 
-place-items:center;
+    place-items:center;
 
-text-align:center;
+    text-align:center;
 
-cursor:pointer;
+    cursor:pointer;
 
-background:rgba(139,92,246,.03);
+    background:
+    rgba(139,92,246,.03);
 
 }
+
 
 .upload img{
 
-max-width:100%;
+    max-width:100%;
 
-max-height:220px;
+    max-height:350px;
 
-display:none;
+    display:none;
 
-border-radius:10px;
+    border-radius:10px;
 
 }
+
 
 textarea{
 
-width:100%;
+    width:100%;
 
-height:120px;
+    height:140px;
 
-background:#06060c;
+    background:#06060c;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:12px;
+    border-radius:12px;
 
-padding:12px;
+    padding:12px;
 
-color:white;
+    color:white;
 
-font-family:inherit;
+    font-family:inherit;
 
-resize:none;
+    resize:none;
 
 }
+
 
 .examples{
 
-display:flex;
+    display:flex;
 
-flex-wrap:wrap;
+    flex-wrap:wrap;
 
-gap:6px;
+    gap:6px;
 
-margin:8px 0;
+    margin:8px 0;
 
 }
+
 
 .example{
 
-font-size:10px;
+    font-size:10px;
 
-padding:6px 9px;
+    padding:6px 9px;
 
-background:#11111c;
+    background:#11111c;
 
-color:#ddd;
+    color:#ddd;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:20px;
+    border-radius:20px;
 
-cursor:pointer;
+    cursor:pointer;
 
 }
+
 
 .result{
 
-display:none;
+    display:none;
 
-margin-top:14px;
+    margin-top:25px;
 
-text-align:center;
+    text-align:center;
 
 }
+
 
 .result img{
 
-max-width:100%;
+    max-width:100%;
 
-max-height:500px;
+    max-height:700px;
 
-border-radius:14px;
+    border-radius:14px;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
 }
 
 
-/* FOOTER */
+/* ================================
+   FOOTER
+================================ */
 
 footer{
 
-padding:18px 0 25px;
+    padding:25px 0;
 
 }
+
 
 .footerGrid{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(4,1fr);
+    grid-template-columns:
+    repeat(4,1fr);
 
-gap:12px;
+    gap:12px;
 
 }
+
 
 .trust{
 
-padding:10px;
+    padding:14px;
 
-border-radius:10px;
+    border-radius:10px;
 
-background:#0b0b13;
+    background:#0b0b13;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-font-size:11px;
+    font-size:11px;
 
-color:#d5d5dd;
+    color:#d5d5dd;
 
 }
 
 
-/* PANIER */
+/* ================================
+   PANIER
+================================ */
 
 .modal{
 
-display:none;
+    display:none;
 
-position:fixed;
+    position:fixed;
 
-inset:0;
+    inset:0;
 
-z-index:2000;
+    z-index:2000;
 
-background:rgba(0,0,0,.72);
+    background:
+    rgba(0,0,0,.72);
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
+    justify-content:center;
 
-padding:20px;
+    padding:20px;
 
 }
+
 
 .modalContent{
 
-width:min(480px,100%);
+    width:min(480px,100%);
 
-background:#11111b;
+    background:#11111b;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:18px;
+    border-radius:18px;
 
-padding:20px;
+    padding:20px;
 
 }
+
 
 .modalHead{
 
-display:flex;
+    display:flex;
 
-justify-content:space-between;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-margin-bottom:15px;
+    margin-bottom:15px;
 
 }
+
 
 .close{
 
-background:none;
+    background:none;
 
-border:none;
+    border:none;
 
-color:white;
+    color:white;
 
-font-size:26px;
+    font-size:26px;
 
-cursor:pointer;
+    cursor:pointer;
 
 }
+
 
 .cartItem{
 
-padding:12px;
+    padding:12px;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-border-radius:10px;
+    border-radius:10px;
 
-margin-bottom:8px;
+    margin-bottom:8px;
 
-font-size:13px;
+    font-size:13px;
 
 }
+
 
 .remove{
 
-float:right;
+    float:right;
 
-background:none;
+    background:none;
 
-border:none;
+    border:none;
 
-color:#ff7ab8;
+    color:#ff7ab8;
 
-cursor:pointer;
+    cursor:pointer;
 
 }
+
 
 .toast{
 
-position:fixed;
+    position:fixed;
 
-right:18px;
+    right:18px;
 
-bottom:18px;
+    bottom:18px;
 
-z-index:3000;
+    z-index:3000;
 
-background:#161622;
+    background:#161622;
 
-border:1px solid var(--line);
+    border:
+    1px solid var(--line);
 
-padding:13px 16px;
+    padding:13px 16px;
 
-border-radius:12px;
+    border-radius:12px;
 
-transform:translateY(120px);
+    transform:
+    translateY(120px);
 
-transition:.25s;
+    transition:.25s;
 
 }
+
 
 .toast.show{
 
-transform:translateY(0);
+    transform:
+    translateY(0);
 
 }
 
 
-/* MOBILE */
+/* ================================
+   MOBILE
+================================ */
 
 @media(max-width:850px){
 
-.navlinks{
-display:none;
-}
+    .navlinks{
+        display:none;
+    }
 
-nav{
-height:70px;
-}
+    nav{
+        height:65px;
+    }
 
-.hero,
-.two,
-.how,
-.order,
-.generator{
-grid-template-columns:1fr;
-}
+    .hero,
+    .two,
+    .how,
+    .order,
+    .generator{
+        grid-template-columns:1fr;
+    }
 
-.heroVisual{
+    .heroVisual{
 
-min-height:340px;
+        min-height:380px;
 
-border-left:none;
+        border-left:none;
 
-border-top:1px solid var(--line);
+        border-top:
+        1px solid var(--line);
 
-}
+    }
 
-.hero h1{
-font-size:45px;
-}
+    .hero h1{
+        font-size:43px;
+    }
 
-.productRow,
-.rooms{
-grid-template-columns:1fr;
-}
+    .productRow,
+    .rooms{
+        grid-template-columns:1fr;
+    }
 
-.rooms .room{
-min-height:250px;
-}
+    .rooms .room{
+        min-height:300px;
+    }
 
-.steps{
-grid-template-columns:1fr;
-}
+    .steps{
+        grid-template-columns:1fr;
+    }
 
-.orderGrid{
-grid-template-columns:1fr;
-}
+    .orderGrid{
+        grid-template-columns:1fr;
+    }
 
-.footerGrid{
-grid-template-columns:1fr 1fr;
-}
+    .footerGrid{
+        grid-template-columns:1fr 1fr;
+    }
 
-.container{
-padding:0 20px;
-}
+    .container{
+        padding:0 18px;
+    }
 
-.features{
+    .features{
+        gap:12px;
+    }
 
-gap:12px;
-
-flex-wrap:wrap;
-
-}
+    .compare{
+        height:280px;
+    }
 
 }
 
@@ -1461,7 +1626,9 @@ flex-wrap:wrap;
 <body>
 
 
-<!-- NAVIGATION -->
+<!-- =========================
+     NAVIGATION
+========================= -->
 
 <nav>
 
@@ -1483,8 +1650,6 @@ ART<span>IFY</span>
 <a href="#prix">Prix</a>
 
 <a href="#comment">Comment ça marche</a>
-
-<a href="#faq">FAQ</a>
 
 </div>
 
@@ -1508,7 +1673,9 @@ ART<span>IFY</span>
 <main class="container">
 
 
-<!-- ACCUEIL -->
+<!-- =========================
+     ACCUEIL
+========================= -->
 
 <section class="hero" id="accueil">
 
@@ -1573,7 +1740,7 @@ onclick="document.getElementById('exemples').scrollIntoView({behavior:'smooth'})
 
 <span>∞ Possibilités créatives</span>
 
-<span>Aᐧ Transformation intelligente</span>
+<span>✦ Transformation intelligente</span>
 
 <span>✣ 100% Votre imagination</span>
 
@@ -1584,13 +1751,17 @@ onclick="document.getElementById('exemples').scrollIntoView({behavior:'smooth'})
 
 
 
-<!-- IMAGE LION -->
+<!-- LION -->
 
 <div class="heroVisual">
 
 <div class="frame">
 
-<img src="lion.png" alt="Œuvre lion ARTIFY">
+<img
+src="lion.png"
+alt="Œuvre lion ARTIFY"
+loading="eager"
+>
 
 </div>
 
@@ -1601,7 +1772,9 @@ onclick="document.getElementById('exemples').scrollIntoView({behavior:'smooth'})
 
 
 
-<!-- AVANT APRES -->
+<!-- =========================
+     AVANT APRÈS
+========================= -->
 
 <section class="section" id="exemples">
 
@@ -1650,17 +1823,20 @@ Faites glisser le curseur pour découvrir comment une image peut devenir une œu
 <div class="compare">
 
 
-<!-- AVANT -->
+<!-- BEFORE -->
 
 <img
 
 src="before.png"
 
-alt="Avant">
+alt="Avant transformation"
+
+loading="lazy"
+
+>
 
 
-
-<!-- APRES -->
+<!-- AFTER -->
 
 <img
 
@@ -1670,7 +1846,11 @@ class="after"
 
 id="afterImage"
 
-alt="Après">
+alt="Après transformation"
+
+loading="lazy"
+
+>
 
 
 <span class="label beforelab">
@@ -1697,7 +1877,12 @@ max="100"
 
 value="50"
 
-oninput="document.getElementById('afterImage').style.clipPath='inset(0 0 0 '+this.value+'%)'">
+oninput="
+document.getElementById('afterImage').style.clipPath=
+'inset(0 0 0 '+this.value+'%)'
+"
+
+>
 
 
 </div>
@@ -1707,18 +1892,16 @@ oninput="document.getElementById('afterImage').style.clipPath='inset(0 0 0 '+thi
 
 
 
-<!-- PRIX -->
+<!-- =========================
+     PRIX
+========================= -->
 
 <div class="productRow" id="prix">
 
 
 <div class="card">
 
-<h3>
-
-⇩ Version numérique
-
-</h3>
+<h3>⇩ Version numérique</h3>
 
 <p>
 
@@ -1738,11 +1921,7 @@ Téléchargez votre œuvre et imprimez-la chez vous.
 
 <div class="card">
 
-<h3>
-
-▣ Tableau encadré
-
-</h3>
+<h3>▣ Tableau encadré</h3>
 
 <p>
 
@@ -1762,11 +1941,7 @@ Imprimé, encadré et prêt à accrocher dans votre intérieur.
 
 <div class="card">
 
-<h3>
-
-💡 Option LED
-
-</h3>
+<h3>💡 Option LED</h3>
 
 <p>
 
@@ -1790,7 +1965,9 @@ Ajoutez une lumière arrière pour une ambiance unique.
 
 
 
-<!-- INTERIEUR -->
+<!-- =========================
+     INTERIEUR
+========================= -->
 
 <section class="section">
 
@@ -1835,7 +2012,9 @@ Des objets décoratifs uniques pour votre salon, chambre ou bureau.
 
 class="btn alt"
 
-onclick="document.getElementById('creer').scrollIntoView({behavior:'smooth'})">
+onclick="document.getElementById('creer').scrollIntoView({behavior:'smooth'})"
+
+>
 
 Voir plus d'exemples
 
@@ -1854,8 +2033,11 @@ Voir plus d'exemples
 
 src="salon.png"
 
-alt="Salon moderne">
+alt="Salon moderne ARTIFY"
 
+loading="lazy"
+
+>
 
 <span>
 
@@ -1867,7 +2049,7 @@ Salon moderne
 
 
 
-<!-- CHAMBRE -->
+<!-- BEDROOM -->
 
 <div class="room">
 
@@ -1875,8 +2057,11 @@ Salon moderne
 
 src="bedroom.png"
 
-alt="Chambre élégante">
+alt="Chambre élégante ARTIFY"
 
+loading="lazy"
+
+>
 
 <span>
 
@@ -1888,7 +2073,7 @@ Chambre élégante
 
 
 
-<!-- BUREAU -->
+<!-- OFFICE -->
 
 <div class="room">
 
@@ -1896,8 +2081,11 @@ Chambre élégante
 
 src="office.png"
 
-alt="Bureau créatif">
+alt="Bureau créatif ARTIFY"
 
+loading="lazy"
+
+>
 
 <span>
 
@@ -1915,7 +2103,9 @@ Bureau créatif
 
 
 
-<!-- COMMENT CA MARCHE -->
+<!-- =========================
+     COMMENT ÇA MARCHE
+========================= -->
 
 <section class="section" id="comment">
 
@@ -1951,11 +2141,13 @@ COMMENT ÇA MARCHE ?
 
 </div>
 
+
 <h4>
 
 Créez votre œuvre
 
 </h4>
+
 
 <p>
 
@@ -1963,11 +2155,13 @@ Importez votre image et décrivez votre vision.
 
 </p>
 
+
 </div>
 
 
 
 <div class="step">
+
 
 <div class="num">
 
@@ -1975,11 +2169,13 @@ Importez votre image et décrivez votre vision.
 
 </div>
 
+
 <h4>
 
 Choisissez votre option
 
 </h4>
+
 
 <p>
 
@@ -1987,11 +2183,13 @@ Téléchargement numérique ou tableau encadré.
 
 </p>
 
+
 </div>
 
 
 
 <div class="step">
+
 
 <div class="num">
 
@@ -1999,11 +2197,13 @@ Téléchargement numérique ou tableau encadré.
 
 </div>
 
+
 <h4>
 
 Recevez et profitez
 
 </h4>
+
 
 <p>
 
@@ -2011,8 +2211,6 @@ Imprimez chez vous ou accrochez votre œuvre.
 
 </p>
 
-</div>
-
 
 </div>
 
@@ -2020,8 +2218,11 @@ Imprimez chez vous ou accrochez votre œuvre.
 </div>
 
 
+</div>
 
-<!-- OPTION LED -->
+
+
+<!-- LED -->
 
 <div class="ledbox">
 
@@ -2058,7 +2259,11 @@ Avec ou sans LED
 
 src="portrait.png"
 
-alt="Portrait sans LED">
+alt="Portrait sans LED"
+
+loading="lazy"
+
+>
 
 
 <p>
@@ -2066,6 +2271,7 @@ alt="Portrait sans LED">
 Sans LED
 
 </p>
+
 
 </div>
 
@@ -2075,11 +2281,16 @@ Sans LED
 
 <div class="glow">
 
+
 <img
 
 src="portrait-led.png"
 
-alt="Portrait avec LED">
+alt="Portrait avec LED"
+
+loading="lazy"
+
+>
 
 
 <p>
@@ -2095,6 +2306,7 @@ Avec LED
 </b>
 
 </p>
+
 
 </div>
 
@@ -2112,7 +2324,9 @@ Avec LED
 
 
 
-<!-- CREER -->
+<!-- =========================
+     CREER
+========================= -->
 
 <section class="section" id="creer">
 
@@ -2148,13 +2362,22 @@ Importez une photo et dites exactement à l'IA comment vous voulez la transforme
 <div class="generator">
 
 
+<!-- UPLOAD -->
+
 <div>
 
 
-<label class="upload" for="imageInput">
+<label
+
+class="upload"
+
+for="imageInput"
+
+>
 
 
 <div id="uploadText">
+
 
 📸
 
@@ -2181,12 +2404,13 @@ JPEG, PNG ou WEBP
 </div>
 
 
-
 <img
 
 id="previewImage"
 
-alt="Aperçu">
+alt="Aperçu de votre image"
+
+>
 
 
 </label>
@@ -2200,12 +2424,16 @@ type="file"
 
 accept="image/*"
 
-hidden>
+hidden
+
+>
 
 
 </div>
 
 
+
+<!-- PROMPT -->
 
 <div>
 
@@ -2214,7 +2442,9 @@ hidden>
 
 id="prompt"
 
-placeholder="Exemple : transforme cette photo en une œuvre artistique futuriste, cinématographique, avec des couleurs violettes et roses..."></textarea>
+placeholder="Exemple : transforme cette photo en une œuvre artistique futuriste, cinématographique, avec des couleurs violettes et roses..."
+
+></textarea>
 
 
 
@@ -2225,7 +2455,9 @@ placeholder="Exemple : transforme cette photo en une œuvre artistique futuriste
 
 class="example"
 
-onclick="setPrompt('Transforme cette image en anime japonais 4K, très détaillé et cinématographique.')">
+onclick="setPrompt('Transforme cette image en anime japonais 4K, très détaillé et cinématographique.')"
+
+>
 
 Anime 4K
 
@@ -2237,7 +2469,9 @@ Anime 4K
 
 class="example"
 
-onclick="setPrompt('Transforme cette image en peinture artistique luxueuse avec une lumière spectaculaire.')">
+onclick="setPrompt('Transforme cette image en peinture artistique luxueuse avec une lumière spectaculaire et des détails très précis.')"
+
+>
 
 Peinture
 
@@ -2249,7 +2483,9 @@ Peinture
 
 class="example"
 
-onclick="setPrompt('Transforme cette image en univers futuriste cyberpunk avec des lumières néon.')">
+onclick="setPrompt('Transforme cette image en univers futuriste cyberpunk avec des lumières néon, très détaillé et cinématographique.')"
+
+>
 
 Cyberpunk
 
@@ -2266,7 +2502,9 @@ class="btn full"
 
 id="generateButton"
 
-onclick="generateArt()">
+onclick="generateArt()"
+
+>
 
 ✨ Créer mon œuvre avec l'IA
 
@@ -2286,10 +2524,9 @@ onclick="generateArt()">
 
 class="result"
 
-id="resultSection">
+id="resultSection"
 
-
-<br>
+>
 
 
 <h2 class="title">
@@ -2303,7 +2540,9 @@ id="resultSection">
 
 id="resultImage"
 
-alt="Résultat ARTIFY">
+alt="Résultat ARTIFY"
+
+>
 
 
 <br><br>
@@ -2313,7 +2552,9 @@ alt="Résultat ARTIFY">
 
 class="btn"
 
-onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
+onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})"
+
+>
 
 Commander cette œuvre
 
@@ -2327,7 +2568,9 @@ Commander cette œuvre
 
 
 
-<!-- COMMANDE -->
+<!-- =========================
+     COMMANDE
+========================= -->
 
 <section class="section" id="order">
 
@@ -2384,7 +2627,9 @@ Type de commande
 
 class="choiceRow"
 
-id="typeOptions">
+id="typeOptions"
+
+>
 
 
 <div
@@ -2393,7 +2638,9 @@ class="choice selected"
 
 data-type="digital"
 
-onclick="selectType(this)">
+onclick="selectType(this)"
+
+>
 
 
 <h4>
@@ -2427,7 +2674,9 @@ class="choice"
 
 data-type="frame"
 
-onclick="selectType(this)">
+onclick="selectType(this)"
+
+>
 
 
 <h4>
@@ -2468,7 +2717,7 @@ Prêt à accrocher chez vous.
 
 <small class="sub">
 
-Taille (Tableau encadré)
+Taille
 
 </small>
 
@@ -2477,7 +2726,9 @@ Taille (Tableau encadré)
 
 class="sizes"
 
-id="sizes">
+id="sizes"
+
+>
 
 
 <div
@@ -2486,7 +2737,9 @@ class="smallchoice selected"
 
 data-price="29.90"
 
-onclick="selectSmall(this,'sizes')">
+onclick="selectSmall(this,'sizes')"
+
+>
 
 30 × 40 cm
 
@@ -2504,7 +2757,9 @@ class="smallchoice"
 
 data-price="39.90"
 
-onclick="selectSmall(this,'sizes')">
+onclick="selectSmall(this,'sizes')"
+
+>
 
 40 × 60 cm
 
@@ -2522,7 +2777,9 @@ class="smallchoice"
 
 data-price="59.90"
 
-onclick="selectSmall(this,'sizes')">
+onclick="selectSmall(this,'sizes')"
+
+>
 
 60 × 90 cm
 
@@ -2550,7 +2807,9 @@ onclick="selectSmall(this,'sizes')">
 
 class="sizes"
 
-id="leds">
+id="leds"
+
+>
 
 
 <div
@@ -2559,7 +2818,9 @@ class="smallchoice selected"
 
 data-led="0"
 
-onclick="selectSmall(this,'leds')">
+onclick="selectSmall(this,'leds')"
+
+>
 
 Sans LED
 
@@ -2573,7 +2834,9 @@ class="smallchoice"
 
 data-led="15"
 
-onclick="selectSmall(this,'leds')">
+onclick="selectSmall(this,'leds')"
+
+>
 
 Avec LED
 
@@ -2607,7 +2870,11 @@ Aperçu
 
 src="portrait.png"
 
-alt="Aperçu ARTIFY">
+alt="Aperçu ARTIFY"
+
+loading="lazy"
+
+>
 
 
 <div>
@@ -2618,7 +2885,9 @@ Total :
 
 class="total"
 
-id="totalPrice">
+id="totalPrice"
+
+>
 
 4,90 €
 
@@ -2631,7 +2900,9 @@ id="totalPrice">
 
 class="btn full"
 
-onclick="addToCart()">
+onclick="addToCart()"
+
+>
 
 🛒 Ajouter au panier
 
@@ -2654,9 +2925,11 @@ onclick="addToCart()">
 
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
 
-<footer id="faq">
+<footer>
 
 
 <div class="footerGrid">
@@ -2743,13 +3016,17 @@ Nous sommes là
 
 
 
-<!-- PANIER -->
+<!-- =========================
+     PANIER
+========================= -->
 
 <div
 
 class="modal"
 
-id="cartModal">
+id="cartModal"
+
+>
 
 
 <div class="modalContent">
@@ -2769,7 +3046,9 @@ id="cartModal">
 
 class="close"
 
-onclick="closeCart()">
+onclick="closeCart()"
+
+>
 
 ×
 
@@ -2790,7 +3069,9 @@ Votre panier est vide.
 
 id="cartTotal"
 
-style="margin-top:15px">
+style="margin-top:15px"
+
+>
 
 Total : 0,00 €
 
@@ -2804,7 +3085,9 @@ Total : 0,00 €
 
 class="btn full"
 
-onclick="checkout()">
+onclick="checkout()"
+
+>
 
 💳 Continuer vers le paiement
 
@@ -2818,13 +3101,17 @@ onclick="checkout()">
 
 
 
-<!-- NOTIFICATION -->
+<!-- =========================
+     NOTIFICATION
+========================= -->
 
 <div
 
 class="toast"
 
-id="toast">
+id="toast"
+
+>
 
 </div>
 
@@ -2833,47 +3120,67 @@ id="toast">
 <script>
 
 
-let uploadedImage=null;
+let uploadedImage = null;
 
-let cart=[];
+let cart = [];
 
-let orderType='digital';
+let orderType = 'digital';
 
 
-const imageInput=
-
+const imageInput =
 document.getElementById('imageInput');
 
+
+/* =========================
+   IMPORT IMAGE
+========================= */
 
 imageInput.addEventListener(
 
 'change',
 
-e=>{
+e => {
 
 
-const file=e.target.files[0];
+const file =
+e.target.files[0];
 
 
-if(!file)return;
+if(!file){
+
+return;
+
+}
 
 
-const reader=new FileReader();
+const reader =
+new FileReader();
 
 
-reader.onload=ev=>{
+reader.onload =
+ev => {
 
 
-uploadedImage=ev.target.result;
+uploadedImage =
+ev.target.result;
 
 
-document.getElementById('previewImage').src=uploadedImage;
+const preview =
+document.getElementById('previewImage');
 
 
-document.getElementById('previewImage').style.display='block';
+preview.src =
+uploadedImage;
 
 
-document.getElementById('uploadText').style.display='none';
+preview.style.display =
+'block';
+
+
+document.getElementById(
+'uploadText'
+).style.display =
+'none';
 
 
 };
@@ -2887,65 +3194,92 @@ reader.readAsDataURL(file);
 );
 
 
+/* =========================
+   PROMPT
+========================= */
 
 function setPrompt(text){
 
-document.getElementById('prompt').value=text;
+document.getElementById(
+'prompt'
+).value = text;
 
 }
 
 
-
-/* GENERATION IA */
+/* =========================
+   GENERATION IA
+========================= */
 
 async function generateArt(){
 
 
-const prompt=
+const prompt =
 
-document.getElementById('prompt').value.trim();
+document.getElementById(
+'prompt'
+).value.trim();
 
 
-const btn=
+const btn =
 
-document.getElementById('generateButton');
+document.getElementById(
+'generateButton'
+);
 
 
 if(!uploadedImage){
 
-showToast('📸 Ajoutez une image avant de commencer.');
+
+showToast(
+'📸 Ajoutez une image avant de commencer.'
+);
+
 
 return;
+
 
 }
 
 
 if(!prompt){
 
-showToast('✍️ Décrivez votre vision.');
+
+showToast(
+'✍️ Décrivez votre vision.'
+);
+
 
 return;
+
 
 }
 
 
-btn.disabled=true;
+btn.disabled = true;
 
-btn.textContent='⏳ Création en cours...';
+
+btn.textContent =
+'⏳ Création en cours...';
 
 
 try{
 
 
-const response=
+const response =
 
-await fetch('/api/generate',{
+await fetch(
+
+'/api/generate',
+
+{
 
 method:'POST',
 
 headers:{
 
-'Content-Type':'application/json'
+'Content-Type':
+'application/json'
 
 },
 
@@ -2953,44 +3287,53 @@ body:
 
 JSON.stringify({
 
-prompt,
+prompt:prompt,
 
 image:uploadedImage
 
 })
 
-});
+}
+
+);
 
 
-const data=
-
+const data =
 await response.json();
 
 
 if(!response.ok){
 
+
 throw new Error(
 
-data.error||
+data.error ||
 
 'Erreur pendant la création'
 
 );
 
+
 }
 
 
-document.getElementById('resultImage').src=
+document.getElementById(
+'resultImage'
+).src =
 
-data.image||
-
+data.image ||
 uploadedImage;
 
 
-document.getElementById('resultSection').style.display='block';
+document.getElementById(
+'resultSection'
+).style.display =
+'block';
 
 
-document.getElementById('resultSection').scrollIntoView({
+document.getElementById(
+'resultSection'
+).scrollIntoView({
 
 behavior:'smooth'
 
@@ -2998,9 +3341,7 @@ behavior:'smooth'
 
 
 showToast(
-
 '✨ Votre œuvre est prête !'
-
 );
 
 
@@ -3012,7 +3353,8 @@ catch(error){
 
 showToast(
 
-'❌ '+error.message
+'❌ ' +
+error.message
 
 );
 
@@ -3023,46 +3365,46 @@ showToast(
 finally{
 
 
-btn.disabled=false;
+btn.disabled = false;
 
 
-btn.textContent=
-
-"✨ Créer mon œuvre avec l'IA";
-
-
-}
+btn.textContent =
+'✨ Créer mon œuvre avec l\'IA';
 
 
 }
 
 
+}
 
-/* CHOIX TYPE */
+
+/* =========================
+   TYPE
+========================= */
 
 function selectType(el){
 
 
 document
-
 .querySelectorAll(
-
 '#typeOptions .choice'
-
 )
 
 .forEach(
 
-x=>x.classList.remove('selected')
+x => x.classList.remove(
+'selected'
+)
 
 );
 
 
-el.classList.add('selected');
+el.classList.add(
+'selected'
+);
 
 
-orderType=
-
+orderType =
 el.dataset.type;
 
 
@@ -3072,28 +3414,35 @@ updatePrice();
 }
 
 
-
-/* CHOIX TAILLE */
+/* =========================
+   TAILLE / LED
+========================= */
 
 function selectSmall(el,id){
 
 
 document
-
 .querySelectorAll(
 
-'#'+id+' .smallchoice'
+'#' +
+id +
+' .smallchoice'
 
 )
 
 .forEach(
 
-x=>x.classList.remove('selected')
+x =>
+x.classList.remove(
+'selected'
+)
 
 );
 
 
-el.classList.add('selected');
+el.classList.add(
+'selected'
+);
 
 
 updatePrice();
@@ -3102,58 +3451,56 @@ updatePrice();
 }
 
 
-
-/* PRIX */
+/* =========================
+   PRIX
+========================= */
 
 function getOrderPrice(){
 
 
-if(orderType==='digital'){
+if(orderType === 'digital'){
 
 return 4.90;
 
 }
 
 
-const size=
+const size =
 
 document.querySelector(
-
 '#sizes .selected'
-
 );
 
 
-const led=
+const led =
 
 document.querySelector(
-
 '#leds .selected'
-
 );
 
 
 return
 
-Number(size.dataset.price)
+Number(
+size.dataset.price
+)
 
 +
 
-Number(led.dataset.led);
+Number(
+led.dataset.led
+);
 
 
 }
-
 
 
 function updatePrice(){
 
 
 document.getElementById(
-
 'totalPrice'
-
-).textContent=
+).textContent =
 
 getOrderPrice()
 
@@ -3169,89 +3516,82 @@ getOrderPrice()
 }
 
 
-
-/* AJOUT PANIER */
+/* =========================
+   PANIER
+========================= */
 
 function addToCart(){
 
 
-const size=
+const size =
 
 document.querySelector(
-
 '#sizes .selected'
-
 ).textContent.trim();
 
 
-const led=
+const led =
 
 document.querySelector(
-
 '#leds .selected'
-
 ).textContent.trim();
 
 
-const price=
-
+const price =
 getOrderPrice();
 
 
 cart.push({
 
+
 type:orderType,
 
-size,
+size:size,
 
-led,
+led:led,
 
-price
+price:price
+
 
 });
 
 
 document.getElementById(
-
 'cartCount'
-
-).textContent=
+).textContent =
 
 cart.length;
 
 
 showToast(
-
 '🛒 Votre œuvre a été ajoutée au panier !'
-
 );
 
 
 }
 
 
-
-/* OUVRIR PANIER */
+/* =========================
+   OUVRIR PANIER
+========================= */
 
 function openCart(){
 
 
-let total=0;
+let total = 0;
 
 
-const cartItems=
+const cartItems =
 
 document.getElementById(
-
 'cartItems'
-
 );
 
 
 if(!cart.length){
 
 
-cartItems.innerHTML=
+cartItems.innerHTML =
 
 '<p style="color:#aaa">Votre panier est vide.</p>';
 
@@ -3262,19 +3602,19 @@ cartItems.innerHTML=
 else{
 
 
-cartItems.innerHTML=
+cartItems.innerHTML =
 
 
 cart.map(
 
-(item,i)=>{
+(item,i) => {
 
 
-total+=item.price;
+total +=
+item.price;
 
 
 return `
-
 
 <div class="cartItem">
 
@@ -3283,7 +3623,9 @@ return `
 
 class="remove"
 
-onclick="removeItem(${i})">
+onclick="removeItem(${i})"
+
+>
 
 ×
 
@@ -3302,31 +3644,21 @@ onclick="removeItem(${i})">
 
 ${
 
-item.type==='digital'
-
+item.type === 'digital'
 
 ?
 
-'📥 Version numérique — à imprimer chez vous'
-
+'📥 Version numérique'
 
 :
 
+'🖼️ Tableau encadré<br>' +
 
-'🖼️ Tableau encadré<br>'
+item.size +
 
-+
-
-item.size
-
-+
-
-'<br>💡 '
-
-+
+'<br>💡 ' +
 
 item.led
-
 
 }
 
@@ -3336,13 +3668,20 @@ item.led
 
 <b>
 
-${item.price.toFixed(2).replace('.',',')} €
+${
+
+item.price
+
+.toFixed(2)
+
+.replace('.',',')
+
+} €
 
 </b>
 
 
 </div>
-
 
 `;
 
@@ -3356,16 +3695,16 @@ ${item.price.toFixed(2).replace('.',',')} €
 
 
 document.getElementById(
-
 'cartTotal'
+).textContent =
 
-).textContent=
+'Total : ' +
 
-'Total : '
+total
 
-+
+.toFixed(2)
 
-total.toFixed(2).replace('.',',')
+.replace('.',',')
 
 +
 
@@ -3373,17 +3712,17 @@ total.toFixed(2).replace('.',',')
 
 
 document.getElementById(
-
 'cartModal'
-
-).style.display='flex';
+).style.display =
+'flex';
 
 
 }
 
 
-
-/* SUPPRIMER */
+/* =========================
+   SUPPRIMER
+========================= */
 
 function removeItem(i){
 
@@ -3392,10 +3731,8 @@ cart.splice(i,1);
 
 
 document.getElementById(
-
 'cartCount'
-
-).textContent=
+).textContent =
 
 cart.length;
 
@@ -3406,24 +3743,25 @@ openCart();
 }
 
 
-
-/* FERMER PANIER */
+/* =========================
+   FERMER
+========================= */
 
 function closeCart(){
 
 
 document.getElementById(
-
 'cartModal'
-
-).style.display='none';
+).style.display =
+'none';
 
 
 }
 
 
-
-/* PAIEMENT */
+/* =========================
+   PAIEMENT
+========================= */
 
 function checkout(){
 
@@ -3432,9 +3770,7 @@ if(!cart.length){
 
 
 showToast(
-
 '🛒 Votre panier est vide.'
-
 );
 
 
@@ -3445,40 +3781,46 @@ return;
 
 
 showToast(
-
 '💳 Connectez Stripe pour activer le paiement.'
-
 );
 
 
 }
 
 
-
-/* NOTIFICATION */
+/* =========================
+   NOTIFICATION
+========================= */
 
 function showToast(message){
 
 
-const toast=
+const toast =
 
 document.getElementById(
-
 'toast'
-
 );
 
 
-toast.textContent=message;
+toast.textContent =
+message;
 
 
-toast.classList.add('show');
+toast.classList.add(
+'show'
+);
 
 
 setTimeout(
 
 
-()=>toast.classList.remove('show'),
+() => {
+
+toast.classList.remove(
+'show'
+);
+
+},
 
 3500
 
