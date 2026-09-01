@@ -1,234 +1,1157 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ARTIFY - Transformez vos photos en œuvres d'art</title>
+  <title>ARTIFY — Votre vision devient une œuvre</title>
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #07070d;
+      --card: rgba(20, 20, 32, 0.75);
+      --card-solid: #12121d;
+      --border: rgba(255,255,255,0.12);
+      --text: #f5f5fa;
+      --muted: #a6a6b5;
+      --purple: #8b5cf6;
+      --pink: #ec4899;
+      --blue: #6366f1;
+      --green: #38d996;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0b0b0f;
-      color: white;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(139,92,246,0.18),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 20%,
+          rgba(236,72,153,0.13),
+          transparent 28%
+        ),
+        #07070d;
+
+      color: var(--text);
+      overflow-x: hidden;
     }
 
-    header {
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        );
+
+      background-size: 60px 60px;
+
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    nav {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      z-index: 1000;
+
+      padding: 18px 6%;
+
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 8%;
-      border-bottom: 1px solid #252530;
+
+      background: rgba(7,7,13,0.75);
+      backdrop-filter: blur(20px);
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.07);
     }
 
     .logo {
       font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 4px;
+      font-weight: 900;
+      letter-spacing: 8px;
     }
 
     .logo span {
-      color: #a855f7;
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #8b5cf6,
+          #ec4899
+        );
+
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
-    nav {
+    .nav-right {
       display: flex;
-      gap: 25px;
-      color: #aaa;
+      align-items: center;
+      gap: 14px;
     }
+
+    .cart {
+      border: 1px solid var(--border);
+
+      background: rgba(255,255,255,0.05);
+
+      color: white;
+
+      padding: 13px 18px;
+
+      border-radius: 18px;
+
+      cursor: pointer;
+
+      font-size: 16px;
+
+      transition: 0.25s;
+    }
+
+    .cart:hover {
+      transform: translateY(-2px);
+
+      border-color: var(--purple);
+    }
+
+    #cartCount {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      width: 25px;
+      height: 25px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--pink)
+        );
+
+      margin-left: 8px;
+
+      font-size: 13px;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
-      text-align: center;
-      padding: 80px 20px 50px;
-      max-width: 1000px;
+      min-height: 100vh;
+
+      padding:
+        150px 7%
+        80px;
+
+      display: grid;
+
+      grid-template-columns:
+        1.1fr
+        0.9fr;
+
+      align-items: center;
+
+      gap: 60px;
+
+      max-width: 1500px;
+
       margin: auto;
     }
 
-    .hero h1 {
-      font-size: 55px;
-      margin-bottom: 20px;
+    .badge {
+      display: inline-flex;
+
+      align-items: center;
+      gap: 10px;
+
+      padding: 10px 16px;
+
+      border-radius: 100px;
+
+      border:
+        1px solid
+        rgba(139,92,246,0.35);
+
+      background:
+        rgba(139,92,246,0.1);
+
+      color: #d9c7ff;
+
+      margin-bottom: 25px;
+
+      font-size: 14px;
     }
 
-    .gradient {
-      background: linear-gradient(90deg, #a855f7, #ec4899, #6366f1);
+    h1 {
+      font-size:
+        clamp(
+          55px,
+          8vw,
+          110px
+        );
+
+      line-height: 0.95;
+
+      letter-spacing: -5px;
+
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background:
+        linear-gradient(
+          100deg,
+          #ffffff 10%,
+          #8b5cf6 45%,
+          #ec4899 90%
+        );
+
       -webkit-background-clip: text;
       color: transparent;
     }
 
     .hero p {
-      font-size: 19px;
-      color: #aaa;
-      line-height: 1.6;
+      font-size: 21px;
+
+      line-height: 1.7;
+
+      color: var(--muted);
+
+      max-width: 650px;
+
+      margin-bottom: 35px;
     }
 
-    .container {
-      width: 90%;
-      max-width: 1000px;
-      margin: auto;
-      padding-bottom: 80px;
+    .hero-buttons {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 15px;
     }
 
-    .card {
-      background: #15151d;
-      border: 1px solid #282833;
-      border-radius: 20px;
-      padding: 30px;
-      margin-top: 25px;
-    }
+    .primary-btn {
+      border: none;
 
-    h2 {
-      margin-bottom: 20px;
-    }
-
-    .upload-box {
-      border: 2px dashed #555;
-      border-radius: 15px;
-      padding: 45px 20px;
-      text-align: center;
       cursor: pointer;
-      transition: 0.3s;
+
+      padding:
+        18px
+        28px;
+
+      border-radius: 18px;
+
+      color: white;
+
+      font-size: 17px;
+      font-weight: 700;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--pink)
+        );
+
+      box-shadow:
+        0 20px 60px
+        rgba(139,92,246,0.35);
+
+      transition: 0.25s;
     }
 
-    .upload-box:hover {
-      border-color: #a855f7;
-      background: #1b1723;
+    .primary-btn:hover {
+      transform:
+        translateY(-3px)
+        scale(1.02);
+
+      box-shadow:
+        0 25px 70px
+        rgba(236,72,153,0.3);
     }
 
-    input[type="file"] {
+    .secondary-btn {
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        rgba(255,255,255,0.04);
+
+      color: white;
+
+      padding:
+        18px
+        28px;
+
+      border-radius: 18px;
+
+      cursor: pointer;
+
+      font-size: 16px;
+    }
+
+    /* =========================
+       HERO ART
+    ========================== */
+
+    .hero-art {
+      position: relative;
+
+      height: 620px;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+    }
+
+    .art-glow {
+      position: absolute;
+
+      width: 450px;
+      height: 450px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(139,92,246,0.45),
+          transparent 65%
+        );
+
+      filter: blur(30px);
+    }
+
+    .art-frame {
+      position: relative;
+
+      width: min(100%, 440px);
+      aspect-ratio: 4/5;
+
+      padding: 12px;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,255,255,0.25),
+          rgba(255,255,255,0.03)
+        );
+
+      box-shadow:
+        0 40px 100px
+        rgba(0,0,0,0.7);
+
+      transform:
+        rotate(4deg);
+
+      transition: 0.4s;
+    }
+
+    .art-frame:hover {
+      transform:
+        rotate(0deg)
+        scale(1.03);
+    }
+
+    .art-frame img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      border-radius: 20px;
+
+      display: block;
+    }
+
+    .floating-card {
+      position: absolute;
+
+      bottom: 35px;
+      left: -20px;
+
+      padding: 18px;
+
+      border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+      background:
+        rgba(12,12,20,0.75);
+
+      backdrop-filter:
+        blur(20px);
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.5);
+    }
+
+    .floating-card strong {
+      display: block;
+
+      font-size: 17px;
+    }
+
+    .floating-card span {
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       STATS
+    ========================== */
+
+    .stats {
+      max-width: 1200px;
+
+      margin:
+        0 auto
+        120px;
+
+      padding: 25px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 20px;
+    }
+
+    .stat {
+      text-align: center;
+
+      padding: 25px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 22px;
+
+      background:
+        rgba(255,255,255,0.025);
+    }
+
+    .stat h3 {
+      font-size: 30px;
+    }
+
+    .stat p {
+      color: var(--muted);
+
+      margin-top: 8px;
+    }
+
+    /* =========================
+       GENERATOR
+    ========================== */
+
+    .section {
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding:
+        100px 7%;
+    }
+
+    .section-title {
+      font-size:
+        clamp(
+          42px,
+          6vw,
+          70px
+        );
+
+      letter-spacing: -3px;
+
+      margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+
+      font-size: 19px;
+
+      line-height: 1.6;
+
+      margin-bottom: 45px;
+    }
+
+    .generator {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 25px;
+
+      padding: 25px;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 35px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(139,92,246,0.09),
+          rgba(236,72,153,0.04)
+        );
+
+      box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.3);
+    }
+
+    .panel {
+      background:
+        rgba(8,8,14,0.7);
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 25px;
+
+      padding: 28px;
+    }
+
+    .panel h3 {
+      font-size: 24px;
+
+      margin-bottom: 22px;
+    }
+
+    /* =========================
+       UPLOAD
+    ========================== */
+
+    .upload-zone {
+      min-height: 320px;
+
+      border:
+        2px dashed
+        rgba(139,92,246,0.45);
+
+      border-radius: 22px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+
+      padding: 20px;
+
+      cursor: pointer;
+
+      background:
+        rgba(139,92,246,0.04);
+
+      transition: 0.25s;
+
+      overflow: hidden;
+    }
+
+    .upload-zone:hover {
+      background:
+        rgba(139,92,246,0.1);
+
+      border-color:
+        var(--pink);
+    }
+
+    .upload-zone img {
+      max-width: 100%;
+      max-height: 400px;
+
+      object-fit: contain;
+
+      border-radius: 15px;
+
       display: none;
+    }
+
+    .upload-icon {
+      font-size: 55px;
+
+      margin-bottom: 15px;
+    }
+
+    .upload-zone p {
+      color: var(--muted);
+    }
+
+    #imageInput {
+      display: none;
+    }
+
+    /* =========================
+       FORM
+    ========================== */
+
+    label {
+      display: block;
+
+      font-size: 15px;
+
+      margin-bottom: 10px;
+
+      color: #d8d8e5;
     }
 
     textarea {
       width: 100%;
-      min-height: 120px;
-      background: #0c0c12;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 15px;
-      color: white;
-      font-size: 16px;
+
+      min-height: 180px;
+
       resize: vertical;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        #0b0b13;
+
+      color: white;
+
+      border-radius: 18px;
+
+      padding: 18px;
+
+      font-size: 17px;
+
+      outline: none;
+
+      font-family: inherit;
     }
 
     textarea:focus {
-      outline: none;
-      border-color: #a855f7;
+      border-color:
+        var(--purple);
+
+      box-shadow:
+        0 0 0 4px
+        rgba(139,92,246,0.1);
     }
 
-    button {
-      border: none;
+    .examples {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin-top: 14px;
+      margin-bottom: 22px;
+    }
+
+    .example {
+      padding:
+        8px
+        12px;
+
+      border-radius: 100px;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        rgba(255,255,255,0.04);
+
+      color: var(--muted);
+
+      font-size: 12px;
+
       cursor: pointer;
-      font-size: 17px;
-      font-weight: bold;
-      border-radius: 12px;
-      padding: 16px 25px;
-      margin-top: 15px;
-      width: 100%;
+
+      transition: 0.2s;
     }
 
-    .generate {
-      background: linear-gradient(90deg, #7c3aed, #db2777);
+    .example:hover {
       color: white;
+
+      border-color:
+        var(--purple);
     }
 
-    .generate:hover {
-      opacity: 0.9;
+    .generate-btn {
+      width: 100%;
+
+      padding: 20px;
+
+      border: none;
+
+      border-radius: 18px;
+
+      color: white;
+
+      font-size: 18px;
+      font-weight: 800;
+
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7c3aed,
+          #db2777
+        );
+
+      transition: 0.25s;
+
+      box-shadow:
+        0 20px 50px
+        rgba(124,58,237,0.3);
     }
 
-    .generate:disabled {
-      opacity: 0.5;
+    .generate-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.6;
+
       cursor: not-allowed;
     }
 
-    #preview,
-    #resultImage {
-      width: 100%;
-      max-height: 550px;
-      object-fit: contain;
-      border-radius: 15px;
-      margin-top: 20px;
+    /* =========================
+       RESULT
+    ========================== */
+
+    .result-section {
       display: none;
-      background: #000;
-    }
 
-    .status {
-      text-align: center;
-      margin-top: 15px;
-      color: #bbb;
-    }
-
-    .options {
-      display: none;
-    }
-
-    .choices {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 12px;
-    }
-
-    .choice {
-      background: #0c0c12;
-      border: 1px solid #333;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      text-align: center;
-    }
-
-    .choice:hover {
-      border-color: #a855f7;
-    }
-
-    .choice.selected {
-      background: #5b21b6;
-      border-color: #c084fc;
-    }
-
-    .section-title {
-      margin-top: 25px;
-      margin-bottom: 12px;
-    }
-
-    .order {
-      background: #22c55e;
-      color: white;
       margin-top: 30px;
+
+      padding: 25px;
+
+      border-radius: 25px;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        rgba(20,20,30,0.8);
     }
 
-    .images {
+    .result-image {
+      width: 100%;
+
+      max-height: 600px;
+
+      object-fit: contain;
+
+      border-radius: 20px;
+
+      background: #050509;
+    }
+
+    .result-actions {
+      display: flex;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      margin-top: 20px;
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================== */
+
+    .products {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
       gap: 20px;
+
+      margin-top: 40px;
     }
 
-    .image-label {
-      text-align: center;
-      color: #aaa;
+    .product {
+      padding: 24px;
+
+      border-radius: 24px;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        rgba(255,255,255,0.025);
+
+      transition: 0.25s;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+
+      border-color:
+        rgba(139,92,246,0.6);
+    }
+
+    .product-icon {
+      font-size: 45px;
+
+      margin-bottom: 18px;
+    }
+
+    .product h3 {
+      font-size: 22px;
+
       margin-bottom: 10px;
     }
 
-    @media(max-width: 700px) {
+    .product p {
+      color: var(--muted);
 
-      .hero h1 {
-        font-size: 38px;
-      }
+      line-height: 1.6;
+    }
+
+    /* =========================
+       OPTIONS
+    ========================== */
+
+    .options-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 18px;
+    }
+
+    .option {
+      padding: 22px;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        rgba(255,255,255,0.03);
+
+      border-radius: 20px;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    .option:hover,
+    .option.selected {
+      border-color:
+        var(--purple);
+
+      background:
+        rgba(139,92,246,0.1);
+    }
+
+    .option h4 {
+      margin-bottom: 8px;
+    }
+
+    .option p {
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* =========================
+       CART MODAL
+    ========================== */
+
+    .modal {
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 2000;
+
+      background:
+        rgba(0,0,0,0.7);
+
+      backdrop-filter:
+        blur(10px);
+
+      padding: 20px;
+
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      width: 100%;
+
+      max-width: 500px;
+
+      max-height: 85vh;
+
+      overflow-y: auto;
+
+      background:
+        #12121d;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 28px;
+
+      padding: 28px;
+    }
+
+    .modal-header {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 25px;
+    }
+
+    .close {
+      background: transparent;
+
+      border: none;
+
+      color: white;
+
+      font-size: 28px;
+
+      cursor: pointer;
+    }
+
+    .cart-item {
+      padding: 15px;
+
+      border-radius: 15px;
+
+      background:
+        rgba(255,255,255,0.05);
+
+      margin-bottom: 12px;
+    }
+
+    .checkout {
+      width: 100%;
+
+      margin-top: 15px;
+
+      padding: 18px;
+
+      border: none;
+
+      border-radius: 16px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--purple),
+          var(--pink)
+        );
+
+      color: white;
+
+      font-size: 17px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 70px 7%;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      text-align: center;
+
+      color: var(--muted);
+    }
+
+    /* =========================
+       TOAST
+    ========================== */
+
+    .toast {
+      position: fixed;
+
+      bottom: 25px;
+      right: 25px;
+
+      z-index: 5000;
+
+      padding: 17px 22px;
+
+      border-radius: 15px;
+
+      background:
+        #181824;
+
+      border:
+        1px solid
+        var(--border);
+
+      transform:
+        translateY(150px);
+
+      transition: 0.3s;
+
+      box-shadow:
+        0 20px 60px
+        rgba(0,0,0,0.4);
+    }
+
+    .toast.show {
+      transform:
+        translateY(0);
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 850px) {
 
       nav {
-        display: none;
+        padding:
+          16px
+          20px;
       }
 
-      .images {
+      .logo {
+        font-size: 20px;
+        letter-spacing: 5px;
+      }
+
+      .cart {
+        padding: 11px 13px;
+        font-size: 14px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        padding:
+          140px 7%
+          60px;
+
+        gap: 25px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .hero-art {
+        height: 480px;
+      }
+
+      .floating-card {
+        left: 0;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+
+        padding:
+          20px
+          7%;
+      }
+
+      .generator {
         grid-template-columns: 1fr;
       }
 
+      .products,
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding:
+          70px 7%;
+      }
     }
 
   </style>
@@ -236,442 +1159,1280 @@
 
 <body>
 
-<header>
-
-  <div class="logo">
-    ART<span>IFY</span>
-  </div>
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
 
   <nav>
-    <div>Accueil</div>
-    <div>Comment ça marche</div>
-    <div>Mes créations</div>
+
+    <div class="logo">
+      ART<span>IFY</span>
+    </div>
+
+    <div class="nav-right">
+
+      <button
+        class="cart"
+        onclick="openCart()"
+      >
+        🛒 Panier
+        <span id="cartCount">0</span>
+      </button>
+
+    </div>
+
   </nav>
 
-</header>
 
+  <!-- =========================
+       HERO
+  ========================== -->
 
-<section class="hero">
+  <section class="hero">
 
-  <h1>
-    Transformez vos photos en
-    <span class="gradient">œuvres d'art</span>
-  </h1>
+    <div>
 
-  <p>
-    Importez votre photo, décrivez ce que vous imaginez
-    et notre intelligence artificielle transforme votre image.
-  </p>
+      <div class="badge">
+        ✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
+      </div>
 
-</section>
+      <h1>
+        Transformez votre vision
+        <br>
 
+        en
+        <span class="gradient-text">
+          œuvre d'art.
+        </span>
+      </h1>
 
-<div class="container">
-
-
-  <!-- ETAPE 1 -->
-
-  <div class="card">
-
-    <h2>📸 1. Importez votre photo</h2>
-
-    <label class="upload-box">
-
-      <div style="font-size:45px;">📷</div>
-
-      <h3>Choisissez votre photo</h3>
-
-      <p style="color:#999;margin-top:10px;">
-        JPG, PNG ou WEBP
+      <p>
+        Importez votre image.
+        Décrivez votre imagination.
+        ARTIFY transforme votre vision en une création unique.
       </p>
 
-      <input
-        type="file"
-        id="imageInput"
-        accept="image/*"
-      >
+      <div class="hero-buttons">
 
-    </label>
+        <button
+          class="primary-btn"
+          onclick="document.getElementById('create').scrollIntoView()"
+        >
+          ✨ Créer mon œuvre
+        </button>
 
-    <img id="preview">
+        <button
+          class="secondary-btn"
+          onclick="document.getElementById('inspiration').scrollIntoView()"
+        >
+          Découvrir ARTIFY ↓
+        </button>
 
-  </div>
-
-
-  <!-- ETAPE 2 -->
-
-  <div class="card">
-
-    <h2>✨ 2. Décrivez votre œuvre</h2>
-
-    <textarea
-      id="prompt"
-      placeholder="Exemple : Transforme cette photo en peinture artistique futuriste avec des couleurs néon, tout en conservant le sujet principal."
-    ></textarea>
-
-    <button
-      class="generate"
-      id="generateButton"
-    >
-      ✨ Générer avec l'IA
-    </button>
-
-    <div
-      class="status"
-      id="status"
-    ></div>
-
-  </div>
-
-
-  <!-- RESULTAT -->
-
-  <div
-    class="card"
-    id="resultCard"
-    style="display:none;"
-  >
-
-    <h2>🎨 Votre création ARTIFY</h2>
-
-    <img id="resultImage">
-
-  </div>
-
-
-  <!-- OPTIONS -->
-
-  <div
-    class="card options"
-    id="options"
-  >
-
-    <h2>🖼️ Personnalisez votre tableau</h2>
-
-
-    <h3 class="section-title">
-      📏 Taille
-    </h3>
-
-    <div
-      class="choices"
-      id="sizes"
-    >
-
-      <div class="choice">
-        30 × 40 cm
-      </div>
-
-      <div class="choice">
-        40 × 60 cm
-      </div>
-
-      <div class="choice">
-        50 × 70 cm
       </div>
 
     </div>
 
 
-    <h3 class="section-title">
+    <div class="hero-art">
+
+      <div class="art-glow"></div>
+
+      <div class="art-frame">
+
+        <img
+          src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1000&q=80"
+          alt="Art inspiration"
+        >
+
+      </div>
+
+      <div class="floating-card">
+
+        <strong>
+          ✨ Créé avec ARTIFY
+        </strong>
+
+        <span>
+          Une vision. Une œuvre.
+        </span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       STATS
+  ========================== -->
+
+  <section class="stats">
+
+    <div class="stat">
+
+      <h3>∞</h3>
+
+      <p>
+        Possibilités créatives
+      </p>
+
+    </div>
+
+    <div class="stat">
+
+      <h3>AI</h3>
+
+      <p>
+        Transformation intelligente
+      </p>
+
+    </div>
+
+    <div class="stat">
+
+      <h3>100%</h3>
+
+      <p>
+        Votre imagination
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       GENERATOR
+  ========================== -->
+
+  <section
+    class="section"
+    id="create"
+  >
+
+    <div class="badge">
+      ✨ CRÉEZ MAINTENANT
+    </div>
+
+    <h2 class="section-title">
+      Votre imagination
+      <span class="gradient-text">
+        sans limites.
+      </span>
+    </h2>
+
+    <p class="section-subtitle">
+
+      Ajoutez votre image et expliquez exactement ce que vous souhaitez.
+      L'intelligence artificielle préparera votre future œuvre.
+
+    </p>
+
+
+    <div class="generator">
+
+
+      <!-- UPLOAD -->
+
+      <div class="panel">
+
+        <h3>
+          🖼️ 1. Importez votre image
+        </h3>
+
+        <label
+          for="imageInput"
+          class="upload-zone"
+          id="uploadZone"
+        >
+
+          <div id="uploadText">
+
+            <div class="upload-icon">
+              📸
+            </div>
+
+            <h3>
+              Ajoutez votre photo
+            </h3>
+
+            <p>
+              Cliquez ici pour importer une image
+            </p>
+
+          </div>
+
+          <img
+            id="previewImage"
+            alt="Votre image"
+          >
+
+        </label>
+
+        <input
+          type="file"
+          id="imageInput"
+          accept="image/*"
+        >
+
+      </div>
+
+
+      <!-- PROMPT -->
+
+      <div class="panel">
+
+        <h3>
+          ✨ 2. Décrivez votre vision
+        </h3>
+
+        <label for="prompt">
+          Comment voulez-vous transformer votre image ?
+        </label>
+
+        <textarea
+          id="prompt"
+          placeholder="Exemple : Transforme cette photo en une œuvre futuriste, avec un style cinématographique, des couleurs violettes et roses, une lumière spectaculaire et des détails incroyables..."
+        ></textarea>
+
+
+        <div class="examples">
+
+          <button
+            class="example"
+            onclick="setPrompt('Transforme cette image en anime japonais 4K, très détaillé, style cinématographique.')"
+          >
+            Anime 4K
+          </button>
+
+          <button
+            class="example"
+            onclick="setPrompt('Transforme cette image en peinture artistique luxueuse avec une lumière spectaculaire.')"
+          >
+            Peinture
+          </button>
+
+          <button
+            class="example"
+            onclick="setPrompt('Transforme cette image en univers futuriste cyberpunk avec des lumières néon.')"
+          >
+            Cyberpunk
+          </button>
+
+          <button
+            class="example"
+            onclick="setPrompt('Transforme cette image en portrait noir et blanc artistique, luxueux et cinématographique.')"
+          >
+            Noir & Blanc
+          </button>
+
+        </div>
+
+
+        <button
+          class="generate-btn"
+          id="generateButton"
+          onclick="generateArt()"
+        >
+
+          ✨ Créer mon œuvre avec l'IA
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div
+      class="result-section"
+      id="resultSection"
+    >
+
+      <h2
+        style="margin-bottom:20px"
+      >
+        ✨ Votre œuvre ARTIFY
+      </h2>
+
+      <img
+        id="resultImage"
+        class="result-image"
+        alt="Résultat ARTIFY"
+      >
+
+      <div class="result-actions">
+
+        <button
+          class="primary-btn"
+          onclick="scrollToOrder()"
+        >
+          🛒 Commander cette œuvre
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PRODUCTS
+  ========================== -->
+
+  <section
+    class="section"
+    id="inspiration"
+  >
+
+    <div class="badge">
+      🎨 PERSONNALISEZ VOTRE ŒUVRE
+    </div>
+
+    <h2 class="section-title">
+      Une œuvre.
+      <br>
+
+      <span class="gradient-text">
+        À votre image.
+      </span>
+    </h2>
+
+    <p class="section-subtitle">
+      Une fois votre création réalisée,
+      choisissez comment vous souhaitez
+      lui donner vie.
+    </p>
+
+
+    <div class="products">
+
+      <div class="product">
+
+        <div class="product-icon">
+          🖼️
+        </div>
+
+        <h3>
+          Tableau Premium
+        </h3>
+
+        <p>
+          Une finition élégante pour transformer votre création en véritable décoration.
+        </p>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-icon">
+          ✨
+        </div>
+
+        <h3>
+          Aluminium
+        </h3>
+
+        <p>
+          Un rendu moderne, lumineux et premium pour une œuvre spectaculaire.
+        </p>
+
+      </div>
+
+
+      <div class="product">
+
+        <div class="product-icon">
+          💡
+        </div>
+
+        <h3>
+          Option LED
+        </h3>
+
+        <p>
+          Illuminez votre œuvre pour créer une ambiance exceptionnelle.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ORDER
+  ========================== -->
+
+  <section
+    class="section"
+    id="order"
+  >
+
+    <div class="badge">
+      🛒 VOTRE FUTURE ŒUVRE
+    </div>
+
+    <h2 class="section-title">
+      Choisissez votre
+      <span class="gradient-text">
+        finition.
+      </span>
+    </h2>
+
+
+    <h3
+      style="
+        margin-bottom:20px;
+        font-size:24px;
+      "
+    >
+      📐 Taille
+    </h3>
+
+
+    <div
+      class="options-grid"
+      id="sizeOptions"
+    >
+
+      <div
+        class="option selected"
+        data-value="30 × 40 cm"
+        onclick="selectOption(this,'sizeOptions')"
+      >
+
+        <h4>
+          30 × 40 cm
+        </h4>
+
+        <p>
+          Parfait pour commencer
+        </p>
+
+      </div>
+
+
+      <div
+        class="option"
+        data-value="40 × 60 cm"
+        onclick="selectOption(this,'sizeOptions')"
+      >
+
+        <h4>
+          40 × 60 cm
+        </h4>
+
+        <p>
+          Format élégant
+        </p>
+
+      </div>
+
+
+      <div
+        class="option"
+        data-value="60 × 90 cm"
+        onclick="selectOption(this,'sizeOptions')"
+      >
+
+        <h4>
+          60 × 90 cm
+        </h4>
+
+        <p>
+          Format spectaculaire
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <br>
+    <br>
+
+
+    <h3
+      style="
+        margin-bottom:20px;
+        font-size:24px;
+      "
+    >
       🖼️ Matière
     </h3>
 
+
     <div
-      class="choices"
-      id="materials"
+      class="options-grid"
+      id="materialOptions"
     >
 
-      <div class="choice">
-        Toile
+      <div
+        class="option selected"
+        data-value="Toile Premium"
+        onclick="selectOption(this,'materialOptions')"
+      >
+
+        <h4>
+          Toile Premium
+        </h4>
+
+        <p>
+          Classique et artistique
+        </p>
+
       </div>
 
-      <div class="choice">
-        Poster
+
+      <div
+        class="option"
+        data-value="Aluminium"
+        onclick="selectOption(this,'materialOptions')"
+      >
+
+        <h4>
+          Aluminium
+        </h4>
+
+        <p>
+          Moderne et brillant
+        </p>
+
       </div>
 
-      <div class="choice">
-        Aluminium
-      </div>
 
-      <div class="choice">
-        Plexiglas
+      <div
+        class="option"
+        data-value="Plexiglas"
+        onclick="selectOption(this,'materialOptions')"
+      >
+
+        <h4>
+          Plexiglas
+        </h4>
+
+        <p>
+          Luxueux et lumineux
+        </p>
+
       </div>
 
     </div>
 
 
-    <h3 class="section-title">
-      💡 Éclairage
+    <br>
+    <br>
+
+
+    <h3
+      style="
+        margin-bottom:20px;
+        font-size:24px;
+      "
+    >
+      💡 Option spéciale
     </h3>
 
+
     <div
-      class="choices"
-      id="led"
+      class="options-grid"
+      id="ledOptions"
     >
 
-      <div class="choice">
-        Sans LED
+      <div
+        class="option selected"
+        data-value="Sans LED"
+        onclick="selectOption(this,'ledOptions')"
+      >
+
+        <h4>
+          Sans LED
+        </h4>
+
+        <p>
+          Finition classique
+        </p>
+
       </div>
 
-      <div class="choice">
-        Avec LED
+
+      <div
+        class="option"
+        data-value="LED"
+        onclick="selectOption(this,'ledOptions')"
+      >
+
+        <h4>
+          💡 LED arrière
+        </h4>
+
+        <p>
+          Une lumière derrière votre tableau
+        </p>
+
       </div>
 
     </div>
 
 
-    <button class="order">
+    <br>
+    <br>
 
-      🛒 Continuer vers la commande
+
+    <button
+      class="primary-btn"
+      style="
+        width:100%;
+        font-size:20px;
+        padding:22px;
+      "
+      onclick="addToCart()"
+    >
+
+      🛒 Ajouter mon œuvre au panier
 
     </button>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div
+      class="logo"
+      style="margin-bottom:20px"
+    >
+      ART<span>IFY</span>
+    </div>
+
+    <p>
+      Votre vision. Votre œuvre.
+    </p>
+
+    <br>
+
+    <p style="font-size:13px">
+      © 2026 ARTIFY
+    </p>
+
+  </footer>
+
+
+  <!-- =========================
+       CART MODAL
+  ========================== -->
+
+  <div
+    class="modal"
+    id="cartModal"
+  >
+
+    <div class="modal-content">
+
+      <div class="modal-header">
+
+        <h2>
+          🛒 Votre panier
+        </h2>
+
+        <button
+          class="close"
+          onclick="closeCart()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div id="cartItems">
+
+        Votre panier est vide.
+
+      </div>
+
+
+      <button
+        class="checkout"
+        onclick="checkout()"
+      >
+
+        Continuer vers le paiement
+
+      </button>
+
+
+      <p
+        style="
+          text-align:center;
+          color:#888;
+          margin-top:15px;
+          font-size:13px;
+        "
+      >
+
+        💳 Carte • Apple Pay • PayPal
+
+      </p>
+
+    </div>
 
   </div>
 
 
-</div>
+  <!-- =========================
+       TOAST
+  ========================== -->
 
-
-<script>
-
-const imageInput =
-  document.getElementById("imageInput");
-
-const preview =
-  document.getElementById("preview");
-
-const generateButton =
-  document.getElementById("generateButton");
-
-const promptInput =
-  document.getElementById("prompt");
-
-const status =
-  document.getElementById("status");
-
-const resultImage =
-  document.getElementById("resultImage");
-
-const resultCard =
-  document.getElementById("resultCard");
-
-const options =
-  document.getElementById("options");
-
-
-let selectedFile = null;
+  <div
+    class="toast"
+    id="toast"
+  >
+  </div>
 
 
 
-/* PREVIEW IMAGE */
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
-imageInput.addEventListener(
-  "change",
-  function(event) {
+  <script>
 
-    selectedFile =
-      event.target.files[0];
+    let uploadedImage = null;
 
-    if (!selectedFile) return;
-
-    preview.src =
-      URL.createObjectURL(selectedFile);
-
-    preview.style.display =
-      "block";
-
-  }
-);
+    let cart = [];
 
 
+    /* =========================
+       IMAGE UPLOAD
+    ========================== */
 
-/* GENERER AVEC IA */
-
-generateButton.addEventListener(
-  "click",
-  async function() {
-
-    if (!selectedFile) {
-
-      alert(
-        "Veuillez importer une photo."
-      );
-
-      return;
-
-    }
-
-
-    if (!promptInput.value.trim()) {
-
-      alert(
-        "Veuillez écrire ce que vous souhaitez."
-      );
-
-      return;
-
-    }
-
-
-    generateButton.disabled =
-      true;
-
-    generateButton.innerText =
-      "⏳ Création en cours...";
-
-    status.innerText =
-      "🤖 L'intelligence artificielle transforme votre image...";
-
-
-    try {
-
-
-      const formData =
-        new FormData();
-
-
-      formData.append(
-        "image",
-        selectedFile
+    const imageInput =
+      document.getElementById(
+        "imageInput"
       );
 
 
-      formData.append(
-        "prompt",
-        promptInput.value
-      );
+    imageInput.addEventListener(
+      "change",
+      function(event) {
+
+        const file =
+          event.target.files[0];
+
+        if (!file) return;
 
 
-      const response =
-        await fetch(
-          "/api/generate",
-          {
-            method: "POST",
-            body: formData
-          }
+        const reader =
+          new FileReader();
+
+
+        reader.onload =
+          function(e) {
+
+            uploadedImage =
+              e.target.result;
+
+
+            const preview =
+              document.getElementById(
+                "previewImage"
+              );
+
+
+            preview.src =
+              uploadedImage;
+
+
+            preview.style.display =
+              "block";
+
+
+            document.getElementById(
+              "uploadText"
+            ).style.display =
+              "none";
+
+          };
+
+
+        reader.readAsDataURL(
+          file
         );
-
-
-      const data =
-        await response.json();
-
-
-      if (!response.ok) {
-
-        throw new Error(
-          data.error ||
-          "Erreur lors de la génération."
-        );
-
-      }
-
-
-      resultImage.src =
-        data.image;
-
-
-      resultImage.style.display =
-        "block";
-
-
-      resultCard.style.display =
-        "block";
-
-
-      options.style.display =
-        "block";
-
-
-      status.innerText =
-        "✅ Votre œuvre est prête !";
-
-
-      resultCard.scrollIntoView({
-        behavior: "smooth"
-      });
-
-
-    }
-
-    catch (error) {
-
-
-      console.error(error);
-
-
-      status.innerText =
-        "❌ " + error.message;
-
-
-      alert(
-        "Erreur : " +
-        error.message
-      );
-
-    }
-
-
-    finally {
-
-
-      generateButton.disabled =
-        false;
-
-
-      generateButton.innerText =
-        "✨ Générer avec l'IA";
-
-    }
-
-  }
-);
-
-
-
-/* BOUTONS OPTIONS */
-
-document
-.querySelectorAll(".choices")
-.forEach(group => {
-
-
-  group
-  .querySelectorAll(".choice")
-  .forEach(choice => {
-
-
-    choice.addEventListener(
-      "click",
-      function() {
-
-
-        group
-        .querySelectorAll(".choice")
-        .forEach(item => {
-
-          item.classList.remove(
-            "selected"
-          );
-
-        });
-
-
-        choice.classList.add(
-          "selected"
-        );
-
 
       }
     );
 
 
-  });
+    /* =========================
+       PROMPT EXAMPLES
+    ========================== */
+
+    function setPrompt(text) {
+
+      document.getElementById(
+        "prompt"
+      ).value = text;
+
+    }
 
 
-});
+    /* =========================
+       GENERATE ART
+    ========================== */
 
-</script>
+    async function generateArt() {
+
+      const prompt =
+        document.getElementById(
+          "prompt"
+        ).value.trim();
+
+
+      const button =
+        document.getElementById(
+          "generateButton"
+        );
+
+
+      if (!uploadedImage) {
+
+        showToast(
+          "📸 Ajoutez une image avant de commencer."
+        );
+
+        return;
+
+      }
+
+
+      if (!prompt) {
+
+        showToast(
+          "✍️ Décrivez ce que vous souhaitez créer."
+        );
+
+        document.getElementById(
+          "prompt"
+        ).focus();
+
+        return;
+
+      }
+
+
+      button.disabled = true;
+
+      button.innerHTML =
+        "⏳ Création en cours...";
+
+
+      try {
+
+        const response =
+          await fetch(
+            "/api/generate",
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify({
+
+                  prompt: prompt,
+
+                  image:
+                    uploadedImage
+
+                })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            data.error ||
+            "Erreur pendant la création"
+          );
+
+        }
+
+
+        /*
+          Si l'API retourne
+          une image générée
+        */
+
+        if (
+          data.image
+        ) {
+
+          document.getElementById(
+            "resultImage"
+          ).src =
+            data.image;
+
+        }
+
+        /*
+          Mode test :
+          affiche l'image
+          originale si l'IA
+          n'a pas encore
+          retourné d'image.
+        */
+
+        else {
+
+          document.getElementById(
+            "resultImage"
+          ).src =
+            uploadedImage;
+
+        }
+
+
+        document.getElementById(
+          "resultSection"
+        ).style.display =
+          "block";
+
+
+        document.getElementById(
+          "resultSection"
+        ).scrollIntoView({
+          behavior:
+            "smooth"
+        });
+
+
+        showToast(
+          "✨ Votre œuvre est prête !"
+        );
+
+
+      }
+
+      catch(error) {
+
+        console.error(
+          error
+        );
+
+
+        showToast(
+          "❌ Erreur : " +
+          error.message
+        );
+
+      }
+
+
+      finally {
+
+        button.disabled =
+          false;
+
+
+        button.innerHTML =
+          "✨ Créer mon œuvre avec l'IA";
+
+      }
+
+    }
+
+
+    /* =========================
+       OPTIONS
+    ========================== */
+
+    function selectOption(
+      element,
+      groupId
+    ) {
+
+      const group =
+        document.getElementById(
+          groupId
+        );
+
+
+      const options =
+        group.querySelectorAll(
+          ".option"
+        );
+
+
+      options.forEach(
+        option => {
+
+          option.classList.remove(
+            "selected"
+          );
+
+        }
+      );
+
+
+      element.classList.add(
+        "selected"
+      );
+
+    }
+
+
+    /* =========================
+       CART
+    ========================== */
+
+    function getSelectedValue(
+      groupId
+    ) {
+
+      const selected =
+        document
+          .getElementById(
+            groupId
+          )
+          .querySelector(
+            ".selected"
+          );
+
+
+      return selected.dataset.value;
+
+    }
+
+
+    function addToCart() {
+
+      const size =
+        getSelectedValue(
+          "sizeOptions"
+        );
+
+
+      const material =
+        getSelectedValue(
+          "materialOptions"
+        );
+
+
+      const led =
+        getSelectedValue(
+          "ledOptions"
+        );
+
+
+      cart.push({
+
+        size,
+        material,
+        led
+
+      });
+
+
+      updateCart();
+
+
+      showToast(
+        "🛒 Votre œuvre a été ajoutée au panier !"
+      );
+
+    }
+
+
+    function updateCart() {
+
+      document.getElementById(
+        "cartCount"
+      ).textContent =
+        cart.length;
+
+    }
+
+
+    function openCart() {
+
+      const container =
+        document.getElementById(
+          "cartItems"
+        );
+
+
+      if (
+        cart.length === 0
+      ) {
+
+        container.innerHTML =
+          "<p style='color:#aaa'>Votre panier est vide.</p>";
+
+      }
+
+      else {
+
+        container.innerHTML =
+          "";
+
+
+        cart.forEach(
+          function(item,index) {
+
+            const div =
+              document.createElement(
+                "div"
+              );
+
+
+            div.className =
+              "cart-item";
+
+
+            div.innerHTML =
+              `
+              <strong>
+                🎨 Œuvre ARTIFY
+              </strong>
+
+              <br>
+
+              📐 ${item.size}
+
+              <br>
+
+              🖼️ ${item.material}
+
+              <br>
+
+              💡 ${item.led}
+              `;
+
+
+            container.appendChild(
+              div
+            );
+
+          }
+        );
+
+      }
+
+
+      document.getElementById(
+        "cartModal"
+      ).style.display =
+        "flex";
+
+    }
+
+
+    function closeCart() {
+
+      document.getElementById(
+        "cartModal"
+      ).style.display =
+        "none";
+
+    }
+
+
+    function checkout() {
+
+      if (
+        cart.length === 0
+      ) {
+
+        showToast(
+          "Votre panier est vide."
+        );
+
+        return;
+
+      }
+
+
+      showToast(
+        "💳 Le système de paiement sera connecté à Stripe ensuite."
+      );
+
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    function scrollToOrder() {
+
+      document.getElementById(
+        "order"
+      ).scrollIntoView({
+
+        behavior:
+          "smooth"
+
+      });
+
+    }
+
+
+    /* =========================
+       TOAST
+    ========================== */
+
+    function showToast(message) {
+
+      const toast =
+        document.getElementById(
+          "toast"
+        );
+
+
+      toast.textContent =
+        message;
+
+
+      toast.classList.add(
+        "show"
+      );
+
+
+      setTimeout(
+        function() {
+
+          toast.classList.remove(
+            "show"
+          );
+
+        },
+        3500
+      );
+
+    }
+
+  </script>
 
 </body>
 </html>
