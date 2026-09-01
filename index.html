@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ARTIFY — Une vision. Une œuvre.</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #08080d;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 8%;
+      border-bottom: 1px solid #25252d;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 6px;
+    }
+
+    .logo span {
+      color: #a855f7;
+    }
+
+    .cart {
+      padding: 12px 20px;
+      border: 1px solid #393944;
+      border-radius: 14px;
+      background: #11111a;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 80px 25px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 8vw, 80px);
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      color: #aaa;
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 45px;
+    }
+
+    .card {
+      background: #101018;
+      border: 1px solid #292935;
+      border-radius: 25px;
+      padding: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      background: #08080d;
+      border: 1px solid #353543;
+      border-radius: 15px;
+      padding: 20px;
+      color: white;
+      font-size: 17px;
+      resize: vertical;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 18px;
+      border: none;
+      border-radius: 15px;
+      background: linear-gradient(90deg, #7c3aed, #db2777);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+    }
+
+    #result {
+      margin-top: 25px;
+      color: #bbb;
+    }
+
+    #imageResult {
+      margin-top: 25px;
+      width: 100%;
+      border-radius: 20px;
+      display: none;
+    }
+
+    .loading {
+      color: #a855f7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      ART<span>I</span>FY
+    </div>
+
+    <div class="cart">
+      🛒 Panier (0)
+    </div>
+  </header>
+
+  <main>
+
+    <h1>
+      Transformez votre vision<br>
+      en <span>œuvre d'art.</span>
+    </h1>
+
+    <p class="subtitle">
+      Décrivez l'œuvre que vous imaginez et laissez ARTIFY
+      créer votre vision grâce à l'intelligence artificielle.
+    </p>
+
+    <div class="card">
+
+      <label for="prompt">
+        ✨ Décrivez votre œuvre
+      </label>
+
+      <textarea
+        id="prompt"
+        placeholder="Exemple : Un dragon futuriste dans le style anime 4K..."
+      ></textarea>
+
+      <button id="generateButton">
+        ✨ Créer mon œuvre
+      </button>
+
+      <div id="result"></div>
+
+      <img id="imageResult" />
+
+    </div>
+
+  </main>
+
+  <script>
+
+    const button = document.getElementById("generateButton");
+    const promptInput = document.getElementById("prompt");
+    const result = document.getElementById("result");
+    const imageResult = document.getElementById("imageResult");
+
+    button.addEventListener("click", async () => {
+
+      const prompt = promptInput.value.trim();
+
+      if (!prompt) {
+        result.textContent = "⚠️ Veuillez décrire votre œuvre.";
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Création en cours...";
+      result.innerHTML =
+        '<div class="loading">✨ L’IA crée votre œuvre...</div>';
+
+      imageResult.style.display = "none";
+
+      try {
+
+        const response = await fetch("/api/generate", {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            prompt: prompt
+          })
+
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Erreur lors de la génération");
+        }
+
+        result.textContent = "✅ Votre œuvre a été créée !";
+
+        if (data.imageUrl) {
+
+          imageResult.src = data.imageUrl;
+          imageResult.style.display = "block";
+
+        }
+
+      } catch (error) {
+
+        result.textContent =
+          "❌ Erreur : " + error.message;
+
+      }
+
+      button.disabled = false;
+      button.textContent = "✨ Créer mon œuvre";
+
+    });
+
+  </script>
+
+</body>
+</html>
