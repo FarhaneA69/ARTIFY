@@ -7,7 +7,6 @@
   <title>ARTIFY — Votre vision devient une œuvre</title>
 
   <style>
-
     * {
       margin: 0;
       padding: 0;
@@ -17,14 +16,11 @@
     :root {
       --bg: #07070d;
       --card: rgba(20, 20, 32, 0.75);
-      --card-solid: #12121d;
       --border: rgba(255,255,255,0.12);
       --text: #f5f5fa;
       --muted: #a6a6b5;
       --purple: #8b5cf6;
       --pink: #ec4899;
-      --blue: #6366f1;
-      --green: #38d996;
     }
 
     html {
@@ -78,17 +74,13 @@
       z-index: -1;
     }
 
-
-    /* =========================
-       NAVBAR
-    ========================== */
+    /* NAVIGATION */
 
     nav {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-
       z-index: 1000;
 
       padding: 18px 6%;
@@ -123,38 +115,20 @@
       color: transparent;
     }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
     .cart {
       border: 1px solid var(--border);
-
       background: rgba(255,255,255,0.05);
-
       color: white;
 
       padding: 13px 18px;
-
       border-radius: 18px;
 
       cursor: pointer;
-
       font-size: 16px;
-
-      transition: 0.25s;
-    }
-
-    .cart:hover {
-      transform: translateY(-2px);
-      border-color: var(--purple);
     }
 
     #cartCount {
       display: inline-flex;
-
       align-items: center;
       justify-content: center;
 
@@ -171,14 +145,10 @@
         );
 
       margin-left: 8px;
-
       font-size: 13px;
     }
 
-
-    /* =========================
-       HERO
-    ========================== */
+    /* HERO */
 
     .hero {
       min-height: 100vh;
@@ -190,23 +160,19 @@
       display: grid;
 
       grid-template-columns:
-        1.1fr
-        0.9fr;
+        1.1fr 0.9fr;
 
       align-items: center;
 
       gap: 60px;
 
       max-width: 1500px;
-
       margin: auto;
     }
 
     .badge {
       display: inline-flex;
-
       align-items: center;
-      gap: 10px;
 
       padding: 10px 16px;
 
@@ -228,11 +194,7 @@
 
     h1 {
       font-size:
-        clamp(
-          55px,
-          8vw,
-          110px
-        );
+        clamp(55px, 8vw, 110px);
 
       line-height: 0.95;
 
@@ -245,9 +207,9 @@
       background:
         linear-gradient(
           100deg,
-          #ffffff 10%,
-          #8b5cf6 45%,
-          #ec4899 90%
+          #ffffff,
+          #8b5cf6,
+          #ec4899
         );
 
       -webkit-background-clip: text;
@@ -256,7 +218,6 @@
 
     .hero p {
       font-size: 21px;
-
       line-height: 1.7;
 
       color: var(--muted);
@@ -268,20 +229,15 @@
 
     .hero-buttons {
       display: flex;
-
       flex-wrap: wrap;
-
       gap: 15px;
     }
 
     .primary-btn {
       border: none;
-
       cursor: pointer;
 
-      padding:
-        18px
-        28px;
+      padding: 18px 28px;
 
       border-radius: 18px;
 
@@ -297,36 +253,23 @@
           var(--pink)
         );
 
-      box-shadow:
-        0 20px 60px
-        rgba(139,92,246,0.35);
-
       transition: 0.25s;
     }
 
     .primary-btn:hover {
       transform:
-        translateY(-3px)
-        scale(1.02);
-
-      box-shadow:
-        0 25px 70px
-        rgba(236,72,153,0.3);
+        translateY(-3px);
     }
 
     .secondary-btn {
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       background:
         rgba(255,255,255,0.04);
 
       color: white;
 
-      padding:
-        18px
-        28px;
+      padding: 18px 28px;
 
       border-radius: 18px;
 
@@ -335,10 +278,7 @@
       font-size: 16px;
     }
 
-
-    /* =========================
-       HERO ART
-    ========================== */
+    /* HERO IMAGE */
 
     .hero-art {
       position: relative;
@@ -373,6 +313,7 @@
       position: relative;
 
       width: min(100%, 440px);
+
       aspect-ratio: 4/5;
 
       padding: 12px;
@@ -386,20 +327,7 @@
           rgba(255,255,255,0.03)
         );
 
-      box-shadow:
-        0 40px 100px
-        rgba(0,0,0,0.7);
-
-      transform:
-        rotate(4deg);
-
-      transition: 0.4s;
-    }
-
-    .art-frame:hover {
-      transform:
-        rotate(0deg)
-        scale(1.03);
+      transform: rotate(4deg);
     }
 
     .art-frame img {
@@ -409,51 +337,9 @@
       object-fit: cover;
 
       border-radius: 20px;
-
-      display: block;
     }
 
-    .floating-card {
-      position: absolute;
-
-      bottom: 35px;
-      left: -20px;
-
-      padding: 18px;
-
-      border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-      background:
-        rgba(12,12,20,0.75);
-
-      backdrop-filter:
-        blur(20px);
-
-      border-radius: 20px;
-
-      box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.5);
-    }
-
-    .floating-card strong {
-      display: block;
-
-      font-size: 17px;
-    }
-
-    .floating-card span {
-      color: var(--muted);
-
-      font-size: 14px;
-    }
-
-
-    /* =========================
-       STATS
-    ========================== */
+    /* STATS */
 
     .stats {
       max-width: 1200px;
@@ -477,9 +363,7 @@
 
       padding: 25px;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       border-radius: 22px;
 
@@ -493,18 +377,13 @@
 
     .stat p {
       color: var(--muted);
-
       margin-top: 8px;
     }
 
-
-    /* =========================
-       GENERATOR
-    ========================== */
+    /* SECTIONS */
 
     .section {
       max-width: 1200px;
-
       margin: auto;
 
       padding:
@@ -513,11 +392,7 @@
 
     .section-title {
       font-size:
-        clamp(
-          42px,
-          6vw,
-          70px
-        );
+        clamp(42px, 6vw, 70px);
 
       letter-spacing: -3px;
 
@@ -534,20 +409,19 @@
       margin-bottom: 45px;
     }
 
+    /* GENERATOR */
+
     .generator {
       display: grid;
 
       grid-template-columns:
-        1fr
-        1fr;
+        1fr 1fr;
 
       gap: 25px;
 
       padding: 25px;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       border-radius: 35px;
 
@@ -557,19 +431,13 @@
           rgba(139,92,246,0.09),
           rgba(236,72,153,0.04)
         );
-
-      box-shadow:
-        0 30px 100px
-        rgba(0,0,0,0.3);
     }
 
     .panel {
       background:
         rgba(8,8,14,0.7);
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       border-radius: 25px;
 
@@ -578,14 +446,10 @@
 
     .panel h3 {
       font-size: 24px;
-
       margin-bottom: 22px;
     }
 
-
-    /* =========================
-       UPLOAD
-    ========================== */
+    /* UPLOAD */
 
     .upload-zone {
       min-height: 320px;
@@ -612,17 +476,7 @@
       background:
         rgba(139,92,246,0.04);
 
-      transition: 0.25s;
-
       overflow: hidden;
-    }
-
-    .upload-zone:hover {
-      background:
-        rgba(139,92,246,0.1);
-
-      border-color:
-        var(--pink);
     }
 
     .upload-zone img {
@@ -638,7 +492,6 @@
 
     .upload-icon {
       font-size: 55px;
-
       margin-bottom: 15px;
     }
 
@@ -650,10 +503,7 @@
       display: none;
     }
 
-
-    /* =========================
-       FORM
-    ========================== */
+    /* FORM */
 
     label {
       display: block;
@@ -672,12 +522,9 @@
 
       resize: vertical;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
-      background:
-        #0b0b13;
+      background: #0b0b13;
 
       color: white;
 
@@ -692,18 +539,8 @@
       font-family: inherit;
     }
 
-    textarea:focus {
-      border-color:
-        var(--purple);
-
-      box-shadow:
-        0 0 0 4px
-        rgba(139,92,246,0.1);
-    }
-
     .examples {
       display: flex;
-
       flex-wrap: wrap;
 
       gap: 8px;
@@ -713,15 +550,11 @@
     }
 
     .example {
-      padding:
-        8px
-        12px;
+      padding: 8px 12px;
 
       border-radius: 100px;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       background:
         rgba(255,255,255,0.04);
@@ -731,15 +564,6 @@
       font-size: 12px;
 
       cursor: pointer;
-
-      transition: 0.2s;
-    }
-
-    .example:hover {
-      color: white;
-
-      border-color:
-        var(--purple);
     }
 
     .generate-btn {
@@ -764,28 +588,14 @@
           #7c3aed,
           #db2777
         );
-
-      transition: 0.25s;
-
-      box-shadow:
-        0 20px 50px
-        rgba(124,58,237,0.3);
-    }
-
-    .generate-btn:hover {
-      transform: translateY(-2px);
     }
 
     .generate-btn:disabled {
       opacity: 0.6;
-
       cursor: not-allowed;
     }
 
-
-    /* =========================
-       RESULT
-    ========================== */
+    /* RESULT */
 
     .result-section {
       display: none;
@@ -796,9 +606,7 @@
 
       border-radius: 25px;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       background:
         rgba(20,20,30,0.8);
@@ -817,19 +625,10 @@
     }
 
     .result-actions {
-      display: flex;
-
-      gap: 12px;
-
-      flex-wrap: wrap;
-
       margin-top: 20px;
     }
 
-
-    /* =========================
-       PRODUCTS
-    ========================== */
+    /* PRODUCTS */
 
     .products {
       display: grid;
@@ -847,45 +646,28 @@
 
       border-radius: 24px;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       background:
         rgba(255,255,255,0.025);
-
-      transition: 0.25s;
-    }
-
-    .product:hover {
-      transform: translateY(-7px);
-
-      border-color:
-        rgba(139,92,246,0.6);
     }
 
     .product-icon {
       font-size: 45px;
-
       margin-bottom: 18px;
     }
 
     .product h3 {
       font-size: 22px;
-
       margin-bottom: 10px;
     }
 
     .product p {
       color: var(--muted);
-
       line-height: 1.6;
     }
 
-
-    /* =========================
-       OPTIONS
-    ========================== */
+    /* OPTIONS */
 
     .options-grid {
       display: grid;
@@ -899,9 +681,7 @@
     .option {
       padding: 22px;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       background:
         rgba(255,255,255,0.03);
@@ -915,8 +695,7 @@
 
     .option:hover,
     .option.selected {
-      border-color:
-        var(--purple);
+      border-color: var(--purple);
 
       background:
         rgba(139,92,246,0.1);
@@ -928,14 +707,10 @@
 
     .option p {
       color: var(--muted);
-
       font-size: 14px;
     }
 
-
-    /* =========================
-       CART MODAL
-    ========================== */
+    /* CART */
 
     .modal {
       display: none;
@@ -949,8 +724,7 @@
       background:
         rgba(0,0,0,0.7);
 
-      backdrop-filter:
-        blur(10px);
+      backdrop-filter: blur(10px);
 
       padding: 20px;
 
@@ -967,12 +741,9 @@
 
       overflow-y: auto;
 
-      background:
-        #12121d;
+      background: #12121d;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       border-radius: 28px;
 
@@ -1014,11 +785,6 @@
       margin-bottom: 12px;
     }
 
-
-    /* =========================
-       DELETE BUTTON
-    ========================== */
-
     .remove-item {
       position: absolute;
 
@@ -1040,17 +806,30 @@
       font-size: 18px;
 
       cursor: pointer;
-
-      transition: 0.2s;
     }
 
-    .remove-item:hover {
-      background:
-        rgba(255,70,70,0.25);
+    .cart-price {
+      display: block;
 
-      transform: scale(1.08);
+      margin-top: 12px;
+
+      font-size: 18px;
+      font-weight: bold;
+
+      color: #d9c7ff;
     }
 
+    .cart-total {
+      font-size: 22px;
+      font-weight: bold;
+
+      margin-top: 20px;
+
+      padding-top: 20px;
+
+      border-top:
+        1px solid var(--border);
+    }
 
     .checkout {
       width: 100%;
@@ -1079,27 +858,7 @@
       cursor: pointer;
     }
 
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    footer {
-      padding: 70px 7%;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      text-align: center;
-
-      color: var(--muted);
-    }
-
-
-    /* =========================
-       TOAST
-    ========================== */
+    /* TOAST */
 
     .toast {
       position: fixed;
@@ -1113,21 +872,14 @@
 
       border-radius: 15px;
 
-      background:
-        #181824;
+      background: #181824;
 
-      border:
-        1px solid
-        var(--border);
+      border: 1px solid var(--border);
 
       transform:
         translateY(150px);
 
       transition: 0.3s;
-
-      box-shadow:
-        0 20px 60px
-        rgba(0,0,0,0.4);
     }
 
     .toast.show {
@@ -1135,27 +887,31 @@
         translateY(0);
     }
 
+    /* FOOTER */
 
-    /* =========================
-       MOBILE
-    ========================== */
+    footer {
+      padding: 70px 7%;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+      text-align: center;
+
+      color: var(--muted);
+    }
+
+    /* MOBILE */
 
     @media (max-width: 850px) {
 
       nav {
-        padding:
-          16px
-          20px;
+        padding: 16px 20px;
       }
 
       .logo {
         font-size: 20px;
         letter-spacing: 5px;
-      }
-
-      .cart {
-        padding: 11px 13px;
-        font-size: 14px;
       }
 
       .hero {
@@ -1168,57 +924,29 @@
         gap: 25px;
       }
 
-      h1 {
-        letter-spacing: -3px;
-      }
-
-      .hero p {
-        font-size: 18px;
-      }
-
       .hero-art {
-        height: 480px;
+        height: 450px;
       }
 
-      .floating-card {
-        left: 0;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-
-        padding:
-          20px
-          7%;
-      }
-
-      .generator {
-        grid-template-columns: 1fr;
-      }
-
+      .stats,
+      .generator,
       .products,
       .options-grid {
         grid-template-columns: 1fr;
       }
 
       .section {
-        padding:
-          70px 7%;
+        padding: 70px 7%;
       }
 
     }
 
   </style>
-
 </head>
-
 
 <body>
 
-
-  <!-- =========================
-       NAVIGATION
-  ========================== -->
+  <!-- NAVIGATION -->
 
   <nav>
 
@@ -1226,29 +954,18 @@
       ART<span>IFY</span>
     </div>
 
-    <div class="nav-right">
-
-      <button
-        class="cart"
-        onclick="openCart()"
-      >
-        🛒 Panier
-
-        <span id="cartCount">
-          0
-        </span>
-
-      </button>
-
-    </div>
+    <button
+      class="cart"
+      onclick="openCart()"
+    >
+      🛒 Panier
+      <span id="cartCount">0</span>
+    </button>
 
   </nav>
 
 
-
-  <!-- =========================
-       HERO
-  ========================== -->
+  <!-- HERO -->
 
   <section class="hero">
 
@@ -1257,7 +974,6 @@
       <div class="badge">
         ✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
       </div>
-
 
       <h1>
 
@@ -1273,7 +989,6 @@
 
       </h1>
 
-
       <p>
 
         Importez votre image.
@@ -1283,7 +998,6 @@
 
       </p>
 
-
       <div class="hero-buttons">
 
         <button
@@ -1292,7 +1006,6 @@
         >
           ✨ Créer mon œuvre
         </button>
-
 
         <button
           class="secondary-btn"
@@ -1306,11 +1019,9 @@
     </div>
 
 
-
     <div class="hero-art">
 
       <div class="art-glow"></div>
-
 
       <div class="art-frame">
 
@@ -1321,87 +1032,43 @@
 
       </div>
 
-
-      <div class="floating-card">
-
-        <strong>
-          ✨ Créé avec ARTIFY
-        </strong>
-
-        <span>
-          Une vision. Une œuvre.
-        </span>
-
-      </div>
-
     </div>
 
   </section>
 
 
-
-  <!-- =========================
-       STATS
-  ========================== -->
+  <!-- STATS -->
 
   <section class="stats">
 
     <div class="stat">
-
-      <h3>
-        ∞
-      </h3>
-
-      <p>
-        Possibilités créatives
-      </p>
-
+      <h3>∞</h3>
+      <p>Possibilités créatives</p>
     </div>
 
-
     <div class="stat">
-
-      <h3>
-        AI
-      </h3>
-
-      <p>
-        Transformation intelligente
-      </p>
-
+      <h3>AI</h3>
+      <p>Transformation intelligente</p>
     </div>
 
-
     <div class="stat">
-
-      <h3>
-        100%
-      </h3>
-
-      <p>
-        Votre imagination
-      </p>
-
+      <h3>100%</h3>
+      <p>Votre imagination</p>
     </div>
 
   </section>
 
 
-
-  <!-- =========================
-       GENERATOR
-  ========================== -->
+  <!-- GENERATOR -->
 
   <section
     class="section"
     id="create"
   >
 
-
     <div class="badge">
       ✨ CRÉEZ MAINTENANT
     </div>
-
 
     <h2 class="section-title">
 
@@ -1413,20 +1080,15 @@
 
     </h2>
 
-
     <p class="section-subtitle">
 
-      Ajoutez votre image et expliquez
-      exactement ce que vous souhaitez.
-      L'intelligence artificielle préparera
-      votre future œuvre.
+      Ajoutez votre image et expliquez exactement
+      ce que vous souhaitez.
 
     </p>
 
 
-
     <div class="generator">
-
 
       <!-- IMAGE -->
 
@@ -1436,11 +1098,9 @@
           🖼️ 1. Importez votre image
         </h3>
 
-
         <label
           for="imageInput"
           class="upload-zone"
-          id="uploadZone"
         >
 
           <div id="uploadText">
@@ -1459,14 +1119,12 @@
 
           </div>
 
-
           <img
             id="previewImage"
             alt="Votre image"
           >
 
         </label>
-
 
         <input
           type="file"
@@ -1477,7 +1135,6 @@
       </div>
 
 
-
       <!-- PROMPT -->
 
       <div class="panel">
@@ -1486,21 +1143,14 @@
           ✨ 2. Décrivez votre vision
         </h3>
 
-
         <label for="prompt">
-
-          Comment voulez-vous
-          transformer votre image ?
-
+          Comment voulez-vous transformer votre image ?
         </label>
-
 
         <textarea
           id="prompt"
-          placeholder="Exemple : Transforme cette photo en une œuvre futuriste, avec un style cinématographique, des couleurs violettes et roses..."
+          placeholder="Exemple : Transforme cette photo en une œuvre futuriste..."
         ></textarea>
-
-
 
         <div class="examples">
 
@@ -1511,7 +1161,6 @@
             Anime 4K
           </button>
 
-
           <button
             class="example"
             onclick="setPrompt('Transforme cette image en peinture artistique luxueuse avec une lumière spectaculaire.')"
@@ -1519,14 +1168,12 @@
             Peinture
           </button>
 
-
           <button
             class="example"
             onclick="setPrompt('Transforme cette image en univers futuriste cyberpunk avec des lumières néon.')"
           >
             Cyberpunk
           </button>
-
 
           <button
             class="example"
@@ -1537,22 +1184,17 @@
 
         </div>
 
-
-
         <button
           class="generate-btn"
           id="generateButton"
           onclick="generateArt()"
         >
-
           ✨ Créer mon œuvre avec l'IA
-
         </button>
 
       </div>
 
     </div>
-
 
 
     <!-- RESULT -->
@@ -1563,18 +1205,14 @@
     >
 
       <h2 style="margin-bottom:20px">
-
         ✨ Votre œuvre ARTIFY
-
       </h2>
-
 
       <img
         id="resultImage"
         class="result-image"
         alt="Résultat ARTIFY"
       >
-
 
       <div class="result-actions">
 
@@ -1592,10 +1230,7 @@
   </section>
 
 
-
-  <!-- =========================
-       PRODUCTS
-  ========================== -->
+  <!-- PRODUCTS -->
 
   <section
     class="section"
@@ -1606,31 +1241,42 @@
       🎨 PERSONNALISEZ VOTRE ŒUVRE
     </div>
 
-
     <h2 class="section-title">
 
-      Une œuvre.
-
-      <br>
+      Choisissez comment
 
       <span class="gradient-text">
-        À votre image.
+        recevoir votre œuvre.
       </span>
 
     </h2>
 
-
     <p class="section-subtitle">
 
-      Une fois votre création réalisée,
-      choisissez comment vous souhaitez
-      lui donner vie.
+      Téléchargez votre création pour l'imprimer
+      chez vous, ou commandez un tableau prêt à accrocher.
 
     </p>
 
 
-
     <div class="products">
+
+      <div class="product">
+
+        <div class="product-icon">
+          📥
+        </div>
+
+        <h3>
+          Version numérique
+        </h3>
+
+        <p>
+          Téléchargez votre œuvre
+          et imprimez-la chez vous.
+        </p>
+
+      </div>
 
 
       <div class="product">
@@ -1640,37 +1286,15 @@
         </div>
 
         <h3>
-          Tableau Premium
+          Tableau encadré
         </h3>
 
         <p>
-          Une finition élégante pour
-          transformer votre création
-          en véritable décoration.
+          Une œuvre prête à accrocher
+          dans votre chambre ou votre salon.
         </p>
 
       </div>
-
-
-
-      <div class="product">
-
-        <div class="product-icon">
-          ✨
-        </div>
-
-        <h3>
-          Aluminium
-        </h3>
-
-        <p>
-          Un rendu moderne,
-          lumineux et premium
-          pour une œuvre spectaculaire.
-        </p>
-
-      </div>
-
 
 
       <div class="product">
@@ -1684,9 +1308,8 @@
         </h3>
 
         <p>
-          Illuminez votre œuvre
-          pour créer une ambiance
-          exceptionnelle.
+          Ajoutez une lumière arrière
+          pour une ambiance unique.
         </p>
 
       </div>
@@ -1696,10 +1319,7 @@
   </section>
 
 
-
-  <!-- =========================
-       ORDER
-  ========================== -->
+  <!-- ORDER -->
 
   <section
     class="section"
@@ -1710,99 +1330,18 @@
       🛒 VOTRE FUTURE ŒUVRE
     </div>
 
-
     <h2 class="section-title">
 
-      Choisissez votre
+      Comment voulez-vous
 
       <span class="gradient-text">
-        finition.
+        votre œuvre ?
       </span>
 
     </h2>
 
 
-
-    <!-- SIZE -->
-
-    <h3
-      style="
-        margin-bottom:20px;
-        font-size:24px;
-      "
-    >
-      📐 Taille
-    </h3>
-
-
-    <div
-      class="options-grid"
-      id="sizeOptions"
-    >
-
-
-      <div
-        class="option selected"
-        data-value="30 × 40 cm"
-        onclick="selectOption(this,'sizeOptions')"
-      >
-
-        <h4>
-          30 × 40 cm
-        </h4>
-
-        <p>
-          Parfait pour commencer
-        </p>
-
-      </div>
-
-
-
-      <div
-        class="option"
-        data-value="40 × 60 cm"
-        onclick="selectOption(this,'sizeOptions')"
-      >
-
-        <h4>
-          40 × 60 cm
-        </h4>
-
-        <p>
-          Format élégant
-        </p>
-
-      </div>
-
-
-
-      <div
-        class="option"
-        data-value="60 × 90 cm"
-        onclick="selectOption(this,'sizeOptions')"
-      >
-
-        <h4>
-          60 × 90 cm
-        </h4>
-
-        <p>
-          Format spectaculaire
-        </p>
-
-      </div>
-
-    </div>
-
-
-
-    <br>
-    <br>
-
-
-
-    <!-- MATERIAL -->
+    <!-- TYPE -->
 
     <h3
       style="
@@ -1810,64 +1349,45 @@
         font-size:24px;
       "
     >
-      🖼️ Matière
+      📦 Type de commande
     </h3>
 
 
     <div
       class="options-grid"
-      id="materialOptions"
+      id="typeOptions"
     >
-
 
       <div
         class="option selected"
-        data-value="Toile Premium"
-        onclick="selectOption(this,'materialOptions')"
+        data-value="Numérique"
+        onclick="selectOption(this,'typeOptions'); updateOrderOptions()"
       >
 
         <h4>
-          Toile Premium
+          📥 Version numérique
         </h4>
 
         <p>
-          Classique et artistique
+          Téléchargez et imprimez chez vous
+          — 4,90 €
         </p>
 
       </div>
 
 
-
       <div
         class="option"
-        data-value="Aluminium"
-        onclick="selectOption(this,'materialOptions')"
+        data-value="Tableau encadré"
+        onclick="selectOption(this,'typeOptions'); updateOrderOptions()"
       >
 
         <h4>
-          Aluminium
+          🖼️ Tableau encadré
         </h4>
 
         <p>
-          Moderne et brillant
-        </p>
-
-      </div>
-
-
-
-      <div
-        class="option"
-        data-value="Plexiglas"
-        onclick="selectOption(this,'materialOptions')"
-      >
-
-        <h4>
-          Plexiglas
-        </h4>
-
-        <p>
-          Luxueux et lumineux
+          Prêt à accrocher chez vous
         </p>
 
       </div>
@@ -1875,71 +1395,148 @@
     </div>
 
 
-
-    <br>
-    <br>
-
-
-
-    <!-- LED -->
-
-    <h3
-      style="
-        margin-bottom:20px;
-        font-size:24px;
-      "
-    >
-      💡 Option spéciale
-    </h3>
-
+    <!-- PHYSICAL OPTIONS -->
 
     <div
-      class="options-grid"
-      id="ledOptions"
+      id="physicalOptions"
+      style="display:none"
     >
+
+      <br>
+      <br>
+
+
+      <!-- SIZE -->
+
+      <h3
+        style="
+          margin-bottom:20px;
+          font-size:24px;
+        "
+      >
+        📐 Taille
+      </h3>
 
 
       <div
-        class="option selected"
-        data-value="Sans LED"
-        onclick="selectOption(this,'ledOptions')"
+        class="options-grid"
+        id="sizeOptions"
       >
 
-        <h4>
-          Sans LED
-        </h4>
+        <div
+          class="option selected"
+          data-value="30 × 40 cm"
+          onclick="selectOption(this,'sizeOptions')"
+        >
 
-        <p>
-          Finition classique
-        </p>
+          <h4>
+            30 × 40 cm
+          </h4>
+
+          <p>
+            29,90 €
+          </p>
+
+        </div>
+
+
+        <div
+          class="option"
+          data-value="40 × 60 cm"
+          onclick="selectOption(this,'sizeOptions')"
+        >
+
+          <h4>
+            40 × 60 cm
+          </h4>
+
+          <p>
+            39,90 €
+          </p>
+
+        </div>
+
+
+        <div
+          class="option"
+          data-value="60 × 90 cm"
+          onclick="selectOption(this,'sizeOptions')"
+        >
+
+          <h4>
+            60 × 90 cm
+          </h4>
+
+          <p>
+            59,90 €
+          </p>
+
+        </div>
 
       </div>
 
 
+      <br>
+      <br>
+
+
+      <!-- LED -->
+
+      <h3
+        style="
+          margin-bottom:20px;
+          font-size:24px;
+        "
+      >
+        💡 Éclairage
+      </h3>
+
 
       <div
-        class="option"
-        data-value="LED"
-        onclick="selectOption(this,'ledOptions')"
+        class="options-grid"
+        id="ledOptions"
       >
 
-        <h4>
-          💡 LED arrière
-        </h4>
+        <div
+          class="option selected"
+          data-value="Sans LED"
+          onclick="selectOption(this,'ledOptions')"
+        >
 
-        <p>
-          Une lumière derrière votre tableau
-        </p>
+          <h4>
+            Sans LED
+          </h4>
+
+          <p>
+            Finition classique
+          </p>
+
+        </div>
+
+
+        <div
+          class="option"
+          data-value="Avec LED"
+          onclick="selectOption(this,'ledOptions')"
+        >
+
+          <h4>
+            💡 Avec LED
+          </h4>
+
+          <p>
+            +15 €
+          </p>
+
+        </div>
 
       </div>
 
     </div>
 
 
-
     <br>
     <br>
-
 
 
     <button
@@ -1951,18 +1548,13 @@
       "
       onclick="addToCart()"
     >
-
       🛒 Ajouter mon œuvre au panier
-
     </button>
 
   </section>
 
 
-
-  <!-- =========================
-       FOOTER
-  ========================== -->
+  <!-- FOOTER -->
 
   <footer>
 
@@ -1970,19 +1562,14 @@
       class="logo"
       style="margin-bottom:20px"
     >
-
       ART<span>IFY</span>
-
     </div>
-
 
     <p>
       Votre vision. Votre œuvre.
     </p>
 
-
     <br>
-
 
     <p style="font-size:13px">
       © 2026 ARTIFY
@@ -1991,10 +1578,7 @@
   </footer>
 
 
-
-  <!-- =========================
-       CART MODAL
-  ========================== -->
+  <!-- CART MODAL -->
 
   <div
     class="modal"
@@ -2003,13 +1587,11 @@
 
     <div class="modal-content">
 
-
       <div class="modal-header">
 
         <h2>
           🛒 Votre panier
         </h2>
-
 
         <button
           class="close"
@@ -2021,24 +1603,25 @@
       </div>
 
 
-
       <div id="cartItems">
-
         Votre panier est vide.
-
       </div>
 
+
+      <div
+        class="cart-total"
+        id="cartTotal"
+      >
+        Total : 0,00 €
+      </div>
 
 
       <button
         class="checkout"
         onclick="checkout()"
       >
-
         Continuer vers le paiement
-
       </button>
-
 
 
       <p
@@ -2049,45 +1632,29 @@
           font-size:13px;
         "
       >
-
-        💳 Paiement sécurisé prochainement
-
+        💳 Paiement sécurisé
       </p>
-
 
     </div>
 
   </div>
 
 
-
-  <!-- =========================
-       TOAST
-  ========================== -->
+  <!-- TOAST -->
 
   <div
     class="toast"
     id="toast"
-  >
-  </div>
+  ></div>
 
-
-
-  <!-- =========================
-       JAVASCRIPT
-  ========================== -->
 
   <script>
 
-
     let uploadedImage = null;
-
     let cart = [];
 
 
-    /* =========================
-       IMAGE UPLOAD
-    ========================== */
+    /* IMAGE UPLOAD */
 
     const imageInput =
       document.getElementById(
@@ -2102,13 +1669,10 @@
         const file =
           event.target.files[0];
 
-
         if (!file) return;
-
 
         const reader =
           new FileReader();
-
 
         reader.onload =
           function(e) {
@@ -2116,20 +1680,16 @@
             uploadedImage =
               e.target.result;
 
-
             const preview =
               document.getElementById(
                 "previewImage"
               );
 
-
             preview.src =
               uploadedImage;
 
-
             preview.style.display =
               "block";
-
 
             document.getElementById(
               "uploadText"
@@ -2138,19 +1698,13 @@
 
           };
 
-
-        reader.readAsDataURL(
-          file
-        );
+        reader.readAsDataURL(file);
 
       }
     );
 
 
-
-    /* =========================
-       PROMPT EXAMPLES
-    ========================== */
+    /* PROMPT */
 
     function setPrompt(text) {
 
@@ -2161,10 +1715,7 @@
     }
 
 
-
-    /* =========================
-       GENERATE ART
-    ========================== */
+    /* GENERATE ART */
 
     async function generateArt() {
 
@@ -2172,7 +1723,6 @@
         document.getElementById(
           "prompt"
         ).value.trim();
-
 
       const button =
         document.getElementById(
@@ -2197,18 +1747,12 @@
           "✍️ Décrivez ce que vous souhaitez créer."
         );
 
-
-        document.getElementById(
-          "prompt"
-        ).focus();
-
         return;
 
       }
 
 
       button.disabled = true;
-
 
       button.innerHTML =
         "⏳ Création en cours...";
@@ -2220,6 +1764,7 @@
           await fetch(
             "/api/generate",
             {
+
               method: "POST",
 
               headers: {
@@ -2232,8 +1777,7 @@
 
                   prompt: prompt,
 
-                  image:
-                    uploadedImage
+                  image: uploadedImage
 
                 })
 
@@ -2255,26 +1799,10 @@
         }
 
 
-
-        if (data.image) {
-
-          document.getElementById(
-            "resultImage"
-          ).src =
-            data.image;
-
-        }
-
-
-        else {
-
-          document.getElementById(
-            "resultImage"
-          ).src =
-            uploadedImage;
-
-        }
-
+        document.getElementById(
+          "resultImage"
+        ).src =
+          data.image || uploadedImage;
 
 
         document.getElementById(
@@ -2283,16 +1811,11 @@
           "block";
 
 
-
         document.getElementById(
           "resultSection"
         ).scrollIntoView({
-
-          behavior:
-            "smooth"
-
+          behavior: "smooth"
         });
-
 
 
         showToast(
@@ -2304,10 +1827,7 @@
 
       catch(error) {
 
-        console.error(
-          error
-        );
-
+        console.error(error);
 
         showToast(
           "❌ Erreur : " +
@@ -2319,9 +1839,7 @@
 
       finally {
 
-        button.disabled =
-          false;
-
+        button.disabled = false;
 
         button.innerHTML =
           "✨ Créer mon œuvre avec l'IA";
@@ -2331,10 +1849,7 @@
     }
 
 
-
-    /* =========================
-       OPTIONS
-    ========================== */
+    /* OPTIONS */
 
     function selectOption(
       element,
@@ -2371,23 +1886,12 @@
     }
 
 
-
-    /* =========================
-       GET SELECTED VALUE
-    ========================== */
-
-    function getSelectedValue(
-      groupId
-    ) {
+    function getSelectedValue(groupId) {
 
       const selected =
         document
-          .getElementById(
-            groupId
-          )
-          .querySelector(
-            ".selected"
-          );
+          .getElementById(groupId)
+          .querySelector(".selected");
 
 
       return selected.dataset.value;
@@ -2395,36 +1899,133 @@
     }
 
 
+    /* SHOW / HIDE PHYSICAL OPTIONS */
 
-    /* =========================
-       ADD TO CART
-    ========================== */
+    function updateOrderOptions() {
+
+      const type =
+        getSelectedValue(
+          "typeOptions"
+        );
+
+
+      const physicalOptions =
+        document.getElementById(
+          "physicalOptions"
+        );
+
+
+      if (
+        type === "Tableau encadré"
+      ) {
+
+        physicalOptions.style.display =
+          "block";
+
+      }
+
+      else {
+
+        physicalOptions.style.display =
+          "none";
+
+      }
+
+    }
+
+
+    /* PRICE */
+
+    function calculatePrice(
+      type,
+      size,
+      led
+    ) {
+
+      if (
+        type === "Numérique"
+      ) {
+
+        return 4.90;
+
+      }
+
+
+      const prices = {
+
+        "30 × 40 cm": 29.90,
+
+        "40 × 60 cm": 39.90,
+
+        "60 × 90 cm": 59.90
+
+      };
+
+
+      let price =
+        prices[size] || 29.90;
+
+
+      if (
+        led === "Avec LED"
+      ) {
+
+        price += 15;
+
+      }
+
+
+      return price;
+
+    }
+
+
+    /* ADD TO CART */
 
     function addToCart() {
 
-      const size =
+      const type =
         getSelectedValue(
-          "sizeOptions"
+          "typeOptions"
         );
 
 
-      const material =
-        getSelectedValue(
-          "materialOptions"
-        );
+      let size = null;
+      let led = null;
 
 
-      const led =
-        getSelectedValue(
-          "ledOptions"
+      if (
+        type === "Tableau encadré"
+      ) {
+
+        size =
+          getSelectedValue(
+            "sizeOptions"
+          );
+
+
+        led =
+          getSelectedValue(
+            "ledOptions"
+          );
+
+      }
+
+
+      const price =
+        calculatePrice(
+          type,
+          size,
+          led
         );
 
 
       cart.push({
 
+        type,
         size,
-        material,
-        led
+        led,
+        price
 
       });
 
@@ -2439,10 +2040,7 @@
     }
 
 
-
-    /* =========================
-       UPDATE CART
-    ========================== */
+    /* UPDATE CART */
 
     function updateCart() {
 
@@ -2454,16 +2052,19 @@
     }
 
 
-
-    /* =========================
-       OPEN CART
-    ========================== */
+    /* OPEN CART */
 
     function openCart() {
 
       const container =
         document.getElementById(
           "cartItems"
+        );
+
+
+      const totalElement =
+        document.getElementById(
+          "cartTotal"
         );
 
 
@@ -2482,6 +2083,10 @@
           </p>
           `;
 
+
+        totalElement.textContent =
+          "Total : 0,00 €";
+
       }
 
 
@@ -2491,8 +2096,13 @@
           "";
 
 
+        let total = 0;
+
+
         cart.forEach(
           function(item, index) {
+
+            total += item.price;
 
 
             const div =
@@ -2505,13 +2115,48 @@
               "cart-item";
 
 
+            let details = "";
+
+
+            if (
+              item.type === "Numérique"
+            ) {
+
+              details =
+                `
+                📥 Version numérique
+
+                <br>
+
+                🖨️ À imprimer chez vous
+                `;
+
+            }
+
+            else {
+
+              details =
+                `
+                🖼️ Tableau encadré
+
+                <br>
+
+                📐 ${item.size}
+
+                <br>
+
+                💡 ${item.led}
+                `;
+
+            }
+
+
             div.innerHTML =
               `
 
               <button
                 class="remove-item"
                 onclick="removeFromCart(${index})"
-                title="Supprimer cette œuvre"
               >
                 🗑️
               </button>
@@ -2526,19 +2171,12 @@
               <br>
 
 
-              📐 ${item.size}
+              ${details}
 
 
-              <br>
-
-
-              🖼️ ${item.material}
-
-
-              <br>
-
-
-              💡 ${item.led}
+              <span class="cart-price">
+                ${item.price.toFixed(2).replace(".", ",")} €
+              </span>
 
               `;
 
@@ -2550,8 +2188,15 @@
           }
         );
 
-      }
 
+        totalElement.textContent =
+          "Total : " +
+          total
+            .toFixed(2)
+            .replace(".", ",") +
+          " €";
+
+      }
 
 
       document.getElementById(
@@ -2562,10 +2207,7 @@
     }
 
 
-
-    /* =========================
-       REMOVE FROM CART
-    ========================== */
+    /* REMOVE */
 
     function removeFromCart(index) {
 
@@ -2577,7 +2219,6 @@
 
       updateCart();
 
-
       openCart();
 
 
@@ -2588,10 +2229,7 @@
     }
 
 
-
-    /* =========================
-       CLOSE CART
-    ========================== */
+    /* CLOSE */
 
     function closeCart() {
 
@@ -2603,14 +2241,13 @@
     }
 
 
-
-    /* =========================
-       CHECKOUT
-    ========================== */
+    /* CHECKOUT */
 
     function checkout() {
 
-      if (cart.length === 0) {
+      if (
+        cart.length === 0
+      ) {
 
         showToast(
           "🛒 Votre panier est vide."
@@ -2622,35 +2259,26 @@
 
 
       showToast(
-        "💳 Le système de paiement sera connecté prochainement."
+        "💳 Paiement Stripe bientôt connecté."
       );
 
     }
 
 
-
-    /* =========================
-       NAVIGATION
-    ========================== */
+    /* NAVIGATION */
 
     function scrollToOrder() {
 
       document.getElementById(
         "order"
       ).scrollIntoView({
-
-        behavior:
-          "smooth"
-
+        behavior: "smooth"
       });
 
     }
 
 
-
-    /* =========================
-       TOAST
-    ========================== */
+    /* TOAST */
 
     function showToast(message) {
 
@@ -2682,9 +2310,7 @@
 
     }
 
-
   </script>
-
 
 </body>
 </html>
