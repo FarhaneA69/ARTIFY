@@ -1,422 +1,865 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ARTIFY — Votre vision devient une œuvre</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
- --bg:#05050b;--panel:#0b0b14;--panel2:#10101a;--line:rgba(255,255,255,.10);
- --text:#f5f5f7;--muted:#aaaab9;--purple:#8b5cf6;--pink:#ec4899;
+
+*{
+ margin:0;
+ padding:0;
+ box-sizing:border-box
 }
-html{scroll-behavior:smooth}
+
+:root{
+ --bg:#05050b;
+ --panel:#0b0b14;
+ --panel2:#10101a;
+ --line:rgba(255,255,255,.10);
+ --text:#f5f5f7;
+ --muted:#aaaab9;
+ --purple:#8b5cf6;
+ --pink:#ec4899;
+}
+
+html{
+ scroll-behavior:smooth
+}
+
 body{
  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
- background:#05050b;color:var(--text);overflow-x:hidden;
+ background:#05050b;
+ color:var(--text);
+ overflow-x:hidden;
 }
+
 body:before{
- content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;
- background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ z-index:-2;
+
+ background-image:
+ linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
  linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+
  background-size:90px 90px;
 }
+
 body:after{
- content:"";position:fixed;width:700px;height:700px;top:-400px;left:-300px;z-index:-3;
- background:radial-gradient(circle,rgba(124,58,237,.15),transparent 70%);
+ content:"";
+ position:fixed;
+ width:700px;
+ height:700px;
+ top:-400px;
+ left:-300px;
+ z-index:-3;
+
+ background:
+ radial-gradient(
+ circle,
+ rgba(124,58,237,.15),
+ transparent 70%
+ );
 }
-.container{max-width:1180px;margin:auto;padding:0 28px}
-section{scroll-margin-top:90px}
+
+.container{
+ max-width:1180px;
+ margin:auto;
+ padding:0 28px
+}
+
+section{
+ scroll-margin-top:90px
+}
+
+/* NAVIGATION */
 
 nav{
- position:sticky;top:0;z-index:1000;height:58px;padding:0 4%;
- display:flex;align-items:center;justify-content:space-between;
- background:rgba(5,5,11,.92);backdrop-filter:blur(18px);
- border-bottom:1px solid rgba(255,255,255,.07)
+ position:sticky;
+ top:0;
+ z-index:1000;
+
+ height:58px;
+ padding:0 4%;
+
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+
+ background:rgba(5,5,11,.92);
+ backdrop-filter:blur(18px);
+
+ border-bottom:
+ 1px solid rgba(255,255,255,.07)
 }
-.logo{font-size:22px;font-weight:900;letter-spacing:9px}
+
+.logo{
+ font-size:22px;
+ font-weight:900;
+ letter-spacing:9px
+}
+
 .logo span{
- background:linear-gradient(90deg,#8b5cf6,#ec4899);
+ background:
+ linear-gradient(
+ 90deg,
+ #8b5cf6,
+ #ec4899
+ );
+
  -webkit-background-clip:text;
  color:transparent
 }
-.navlinks{display:flex;gap:34px}
-.navlinks a{color:#c0c0cc;text-decoration:none;font-size:12px}
-.navlinks a:hover{color:#fff}
+
+.navlinks{
+ display:flex;
+ gap:34px
+}
+
+.navlinks a{
+ color:#c0c0cc;
+ text-decoration:none;
+ font-size:12px
+}
+
+.navlinks a:hover{
+ color:#fff
+}
 
 .cart{
- display:flex;gap:9px;align-items:center;background:#090911;color:white;
- border:1px solid var(--line);
- border-radius:13px;padding:9px 14px;cursor:pointer
+ display:flex;
+ gap:9px;
+ align-items:center;
+
+ background:#090911;
+ color:white;
+
+ border:
+ 1px solid var(--line);
+
+ border-radius:13px;
+
+ padding:9px 14px;
+
+ cursor:pointer
 }
 
 .cartcount{
- width:19px;height:19px;border-radius:50%;
- display:grid;place-items:center;font-size:11px;
- background:linear-gradient(135deg,var(--purple),var(--pink))
+
+ width:19px;
+ height:19px;
+
+ border-radius:50%;
+
+ display:grid;
+ place-items:center;
+
+ font-size:11px;
+
+ background:
+ linear-gradient(
+ 135deg,
+ var(--purple),
+ var(--pink)
+ )
 }
 
 .badge{
- display:inline-flex;padding:7px 13px;border-radius:999px;
- color:#dbcaff;font-size:10px;
- border:1px solid rgba(139,92,246,.45);
- background:rgba(139,92,246,.08);
- box-shadow:0 0 25px rgba(139,92,246,.10)
+
+ display:inline-flex;
+
+ padding:7px 13px;
+
+ border-radius:999px;
+
+ color:#dbcaff;
+
+ font-size:10px;
+
+ border:
+ 1px solid rgba(139,92,246,.45);
+
+ background:
+ rgba(139,92,246,.08);
+
+ box-shadow:
+ 0 0 25px
+ rgba(139,92,246,.10)
 }
 
 .grad{
- background:linear-gradient(90deg,#8b5cf6,#c66cf4,#ec4899);
+
+ background:
+ linear-gradient(
+ 90deg,
+ #8b5cf6,
+ #c66cf4,
+ #ec4899
+ );
+
  -webkit-background-clip:text;
+
  color:transparent
 }
 
+/* HERO */
+
 .hero{
+
  min-height:385px;
+
  display:grid;
- grid-template-columns:1.05fr .95fr;
+
+ grid-template-columns:
+ 1.05fr .95fr;
+
  gap:25px;
- border-bottom:1px solid var(--line)
+
+ border-bottom:
+ 1px solid var(--line)
 }
 
-.heroText{padding:24px 0 22px}
+.heroText{
+
+ padding:
+ 24px 0 22px
+}
 
 .hero h1{
+
  font-size:52px;
+
  line-height:.98;
+
  letter-spacing:-2.5px;
+
  margin:18px 0
 }
 
 .hero p{
+
  color:var(--muted);
+
  font-size:15px;
+
  line-height:1.55;
+
  max-width:440px;
+
  margin-bottom:16px
 }
 
-.btns{display:flex;gap:12px}
+.btns{
+
+ display:flex;
+
+ gap:12px
+}
 
 .btn{
+
  border:none;
+
  color:white;
+
  padding:14px 22px;
+
  border-radius:12px;
+
  font-weight:700;
+
  cursor:pointer;
- background:linear-gradient(135deg,#7c3aed,#ec4899);
- box-shadow:0 10px 30px rgba(139,92,246,.18)
+
+ background:
+ linear-gradient(
+ 135deg,
+ #7c3aed,
+ #ec4899
+ );
+
+ box-shadow:
+ 0 10px 30px
+ rgba(139,92,246,.18)
 }
 
 .btn.alt{
+
  background:#090912;
- border:1px solid rgba(139,92,246,.55);
+
+ border:
+ 1px solid rgba(139,92,246,.55);
+
  box-shadow:none
 }
 
 .features{
+
  display:flex;
+
  gap:28px;
+
  margin-top:24px;
+
  color:#c6c6d0;
+
  font-size:11px
 }
 
 .heroVisual{
+
  min-height:385px;
+
  position:relative;
+
  overflow:hidden;
+
  display:flex;
+
  align-items:center;
+
  justify-content:center;
+
  background:
- radial-gradient(circle at 60% 30%,rgba(236,72,153,.20),transparent 40%),
- linear-gradient(90deg,rgba(18,8,30,.55),rgba(42,7,26,.50));
- border-left:1px solid var(--line)
+
+ radial-gradient(
+ circle at 60% 30%,
+ rgba(236,72,153,.20),
+ transparent 40%
+ ),
+
+ linear-gradient(
+ 90deg,
+ rgba(18,8,30,.55),
+ rgba(42,7,26,.50)
+ );
+
+ border-left:
+ 1px solid var(--line)
 }
 
 .heroVisual:before{
+
  content:"";
+
  position:absolute;
+
  inset:0;
+
  background:
- linear-gradient(90deg,transparent 49.7%,rgba(255,255,255,.07) 50%,transparent 50.3%),
- linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
- background-size:100% 100%,100% 60px;
+
+ linear-gradient(
+ 90deg,
+ transparent 49.7%,
+ rgba(255,255,255,.07) 50%,
+ transparent 50.3%
+ ),
+
+ linear-gradient(
+ rgba(255,255,255,.04) 1px,
+ transparent 1px
+ );
+
+ background-size:
+ 100% 100%,
+ 100% 60px;
+
  opacity:.5
 }
 
 .frame{
+
  position:relative;
+
  width:218px;
+
  padding:7px;
+
  background:#211722;
- border:2px solid #9b5b48;
+
+ border:
+ 2px solid #9b5b48;
+
  box-shadow:
- 0 0 18px rgba(236,72,153,.6),
- 0 0 45px rgba(124,58,237,.45)
+
+ 0 0 18px
+ rgba(236,72,153,.6),
+
+ 0 0 45px
+ rgba(124,58,237,.45)
 }
 
 .frame img{
+
  width:100%;
+
  display:block
 }
 
+/* SECTIONS */
+
 .section{
+
  padding:22px 0;
- border-bottom:1px solid var(--line)
+
+ border-bottom:
+ 1px solid var(--line)
 }
 
 .two{
+
  display:grid;
- grid-template-columns:290px 1fr;
+
+ grid-template-columns:
+ 290px 1fr;
+
  gap:24px
 }
 
 .title{
+
  font-size:29px;
+
  line-height:1.15;
+
  letter-spacing:-1.2px;
+
  margin:12px 0
 }
 
 .sub{
+
  color:var(--muted);
+
  font-size:13px;
+
  line-height:1.65
 }
 
+/* AVANT APRES */
+
 .compare{
+
  position:relative;
+
  border-radius:16px;
+
  overflow:hidden;
+
  height:193px;
- margin-top:0;
+
  background:#111
 }
 
 .compare img{
+
  position:absolute;
+
  width:100%;
+
  height:100%;
+
  object-fit:cover
 }
 
 .compare .after{
- clip-path:inset(0 0 0 50%)
+
+ clip-path:
+ inset(0 0 0 50%)
 }
 
 .compare input{
+
  position:absolute;
+
  z-index:5;
+
  bottom:18px;
+
  left:14%;
+
  width:72%;
+
  accent-color:#fff
 }
 
 .label{
+
  position:absolute;
+
  z-index:4;
+
  top:14px;
+
  padding:8px 13px;
+
  border-radius:20px;
- background:rgba(7,7,14,.86);
+
+ background:
+ rgba(7,7,14,.86);
+
  font-size:10px;
- border:1px solid rgba(255,255,255,.08)
+
+ border:
+ 1px solid rgba(255,255,255,.08)
 }
 
-.beforelab{left:15px}
-.afterlab{right:15px}
+.beforelab{
+ left:15px
+}
+
+.afterlab{
+ right:15px
+}
+
+/* PRODUITS */
 
 .productRow{
+
  display:grid;
- grid-template-columns:repeat(3,1fr);
+
+ grid-template-columns:
+ repeat(3,1fr);
+
  gap:10px;
+
  margin-top:13px
 }
 
 .card{
- background:linear-gradient(145deg,#0b0b15,#090910);
- border:1px solid var(--line);
+
+ background:
+ linear-gradient(
+ 145deg,
+ #0b0b15,
+ #090910
+ );
+
+ border:
+ 1px solid var(--line);
+
  border-radius:14px;
+
  padding:18px;
+
  transition:.2s
 }
 
 .card:hover{
- transform:translateY(-2px);
- border-color:rgba(168,85,247,.5)
+
+ transform:
+ translateY(-2px);
+
+ border-color:
+ rgba(168,85,247,.5)
 }
 
 .card h3{
+
  font-size:15px;
+
  margin-bottom:7px
 }
 
 .card p{
+
  font-size:12px;
+
  color:var(--muted);
+
  line-height:1.5
 }
 
 .price{
+
  display:block;
+
  margin-top:12px;
+
  color:#e879c2;
+
  font-weight:800
 }
 
+/* ROOMS */
+
 .rooms{
+
  display:grid;
- grid-template-columns:280px repeat(3,1fr);
+
+ grid-template-columns:
+ 280px repeat(3,1fr);
+
  gap:10px;
+
  align-items:stretch
 }
 
-.roomIntro{padding-top:5px}
+.roomIntro{
+
+ padding-top:5px
+}
 
 .room{
+
  min-height:195px;
+
  border-radius:12px;
+
  overflow:hidden;
+
  position:relative;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  background:#111
 }
 
 .room img{
+
  width:100%;
+
  height:100%;
+
  object-fit:cover;
+
  display:block
 }
 
 .room span{
+
  position:absolute;
+
  bottom:0;
+
  left:0;
+
  right:0;
+
  padding:8px 10px;
+
  font-size:11px;
- background:linear-gradient(transparent,rgba(0,0,0,.85))
+
+ background:
+ linear-gradient(
+ transparent,
+ rgba(0,0,0,.85)
+ )
 }
 
+/* COMMENT CA MARCHE */
+
 .how{
+
  display:grid;
- grid-template-columns:1.5fr 1fr;
+
+ grid-template-columns:
+ 1.5fr 1fr;
+
  gap:22px
 }
 
 .steps{
+
  display:grid;
- grid-template-columns:repeat(3,1fr);
+
+ grid-template-columns:
+ repeat(3,1fr);
+
  gap:10px;
+
  margin-top:14px
 }
 
 .step{
+
  padding:14px;
+
  border-radius:12px;
+
  background:#0a0a12;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  min-height:145px
 }
 
 .num{
+
  width:29px;
+
  height:29px;
+
  border-radius:50%;
+
  display:grid;
+
  place-items:center;
+
  margin-bottom:10px;
- background:linear-gradient(135deg,#8b5cf6,#ec4899);
+
+ background:
+ linear-gradient(
+ 135deg,
+ #8b5cf6,
+ #ec4899
+ );
+
  font-size:12px;
+
  font-weight:800
 }
 
 .step h4{
+
  font-size:12px;
+
  margin-bottom:7px
 }
 
 .step p{
+
  font-size:11px;
+
  color:var(--muted);
+
  line-height:1.5
 }
 
+/* LED */
+
 .ledbox{
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:14px;
+
  padding:14px;
+
  background:#090910
 }
 
 .ledImages{
+
  display:grid;
- grid-template-columns:1fr 1fr;
+
+ grid-template-columns:
+ 1fr 1fr;
+
  gap:18px;
+
  margin-top:15px;
+
  text-align:center;
+
  font-size:11px
 }
 
 .ledImages img{
+
  width:100%;
+
  height:145px;
+
  object-fit:cover;
+
  border-radius:4px;
- border:4px solid #241810
+
+ border:
+ 4px solid #241810
 }
 
 .glow{
+
  padding:6px;
+
  background:#1b1023;
+
  box-shadow:
- 0 0 24px rgba(192,83,255,.8),
- 0 0 50px rgba(192,83,255,.35)
+
+ 0 0 24px
+ rgba(192,83,255,.8),
+
+ 0 0 50px
+ rgba(192,83,255,.35)
 }
 
+/* COMMANDE */
+
 .order{
+
  display:grid;
- grid-template-columns:280px 1fr;
+
+ grid-template-columns:
+ 280px 1fr;
+
  gap:22px;
+
  align-items:start
 }
 
 .orderPanel{
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:14px;
+
  padding:15px;
+
  background:#090910
 }
 
 .orderGrid{
+
  display:grid;
- grid-template-columns:1.1fr 1fr 140px;
+
+ grid-template-columns:
+ 1.1fr 1fr 140px;
+
  gap:10px
 }
 
 .choiceRow{
+
  display:grid;
- grid-template-columns:1fr 1fr;
+
+ grid-template-columns:
+ 1fr 1fr;
+
  gap:8px
 }
 
 .choice{
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:10px;
+
  padding:12px;
+
  cursor:pointer;
+
  min-height:92px;
+
  background:#0b0b13
 }
 
 .choice.selected{
+
  border-color:#d34ca0;
- background:linear-gradient(
+
+ background:
+ linear-gradient(
  145deg,
  rgba(124,58,237,.12),
  rgba(236,72,153,.08)
@@ -424,262 +867,454 @@ nav{
 }
 
 .choice h4{
+
  font-size:12px;
+
  margin-bottom:7px
 }
 
 .choice p{
+
  font-size:10px;
+
  color:var(--muted);
+
  line-height:1.5
 }
 
 .sizes{
+
  display:grid;
- grid-template-columns:repeat(3,1fr);
+
+ grid-template-columns:
+ repeat(3,1fr);
+
  gap:6px;
+
  margin-top:8px
 }
 
 .smallchoice{
+
  padding:9px 5px;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:8px;
+
  text-align:center;
+
  font-size:10px;
+
  cursor:pointer
 }
 
 .smallchoice.selected{
+
  border-color:#ec4899;
+
  color:#f3a3d2
 }
 
 .totalBox{
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:10px;
+
  padding:10px
 }
 
 .totalBox img{
+
  width:62px;
+
  height:62px;
+
  object-fit:cover;
+
  display:block;
+
  margin:5px auto;
+
  border-radius:5px
 }
 
 .total{
+
  font-size:17px;
+
  font-weight:900;
+
  color:#f077bb;
+
  margin:12px 0
 }
 
-.full{width:100%}
+.full{
+
+ width:100%
+}
+
+/* GENERATEUR */
 
 .generator{
+
  margin-top:20px;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:16px;
+
  padding:16px;
+
  background:#090910;
+
  display:grid;
- grid-template-columns:1fr 1fr;
+
+ grid-template-columns:
+ 1fr 1fr;
+
  gap:12px
 }
 
 .upload{
- border:1px dashed rgba(139,92,246,.55);
+
+ border:
+ 1px dashed rgba(139,92,246,.55);
+
  border-radius:12px;
+
  padding:16px;
+
  min-height:160px;
+
  display:grid;
+
  place-items:center;
+
  text-align:center;
+
  cursor:pointer;
- background:rgba(139,92,246,.03)
+
+ background:
+ rgba(139,92,246,.03)
 }
 
 .upload img{
+
  max-width:100%;
+
  max-height:220px;
+
  display:none;
+
  border-radius:10px
 }
 
 textarea{
+
  width:100%;
+
  height:120px;
+
  background:#06060c;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:12px;
+
  padding:12px;
+
  color:white;
+
  font-family:inherit;
+
  resize:none
 }
 
 .examples{
+
  display:flex;
+
  flex-wrap:wrap;
+
  gap:6px;
+
  margin:8px 0
 }
 
 .example{
+
  font-size:10px;
+
  padding:6px 9px;
+
  background:#11111c;
+
  color:#ddd;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:20px;
+
  cursor:pointer
 }
 
 .result{
+
  display:none;
+
  margin-top:14px;
+
  text-align:center
 }
 
 .result img{
+
  max-width:100%;
+
  max-height:500px;
+
  border-radius:14px;
- border:1px solid var(--line)
+
+ border:
+ 1px solid var(--line)
 }
 
+/* FOOTER */
+
 footer{
+
  padding:18px 0 25px
 }
 
 .footerGrid{
+
  display:grid;
- grid-template-columns:repeat(4,1fr);
+
+ grid-template-columns:
+ repeat(4,1fr);
+
  gap:12px
 }
 
 .trust{
+
  padding:10px;
+
  border-radius:10px;
+
  background:#0b0b13;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  font-size:11px;
+
  color:#d5d5dd
 }
 
+/* PANIER */
+
 .modal{
+
  display:none;
+
  position:fixed;
+
  inset:0;
+
  z-index:2000;
- background:rgba(0,0,0,.72);
+
+ background:
+ rgba(0,0,0,.72);
+
  align-items:center;
+
  justify-content:center;
+
  padding:20px
 }
 
 .modalContent{
+
  width:min(480px,100%);
+
  background:#11111b;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:18px;
+
  padding:20px
 }
 
 .modalHead{
+
  display:flex;
+
  justify-content:space-between;
+
  align-items:center;
+
  margin-bottom:15px
 }
 
 .close{
+
  background:none;
+
  border:none;
+
  color:white;
+
  font-size:26px;
+
  cursor:pointer
 }
 
 .cartItem{
+
  padding:12px;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  border-radius:10px;
+
  margin-bottom:8px;
+
  font-size:13px
 }
 
 .remove{
+
  float:right;
+
  background:none;
+
  border:none;
+
  color:#ff7ab8;
+
  cursor:pointer
 }
 
 .toast{
+
  position:fixed;
+
  right:18px;
+
  bottom:18px;
+
  z-index:3000;
+
  background:#161622;
- border:1px solid var(--line);
+
+ border:
+ 1px solid var(--line);
+
  padding:13px 16px;
+
  border-radius:12px;
- transform:translateY(120px);
+
+ transform:
+ translateY(120px);
+
  transition:.25s
 }
 
 .toast.show{
- transform:translateY(0)
+
+ transform:
+ translateY(0)
 }
+
+/* MOBILE */
 
 @media(max-width:850px){
 
- .navlinks{display:none}
+ .navlinks{
+  display:none
+ }
 
- nav{height:70px}
+ nav{
+  height:70px
+ }
 
- .hero,.two,.how,.order,.generator{
+ .hero,
+ .two,
+ .how,
+ .order,
+ .generator{
   grid-template-columns:1fr
  }
 
  .heroVisual{
+
   min-height:340px;
+
   border-left:none;
-  border-top:1px solid var(--line)
+
+  border-top:
+  1px solid var(--line)
  }
 
- .hero h1{font-size:45px}
+ .hero h1{
+  font-size:45px
+ }
 
- .productRow,.rooms{
+ .productRow,
+ .rooms{
   grid-template-columns:1fr
  }
 
- .rooms .room{min-height:250px}
+ .rooms .room{
+  min-height:250px
+ }
 
- .steps{grid-template-columns:1fr}
+ .steps{
+  grid-template-columns:1fr
+ }
 
- .orderGrid{grid-template-columns:1fr}
+ .orderGrid{
+  grid-template-columns:1fr
+ }
 
  .footerGrid{
   grid-template-columns:1fr 1fr
  }
 
- .container{padding:0 20px}
+ .container{
+  padding:0 20px
+ }
 
  .features{
+
   gap:12px;
+
   flex-wrap:wrap
  }
+
 }
+
 </style>
+
 </head>
 
+
 <body>
+
+
+<!-- NAVIGATION -->
 
 <nav>
 
@@ -687,282 +1322,484 @@ footer{
 ART<span>IFY</span>
 </div>
 
+
 <div class="navlinks">
+
 <a href="#accueil">Accueil</a>
+
 <a href="#creer">Créer</a>
+
 <a href="#exemples">Exemples</a>
+
 <a href="#prix">Prix</a>
+
 <a href="#comment">Comment ça marche</a>
+
 <a href="#faq">FAQ</a>
+
 </div>
 
+
 <button class="cart" onclick="openCart()">
+
 🛒 Panier
-<span class="cartcount" id="cartCount">0</span>
+
+<span class="cartcount" id="cartCount">
+
+0
+
+</span>
+
 </button>
 
 </nav>
 
+
+
 <main class="container">
+
+
 
 <!-- ACCUEIL -->
 
 <section class="hero" id="accueil">
 
+
 <div class="heroText">
 
+
 <div class="badge">
+
 ✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
+
 </div>
 
+
 <h1>
+
 Transformez<br>
+
 votre vision en<br>
-<span class="grad">œuvre d'art.</span>
+
+<span class="grad">
+
+œuvre d'art.
+
+</span>
+
 </h1>
 
+
 <p>
+
 Importez votre image, décrivez votre imagination et laissez l'IA créer une œuvre unique.
+
 </p>
+
 
 <div class="btns">
 
+
 <button class="btn"
+
 onclick="document.getElementById('creer').scrollIntoView({behavior:'smooth'})">
+
 Créer mon œuvre
+
 </button>
+
 
 <button class="btn alt"
+
 onclick="document.getElementById('exemples').scrollIntoView({behavior:'smooth'})">
+
 ▷ Voir des exemples
+
 </button>
 
+
 </div>
+
 
 <div class="features">
-<span>∞ Possibilités créatives</span>
-<span>Aᐧ Transformation intelligente</span>
-<span>✣ 100% Votre imagination</span>
-</div>
+
+<span>
+
+∞ Possibilités créatives
+
+</span>
+
+
+<span>
+
+Aᐧ Transformation intelligente
+
+</span>
+
+
+<span>
+
+✣ 100% Votre imagination
+
+</span>
 
 </div>
 
+
+</div>
+
+
+
+<!-- IMAGE LION -->
 
 <div class="heroVisual">
 
 <div class="frame">
 
-<img
-src="lion.png"
-alt="Œuvre lion ARTIFY">
+<img src="images/lion.png" alt="Œuvre lion ARTIFY">
 
 </div>
 
 </div>
+
 
 </section>
 
 
-<!-- AVANT APRÈS -->
+
+<!-- AVANT APRES -->
 
 <section class="section" id="exemples">
 
+
 <div class="two">
+
 
 <div>
 
+
 <div class="badge">
+
 📸 AVANT / APRÈS
+
 </div>
+
 
 <h2 class="title">
-Une photo.<br>
-Une <span class="grad">nouvelle réalité.</span>
+
+Une photo.
+
+<br>
+
+Une
+
+<span class="grad">
+
+nouvelle réalité.
+
+</span>
+
 </h2>
 
+
 <p class="sub">
+
 Faites glisser le curseur pour découvrir comment une image peut devenir une œuvre.
+
 </p>
 
+
 </div>
+
 
 
 <div class="compare">
 
+
+<!-- AVANT -->
+
 <img
-src="Avant.png"
+
+src="images/Avant.png"
+
 alt="Avant">
 
+
+
+<!-- APRES -->
+
 <img
-src="Après.png"
+
+src="images/Après.png"
+
 class="after"
+
 id="afterImage"
+
 alt="Après">
 
+
 <span class="label beforelab">
+
 📸 AVANT
+
 </span>
+
 
 <span class="label afterlab">
+
 ✨ APRÈS
+
 </span>
 
+
 <input
+
 type="range"
+
 min="0"
+
 max="100"
+
 value="50"
+
 oninput="document.getElementById('afterImage').style.clipPath='inset(0 0 0 '+this.value+'%)'">
 
-</div>
 
 </div>
 
+
+</div>
+
+
+
+<!-- PRIX -->
 
 <div class="productRow" id="prix">
 
+
 <div class="card">
 
-<h3>⇩ Version numérique</h3>
+<h3>
+
+⇩ Version numérique
+
+</h3>
 
 <p>
+
 Téléchargez votre œuvre et imprimez-la chez vous.
+
 </p>
 
 <span class="price">
+
 4,90 €
+
 </span>
 
 </div>
 
 
+
 <div class="card">
 
-<h3>▣ Tableau encadré</h3>
+<h3>
+
+▣ Tableau encadré
+
+</h3>
 
 <p>
+
 Imprimé, encadré et prêt à accrocher dans votre intérieur.
+
 </p>
 
 <span class="price">
+
 À partir de 29,90 €
+
 </span>
 
 </div>
+
 
 
 <div class="card">
 
-<h3>💡 Option LED</h3>
+<h3>
+
+💡 Option LED
+
+</h3>
 
 <p>
+
 Ajoutez une lumière arrière pour une ambiance unique.
+
 </p>
 
 <span class="price">
+
 + 15 €
+
 </span>
 
 </div>
 
+
 </div>
+
 
 </section>
 
 
-<!-- INTÉRIEURS -->
+
+<!-- INTERIEUR -->
 
 <section class="section">
 
+
 <div class="rooms">
+
 
 <div class="roomIntro">
 
+
 <div class="badge">
+
 CHEZ VOUS
+
 </div>
+
 
 <h2 class="title">
 
 Imaginez votre œuvre dans votre
-<span class="grad">intérieur.</span>
+
+<span class="grad">
+
+intérieur.
+
+</span>
 
 </h2>
 
+
 <p class="sub">
+
 Des objets décoratifs uniques pour votre salon, chambre ou bureau.
+
 </p>
+
 
 <br>
 
+
 <button
+
 class="btn alt"
+
 onclick="document.getElementById('creer').scrollIntoView({behavior:'smooth'})">
 
 Voir plus d'exemples
 
 </button>
 
+
 </div>
 
+
+
+<!-- SALON -->
 
 <div class="room">
 
 <img
-src="salon.png"
+
+src="images/salon.png"
+
 alt="Salon moderne">
 
 <span>
+
 Salon moderne
+
 </span>
 
 </div>
 
 
+
+<!-- CHAMBRE -->
+
 <div class="room">
 
 <img
-src="chambre à coucher.png"
+
+src="images/chambre à coucher.png"
+
 alt="Chambre élégante">
 
 <span>
+
 Chambre élégante
+
 </span>
 
 </div>
 
+
+
+<!-- BUREAU -->
 
 <div class="room">
 
 <img
-src="Bureau.png"
+
+src="images/Bureau.png"
+
 alt="Bureau créatif">
 
 <span>
+
 Bureau créatif
+
 </span>
 
 </div>
 
+
 </div>
+
 
 </section>
 
 
-<!-- COMMENT ÇA MARCHE -->
+
+<!-- COMMENT CA MARCHE -->
 
 <section class="section" id="comment">
 
+
 <div class="how">
+
 
 <div>
 
+
 <div class="badge">
+
 COMMENT ÇA MARCHE ?
+
 </div>
 
+
 <h2 class="title">
+
 3 étapes simples
+
 </h2>
 
 
@@ -971,44 +1808,70 @@ COMMENT ÇA MARCHE ?
 
 <div class="step">
 
-<div class="num">1</div>
+<div class="num">
+
+1
+
+</div>
 
 <h4>
+
 Créez votre œuvre
+
 </h4>
 
 <p>
+
 Importez votre image et décrivez votre vision.
+
 </p>
 
 </div>
 
 
+
 <div class="step">
 
-<div class="num">2</div>
+<div class="num">
+
+2
+
+</div>
 
 <h4>
+
 Choisissez votre option
+
 </h4>
 
 <p>
+
 Téléchargement numérique ou tableau encadré.
+
 </p>
 
 </div>
+
 
 
 <div class="step">
 
-<div class="num">3</div>
+<div class="num">
+
+3
+
+</div>
 
 <h4>
+
 Recevez et profitez
+
 </h4>
 
 <p>
+
 Imprimez chez vous ou accrochez votre œuvre.
+
 </p>
 
 </div>
@@ -1016,51 +1879,82 @@ Imprimez chez vous ou accrochez votre œuvre.
 
 </div>
 
+
 </div>
 
+
+
+<!-- OPTION LED -->
 
 <div class="ledbox">
 
+
 <div class="badge">
+
 OPTION LED
+
 </div>
 
+
 <h2 class="title">
+
 Avec ou sans LED
+
 </h2>
 
+
 <p class="sub">
+
 À vous de choisir l'ambiance.
+
 </p>
 
 
 <div class="ledImages">
 
 
+<!-- SANS LED -->
+
 <div>
 
 <img
-src="Portrait.png"
+
+src="images/Portrait.png"
+
 alt="Portrait sans LED">
 
+
 <p>
+
 Sans LED
+
 </p>
 
 </div>
 
 
+
+<!-- AVEC LED -->
+
 <div class="glow">
 
 <img
-src="portrait-led.png"
+
+src="images/portrait-led.png"
+
 alt="Portrait avec LED">
 
+
 <p>
-Avec LED<br>
+
+Avec LED
+
+<br>
 
 <b class="grad">
+
 + 15 €
+
 </b>
 
 </p>
@@ -1070,27 +1964,41 @@ Avec LED<br>
 
 </div>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </section>
 
 
-<!-- CRÉER -->
+
+<!-- CREER -->
 
 <section class="section" id="creer">
 
+
 <div class="badge">
+
 ✨ CRÉEZ VOTRE ŒUVRE
+
 </div>
+
 
 <h2 class="title">
 
 Votre imagination
-<span class="grad">sans limites.</span>
+
+<span class="grad">
+
+sans limites.
+
+</span>
 
 </h2>
+
 
 <p class="sub">
 
@@ -1099,12 +2007,15 @@ Importez une photo et dites exactement à l'IA comment vous voulez la transforme
 </p>
 
 
+
 <div class="generator">
 
 
 <div>
 
+
 <label class="upload" for="imageInput">
+
 
 <div id="uploadText">
 
@@ -1112,46 +2023,73 @@ Importez une photo et dites exactement à l'IA comment vous voulez la transforme
 
 <br><br>
 
+
 <b>
+
 Importez votre image
+
 </b>
+
 
 <br>
 
+
 <small>
+
 JPEG, PNG ou WEBP
+
 </small>
 
+
 </div>
+
 
 
 <img
+
 id="previewImage"
+
 alt="Aperçu">
+
 
 </label>
 
+
 <input
+
 id="imageInput"
+
 type="file"
+
 accept="image/*"
+
 hidden>
 
+
 </div>
+
 
 
 <div>
 
+
 <textarea
+
 id="prompt"
+
 placeholder="Exemple : transforme cette photo en une œuvre artistique futuriste, cinématographique, avec des couleurs violettes et roses...">
+
 </textarea>
+
 
 
 <div class="examples">
 
+
 <button
+
 class="example"
+
 onclick="setPrompt('Transforme cette image en anime japonais 4K, très détaillé et cinématographique.')">
 
 Anime 4K
@@ -1159,8 +2097,11 @@ Anime 4K
 </button>
 
 
+
 <button
+
 class="example"
+
 onclick="setPrompt('Transforme cette image en peinture artistique luxueuse avec une lumière spectaculaire.')">
 
 Peinture
@@ -1168,163 +2109,248 @@ Peinture
 </button>
 
 
+
 <button
+
 class="example"
+
 onclick="setPrompt('Transforme cette image en univers futuriste cyberpunk avec des lumières néon.')">
 
 Cyberpunk
 
 </button>
 
+
 </div>
 
 
+
 <button
+
 class="btn full"
+
 id="generateButton"
+
 onclick="generateArt()">
 
 ✨ Créer mon œuvre avec l'IA
 
 </button>
 
-</div>
 
 </div>
 
+
+</div>
+
+
+
+<!-- RESULTAT -->
 
 <div
+
 class="result"
+
 id="resultSection">
+
 
 <br>
 
+
 <h2 class="title">
+
 ✨ Votre œuvre ARTIFY
+
 </h2>
 
+
 <img
+
 id="resultImage"
+
 alt="Résultat ARTIFY">
+
 
 <br><br>
 
+
 <button
+
 class="btn"
+
 onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
 
 Commander cette œuvre
 
 </button>
 
+
 </div>
+
 
 </section>
 
 
+
 <!-- COMMANDE -->
 
-<section
-class="section"
-id="order">
+<section class="section" id="order">
+
 
 <div class="order">
 
 
 <div>
 
+
 <div class="badge">
+
 COMMANDEZ VOTRE ŒUVRE
+
 </div>
+
 
 <h2 class="title">
 
 Comment voulez-vous
-<span class="grad">votre œuvre ?</span>
+
+<span class="grad">
+
+votre œuvre ?
+
+</span>
 
 </h2>
 
+
 </div>
+
 
 
 <div class="orderPanel">
 
+
 <div class="orderGrid">
 
 
+<!-- TYPE -->
+
 <div>
 
+
 <small class="sub">
+
 Type de commande
+
 </small>
 
 
 <div
+
 class="choiceRow"
+
 id="typeOptions">
 
 
 <div
+
 class="choice selected"
+
 data-type="digital"
+
 onclick="selectType(this)">
 
+
 <h4>
+
 ⇩ Version numérique
+
 </h4>
 
+
 <p>
+
 Téléchargez et imprimez chez vous.
+
 </p>
 
+
 <span class="price">
+
 4,90 €
+
 </span>
 
+
 </div>
+
 
 
 <div
+
 class="choice"
+
 data-type="frame"
+
 onclick="selectType(this)">
 
+
 <h4>
+
 ▣ Tableau encadré
+
 </h4>
 
+
 <p>
+
 Prêt à accrocher chez vous.
+
 </p>
 
+
 <span class="price">
+
 À partir de 29,90 €
+
 </span>
 
+
+</div>
+
+
 </div>
 
 
 </div>
 
-</div>
 
 
+<!-- TAILLES -->
 
 <div>
 
+
 <small class="sub">
+
 Taille (Tableau encadré)
+
 </small>
 
 
 <div
+
 class="sizes"
+
 id="sizes">
 
 
 <div
+
 class="smallchoice selected"
+
 data-price="29.90"
+
 onclick="selectSmall(this,'sizes')">
 
 30 × 40 cm
@@ -1336,9 +2362,13 @@ onclick="selectSmall(this,'sizes')">
 </div>
 
 
+
 <div
+
 class="smallchoice"
+
 data-price="39.90"
+
 onclick="selectSmall(this,'sizes')">
 
 40 × 60 cm
@@ -1350,9 +2380,13 @@ onclick="selectSmall(this,'sizes')">
 </div>
 
 
+
 <div
+
 class="smallchoice"
+
 data-price="59.90"
+
 onclick="selectSmall(this,'sizes')">
 
 60 × 90 cm
@@ -1363,6 +2397,7 @@ onclick="selectSmall(this,'sizes')">
 
 </div>
 
+
 </div>
 
 
@@ -1370,18 +2405,25 @@ onclick="selectSmall(this,'sizes')">
 
 
 <small class="sub">
+
 Éclairage
+
 </small>
 
 
 <div
+
 class="sizes"
+
 id="leds">
 
 
 <div
+
 class="smallchoice selected"
+
 data-led="0"
+
 onclick="selectSmall(this,'leds')">
 
 Sans LED
@@ -1389,9 +2431,13 @@ Sans LED
 </div>
 
 
+
 <div
+
 class="smallchoice"
+
 data-led="15"
+
 onclick="selectSmall(this,'leds')">
 
 Avec LED
@@ -1405,20 +2451,28 @@ Avec LED
 
 </div>
 
+
 </div>
 
 
 
+<!-- APERCU -->
+
 <div class="totalBox">
 
+
 <small class="sub">
+
 Aperçu
+
 </small>
 
 
 <img
-src="Portrait.png"
-alt="Aperçu">
+
+src="images/Portrait.png"
+
+alt="Aperçu ARTIFY">
 
 
 <div>
@@ -1426,7 +2480,9 @@ alt="Aperçu">
 Total :
 
 <span
+
 class="total"
+
 id="totalPrice">
 
 4,90 €
@@ -1437,28 +2493,36 @@ id="totalPrice">
 
 
 <button
+
 class="btn full"
+
 onclick="addToCart()">
 
 🛒 Ajouter au panier
 
 </button>
 
+
+</div>
+
+
 </div>
 
 
 </div>
 
-</div>
 
 </div>
+
 
 </section>
+
 
 
 <!-- FOOTER -->
 
 <footer id="faq">
+
 
 <div class="footerGrid">
 
@@ -1468,7 +2532,9 @@ onclick="addToCart()">
 🛡️
 
 <b>
+
 Paiement 100% sécurisé
+
 </b>
 
 <br>
@@ -1478,12 +2544,15 @@ Stripe & SSL
 </div>
 
 
+
 <div class="trust">
 
 ◴
 
 <b>
+
 Satisfait ou remboursé
+
 </b>
 
 <br>
@@ -1493,12 +2562,15 @@ Satisfait ou remboursé
 </div>
 
 
+
 <div class="trust">
 
 🚚
 
 <b>
+
 Livraison rapide
+
 </b>
 
 <br>
@@ -1508,12 +2580,15 @@ Livraison rapide
 </div>
 
 
+
 <div class="trust">
 
 ◉
 
 <b>
+
 Support 7j/7
+
 </b>
 
 <br>
@@ -1525,7 +2600,9 @@ Nous sommes là
 
 </div>
 
+
 </footer>
+
 
 </main>
 
@@ -1534,26 +2611,35 @@ Nous sommes là
 <!-- PANIER -->
 
 <div
+
 class="modal"
+
 id="cartModal">
+
 
 <div class="modalContent">
 
 
 <div class="modalHead">
 
+
 <h2>
+
 🛒 Votre panier
+
 </h2>
 
 
 <button
+
 class="close"
+
 onclick="closeCart()">
 
 ×
 
 </button>
+
 
 </div>
 
@@ -1566,7 +2652,9 @@ Votre panier est vide.
 
 
 <h3
+
 id="cartTotal"
+
 style="margin-top:15px">
 
 Total : 0,00 €
@@ -1578,7 +2666,9 @@ Total : 0,00 €
 
 
 <button
+
 class="btn full"
+
 onclick="checkout()">
 
 💳 Continuer vers le paiement
@@ -1588,12 +2678,17 @@ onclick="checkout()">
 
 </div>
 
+
 </div>
 
 
 
+<!-- NOTIFICATION -->
+
 <div
+
 class="toast"
+
 id="toast">
 
 </div>
@@ -1602,199 +2697,315 @@ id="toast">
 
 <script>
 
+
 let uploadedImage=null;
+
 let cart=[];
+
 let orderType='digital';
 
 
-const imageInput=document.getElementById('imageInput');
+const imageInput=
+
+document.getElementById('imageInput');
 
 
-imageInput.addEventListener('change',e=>{
+imageInput.addEventListener(
 
- const file=e.target.files[0];
+'change',
 
- if(!file)return;
+e=>{
 
- const reader=new FileReader();
 
- reader.onload=ev=>{
+const file=e.target.files[0];
 
-  uploadedImage=ev.target.result;
 
-  previewImage.src=uploadedImage;
+if(!file)return;
 
-  previewImage.style.display='block';
 
-  uploadText.style.display='none';
+const reader=new FileReader();
 
- };
 
- reader.readAsDataURL(file);
+reader.onload=ev=>{
 
-});
+
+uploadedImage=ev.target.result;
+
+
+document.getElementById('previewImage').src=uploadedImage;
+
+
+document.getElementById('previewImage').style.display='block';
+
+
+document.getElementById('uploadText').style.display='none';
+
+
+};
+
+
+reader.readAsDataURL(file);
+
+
+}
+
+);
+
 
 
 function setPrompt(text){
 
- document.getElementById('prompt').value=text;
+document.getElementById('prompt').value=text;
 
 }
 
+
+
+/* GENERATION IA */
 
 async function generateArt(){
 
- const prompt=document.getElementById('prompt').value.trim();
 
- const btn=document.getElementById('generateButton');
+const prompt=
 
-
- if(!uploadedImage){
-
-  showToast('📸 Ajoutez une image avant de commencer.');
-
-  return;
-
- }
+document.getElementById('prompt').value.trim();
 
 
- if(!prompt){
+const btn=
 
-  showToast('✍️ Décrivez votre vision.');
-
-  return;
-
- }
+document.getElementById('generateButton');
 
 
- btn.disabled=true;
+if(!uploadedImage){
 
- btn.textContent='⏳ Création en cours...';
+showToast('📸 Ajoutez une image avant de commencer.');
 
-
- try{
-
-
-  const response=await fetch('/api/generate',{
-
-   method:'POST',
-
-   headers:{
-
-    'Content-Type':'application/json'
-
-   },
-
-   body:JSON.stringify({
-
-    prompt:prompt,
-
-    image:uploadedImage
-
-   })
-
-  });
-
-
-  const data=await response.json();
-
-
-  if(!response.ok){
-
-   throw new Error(
-    data.error||
-    'Erreur pendant la création'
-   );
-
-  }
-
-
-  resultImage.src=data.image||uploadedImage;
-
-
-  resultSection.style.display='block';
-
-
-  resultSection.scrollIntoView({
-
-   behavior:'smooth'
-
-  });
-
-
-  showToast('✨ Votre œuvre est prête !');
-
-
- }catch(error){
-
-  showToast('❌ '+error.message);
-
- }
-
-
- finally{
-
-  btn.disabled=false;
-
-  btn.textContent="✨ Créer mon œuvre avec l'IA";
-
- }
+return;
 
 }
 
 
+if(!prompt){
+
+showToast('✍️ Décrivez votre vision.');
+
+return;
+
+}
+
+
+btn.disabled=true;
+
+btn.textContent='⏳ Création en cours...';
+
+
+try{
+
+
+const response=
+
+await fetch('/api/generate',{
+
+method:'POST',
+
+headers:{
+
+'Content-Type':'application/json'
+
+},
+
+body:
+
+JSON.stringify({
+
+prompt,
+
+image:uploadedImage
+
+})
+
+});
+
+
+const data=
+
+await response.json();
+
+
+if(!response.ok){
+
+throw new Error(
+
+data.error||
+
+'Erreur pendant la création'
+
+);
+
+}
+
+
+document.getElementById('resultImage').src=
+
+data.image||
+
+uploadedImage;
+
+
+document.getElementById('resultSection').style.display='block';
+
+
+document.getElementById('resultSection').scrollIntoView({
+
+behavior:'smooth'
+
+});
+
+
+showToast(
+
+'✨ Votre œuvre est prête !'
+
+);
+
+
+}
+
+
+catch(error){
+
+
+showToast(
+
+'❌ '+error.message
+
+);
+
+
+}
+
+
+finally{
+
+
+btn.disabled=false;
+
+
+btn.textContent=
+
+"✨ Créer mon œuvre avec l'IA";
+
+
+}
+
+
+}
+
+
+
+/* CHOIX TYPE */
 
 function selectType(el){
 
- document
- .querySelectorAll('#typeOptions .choice')
- .forEach(x=>x.classList.remove('selected'));
+
+document
+
+.querySelectorAll(
+
+'#typeOptions .choice'
+
+)
+
+.forEach(
+
+x=>x.classList.remove('selected')
+
+);
 
 
- el.classList.add('selected');
+el.classList.add('selected');
 
 
- orderType=el.dataset.type;
+orderType=
+
+el.dataset.type;
 
 
- updatePrice();
+updatePrice();
+
 
 }
 
 
+
+/* CHOIX TAILLE */
 
 function selectSmall(el,id){
 
- document
- .querySelectorAll('#'+id+' .smallchoice')
- .forEach(x=>x.classList.remove('selected'));
+
+document
+
+.querySelectorAll(
+
+'#'+id+' .smallchoice'
+
+)
+
+.forEach(
+
+x=>x.classList.remove('selected')
+
+);
 
 
- el.classList.add('selected');
+el.classList.add('selected');
 
 
- updatePrice();
+updatePrice();
+
 
 }
 
 
 
+/* PRIX */
+
 function getOrderPrice(){
 
- if(orderType==='digital'){
 
-  return 4.90;
+if(orderType==='digital'){
 
- }
+return 4.90;
 
-
- const size=document.querySelector('#sizes .selected');
+}
 
 
- const led=document.querySelector('#leds .selected');
+const size=
+
+document.querySelector(
+
+'#sizes .selected'
+
+);
 
 
- return Number(size.dataset.price)+Number(led.dataset.led);
+const led=
+
+document.querySelector(
+
+'#leds .selected'
+
+);
+
+
+return
+
+Number(size.dataset.price)
+
++
+
+Number(led.dataset.led);
+
 
 }
 
@@ -1802,215 +3013,350 @@ function getOrderPrice(){
 
 function updatePrice(){
 
- document.getElementById('totalPrice').textContent=
 
- getOrderPrice()
- .toFixed(2)
- .replace('.',',')
+document.getElementById(
 
- +' €';
+'totalPrice'
+
+).textContent=
+
+getOrderPrice()
+
+.toFixed(2)
+
+.replace('.',',')
+
++
+
+' €';
+
 
 }
 
 
+
+/* AJOUT PANIER */
 
 function addToCart(){
 
- const size=
- document.querySelector('#sizes .selected')
- .textContent.trim();
+
+const size=
+
+document.querySelector(
+
+'#sizes .selected'
+
+).textContent.trim();
 
 
- const led=
- document.querySelector('#leds .selected')
- .textContent.trim();
+const led=
+
+document.querySelector(
+
+'#leds .selected'
+
+).textContent.trim();
 
 
- const price=getOrderPrice();
+const price=
+
+getOrderPrice();
 
 
- cart.push({
+cart.push({
 
-  type:orderType,
+type:orderType,
 
-  size:size,
+size,
 
-  led:led,
+led,
 
-  price:price
+price
 
- });
-
-
- cartCount.textContent=cart.length;
+});
 
 
- showToast(
- '🛒 Votre œuvre a été ajoutée au panier !'
- );
+document.getElementById(
+
+'cartCount'
+
+).textContent=
+
+cart.length;
+
+
+showToast(
+
+'🛒 Votre œuvre a été ajoutée au panier !'
+
+);
+
 
 }
 
 
+
+/* OUVRIR PANIER */
 
 function openCart(){
 
- let total=0;
+
+let total=0;
 
 
- if(!cart.length){
+const cartItems=
+
+document.getElementById(
+
+'cartItems'
+
+);
 
 
-  cartItems.innerHTML=
-
-  '<p style="color:#aaa">Votre panier est vide.</p>';
+if(!cart.length){
 
 
- }else{
+cartItems.innerHTML=
 
+'<p style="color:#aaa">Votre panier est vide.</p>';
 
-  cartItems.innerHTML=cart.map((item,i)=>{
-
-
-   total+=item.price;
-
-
-   return `
-
-   <div class="cartItem">
-
-   <button
-   class="remove"
-   onclick="removeItem(${i})">
-
-   ×
-
-   </button>
-
-
-   <b>
-   🎨 Œuvre ARTIFY
-   </b>
-
-
-   <br>
-
-
-   ${
-    item.type==='digital'
-
-    ?
-
-    '📥 Version numérique — à imprimer chez vous'
-
-    :
-
-    '🖼️ Tableau encadré<br>'
-    +item.size+
-    '<br>💡 '
-    +item.led
-   }
-
-
-   <br><br>
-
-
-   <b>
-
-   ${item.price
-   .toFixed(2)
-   .replace('.',',')}
-
-   €
-
-   </b>
-
-
-   </div>
-
-   `;
-
-
-  }).join('');
-
-
- }
-
-
- cartTotal.textContent=
-
- 'Total : '
-
- +total
- .toFixed(2)
- .replace('.',',')
-
- +' €';
-
-
- cartModal.style.display='flex';
 
 }
 
 
+else{
+
+
+cartItems.innerHTML=
+
+
+cart.map(
+
+(item,i)=>{
+
+
+total+=item.price;
+
+
+return `
+
+
+<div class="cartItem">
+
+
+<button
+
+class="remove"
+
+onclick="removeItem(${i})">
+
+×
+
+</button>
+
+
+<b>
+
+🎨 Œuvre ARTIFY
+
+</b>
+
+
+<br>
+
+
+${
+
+item.type==='digital'
+
+
+?
+
+'📥 Version numérique — à imprimer chez vous'
+
+
+:
+
+
+'🖼️ Tableau encadré<br>'
+
++
+
+item.size
+
++
+
+'<br>💡 '
+
++
+
+item.led
+
+
+}
+
+
+<br><br>
+
+
+<b>
+
+${item.price.toFixed(2).replace('.',',')} €
+
+</b>
+
+
+</div>
+
+
+`;
+
+
+}
+
+).join('');
+
+
+}
+
+
+document.getElementById(
+
+'cartTotal'
+
+).textContent=
+
+'Total : '
+
++
+
+total.toFixed(2).replace('.',',')
+
++
+
+' €';
+
+
+document.getElementById(
+
+'cartModal'
+
+).style.display='flex';
+
+
+}
+
+
+
+/* SUPPRIMER */
 
 function removeItem(i){
 
- cart.splice(i,1);
 
- cartCount.textContent=cart.length;
+cart.splice(i,1);
 
- openCart();
+
+document.getElementById(
+
+'cartCount'
+
+).textContent=
+
+cart.length;
+
+
+openCart();
+
 
 }
 
 
+
+/* FERMER PANIER */
 
 function closeCart(){
 
- cartModal.style.display='none';
+
+document.getElementById(
+
+'cartModal'
+
+).style.display='none';
+
 
 }
 
 
+
+/* PAIEMENT */
 
 function checkout(){
 
- if(!cart.length){
 
-  showToast('🛒 Votre panier est vide.');
-
-  return;
-
- }
+if(!cart.length){
 
 
- showToast(
- '💳 Connectez Stripe pour activer le paiement.'
- );
+showToast(
+
+'🛒 Votre panier est vide.'
+
+);
+
+
+return;
+
 
 }
 
 
+showToast(
+
+'💳 Connectez Stripe pour activer le paiement.'
+
+);
+
+
+}
+
+
+
+/* NOTIFICATION */
 
 function showToast(message){
 
- toast.textContent=message;
 
- toast.classList.add('show');
+const toast=
+
+document.getElementById(
+
+'toast'
+
+);
 
 
- setTimeout(
+toast.textContent=message;
 
- ()=>toast.classList.remove('show'),
 
- 3500
+toast.classList.add('show');
 
- );
+
+setTimeout(
+
+
+()=>toast.classList.remove('show'),
+
+3500
+
+
+);
+
 
 }
 
+
 </script>
 
+
 </body>
+
 </html>
