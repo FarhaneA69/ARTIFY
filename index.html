@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARTIFY — Votre œuvre, votre style</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f5f2;color:#171717}
+header{min-height:100vh;background:linear-gradient(135deg,#151515,#3b2b48);color:white;padding:22px 7%;display:flex;flex-direction:column}
+nav{display:flex;justify-content:space-between;align-items:center}.logo{font-size:28px;font-weight:800;letter-spacing:3px}.btn{border:0;border-radius:999px;padding:14px 22px;font-size:16px;font-weight:700;cursor:pointer}
+.btn-light{background:white;color:#151515}.hero{max-width:850px;margin:auto;text-align:center;padding:70px 0}.hero h1{font-size:clamp(42px,8vw,82px);margin:0 0 20px}.hero p{font-size:20px;color:#ddd;line-height:1.6}.btn-main{background:#c78cff;color:#171717;margin-top:20px}
+section{padding:75px 7%;max-width:1250px;margin:auto}h2{text-align:center;font-size:38px;margin:0 0 15px}.sub{text-align:center;color:#666;font-size:18px;margin-bottom:42px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}.card{background:white;border-radius:20px;padding:25px;box-shadow:0 8px 30px #0000000d}.card h3{margin-top:0}
+.creator{background:#fff;border-radius:28px;padding:30px;box-shadow:0 10px 40px #00000012}.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.step{border:2px dashed #d8c5e7;border-radius:18px;padding:22px;background:#fcfaff}.number{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#c78cff;font-weight:bold}
+.controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-top:25px}.control{padding:14px;border:1px solid #ddd;border-radius:14px}.control label{display:block;font-weight:bold;margin-bottom:8px}.control select,.control input{width:100%;padding:10px;border:1px solid #ccc;border-radius:10px}
+.upload{margin-top:25px;padding:35px;border:2px dashed #b58bd6;border-radius:18px;text-align:center;background:#faf6fd}.upload input{margin-top:15px}
+.pricebox{margin-top:25px;background:#181818;color:white;border-radius:18px;padding:22px;display:flex;justify-content:space-between;align-items:center;gap:15px}.price{font-size:28px;font-weight:bold}
+.order{margin-top:25px;width:100%;background:#c78cff;color:#171717}
+footer{background:#171717;color:white;text-align:center;padding:35px 7%;margin-top:40px}
+@media(max-width:600px){section{padding:55px 5%}.pricebox{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<header>
+<nav><div class="logo">ARTIFY</div><button class="btn btn-light" onclick="document.getElementById('create').scrollIntoView({behavior:'smooth'})">Créer mon tableau</button></nav>
+<div class="hero"><h1>Votre œuvre.<br>Votre style.</h1><p>Transformez vos images en œuvres d'art personnalisées. Choisissez le format, la matière et ajoutez une option LED pour illuminer votre intérieur.</p><button class="btn btn-main" onclick="document.getElementById('create').scrollIntoView({behavior:'smooth'})">Commencer maintenant ✨</button></div>
+</header>
+
+<section>
+<h2>Créez quelque chose d'unique</h2><p class="sub">Une expérience simple pour créer un tableau qui vous ressemble.</p>
+<div class="grid">
+<div class="card"><h3>🖼️ Votre image</h3><p>Importez votre photo ou votre création préférée.</p></div>
+<div class="card"><h3>📐 Votre format</h3><p>Choisissez la taille idéale pour votre espace.</p></div>
+<div class="card"><h3>🎨 Votre matière</h3><p>Canvas, aluminium, plexiglas et plus encore.</p></div>
+<div class="card"><h3>💡 Option LED</h3><p>Ajoutez une lumière d'ambiance derrière votre tableau.</p></div>
+</div>
+</section>
+
+<section id="create">
+<h2>Personnalisez votre tableau</h2><p class="sub">Configurez votre œuvre en quelques étapes.</p>
+<div class="creator">
+<div class="steps">
+<div class="step"><span class="number">1</span><h3>Choisissez votre image</h3><p>Importez votre fichier.</p></div>
+<div class="step"><span class="number">2</span><h3>Personnalisez</h3><p>Taille, matière et finition.</p></div>
+<div class="step"><span class="number">3</span><h3>Commandez</h3><p>Validez votre création.</p></div>
+</div>
+<div class="upload"><strong>Ajoutez votre image</strong><br><input type="file" accept="image/*"></div>
+<div class="controls">
+<div class="control"><label>Taille</label><select id="size"><option value="49">30 × 40 cm</option><option value="69">40 × 60 cm</option><option value="99">60 × 80 cm</option><option value="139">80 × 120 cm</option></select></div>
+<div class="control"><label>Matière</label><select id="material"><option value="0">Canvas</option><option value="25">Aluminium</option><option value="35">Plexiglas</option></select></div>
+<div class="control"><label>Option LED</label><select id="led"><option value="0">Sans LED</option><option value="30">LED +30 €</option></select></div>
+</div>
+<div class="pricebox"><div><div>Prix estimé</div><div class="price" id="price">49 €</div></div><div>Livraison et paiement seront ajoutés prochainement.</div></div>
+<button class="btn order" onclick="order()">Continuer vers la commande</button>
+</div>
+</section>
+
+<section>
+<h2>Pourquoi ARTIFY ?</h2>
+<div class="grid"><div class="card"><h3>✨ Personnalisé</h3><p>Chaque tableau est créé selon vos choix.</p></div><div class="card"><h3>🏠 Décoration</h3><p>Une pièce unique pour votre intérieur ou un cadeau.</p></div><div class="card"><h3>💡 Moderne</h3><p>L'option LED apporte une ambiance élégante le soir.</p></div></div>
+</section>
+<footer><div class="logo">ARTIFY</div><p>Créez. Personnalisez. Illuminez.</p></footer>
+<script>
+const els=['size','material','led']; els.forEach(id=>document.getElementById(id).addEventListener('change',update));
+function update(){let total=+size.value + +material.value + +led.value; document.getElementById('price').textContent=total+' €';}
+function order(){alert("Super ! La prochaine étape sera d'ajouter le panier et le paiement sécurisé.");}
+</script>
+</body></html>
