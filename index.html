@@ -1,847 +1,674 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ARTISTIFIER — Transformez vos photos en œuvres d'art</title>
-
-<style>
-
-/* =========================================================
-   ARTISTIFIER
-   ========================================================= */
-
-:root{
-  --purple:#7654a8;
-  --purple-dark:#57377f;
-  --purple-light:#efe9f7;
-  --black:#171717;
-  --gray:#666;
-  --light:#f7f5fa;
-  --white:#ffffff;
-  --border:#e4dfeb;
-  --green:#24a36c;
-}
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  color:var(--black);
-  background:var(--light);
-  line-height:1.5;
-}
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-nav{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-}
-
-.nav-container{
-  width:min(1200px,92%);
-  margin:auto;
-  min-height:72px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.logo{
-  text-decoration:none;
-  color:var(--purple-dark);
-  font-size:24px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-
-.nav-links{
-  display:flex;
-  gap:25px;
-  align-items:center;
-}
-
-.nav-links a{
-  color:#444;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.nav-links a:hover{
-  color:var(--purple);
-}
-
-.cart-button{
-  border:none;
-  background:var(--purple);
-  color:white;
-  padding:11px 17px;
-  border-radius:50px;
-  font-weight:800;
-  cursor:pointer;
-}
-
-/* =========================================================
-   GENERAL
-   ========================================================= */
-
-.container{
-  width:min(1200px,92%);
-  margin:auto;
-}
-
-section{
-  padding:85px 0;
-}
-
-.section-title{
-  text-align:center;
-  font-size:clamp(30px,5vw,52px);
-  margin-bottom:15px;
-}
-
-.section-text{
-  text-align:center;
-  color:var(--gray);
-  max-width:700px;
-  margin:0 auto 45px;
-  font-size:18px;
-}
-
-.button{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  border:none;
-  text-decoration:none;
-  padding:15px 24px;
-  border-radius:14px;
-  cursor:pointer;
-  font-size:16px;
-  font-weight:800;
-  transition:.25s;
-}
-
-.button-primary{
-  background:var(--purple);
-  color:white;
-}
-
-.button-primary:hover{
-  background:var(--purple-dark);
-  transform:translateY(-2px);
-}
-
-.button-light{
-  background:white;
-  color:var(--black);
-  border:1px solid var(--border);
-}
-
-.button-light:hover{
-  border-color:var(--purple);
-}
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
-.hero{
-  padding:95px 0;
-  background:
-  radial-gradient(circle at 10% 20%,#ede2fb,transparent 35%),
-  radial-gradient(circle at 90% 10%,#e5d8f6,transparent 35%),
-  linear-gradient(180deg,#ffffff,#f7f3fb);
-}
-
-.hero-grid{
-  width:min(1200px,92%);
-  margin:auto;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:60px;
-  align-items:center;
-}
-
-.badge{
-  display:inline-block;
-  padding:8px 14px;
-  background:#e8ddf6;
-  color:var(--purple-dark);
-  border-radius:50px;
-  font-weight:800;
-  margin-bottom:20px;
-}
-
-.hero h1{
-  font-size:clamp(48px,7vw,82px);
-  line-height:1;
-  margin-bottom:25px;
-  letter-spacing:-3px;
-}
-
-.hero h1 span{
-  color:var(--purple);
-}
-
-.hero p{
-  font-size:20px;
-  color:#5f5b64;
-  max-width:600px;
-  margin-bottom:30px;
-}
-
-.hero-buttons{
-  display:flex;
-  gap:15px;
-  flex-wrap:wrap;
-}
-
-.hero-image{
-  position:relative;
-  border-radius:32px;
-  overflow:hidden;
-  min-height:480px;
-  box-shadow:0 30px 70px rgba(65,35,95,.18);
-}
-
-.hero-image img{
-  width:100%;
-  height:100%;
-  min-height:480px;
-  object-fit:cover;
-  display:block;
-}
-
-.hero-image::after{
-  content:"Créé avec l'IA ✨";
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  background:rgba(255,255,255,.92);
-  padding:12px 18px;
-  border-radius:50px;
-  font-weight:900;
-}
-
-/* =========================================================
-   HOW IT WORKS
-   ========================================================= */
-
-.steps{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.step{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:24px;
-  padding:28px;
-}
-
-.step-number{
-  width:48px;
-  height:48px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:var(--purple);
-  color:white;
-  font-weight:900;
-  margin-bottom:18px;
-}
-
-.step h3{
-  margin-bottom:10px;
-  font-size:20px;
-}
-
-.step p{
-  color:var(--gray);
-}
-
-/* =========================================================
-   BEFORE AFTER
-   ========================================================= */
-
-.examples{
-  background:white;
-}
-
-.examples-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:25px;
-}
-
-.example-card{
-  border-radius:25px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  background:white;
-  box-shadow:0 15px 35px rgba(0,0,0,.06);
-}
-
-.compare{
-  position:relative;
-  height:340px;
-  overflow:hidden;
-}
-
-.compare-before,
-.compare-after{
-  position:absolute;
-  inset:0;
-}
-
-.compare-before img,
-.compare-after img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.compare-after{
-  width:50%;
-  overflow:hidden;
-  border-left:3px solid white;
-}
-
-.compare-after img{
-  width:200%;
-  max-width:none;
-  filter:
-    saturate(1.8)
-    contrast(1.15)
-    brightness(1.08)
-    hue-rotate(12deg);
-}
-
-.compare-line{
-  position:absolute;
-  left:50%;
-  top:0;
-  bottom:0;
-  width:3px;
-  background:white;
-  z-index:5;
-}
-
-.label{
-  position:absolute;
-  z-index:10;
-  top:15px;
-  padding:8px 13px;
-  border-radius:50px;
-  font-size:13px;
-  font-weight:900;
-}
-
-.label-before{
-  left:15px;
-  background:white;
-}
-
-.label-after{
-  right:15px;
-  background:var(--purple);
-  color:white;
-}
-
-.example-content{
-  padding:22px;
-}
-
-.example-content h3{
-  font-size:22px;
-  margin-bottom:7px;
-}
-
-.example-content p{
-  color:var(--gray);
-}
-
-/* =========================================================
-   CREATOR
-   ========================================================= */
-
-.creator-section{
-  background:
-  radial-gradient(circle at 50% 0,#eadff8,transparent 45%),
-  #f7f5fa;
-}
-
-.creator{
-  max-width:900px;
-  margin:auto;
-  background:white;
-  border-radius:30px;
-  border:1px solid var(--border);
-  padding:40px;
-  box-shadow:0 20px 60px rgba(0,0,0,.08);
-}
-
-.creator-title{
-  text-align:center;
-  margin-bottom:30px;
-}
-
-.creator-title h2{
-  font-size:34px;
-  margin-bottom:8px;
-}
-
-.creator-title p{
-  color:var(--gray);
-}
-
-/* =========================================================
-   UPLOAD
-   ========================================================= */
-
-.upload-box{
-  border:2px dashed #cbbce1;
-  background:#faf8fd;
-  border-radius:22px;
-  padding:40px 20px;
-  text-align:center;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.upload-box:hover{
-  border-color:var(--purple);
-  background:#f5effb;
-}
-
-.upload-icon{
-  font-size:45px;
-  margin-bottom:10px;
-}
-
-.upload-box h3{
-  margin-bottom:8px;
-}
-
-.upload-box p{
-  color:var(--gray);
-}
-
-#photoInput{
-  display:none;
-}
-
-.preview-area{
-  margin-top:25px;
-  display:none;
-}
-
-.preview-area img,
-.preview-area canvas{
-  width:100%;
-  max-height:500px;
-  object-fit:contain;
-  border-radius:20px;
-  background:#eee;
-}
-
-/* =========================================================
-   STYLES
-   ========================================================= */
-
-.style-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-top:25px;
-}
-
-.style-option{
-  border:2px solid var(--border);
-  border-radius:16px;
-  padding:15px 10px;
-  text-align:center;
-  cursor:pointer;
-  font-weight:800;
-  background:white;
-  transition:.2s;
-}
-
-.style-option:hover{
-  border-color:#b59bd6;
-}
-
-.style-option.active{
-  border-color:var(--purple);
-  background:var(--purple-light);
-  color:var(--purple-dark);
-}
-
-.style-option span{
-  display:block;
-  font-size:25px;
-  margin-bottom:6px;
-}
-
-/* =========================================================
-   AI RESULT
-   ========================================================= */
-
-.ai-result{
-  display:none;
-  margin-top:30px;
-}
-
-.result-box{
-  border-radius:25px;
-  overflow:hidden;
-  border:1px solid var(--border);
-  background:#111;
-  position:relative;
-}
-
-.result-box canvas{
-  display:block;
-  width:100%;
-  max-height:550px;
-  object-fit:contain;
-}
-
-.result-badge{
-  position:absolute;
-  top:15px;
-  left:15px;
-  background:rgba(255,255,255,.93);
-  padding:9px 14px;
-  border-radius:50px;
-  font-weight:900;
-}
-
-.loading{
-  display:none;
-  text-align:center;
-  padding:25px;
-}
-
-.spinner{
-  width:45px;
-  height:45px;
-  border:5px solid #ddd;
-  border-top-color:var(--purple);
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  margin:0 auto 15px;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg);}
-}
-
-/* =========================================================
-   CONFIGURATION
-   ========================================================= */
-
-.configuration{
-  margin-top:40px;
-  display:none;
-}
-
-.config-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.config-item{
-  background:#fafafa;
-  padding:18px;
-  border:1px solid var(--border);
-  border-radius:18px;
-}
-
-.config-item label{
-  display:block;
-  font-weight:900;
-  margin-bottom:9px;
-}
-
-select{
-  width:100%;
-  padding:12px;
-  border:1px solid #d7d1dc;
-  border-radius:12px;
-  background:white;
-  font-size:15px;
-}
-
-/* =========================================================
-   PRICE
-   ========================================================= */
-
-.price-box{
-  margin-top:25px;
-  background:var(--black);
-  color:white;
-  border-radius:22px;
-  padding:25px;
-}
-
-.price-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
-}
-
-.price-label{
-  color:#c7c7c7;
-}
-
-.price{
-  font-size:38px;
-  font-weight:900;
-}
-
-.order-button{
-  margin-top:20px;
-  width:100%;
-}
-
-/* =========================================================
-   CART
-   ========================================================= */
-
-.cart-panel{
-  position:fixed;
-  z-index:3000;
-  top:0;
-  right:-500px;
-  width:min(450px,100%);
-  height:100vh;
-  background:white;
-  box-shadow:-20px 0 60px rgba(0,0,0,.18);
-  transition:.3s;
-  padding:25px;
-  overflow:auto;
-}
-
-.cart-panel.open{
-  right:0;
-}
-
-.cart-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.close-button{
-  border:none;
-  background:#eee;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  cursor:pointer;
-  font-size:20px;
-}
-
-.cart-item{
-  display:none;
-}
-
-.cart-preview{
-  width:100%;
-  border-radius:16px;
-  margin-bottom:15px;
-}
-
-.cart-summary{
-  background:#f7f5fa;
-  border-radius:18px;
-  padding:18px;
-  margin-top:20px;
-}
-
-.checkout{
-  margin-top:20px;
-  width:100%;
-}
-
-.empty-cart{
-  color:var(--gray);
-  text-align:center;
-  padding:40px 0;
-}
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-footer{
-  background:#171717;
-  color:white;
-  padding:50px 0;
-  text-align:center;
-}
-
-footer p{
-  color:#aaa;
-  margin-top:10px;
-}
-
-/* =========================================================
-   TOAST
-   ========================================================= */
-
-.toast{
-  position:fixed;
-  z-index:5000;
-  bottom:25px;
-  left:50%;
-  transform:translateX(-50%) translateY(120px);
-  background:#171717;
-  color:white;
-  padding:15px 22px;
-  border-radius:50px;
-  font-weight:700;
-  transition:.3s;
-  box-shadow:0 15px 35px rgba(0,0,0,.2);
-}
-
-.toast.show{
-  transform:translateX(-50%) translateY(0);
-}
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media(max-width:900px){
-
-  .hero-grid{
-    grid-template-columns:1fr;
-  }
-
-  .steps{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .examples-grid{
-    grid-template-columns:1fr;
-  }
-
-  .style-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .config-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:600px){
-
-  .nav-links{
-    display:none;
-  }
-
-  section{
-    padding:60px 0;
-  }
-
-  .hero{
-    padding:65px 0;
-  }
-
-  .hero h1{
-    letter-spacing:-2px;
-  }
-
-  .hero-image,
-  .hero-image img{
-    min-height:360px;
-  }
-
-  .steps{
-    grid-template-columns:1fr;
-  }
-
-  .creator{
-    padding:22px;
-  }
-
-  .compare{
-    height:300px;
-  }
-
-}
-
-</style>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ARTISTIFIER — Votre photo. Votre œuvre.</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --purple: #7654a8;
+      --purple-dark: #57377f;
+      --purple-light: #efe9f7;
+      --black: #171717;
+      --gray: #666;
+      --light-gray: #f6f5f8;
+      --border: #e4dfeb;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--black);
+      background: var(--white);
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    header {
+      width: 100%;
+      border-bottom: 1px solid var(--border);
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 18px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 3px;
+    }
+
+    .logo span {
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--black);
+      font-size: 14px;
+    }
+
+    .cart-button {
+      border: none;
+      background: var(--purple);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 620px;
+      background:
+        radial-gradient(circle at 10% 10%, #f3eefe, transparent 35%),
+        radial-gradient(circle at 90% 20%, #eee8ff, transparent 35%),
+        white;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 70px 25px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--purple-light);
+      color: var(--purple-dark);
+      padding: 9px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 6vw, 78px);
+      line-height: 1;
+      margin-bottom: 25px;
+    }
+
+    h1 span {
+      color: var(--purple);
+    }
+
+    .hero p {
+      color: var(--gray);
+      font-size: 18px;
+      line-height: 1.7;
+      max-width: 550px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .primary-button {
+      background: var(--purple);
+      color: white;
+      border: none;
+      padding: 16px 25px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .secondary-button {
+      background: white;
+      color: var(--black);
+      border: 1px solid var(--border);
+      padding: 16px 25px;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .hero-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 25px 70px rgba(0,0,0,.12);
+      background: linear-gradient(135deg, #ded3f5, #8b6cc4);
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* =========================
+       CREATE SECTION
+    ========================= */
+
+    .create-section {
+      background: var(--light-gray);
+      padding: 100px 25px;
+    }
+
+    .section-container {
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 42px;
+    }
+
+    .section-description {
+      text-align: center;
+      color: var(--gray);
+      max-width: 650px;
+      margin: 0 auto 50px;
+      line-height: 1.6;
+    }
+
+    .creator {
+      background: white;
+      border-radius: 25px;
+      padding: 35px;
+      box-shadow: 0 15px 50px rgba(0,0,0,.06);
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .step {
+      padding: 10px 18px;
+      border-radius: 30px;
+      background: #eee;
+      color: #777;
+      font-size: 14px;
+    }
+
+    .step.active {
+      background: var(--purple);
+      color: white;
+    }
+
+    /* =========================
+       UPLOAD
+    ========================= */
+
+    .upload-box {
+      border: 2px dashed #cdbfe1;
+      background: #faf8fd;
+      border-radius: 20px;
+      padding: 50px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .upload-box:hover {
+      background: #f4effb;
+      border-color: var(--purple);
+    }
+
+    .upload-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    #fileInput {
+      display: none;
+    }
+
+    .preview-container {
+      display: none;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .preview-container img {
+      max-width: 100%;
+      max-height: 500px;
+      border-radius: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    /* =========================
+       PROMPT
+    ========================= */
+
+    .prompt-section {
+      display: none;
+      margin-top: 35px;
+    }
+
+    .prompt-section h3 {
+      margin-bottom: 15px;
+      font-size: 24px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      resize: vertical;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 18px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 4px var(--purple-light);
+    }
+
+    .prompt-examples {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .prompt-example {
+      background: var(--purple-light);
+      color: var(--purple-dark);
+      border: none;
+      padding: 10px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       OPTIONS
+    ========================= */
+
+    .options {
+      display: none;
+      margin-top: 35px;
+    }
+
+    .options h3 {
+      margin-bottom: 15px;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+    }
+
+    .option {
+      border: 2px solid var(--border);
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      cursor: pointer;
+      text-align: center;
+      transition: .2s;
+    }
+
+    .option:hover {
+      border-color: var(--purple);
+    }
+
+    .option.selected {
+      border-color: var(--purple);
+      background: var(--purple-light);
+    }
+
+    /* =========================
+       AI BUTTON
+    ========================= */
+
+    .ai-button-container {
+      display: none;
+      text-align: center;
+      margin-top: 35px;
+    }
+
+    .ai-button {
+      border: none;
+      background: linear-gradient(
+        135deg,
+        var(--purple),
+        #9b6bd1
+      );
+
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 18px 35px;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(118,84,168,.3);
+    }
+
+    .ai-button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 20px;
+      font-size: 15px;
+      color: var(--gray);
+      min-height: 25px;
+    }
+
+    /* =========================
+       RESULT
+    ========================= */
+
+    .result-section {
+      display: none;
+      margin-top: 50px;
+    }
+
+    .result-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+    }
+
+    .comparison-card {
+      background: var(--light-gray);
+      padding: 20px;
+      border-radius: 20px;
+    }
+
+    .comparison-card h3 {
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .comparison-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .download-button {
+      display: inline-block;
+      margin-top: 25px;
+      background: var(--black);
+      color: white;
+      text-decoration: none;
+      padding: 15px 25px;
+      border-radius: 12px;
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+      display: none;
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .products h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .product-options {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 2px solid var(--border);
+      border-radius: 20px;
+      padding: 25px;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .product-card:hover {
+      border-color: var(--purple);
+    }
+
+    .product-card.selected {
+      border-color: var(--purple);
+      background: var(--purple-light);
+    }
+
+    .product-icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .checkout {
+      display: none;
+      margin-top: 35px;
+      background: var(--purple-light);
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+    }
+
+    .checkout h3 {
+      margin-bottom: 15px;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================= */
+
+    .how {
+      padding: 100px 25px;
+    }
+
+    .how-grid {
+      max-width: 1100px;
+      margin: 50px auto 0;
+      display: grid;
+      grid-template-columns:
+        repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .how-card {
+      padding: 30px;
+      border-radius: 20px;
+      background: var(--light-gray);
+    }
+
+    .number {
+      width: 45px;
+      height: 45px;
+      background: var(--purple);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .how-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .how-card p {
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 50px 25px;
+      text-align: center;
+    }
+
+    footer p {
+      color: #aaa;
+      margin-top: 15px;
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media(max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        max-width: 500px;
+        margin: auto;
+      }
+
+      .comparison {
+        grid-template-columns: 1fr;
+      }
+
+      .how-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 <body>
 
-<!-- =======================================================
+
+<!-- =========================
      NAVIGATION
-     ======================================================= -->
+========================= -->
 
-<nav>
+<header>
 
-  <div class="nav-container">
+  <nav>
 
-    <a href="#" class="logo">ARTISTIFIER</a>
+    <div class="logo">
+      ART<span>ISTIFIER</span>
+    </div>
 
     <div class="nav-links">
 
-      <a href="#exemples">Exemples</a>
+      <a href="#create">
+        Créer mon œuvre
+      </a>
 
-      <a href="#createur">Créer mon œuvre</a>
+      <a href="#how">
+        Comment ça marche
+      </a>
 
-      <a href="#comment">Comment ça marche</a>
+      <a href="#examples">
+        Exemples
+      </a>
+
+      <button
+        class="cart-button"
+        onclick="scrollToProducts()"
+      >
+        Panier <span id="cartCount">0</span>
+      </button>
 
     </div>
 
-    <button class="cart-button" onclick="openCart()">
+  </nav>
 
-      🛒 Panier
-      <span id="cartCount">0</span>
-
-    </button>
-
-  </div>
-
-</nav>
+</header>
 
 
-<!-- =======================================================
+<!-- =========================
      HERO
-     ======================================================= -->
+========================= -->
 
-<header class="hero">
+<section class="hero">
 
-  <div class="hero-grid">
+  <div class="hero-container">
 
     <div>
 
@@ -850,38 +677,39 @@ footer p{
       </div>
 
       <h1>
-
-        Votre photo.
-        <br>
-
+        Votre photo.<br>
         <span>Votre œuvre.</span>
-
       </h1>
 
       <p>
 
-        Transformez vos souvenirs en créations artistiques
-        uniques grâce à l'intelligence artificielle.
+        Transformez vos souvenirs en créations
+        artistiques uniques grâce à l'intelligence
+        artificielle.
 
-        Découvrez votre résultat avant de commander.
+        Vous choisissez votre style.
+
+        Vous écrivez votre idée.
+
+        L'IA crée votre œuvre.
 
       </p>
 
       <div class="hero-buttons">
 
-        <a href="#createur"
-           class="button button-primary">
+        <button
+          class="primary-button"
+          onclick="document.getElementById('create').scrollIntoView()"
+        >
+          Créer mon œuvre ✨
+        </button>
 
-          ✨ Créer mon œuvre
-
-        </a>
-
-        <a href="#exemples"
-           class="button button-light">
-
-          Voir les exemples
-
-        </a>
+        <button
+          class="secondary-button"
+          onclick="document.getElementById('how').scrollIntoView()"
+        >
+          Comment ça marche
+        </button>
 
       </div>
 
@@ -891,1412 +719,32 @@ footer p{
     <div class="hero-image">
 
       <img
-      src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1000&q=85"
-      alt="Portrait artistique">
+        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80"
+        alt="Exemple œuvre"
+      >
 
     </div>
 
   </div>
 
-</header>
+</section>
 
 
-<!-- =======================================================
-     HOW IT WORKS
-     ======================================================= -->
+<!-- =========================
+     CREATE
+========================= -->
 
-<section id="comment">
+<section
+  class="create-section"
+  id="create"
+>
 
-  <div class="container">
+  <div class="section-container">
 
     <h2 class="section-title">
-      Comment ça fonctionne ?
+      Créez votre œuvre
     </h2>
 
-    <p class="section-text">
+    <p class="section-description">
 
-      Créez votre œuvre personnalisée en quelques étapes simples.
-
-    </p>
-
-
-    <div class="steps">
-
-      <div class="step">
-
-        <div class="step-number">1</div>
-
-        <h3>Ajoutez votre photo</h3>
-
-        <p>
-          Choisissez une photo depuis votre téléphone.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">2</div>
-
-        <h3>Choisissez votre style</h3>
-
-        <p>
-          Sélectionnez l'univers artistique que vous aimez.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">3</div>
-
-        <h3>Générez votre aperçu</h3>
-
-        <p>
-          Découvrez votre création avant toute commande.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">4</div>
-
-        <h3>Personnalisez votre tableau</h3>
-
-        <p>
-          Taille, matière et option LED : vous choisissez.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     EXAMPLES
-     ======================================================= -->
-
-<section id="exemples" class="examples">
-
-  <div class="container">
-
-    <h2 class="section-title">
-      Avant → Après
-    </h2>
-
-    <p class="section-text">
-
-      Chaque transformation conserve la même photo originale.
-      L'objectif est de créer une nouvelle interprétation artistique.
-
-    </p>
-
-
-    <div class="examples-grid">
-
-
-      <!-- EXAMPLE 1 -->
-
-      <article class="example-card">
-
-        <div class="compare">
-
-          <div class="compare-before">
-
-            <img
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85"
-            alt="Portrait avant transformation">
-
-          </div>
-
-
-          <div class="compare-after">
-
-            <img
-            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85"
-            alt="Portrait après transformation">
-
-          </div>
-
-
-          <div class="compare-line"></div>
-
-          <div class="label label-before">
-            AVANT
-          </div>
-
-          <div class="label label-after">
-            APRÈS
-          </div>
-
-        </div>
-
-
-        <div class="example-content">
-
-          <h3>Portrait artistique</h3>
-
-          <p>
-            Une même personne, une nouvelle identité visuelle.
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <!-- EXAMPLE 2 -->
-
-      <article class="example-card">
-
-        <div class="compare">
-
-          <div class="compare-before">
-
-            <img
-            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
-            alt="Paysage avant transformation">
-
-          </div>
-
-
-          <div class="compare-after">
-
-            <img
-            src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
-            alt="Paysage après transformation">
-
-          </div>
-
-
-          <div class="compare-line"></div>
-
-          <div class="label label-before">
-            AVANT
-          </div>
-
-          <div class="label label-after">
-            APRÈS
-          </div>
-
-        </div>
-
-
-        <div class="example-content">
-
-          <h3>Paysage réinventé</h3>
-
-          <p>
-            Le même paysage avec une ambiance artistique.
-          </p>
-
-        </div>
-
-      </article>
-
-
-      <!-- EXAMPLE 3 -->
-
-      <article class="example-card">
-
-        <div class="compare">
-
-          <div class="compare-before">
-
-            <img
-            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=85"
-            alt="Animal avant transformation">
-
-          </div>
-
-
-          <div class="compare-after">
-
-            <img
-            src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=900&q=85"
-            alt="Animal après transformation">
-
-          </div>
-
-
-          <div class="compare-line"></div>
-
-          <div class="label label-before">
-            AVANT
-          </div>
-
-          <div class="label label-after">
-            APRÈS
-          </div>
-
-        </div>
-
-
-        <div class="example-content">
-
-          <h3>Souvenir unique</h3>
-
-          <p>
-            Votre photo devient une création personnalisée.
-          </p>
-
-        </div>
-
-      </article>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     CREATOR
-     ======================================================= -->
-
-<section id="createur" class="creator-section">
-
-  <div class="container">
-
-
-    <div class="creator">
-
-
-      <div class="creator-title">
-
-        <h2>
-          ✨ Créez votre œuvre avec l'IA
-        </h2>
-
-        <p>
-
-          Importez votre photo, choisissez un style
-          et découvrez votre aperçu avant de commander.
-
-        </p>
-
-      </div>
-
-
-      <!-- UPLOAD -->
-
-      <label class="upload-box" for="photoInput">
-
-        <div class="upload-icon">
-          📸
-        </div>
-
-        <h3>
-          Ajoutez votre photo
-        </h3>
-
-        <p>
-          JPG, PNG ou WEBP
-        </p>
-
-      </label>
-
-
-      <input
-      type="file"
-      id="photoInput"
-      accept="image/*">
-
-
-      <!-- ORIGINAL PHOTO -->
-
-      <div
-      class="preview-area"
-      id="originalPreview">
-
-        <img
-        id="originalImage"
-        alt="Votre photo">
-
-      </div>
-
-
-      <!-- STYLE CHOICE -->
-
-      <div id="styleArea" style="display:none;">
-
-        <h3 style="margin-top:30px;">
-          Choisissez votre style artistique
-        </h3>
-
-
-        <div class="style-grid">
-
-
-          <div
-          class="style-option active"
-          data-style="vivid">
-
-            <span>🎨</span>
-
-            Artistique
-
-          </div>
-
-
-          <div
-          class="style-option"
-          data-style="dream">
-
-            <span>🌈</span>
-
-            Rêve
-
-          </div>
-
-
-          <div
-          class="style-option"
-          data-style="vintage">
-
-            <span>🖼️</span>
-
-            Vintage
-
-          </div>
-
-
-          <div
-          class="style-option"
-          data-style="pop">
-
-            <span>⚡</span>
-
-            Pop Art
-
-          </div>
-
-
-        </div>
-
-
-        <button
-        class="button button-primary"
-        style="width:100%;margin-top:25px;"
-        id="generateButton"
-        onclick="generateArtwork()">
-
-          ✨ Générer mon aperçu
-
-        </button>
-
-      </div>
-
-
-      <!-- LOADING -->
-
-      <div
-      class="loading"
-      id="loading">
-
-        <div class="spinner"></div>
-
-        <h3>
-          Création de votre aperçu...
-        </h3>
-
-        <p>
-          L'œuvre est en cours de préparation.
-        </p>
-
-      </div>
-
-
-      <!-- RESULT -->
-
-      <div
-      class="ai-result"
-      id="aiResult">
-
-        <h3 style="margin-bottom:15px;">
-          ✨ Votre aperçu artistique
-        </h3>
-
-
-        <div class="result-box">
-
-          <div class="result-badge">
-            APERÇU IA
-          </div>
-
-          <canvas id="artCanvas"></canvas>
-
-        </div>
-
-
-        <button
-        class="button button-light"
-        style="width:100%;margin-top:15px;"
-        onclick="scrollToConfiguration()">
-
-          Continuer la personnalisation ↓
-
-        </button>
-
-      </div>
-
-
-      <!-- CONFIGURATION -->
-
-      <div
-      class="configuration"
-      id="configuration">
-
-
-        <h3 style="margin-bottom:20px;">
-          Personnalisez votre tableau
-        </h3>
-
-
-        <div class="config-grid">
-
-
-          <div class="config-item">
-
-            <label for="size">
-              📏 Taille
-            </label>
-
-            <select
-            id="size"
-            onchange="calculatePrice()">
-
-              <option value="49">
-                30 × 40 cm
-              </option>
-
-              <option value="69">
-                40 × 60 cm
-              </option>
-
-              <option value="99">
-                60 × 90 cm
-              </option>
-
-              <option value="139">
-                80 × 120 cm
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="config-item">
-
-            <label for="material">
-              🖼️ Matière
-            </label>
-
-            <select
-            id="material"
-            onchange="calculatePrice()">
-
-              <option value="0">
-                Canvas
-              </option>
-
-              <option value="15">
-                Aluminium
-              </option>
-
-              <option value="25">
-                Plexiglas
-              </option>
-
-              <option value="35">
-                Cadre premium
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div class="config-item">
-
-            <label for="led">
-              💡 Option LED
-            </label>
-
-            <select
-            id="led"
-            onchange="calculatePrice()">
-
-              <option value="0">
-                Sans LED
-              </option>
-
-              <option value="29">
-                Avec LED
-              </option>
-
-            </select>
-
-          </div>
-
-
-        </div>
-
-
-        <!-- PRICE -->
-
-        <div class="price-box">
-
-          <div class="price-row">
-
-            <div>
-
-              <div class="price-label">
-                Prix estimé
-              </div>
-
-              <strong>
-                Votre création personnalisée
-              </strong>
-
-            </div>
-
-
-            <div class="price">
-
-              <span id="price">
-                49
-              </span> €
-
-            </div>
-
-          </div>
-
-
-          <button
-          class="button button-primary order-button"
-          onclick="addToCart()">
-
-            🛒 Ajouter au panier
-
-          </button>
-
-        </div>
-
-
-      </div>
-
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =======================================================
-     FOOTER
-     ======================================================= -->
-
-<footer>
-
-  <div class="container">
-
-    <h2>
-      ARTISTIFIER
-    </h2>
-
-    <p>
-      Transformez vos souvenirs en œuvres uniques.
-    </p>
-
-    <p>
-      © 2026 ARTISTIFIER
-    </p>
-
-  </div>
-
-</footer>
-
-
-<!-- =======================================================
-     CART
-     ======================================================= -->
-
-<div
-class="cart-panel"
-id="cartPanel">
-
-
-  <div class="cart-header">
-
-    <h2>
-      🛒 Votre panier
-    </h2>
-
-    <button
-    class="close-button"
-    onclick="closeCart()">
-
-      ✕
-    </button>
-
-  </div>
-
-
-  <div
-  class="empty-cart"
-  id="emptyCart">
-
-    Votre panier est vide.
-
-  </div>
-
-
-  <div
-  class="cart-item"
-  id="cartItem">
-
-    <img
-    class="cart-preview"
-    id="cartImage"
-    alt="Votre création">
-
-
-    <h3>
-      Votre œuvre ARTISTIFIER
-    </h3>
-
-
-    <div class="cart-summary">
-
-      <p id="cartDetails"></p>
-
-      <h2
-      id="cartPrice"
-      style="margin-top:12px;">
-
-      </h2>
-
-    </div>
-
-
-    <button
-    class="button button-primary checkout"
-    onclick="checkout()">
-
-      🔒 Continuer vers le paiement
-
-    </button>
-
-  </div>
-
-
-</div>
-
-
-<!-- =======================================================
-     TOAST
-     ======================================================= -->
-
-<div
-class="toast"
-id="toast">
-
-</div>
-
-
-<script>
-
-/* =========================================================
-   VARIABLES
-   ========================================================= */
-
-let uploadedImage = null;
-
-let selectedStyle = "vivid";
-
-let currentPrice = 49;
-
-let cartHasItem = false;
-
-
-/* =========================================================
-   STYLE SELECTION
-   ========================================================= */
-
-document
-.querySelectorAll(".style-option")
-.forEach(function(option){
-
-  option.addEventListener("click",function(){
-
-    document
-    .querySelectorAll(".style-option")
-    .forEach(function(item){
-
-      item.classList.remove("active");
-
-    });
-
-    option.classList.add("active");
-
-    selectedStyle =
-    option.dataset.style;
-
-  });
-
-});
-
-
-/* =========================================================
-   PHOTO UPLOAD
-   ========================================================= */
-
-document
-.getElementById("photoInput")
-.addEventListener("change",function(event){
-
-  const file =
-  event.target.files[0];
-
-  if(!file){
-    return;
-  }
-
-
-  if(!file.type.startsWith("image/")){
-
-    showToast(
-      "Veuillez sélectionner une image."
-    );
-
-    return;
-
-  }
-
-
-  const reader =
-  new FileReader();
-
-
-  reader.onload =
-  function(loadEvent){
-
-    uploadedImage =
-    new Image();
-
-
-    uploadedImage.onload =
-    function(){
-
-      const originalImage =
-      document.getElementById(
-        "originalImage"
-      );
-
-      originalImage.src =
-      uploadedImage.src;
-
-
-      document
-      .getElementById(
-        "originalPreview"
-      )
-      .style.display =
-      "block";
-
-
-      document
-      .getElementById(
-        "styleArea"
-      )
-      .style.display =
-      "block";
-
-
-      document
-      .getElementById(
-        "aiResult"
-      )
-      .style.display =
-      "none";
-
-
-      document
-      .getElementById(
-        "configuration"
-      )
-      .style.display =
-      "none";
-
-
-      showToast(
-        "Photo ajoutée avec succès 📸"
-      );
-
-    };
-
-
-    uploadedImage.src =
-    loadEvent.target.result;
-
-  };
-
-
-  reader.readAsDataURL(file);
-
-});
-
-
-/* =========================================================
-   GENERATE ARTWORK
-   ========================================================= */
-
-function generateArtwork(){
-
-  if(!uploadedImage){
-
-    showToast(
-      "Ajoutez d'abord une photo."
-    );
-
-    return;
-
-  }
-
-
-  document
-  .getElementById("loading")
-  .style.display =
-  "block";
-
-
-  document
-  .getElementById("aiResult")
-  .style.display =
-  "none";
-
-
-  document
-  .getElementById("configuration")
-  .style.display =
-  "none";
-
-
-  setTimeout(function(){
-
-    createArtPreview();
-
-
-    document
-    .getElementById("loading")
-    .style.display =
-    "none";
-
-
-    document
-    .getElementById("aiResult")
-    .style.display =
-    "block";
-
-
-    document
-    .getElementById("configuration")
-    .style.display =
-    "block";
-
-
-    calculatePrice();
-
-
-    document
-    .getElementById("aiResult")
-    .scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-
-    showToast(
-      "Votre aperçu artistique est prêt ✨"
-    );
-
-  },1200);
-
-}
-
-
-/* =========================================================
-   CREATE ARTISTIC PREVIEW
-   ========================================================= */
-
-function createArtPreview(){
-
-  const canvas =
-  document.getElementById(
-    "artCanvas"
-  );
-
-
-  const context =
-  canvas.getContext("2d");
-
-
-  let width =
-  uploadedImage.naturalWidth;
-
-
-  let height =
-  uploadedImage.naturalHeight;
-
-
-  const maximumSize =
-  1200;
-
-
-  if(width > maximumSize){
-
-    height =
-    height *
-    (maximumSize / width);
-
-    width =
-    maximumSize;
-
-  }
-
-
-  canvas.width =
-  width;
-
-
-  canvas.height =
-  height;
-
-
-  /*
-  DIFFERENT VISUAL STYLES
-  */
-
-
-  if(selectedStyle === "vivid"){
-
-    context.filter =
-    "saturate(180%) contrast(125%) brightness(110%) hue-rotate(8deg)";
-
-  }
-
-
-  if(selectedStyle === "dream"){
-
-    context.filter =
-    "saturate(145%) brightness(120%) blur(0.3px) hue-rotate(25deg)";
-
-  }
-
-
-  if(selectedStyle === "vintage"){
-
-    context.filter =
-    "sepia(65%) saturate(120%) contrast(90%) brightness(105%)";
-
-  }
-
-
-  if(selectedStyle === "pop"){
-
-    context.filter =
-    "saturate(250%) contrast(155%) hue-rotate(35deg)";
-
-  }
-
-
-  context.drawImage(
-
-    uploadedImage,
-
-    0,
-
-    0,
-
-    width,
-
-    height
-
-  );
-
-
-  /*
-  ADD ARTISTIC LAYERS
-  */
-
-
-  context.globalAlpha =
-  0.12;
-
-
-  for(
-    let y = 0;
-    y < height;
-    y += 12
-  ){
-
-    context.fillStyle =
-    selectedStyle === "vintage"
-    ?
-    "#7a4c28"
-    :
-    selectedStyle === "pop"
-    ?
-    "#7b28c9"
-    :
-    "#ffffff";
-
-
-    context.fillRect(
-
-      0,
-
-      y,
-
-      width,
-
-      3
-
-    );
-
-  }
-
-
-  context.globalAlpha =
-  1;
-
-
-  /*
-  COLOR OVERLAY
-  */
-
-
-  if(selectedStyle === "dream"){
-
-    context.globalAlpha =
-    0.12;
-
-    context.fillStyle =
-    "#9c6cff";
-
-    context.fillRect(
-
-      0,
-
-      0,
-
-      width,
-
-      height
-
-    );
-
-    context.globalAlpha =
-    1;
-
-  }
-
-
-  if(selectedStyle === "pop"){
-
-    context.globalAlpha =
-    0.10;
-
-    context.fillStyle =
-    "#ff00a8";
-
-    context.fillRect(
-
-      0,
-
-      0,
-
-      width,
-
-      height
-
-    );
-
-    context.globalAlpha =
-    1;
-
-  }
-
-}
-
-
-/* =========================================================
-   CONFIGURATION
-   ========================================================= */
-
-function scrollToConfiguration(){
-
-  document
-  .getElementById("configuration")
-  .scrollIntoView({
-
-    behavior:"smooth",
-
-    block:"start"
-
-  });
-
-}
-
-
-/* =========================================================
-   PRICE
-   ========================================================= */
-
-function calculatePrice(){
-
-  const size =
-  Number(
-    document
-    .getElementById("size")
-    .value
-  );
-
-
-  const material =
-  Number(
-    document
-    .getElementById("material")
-    .value
-  );
-
-
-  const led =
-  Number(
-    document
-    .getElementById("led")
-    .value
-  );
-
-
-  currentPrice =
-  size +
-  material +
-  led;
-
-
-  document
-  .getElementById("price")
-  .textContent =
-  currentPrice;
-
-}
-
-
-/* =========================================================
-   CART
-   ========================================================= */
-
-function addToCart(){
-
-  const canvas =
-  document.getElementById(
-    "artCanvas"
-  );
-
-
-  if(!canvas.width){
-
-    showToast(
-      "Générez d'abord votre aperçu."
-    );
-
-    return;
-
-  }
-
-
-  const cartImage =
-  document.getElementById(
-    "cartImage"
-  );
-
-
-  cartImage.src =
-  canvas.toDataURL("image/jpeg",0.9);
-
-
-  const sizeText =
-  document
-  .getElementById("size")
-  .selectedOptions[0]
-  .textContent;
-
-
-  const materialText =
-  document
-  .getElementById("material")
-  .selectedOptions[0]
-  .textContent;
-
-
-  const ledText =
-  document
-  .getElementById("led")
-  .selectedOptions[0]
-  .textContent;
-
-
-  document
-  .getElementById("cartDetails")
-  .innerHTML =
-
-  "📏 " +
-  sizeText +
-
-  "<br>🖼️ " +
-  materialText +
-
-  "<br>💡 " +
-  ledText;
-
-
-  document
-  .getElementById("cartPrice")
-  .textContent =
-  currentPrice +
-  " €";
-
-
-  document
-  .getElementById("emptyCart")
-  .style.display =
-  "none";
-
-
-  document
-  .getElementById("cartItem")
-  .style.display =
-  "block";
-
-
-  cartHasItem =
-  true;
-
-
-  document
-  .getElementById("cartCount")
-  .textContent =
-  "1";
-
-
-  openCart();
-
-
-  showToast(
-    "Votre œuvre a été ajoutée au panier 🛒"
-  );
-
-}
-
-
-function openCart(){
-
-  document
-  .getElementById("cartPanel")
-  .classList.add("open");
-
-}
-
-
-function closeCart(){
-
-  document
-  .getElementById("cartPanel")
-  .classList.remove("open");
-
-}
-
-
-/* =========================================================
-   CHECKOUT
-   ========================================================= */
-
-function checkout(){
-
-  if(!cartHasItem){
-
-    showToast(
-      "Votre panier est vide."
-    );
-
-    return;
-
-  }
-
-
-  alert(
-
-    "Votre création est prête !\n\n" +
-
-    "Prix : " +
-    currentPrice +
-    " €\n\n" +
-
-    "La prochaine étape sera la connexion " +
-
-    "d'un véritable système de paiement sécurisé."
-
-  );
-
-}
-
-
-/* =========================================================
-   TOAST
-   ========================================================= */
-
-function showToast(message){
-
-  const toast =
-  document.getElementById(
-    "toast"
-  );
-
-
-  toast.textContent =
-  message;
-
-
-  toast.classList.add(
-    "show"
-  );
-
-
-  setTimeout(function(){
-
-    toast.classList.remove(
-      "show"
-    );
-
-  },3000);
-
-}
-
-</script>
-
-</body>
-</html>
+      Importez votre photo
