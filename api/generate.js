@@ -7,45 +7,155 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Récupération sécurisée des données
-    const body =
-      typeof req.body === "string"
-        ? JSON.parse(req.body)
-        : req.body || {};
+    const body = req.body || {};
 
-    // Accepte plusieurs noms pour éviter les erreurs
-    const prompt =
-      body.prompt ||
-      body.description ||
-      body.text ||
-      "";
+    const prompt = body.prompt?.trim();
+    const image = body.image;
 
-    // Vérifie le prompt
-    if (!prompt || !prompt.trim()) {
+    // Vérifications
+    if (!prompt) {
       return res.status(400).json({
         error: "Prompt manquant"
       });
     }
 
-    // Vérifie la clé API
+    if (!image) {
+      return res.status(400).json({
+        error: "Image manquante"
+      });
+    }
+
     if (!process.env.OPENAI_API_KEY) {
       return res.status(500).json({
         error: "OPENAI_API_KEY manquante dans Vercel"
       });
     }
 
-    // Pour l'instant, réponse de test
+    // Construction de la requête
+    const response = await fetch(
+      "https://api.openai.com/v1/responses",
+      {
+        method: "POST",
+
+        headers: {
+          "Content-Type": "application/json",
+
+          "Authorization":
+            `Bearer ${process.env.OPENAI_API_KEY}`
+        },
+
+        body: JSON.stringify({
+          model: "gpt-5.6-luna",
+
+          input: [
+            {
+              role: "user",
+
+              content: [
+                {
+                  type: "input_text",
+
+                  text: `
+Transforme l'image fournie selon cette demande :
+
+${prompt}
+
+IMPORTANT :
+- Modifie réellement l'image.
+- Respecte au maximum la demande.
+- Conserve les éléments importants de l'image originale.
+- Crée un résultat visuellement impressionnant.
+                  `
+                },
+
+                {
+                  type: "input_image",
+
+                  image_url: image
+                }
+              ]
+            }
+          ],
+
+          tools: [
+            {
+              type: "image_generation",
+              action: "edit",
+              model: "gpt-image-1",
+              size: "1024x1024",
+              quality: "high"
+            }
+          ]
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error(data);
+
+      return res.status(response.status).json({
+        error:
+          data?.error?.message ||
+          "Erreur OpenAI"
+      });
+    }
+
+    // Cherche l'image générée
+    let generatedImage = null;
+
+    for (const item of data.output || []) {
+
+      if (!item.content) continue;
+
+      for (const content of item.content) {
+
+        if (
+          content.type === "image_generation_call" &&
+          content.result
+        ) {
+
+          generatedImage = content.result;
+
+        }
+
+      }
+
+    }
+
+    if (!generatedImage) {
+
+      console.error("Réponse OpenAI :", data);
+
+      return res.status(500).json({
+        error:
+          "L'IA n'a pas retourné d'image"
+      });
+
+    }
+
+    // Retourne l'image
     return res.status(200).json({
+
       success: true,
-      message: "Prompt reçu avec succès",
-      prompt: prompt.trim()
+
+      image:
+        `data:image/png;base64,${generatedImage}`
+
     });
 
   } catch (error) {
+
     console.error(error);
 
     return res.status(500).json({
-      error: error.message || "Erreur serveur"
+
+      error:
+        error.message ||
+        "Erreur serveur"
+
     });
+
   }
 }
