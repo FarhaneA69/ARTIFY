@@ -1310,9 +1310,7 @@ footer{
 
 </head>
 
-
 <body>
-
 
 <!-- NAVIGATION -->
 
@@ -1322,133 +1320,79 @@ footer{
 ART<span>IFY</span>
 </div>
 
-
 <div class="navlinks">
 
 <a href="#accueil">Accueil</a>
-
 <a href="#creer">Créer</a>
-
 <a href="#exemples">Exemples</a>
-
 <a href="#prix">Prix</a>
-
 <a href="#comment">Comment ça marche</a>
-
 <a href="#faq">FAQ</a>
 
 </div>
-
 
 <button class="cart" onclick="openCart()">
 
 🛒 Panier
 
 <span class="cartcount" id="cartCount">
-
 0
-
 </span>
 
 </button>
 
 </nav>
 
-
-
 <main class="container">
-
-
 
 <!-- ACCUEIL -->
 
 <section class="hero" id="accueil">
 
-
 <div class="heroText">
 
-
 <div class="badge">
-
 ✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
-
 </div>
-
 
 <h1>
 
 Transformez<br>
-
 votre vision en<br>
 
 <span class="grad">
-
 œuvre d'art.
-
 </span>
 
 </h1>
 
-
 <p>
-
 Importez votre image, décrivez votre imagination et laissez l'IA créer une œuvre unique.
-
 </p>
-
 
 <div class="btns">
 
-
 <button class="btn"
-
 onclick="document.getElementById('creer').scrollIntoView({behavior:'smooth'})">
-
 Créer mon œuvre
-
 </button>
-
 
 <button class="btn alt"
-
 onclick="document.getElementById('exemples').scrollIntoView({behavior:'smooth'})">
-
 ▷ Voir des exemples
-
 </button>
 
-
 </div>
-
 
 <div class="features">
 
-<span>
-
-∞ Possibilités créatives
-
-</span>
-
-
-<span>
-
-Aᐧ Transformation intelligente
-
-</span>
-
-
-<span>
-
-✣ 100% Votre imagination
-
-</span>
+<span>∞ Possibilités créatives</span>
+<span>Aᐧ Transformation intelligente</span>
+<span>✣ 100% Votre imagination</span>
 
 </div>
 
-
 </div>
-
-
 
 <!-- IMAGE LION -->
 
@@ -1456,494 +1400,309 @@ Aᐧ Transformation intelligente
 
 <div class="frame">
 
-<img src="images/lion.png" alt="Œuvre lion ARTIFY">
+<img src="lion.png" alt="Œuvre lion ARTIFY">
 
 </div>
 
 </div>
-
 
 </section>
-
-
 
 <!-- AVANT APRES -->
 
 <section class="section" id="exemples">
 
-
 <div class="two">
-
 
 <div>
 
-
 <div class="badge">
-
 📸 AVANT / APRÈS
-
 </div>
-
 
 <h2 class="title">
 
 Une photo.
-
 <br>
 
 Une
 
 <span class="grad">
-
 nouvelle réalité.
-
 </span>
 
 </h2>
 
-
 <p class="sub">
-
 Faites glisser le curseur pour découvrir comment une image peut devenir une œuvre.
-
 </p>
 
-
 </div>
-
-
 
 <div class="compare">
 
-
-<!-- AVANT -->
-
 <img
-
-src="images/Avant.png"
-
+src="Avant.png"
 alt="Avant">
 
-
-
-<!-- APRES -->
-
 <img
-
-src="images/Après.png"
-
+src="Après.png"
 class="after"
-
 id="afterImage"
-
 alt="Après">
 
-
 <span class="label beforelab">
-
 📸 AVANT
-
 </span>
-
 
 <span class="label afterlab">
-
 ✨ APRÈS
-
 </span>
 
-
 <input
-
 type="range"
-
 min="0"
-
 max="100"
-
 value="50"
-
 oninput="document.getElementById('afterImage').style.clipPath='inset(0 0 0 '+this.value+'%)'">
 
-
 </div>
 
-
 </div>
-
-
 
 <!-- PRIX -->
 
 <div class="productRow" id="prix">
 
-
 <div class="card">
 
-<h3>
-
-⇩ Version numérique
-
-</h3>
+<h3>⇩ Version numérique</h3>
 
 <p>
-
 Téléchargez votre œuvre et imprimez-la chez vous.
-
 </p>
 
 <span class="price">
-
 4,90 €
-
 </span>
 
 </div>
 
-
-
 <div class="card">
 
-<h3>
-
-▣ Tableau encadré
-
-</h3>
+<h3>▣ Tableau encadré</h3>
 
 <p>
-
 Imprimé, encadré et prêt à accrocher dans votre intérieur.
-
 </p>
 
 <span class="price">
-
 À partir de 29,90 €
-
 </span>
 
 </div>
-
-
 
 <div class="card">
 
-<h3>
-
-💡 Option LED
-
-</h3>
+<h3>💡 Option LED</h3>
 
 <p>
-
 Ajoutez une lumière arrière pour une ambiance unique.
-
 </p>
 
 <span class="price">
-
 + 15 €
-
 </span>
 
 </div>
 
-
 </div>
-
 
 </section>
-
-
 
 <!-- INTERIEUR -->
 
 <section class="section">
 
-
 <div class="rooms">
-
 
 <div class="roomIntro">
 
-
 <div class="badge">
-
 CHEZ VOUS
-
 </div>
-
 
 <h2 class="title">
 
 Imaginez votre œuvre dans votre
 
 <span class="grad">
-
 intérieur.
-
 </span>
 
 </h2>
 
-
 <p class="sub">
-
 Des objets décoratifs uniques pour votre salon, chambre ou bureau.
-
 </p>
-
 
 <br>
 
-
 <button
-
 class="btn alt"
-
 onclick="document.getElementById('creer').scrollIntoView({behavior:'smooth'})">
 
 Voir plus d'exemples
 
 </button>
 
-
 </div>
-
-
-
-<!-- SALON -->
 
 <div class="room">
 
 <img
-
-src="images/salon.png"
-
+src="salon.png"
 alt="Salon moderne">
 
 <span>
-
 Salon moderne
-
 </span>
 
 </div>
 
-
-
-<!-- CHAMBRE -->
-
 <div class="room">
 
 <img
-
-src="images/chambre à coucher.png"
-
+src="chambre à coucher.png"
 alt="Chambre élégante">
 
 <span>
-
 Chambre élégante
-
 </span>
 
 </div>
-
-
-
-<!-- BUREAU -->
 
 <div class="room">
 
 <img
-
-src="images/Bureau.png"
-
+src="Bureau.png"
 alt="Bureau créatif">
 
 <span>
-
 Bureau créatif
-
 </span>
 
 </div>
 
-
 </div>
 
-
 </section>
-
-
 
 <!-- COMMENT CA MARCHE -->
 
 <section class="section" id="comment">
 
-
 <div class="how">
-
 
 <div>
 
-
 <div class="badge">
-
 COMMENT ÇA MARCHE ?
-
 </div>
 
-
 <h2 class="title">
-
 3 étapes simples
-
 </h2>
-
 
 <div class="steps">
 
-
 <div class="step">
 
 <div class="num">
-
 1
-
 </div>
 
 <h4>
-
 Créez votre œuvre
-
 </h4>
 
 <p>
-
 Importez votre image et décrivez votre vision.
-
 </p>
 
 </div>
 
-
-
 <div class="step">
 
 <div class="num">
-
 2
-
 </div>
 
 <h4>
-
 Choisissez votre option
-
 </h4>
 
 <p>
-
 Téléchargement numérique ou tableau encadré.
-
 </p>
 
 </div>
-
-
 
 <div class="step">
 
 <div class="num">
-
 3
-
 </div>
 
 <h4>
-
 Recevez et profitez
-
 </h4>
 
 <p>
-
 Imprimez chez vous ou accrochez votre œuvre.
-
 </p>
 
 </div>
 
-
 </div>
 
-
 </div>
-
-
 
 <!-- OPTION LED -->
 
 <div class="ledbox">
 
-
 <div class="badge">
-
 OPTION LED
-
 </div>
 
-
 <h2 class="title">
-
 Avec ou sans LED
-
 </h2>
 
-
 <p class="sub">
-
 À vous de choisir l'ambiance.
-
 </p>
 
-
 <div class="ledImages">
-
-
-<!-- SANS LED -->
 
 <div>
 
 <img
-
-src="images/Portrait.png"
-
+src="Portrait.png"
 alt="Portrait sans LED">
 
-
 <p>
-
 Sans LED
-
 </p>
 
 </div>
 
-
-
-<!-- AVEC LED -->
-
 <div class="glow">
 
 <img
-
-src="images/portrait-led.png"
-
+src="portrait-led.png"
 alt="Portrait avec LED">
-
 
 <p>
 
@@ -1952,70 +1711,48 @@ Avec LED
 <br>
 
 <b class="grad">
-
 + 15 €
-
 </b>
 
 </p>
 
 </div>
 
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
 
 </section>
-
-
 
 <!-- CREER -->
 
 <section class="section" id="creer">
 
-
 <div class="badge">
-
 ✨ CRÉEZ VOTRE ŒUVRE
-
 </div>
-
 
 <h2 class="title">
 
 Votre imagination
 
 <span class="grad">
-
 sans limites.
-
 </span>
 
 </h2>
 
-
 <p class="sub">
-
 Importez une photo et dites exactement à l'IA comment vous voulez la transformer.
-
 </p>
-
-
 
 <div class="generator">
 
-
 <div>
 
-
 <label class="upload" for="imageInput">
-
 
 <div id="uploadText">
 
@@ -2023,334 +1760,201 @@ Importez une photo et dites exactement à l'IA comment vous voulez la transforme
 
 <br><br>
 
-
 <b>
-
 Importez votre image
-
 </b>
-
 
 <br>
 
-
 <small>
-
 JPEG, PNG ou WEBP
-
 </small>
-
 
 </div>
 
-
-
 <img
-
 id="previewImage"
-
 alt="Aperçu">
-
 
 </label>
 
-
 <input
-
 id="imageInput"
-
 type="file"
-
 accept="image/*"
-
 hidden>
-
 
 </div>
 
-
-
 <div>
 
-
 <textarea
-
 id="prompt"
-
 placeholder="Exemple : transforme cette photo en une œuvre artistique futuriste, cinématographique, avec des couleurs violettes et roses...">
-
 </textarea>
-
-
 
 <div class="examples">
 
-
 <button
-
 class="example"
-
 onclick="setPrompt('Transforme cette image en anime japonais 4K, très détaillé et cinématographique.')">
 
 Anime 4K
 
 </button>
 
-
-
 <button
-
 class="example"
-
 onclick="setPrompt('Transforme cette image en peinture artistique luxueuse avec une lumière spectaculaire.')">
 
 Peinture
 
 </button>
 
-
-
 <button
-
 class="example"
-
 onclick="setPrompt('Transforme cette image en univers futuriste cyberpunk avec des lumières néon.')">
 
 Cyberpunk
 
 </button>
 
-
 </div>
 
-
-
 <button
-
 class="btn full"
-
 id="generateButton"
-
 onclick="generateArt()">
 
 ✨ Créer mon œuvre avec l'IA
 
 </button>
 
-
 </div>
 
-
 </div>
-
-
-
-<!-- RESULTAT -->
 
 <div
-
 class="result"
-
 id="resultSection">
-
 
 <br>
 
-
 <h2 class="title">
-
 ✨ Votre œuvre ARTIFY
-
 </h2>
 
-
 <img
-
 id="resultImage"
-
 alt="Résultat ARTIFY">
-
 
 <br><br>
 
-
 <button
-
 class="btn"
-
 onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">
 
 Commander cette œuvre
 
 </button>
 
-
 </div>
 
-
 </section>
-
-
 
 <!-- COMMANDE -->
 
 <section class="section" id="order">
 
-
 <div class="order">
-
 
 <div>
 
-
 <div class="badge">
-
 COMMANDEZ VOTRE ŒUVRE
-
 </div>
-
 
 <h2 class="title">
 
 Comment voulez-vous
 
 <span class="grad">
-
 votre œuvre ?
-
 </span>
 
 </h2>
 
-
 </div>
-
-
 
 <div class="orderPanel">
 
-
 <div class="orderGrid">
 
-
-<!-- TYPE -->
-
 <div>
 
-
 <small class="sub">
-
 Type de commande
-
 </small>
 
-
 <div
-
 class="choiceRow"
-
 id="typeOptions">
 
-
 <div
-
 class="choice selected"
-
 data-type="digital"
-
 onclick="selectType(this)">
 
-
 <h4>
-
 ⇩ Version numérique
-
 </h4>
 
-
 <p>
-
 Téléchargez et imprimez chez vous.
-
 </p>
 
-
 <span class="price">
-
 4,90 €
-
 </span>
 
-
 </div>
-
-
 
 <div
-
 class="choice"
-
 data-type="frame"
-
 onclick="selectType(this)">
 
-
 <h4>
-
 ▣ Tableau encadré
-
 </h4>
 
-
 <p>
-
 Prêt à accrocher chez vous.
-
 </p>
 
-
 <span class="price">
-
 À partir de 29,90 €
-
 </span>
 
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
-
-
-<!-- TAILLES -->
 
 <div>
 
-
 <small class="sub">
-
 Taille (Tableau encadré)
-
 </small>
 
-
 <div
-
 class="sizes"
-
 id="sizes">
 
-
 <div
-
 class="smallchoice selected"
-
 data-price="29.90"
-
 onclick="selectSmall(this,'sizes')">
 
 30 × 40 cm
@@ -2361,14 +1965,9 @@ onclick="selectSmall(this,'sizes')">
 
 </div>
 
-
-
 <div
-
 class="smallchoice"
-
 data-price="39.90"
-
 onclick="selectSmall(this,'sizes')">
 
 40 × 60 cm
@@ -2379,14 +1978,9 @@ onclick="selectSmall(this,'sizes')">
 
 </div>
 
-
-
 <div
-
 class="smallchoice"
-
 data-price="59.90"
-
 onclick="selectSmall(this,'sizes')">
 
 60 × 90 cm
@@ -2397,47 +1991,30 @@ onclick="selectSmall(this,'sizes')">
 
 </div>
 
-
 </div>
-
 
 <br>
 
-
 <small class="sub">
-
 Éclairage
-
 </small>
 
-
 <div
-
 class="sizes"
-
 id="leds">
 
-
 <div
-
 class="smallchoice selected"
-
 data-led="0"
-
 onclick="selectSmall(this,'leds')">
 
 Sans LED
 
 </div>
 
-
-
 <div
-
 class="smallchoice"
-
 data-led="15"
-
 onclick="selectSmall(this,'leds')">
 
 Avec LED
@@ -2448,41 +2025,26 @@ Avec LED
 
 </div>
 
-
 </div>
 
-
 </div>
-
-
-
-<!-- APERCU -->
 
 <div class="totalBox">
 
-
 <small class="sub">
-
 Aperçu
-
 </small>
 
-
 <img
-
-src="images/Portrait.png"
-
+src="Portrait.png"
 alt="Aperçu ARTIFY">
-
 
 <div>
 
 Total :
 
 <span
-
 class="total"
-
 id="totalPrice">
 
 4,90 €
@@ -2491,50 +2053,36 @@ id="totalPrice">
 
 </div>
 
-
 <button
-
 class="btn full"
-
 onclick="addToCart()">
 
 🛒 Ajouter au panier
 
 </button>
 
+</div>
 
 </div>
 
-
 </div>
 
-
 </div>
-
-
-</div>
-
 
 </section>
-
-
 
 <!-- FOOTER -->
 
 <footer id="faq">
 
-
 <div class="footerGrid">
-
 
 <div class="trust">
 
 🛡️
 
 <b>
-
 Paiement 100% sécurisé
-
 </b>
 
 <br>
@@ -2543,16 +2091,12 @@ Stripe & SSL
 
 </div>
 
-
-
 <div class="trust">
 
 ◴
 
 <b>
-
 Satisfait ou remboursé
-
 </b>
 
 <br>
@@ -2561,16 +2105,12 @@ Satisfait ou remboursé
 
 </div>
 
-
-
 <div class="trust">
 
 🚚
 
 <b>
-
 Livraison rapide
-
 </b>
 
 <br>
@@ -2579,16 +2119,12 @@ Livraison rapide
 
 </div>
 
-
-
 <div class="trust">
 
 ◉
 
 <b>
-
 Support 7j/7
-
 </b>
 
 <br>
@@ -2597,106 +2133,70 @@ Nous sommes là
 
 </div>
 
-
 </div>
-
 
 </footer>
 
-
 </main>
-
-
 
 <!-- PANIER -->
 
 <div
-
 class="modal"
-
 id="cartModal">
-
 
 <div class="modalContent">
 
-
 <div class="modalHead">
 
-
 <h2>
-
 🛒 Votre panier
-
 </h2>
 
-
 <button
-
 class="close"
-
 onclick="closeCart()">
 
 ×
 
 </button>
 
-
 </div>
-
 
 <div id="cartItems">
-
 Votre panier est vide.
-
 </div>
 
-
 <h3
-
 id="cartTotal"
-
 style="margin-top:15px">
 
 Total : 0,00 €
 
 </h3>
 
-
 <br>
 
-
 <button
-
 class="btn full"
-
 onclick="checkout()">
 
 💳 Continuer vers le paiement
 
 </button>
 
-
 </div>
 
-
 </div>
-
-
 
 <!-- NOTIFICATION -->
 
 <div
-
 class="toast"
-
 id="toast">
-
 </div>
 
-
-
 <script>
-
 
 let uploadedImage=null;
 
@@ -2704,54 +2204,35 @@ let cart=[];
 
 let orderType='digital';
 
-
 const imageInput=
-
 document.getElementById('imageInput');
 
-
 imageInput.addEventListener(
-
 'change',
-
 e=>{
-
 
 const file=e.target.files[0];
 
-
 if(!file)return;
-
 
 const reader=new FileReader();
 
-
 reader.onload=ev=>{
-
 
 uploadedImage=ev.target.result;
 
-
 document.getElementById('previewImage').src=uploadedImage;
-
 
 document.getElementById('previewImage').style.display='block';
 
-
 document.getElementById('uploadText').style.display='none';
-
 
 };
 
-
 reader.readAsDataURL(file);
 
-
 }
-
 );
-
-
 
 function setPrompt(text){
 
@@ -2759,22 +2240,15 @@ document.getElementById('prompt').value=text;
 
 }
 
-
-
 /* GENERATION IA */
 
 async function generateArt(){
 
-
 const prompt=
-
 document.getElementById('prompt').value.trim();
 
-
 const btn=
-
 document.getElementById('generateButton');
-
 
 if(!uploadedImage){
 
@@ -2784,7 +2258,6 @@ return;
 
 }
 
-
 if(!prompt){
 
 showToast('✍️ Décrivez votre vision.');
@@ -2793,185 +2266,118 @@ return;
 
 }
 
-
 btn.disabled=true;
 
 btn.textContent='⏳ Création en cours...';
 
-
 try{
 
-
 const response=
-
 await fetch('/api/generate',{
 
 method:'POST',
 
 headers:{
-
 'Content-Type':'application/json'
-
 },
 
 body:
-
 JSON.stringify({
-
 prompt,
-
 image:uploadedImage
-
 })
 
 });
 
-
 const data=
-
 await response.json();
-
 
 if(!response.ok){
 
 throw new Error(
-
 data.error||
-
 'Erreur pendant la création'
-
 );
 
 }
 
-
 document.getElementById('resultImage').src=
-
 data.image||
-
 uploadedImage;
-
 
 document.getElementById('resultSection').style.display='block';
 
-
 document.getElementById('resultSection').scrollIntoView({
-
 behavior:'smooth'
-
 });
 
-
 showToast(
-
 '✨ Votre œuvre est prête !'
-
 );
 
-
 }
-
 
 catch(error){
 
-
 showToast(
-
 '❌ '+error.message
-
 );
 
-
 }
-
 
 finally{
 
-
 btn.disabled=false;
 
-
 btn.textContent=
-
 "✨ Créer mon œuvre avec l'IA";
 
-
 }
 
-
 }
-
-
 
 /* CHOIX TYPE */
 
 function selectType(el){
 
-
 document
-
 .querySelectorAll(
-
 '#typeOptions .choice'
-
 )
-
 .forEach(
-
 x=>x.classList.remove('selected')
-
 );
-
 
 el.classList.add('selected');
 
-
 orderType=
-
 el.dataset.type;
-
 
 updatePrice();
 
-
 }
-
-
 
 /* CHOIX TAILLE */
 
 function selectSmall(el,id){
 
-
 document
-
 .querySelectorAll(
-
 '#'+id+' .smallchoice'
-
 )
-
 .forEach(
-
 x=>x.classList.remove('selected')
-
 );
-
 
 el.classList.add('selected');
 
-
 updatePrice();
 
-
 }
-
-
 
 /* PRIX */
 
 function getOrderPrice(){
-
 
 if(orderType==='digital'){
 
@@ -2979,225 +2385,137 @@ return 4.90;
 
 }
 
-
 const size=
-
 document.querySelector(
-
 '#sizes .selected'
-
 );
-
 
 const led=
-
 document.querySelector(
-
 '#leds .selected'
-
 );
 
-
 return
-
 Number(size.dataset.price)
-
 +
-
 Number(led.dataset.led);
 
-
 }
-
-
 
 function updatePrice(){
 
-
 document.getElementById(
-
 'totalPrice'
-
 ).textContent=
 
 getOrderPrice()
-
 .toFixed(2)
-
 .replace('.',',')
 
 +
-
 ' €';
 
-
 }
-
-
 
 /* AJOUT PANIER */
 
 function addToCart(){
 
-
 const size=
-
 document.querySelector(
-
 '#sizes .selected'
-
 ).textContent.trim();
-
 
 const led=
-
 document.querySelector(
-
 '#leds .selected'
-
 ).textContent.trim();
 
-
 const price=
-
 getOrderPrice();
 
-
 cart.push({
-
 type:orderType,
-
 size,
-
 led,
-
 price
-
 });
 
-
 document.getElementById(
-
 'cartCount'
-
 ).textContent=
-
 cart.length;
 
-
 showToast(
-
 '🛒 Votre œuvre a été ajoutée au panier !'
-
 );
 
-
 }
-
-
 
 /* OUVRIR PANIER */
 
 function openCart(){
 
-
 let total=0;
 
-
 const cartItems=
-
 document.getElementById(
-
 'cartItems'
-
 );
-
 
 if(!cart.length){
 
-
 cartItems.innerHTML=
-
 '<p style="color:#aaa">Votre panier est vide.</p>';
-
 
 }
 
-
 else{
-
 
 cartItems.innerHTML=
 
-
 cart.map(
-
 (item,i)=>{
-
 
 total+=item.price;
 
-
 return `
-
 
 <div class="cartItem">
 
-
 <button
-
 class="remove"
-
 onclick="removeItem(${i})">
 
 ×
 
 </button>
 
-
 <b>
-
 🎨 Œuvre ARTIFY
-
 </b>
-
 
 <br>
 
-
 ${
-
 item.type==='digital'
-
 
 ?
 
 '📥 Version numérique — à imprimer chez vous'
 
-
 :
 
-
 '🖼️ Tableau encadré<br>'
-
 +
-
 item.size
-
 +
-
 '<br>💡 '
-
 +
-
 item.led
-
-
 }
 
-
 <br><br>
-
 
 <b>
 
@@ -3205,158 +2523,99 @@ ${item.price.toFixed(2).replace('.',',')} €
 
 </b>
 
-
 </div>
-
 
 `;
 
-
 }
-
 ).join('');
 
-
 }
 
-
 document.getElementById(
-
 'cartTotal'
-
 ).textContent=
 
 'Total : '
 
 +
-
 total.toFixed(2).replace('.',',')
 
 +
-
 ' €';
 
-
 document.getElementById(
-
 'cartModal'
-
 ).style.display='flex';
 
-
 }
-
-
 
 /* SUPPRIMER */
 
 function removeItem(i){
 
-
 cart.splice(i,1);
 
-
 document.getElementById(
-
 'cartCount'
-
 ).textContent=
-
 cart.length;
-
 
 openCart();
 
-
 }
-
-
 
 /* FERMER PANIER */
 
 function closeCart(){
 
-
 document.getElementById(
-
 'cartModal'
-
 ).style.display='none';
 
-
 }
-
-
 
 /* PAIEMENT */
 
 function checkout(){
 
-
 if(!cart.length){
 
-
 showToast(
-
 '🛒 Votre panier est vide.'
-
 );
-
 
 return;
 
-
 }
-
 
 showToast(
-
 '💳 Connectez Stripe pour activer le paiement.'
-
 );
 
-
 }
-
-
 
 /* NOTIFICATION */
 
 function showToast(message){
 
-
 const toast=
-
 document.getElementById(
-
 'toast'
-
 );
-
 
 toast.textContent=message;
 
-
 toast.classList.add('show');
 
-
 setTimeout(
-
-
 ()=>toast.classList.remove('show'),
-
 3500
-
-
 );
-
 
 }
 
-
 </script>
 
-
 </body>
-
 </html>
