@@ -6,9 +6,15 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { prompt, image } = req.body || {};
+    const body =
+      typeof req.body === "string"
+        ? JSON.parse(req.body)
+        : req.body || {};
 
-    if (!prompt || !prompt.trim()) {
+    const prompt = body.prompt?.trim();
+    const image = body.image;
+
+    if (!prompt) {
       return res.status(400).json({
         error: "Prompt manquant"
       });
@@ -20,11 +26,9 @@ export default async function handler(req, res) {
       });
     }
 
-    const apiKey = process.env.OPENAI_API_KEY;
-
-    if (!apiKey) {
+    if (!process.env.OPENAI_API_KEY) {
       return res.status(500).json({
-        error: "OPENAI_API_KEY manquante"
+        error: "OPENAI_API_KEY manquante dans Vercel"
       });
     }
 
@@ -35,7 +39,7 @@ export default async function handler(req, res) {
 
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
+          "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
         },
 
         body: JSON.stringify({
@@ -51,11 +55,15 @@ export default async function handler(req, res) {
 
                   text: `Modifie réellement l'image fournie.
 
-Demande de l'utilisateur :
+Demande du client :
 ${prompt}
 
-Tu dois utiliser l'outil de génération d'image pour créer une NOUVELLE version de l'image.
-Respecte l'image originale tout en appliquant réellement la transformation demandée.`
+IMPORTANT :
+Transforme visuellement l'image originale.
+Ne renvoie PAS l'image originale.
+Conserve la personne et les éléments importants.
+Respecte la demande artistique.
+Le résultat doit être spectaculaire et de haute qualité.`
                 },
 
                 {
@@ -70,10 +78,8 @@ Respecte l'image originale tout en appliquant réellement la transformation dema
             {
               type: "image_generation",
               action: "edit",
-              model: "gpt-image-1",
-              input_fidelity: "high",
-              quality: "medium",
-              size: "1024x1024"
+              size: "1024x1024",
+              quality: "high"
             }
           ]
         })
@@ -82,34 +88,31 @@ Respecte l'image originale tout en appliquant réellement la transformation dema
 
     const data = await response.json();
 
-    if (!response.ok) {
-      console.error("OPENAI ERROR:", data);
+    console.log("OPENAI RESPONSE:", JSON.stringify(data));
 
+    if (!response.ok) {
       return res.status(response.status).json({
-        error: data?.error?.message || "Erreur OpenAI"
+        error:
+          data?.error?.message ||
+          "Erreur OpenAI"
       });
     }
 
     let generatedImage = null;
 
     for (const item of data.output || []) {
-      for (const content of item.content || []) {
-
-        if (
-          content.type === "image_generation_call" &&
-          content.result
-        ) {
-          generatedImage = content.result;
-        }
-
+      if (
+        item.type === "image_generation_call" &&
+        item.result
+      ) {
+        generatedImage = item.result;
+        break;
       }
     }
 
     if (!generatedImage) {
-      console.error("NO IMAGE:", JSON.stringify(data));
-
       return res.status(500).json({
-        error: "Aucune image générée"
+        error: "L'IA n'a pas retourné d'image"
       });
     }
 
