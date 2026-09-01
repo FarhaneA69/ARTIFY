@@ -1,3498 +1,2878 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>ARTIFY — Votre vision devient une œuvre</title>
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --bg: #07070d;
-      --card: rgba(20, 20, 32, 0.75);
-      --border: rgba(255,255,255,0.12);
-      --text: #f5f5fa;
-      --muted: #a6a6b5;
-      --purple: #8b5cf6;
-      --pink: #ec4899;
-      --blue: #38bdf8;
-      --green: #22c55e;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-      background:
-        radial-gradient(
-          circle at 15% 10%,
-          rgba(139,92,246,0.18),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 85% 20%,
-          rgba(236,72,153,0.13),
-          transparent 28%
-        ),
-        #07070d;
-
-      color: var(--text);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,0.025) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,0.025) 1px,
-          transparent 1px
-        );
-
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-
-    /* =========================
-       NAVIGATION
-    ========================= */
-
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-
-      padding: 18px 6%;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      background: rgba(7,7,13,0.78);
-      backdrop-filter: blur(20px);
-
-      border-bottom:
-        1px solid rgba(255,255,255,0.07);
-    }
-
-    .logo {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 8px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ARTIFY — Votre vision devient une œuvre</title>
+
+<style>
+
+:root{
+  --bg:#070812;
+  --panel:#0d0e19;
+  --line:rgba(255,255,255,.12);
+  --muted:#b7b7c5;
+  --purple:#8b5cf6;
+  --pink:#ec4899;
+  --white:#f7f7fb;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Inter,-apple-system,BlinkMacSystemFont,
+  "Segoe UI",sans-serif;
+
+  background:var(--bg);
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-2;
+
+  background:
+  radial-gradient(
+    circle at 20% 5%,
+    rgba(91,50,190,.16),
+    transparent 28%
+  ),
+  radial-gradient(
+    circle at 80% 10%,
+    rgba(236,72,153,.11),
+    transparent 25%
+  ),
+  #070812;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+
+  background-image:
+  linear-gradient(
+    rgba(255,255,255,.035) 1px,
+    transparent 1px
+  ),
+  linear-gradient(
+    90deg,
+    rgba(255,255,255,.035) 1px,
+    transparent 1px
+  );
+
+  background-size:74px 74px;
+}
+
+button{
+  font:inherit;
+}
+
+.wrap{
+  max-width:1280px;
+  margin:auto;
+  padding:0 26px;
+}
+
+/* NAVIGATION */
+
+nav{
+  height:72px;
+
+  border-bottom:
+  1px solid var(--line);
+
+  background:
+  rgba(7,8,18,.78);
+
+  backdrop-filter:blur(18px);
+
+  position:sticky;
+  top:0;
 
-    .logo span {
-      background:
-        linear-gradient(
-          90deg,
-          #ffffff,
-          var(--purple),
-          var(--pink)
-        );
+  z-index:50;
+}
 
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+.navin{
+  height:100%;
+  max-width:1280px;
 
-    .cart {
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.05);
-      color: white;
+  margin:auto;
+  padding:0 26px;
 
-      padding: 13px 18px;
-      border-radius: 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-      cursor: pointer;
-      font-size: 16px;
+  gap:25px;
+}
 
-      transition: 0.25s;
-    }
+.logo{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:9px;
+}
 
-    .cart:hover {
-      transform: translateY(-2px);
-      border-color: var(--purple);
-    }
+.logo span{
+  background:
+  linear-gradient(
+    90deg,
+    #fff,
+    #9c7bff,
+    #f14fa5
+  );
 
-    #cartCount {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-      width: 25px;
-      height: 25px;
+.links{
+  display:flex;
+  gap:28px;
 
-      border-radius: 50%;
+  color:#c8c8d2;
+  font-size:14px;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple),
-          var(--pink)
-        );
+.links a{
+  text-decoration:none;
+  color:inherit;
+}
 
-      margin-left: 8px;
-      font-size: 13px;
-    }
+.links a:hover{
+  color:#fff;
+}
 
+.cart{
+  border:1px solid var(--line);
+  background:#11121d;
+  color:#fff;
 
-    /* =========================
-       HERO
-    ========================= */
+  padding:10px 16px;
+  border-radius:15px;
 
-    .hero {
-      min-height: 100vh;
+  cursor:pointer;
+}
 
-      padding:
-        150px 7%
-        80px;
+.count{
+  display:inline-grid;
+  place-items:center;
 
-      display: grid;
+  width:22px;
+  height:22px;
 
-      grid-template-columns:
-        1.1fr 0.9fr;
+  border-radius:50%;
 
-      align-items: center;
+  margin-left:8px;
 
-      gap: 60px;
+  background:
+  linear-gradient(
+    135deg,
+    var(--purple),
+    var(--pink)
+  );
 
-      max-width: 1500px;
-      margin: auto;
-    }
+  font-size:12px;
+}
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
+/* HERO */
 
-      padding: 10px 16px;
+.hero{
+  min-height:520px;
 
-      border-radius: 100px;
+  display:grid;
 
-      border:
-        1px solid
-        rgba(139,92,246,0.35);
+  grid-template-columns:
+  1fr 1.05fr;
 
-      background:
-        rgba(139,92,246,0.1);
+  border-bottom:
+  1px solid var(--line);
+}
 
-      color: #d9c7ff;
+.hero-copy{
+  padding:
+  70px 28px 55px 0;
 
-      margin-bottom: 25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
 
-      font-size: 14px;
+.tag{
+  display:inline-flex;
+  width:max-content;
 
-      animation: pulse 2.5s infinite;
-    }
+  padding:8px 14px;
 
-    @keyframes pulse {
+  border:
+  1px solid
+  rgba(139,92,246,.55);
 
-      0% {
-        box-shadow: 0 0 0 rgba(139,92,246,0);
-      }
+  border-radius:999px;
 
-      50% {
-        box-shadow: 0 0 25px rgba(139,92,246,0.25);
-      }
+  background:
+  rgba(139,92,246,.08);
 
-      100% {
-        box-shadow: 0 0 0 rgba(139,92,246,0);
-      }
+  color:#ded4ff;
 
-    }
+  font-size:12px;
+}
 
-    h1 {
-      font-size:
-        clamp(55px, 8vw, 110px);
+h1{
+  font-size:
+  clamp(52px,6vw,82px);
 
-      line-height: 0.95;
+  line-height:.98;
+  letter-spacing:-4px;
 
-      letter-spacing: -5px;
+  margin:
+  22px 0 20px;
+}
 
-      margin-bottom: 28px;
-    }
+.grad{
+  background:
+  linear-gradient(
+    100deg,
+    #8b5cf6,
+    #cf70ff,
+    #ec4899
+  );
 
-    .gradient-text {
-      background:
-        linear-gradient(
-          100deg,
-          #ffffff,
-          #8b5cf6,
-          #ec4899
-        );
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+.lead{
+  color:var(--muted);
 
-    .hero p {
-      font-size: 21px;
-      line-height: 1.7;
+  font-size:17px;
+  line-height:1.75;
 
-      color: var(--muted);
+  max-width:520px;
+}
 
-      max-width: 650px;
+.actions{
+  display:flex;
+  gap:14px;
 
-      margin-bottom: 35px;
-    }
+  margin-top:26px;
 
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
+  flex-wrap:wrap;
+}
 
-    .primary-btn,
-    .secondary-btn {
-      transition: 0.25s;
-    }
+.primary,
+.secondary{
+  padding:15px 22px;
 
-    .primary-btn {
-      border: none;
-      cursor: pointer;
+  border-radius:14px;
 
-      padding: 18px 28px;
+  font-weight:700;
+  cursor:pointer;
 
-      border-radius: 18px;
+  transition:.25s;
+}
 
-      color: white;
+.primary{
+  border:0;
 
-      font-size: 17px;
-      font-weight: 700;
+  color:#fff;
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple),
-          var(--pink)
-        );
+  background:
+  linear-gradient(
+    100deg,
+    #7c3aed,
+    #ec4899
+  );
 
-      box-shadow:
-        0 10px 30px
-        rgba(139,92,246,0.25);
-    }
+  box-shadow:
+  0 12px 32px
+  rgba(178,52,171,.22);
+}
 
-    .primary-btn:hover {
-      transform:
-        translateY(-4px)
-        scale(1.02);
+.primary:hover{
+  transform:
+  translateY(-2px);
+}
 
-      box-shadow:
-        0 18px 45px
-        rgba(236,72,153,0.25);
-    }
+.secondary{
+  border:
+  1px solid
+  rgba(139,92,246,.55);
 
-    .secondary-btn {
-      border: 1px solid var(--border);
+  background:transparent;
+  color:#fff;
+}
 
-      background:
-        rgba(255,255,255,0.04);
+/* HERO IMAGE */
 
-      color: white;
+.hero-art{
+  position:relative;
 
-      padding: 18px 28px;
+  min-height:500px;
 
-      border-radius: 18px;
+  overflow:hidden;
 
-      cursor: pointer;
+  background:
+  linear-gradient(
+    90deg,
+    #090a13 0%,
+    transparent 35%
+  ),
+  url(
+    "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=1600&q=85"
+  )
+  center/cover;
+}
 
-      font-size: 16px;
-    }
+.hero-art:after{
+  content:"";
 
-    .secondary-btn:hover {
-      transform: translateY(-3px);
-      border-color: var(--purple);
-    }
+  position:absolute;
+  inset:0;
 
+  background:
+  radial-gradient(
+    circle at 62% 38%,
+    rgba(236,72,153,.38),
+    transparent 28%
+  ),
+  linear-gradient(
+    90deg,
+    #070812 0%,
+    transparent 32%
+  ),
+  rgba(0,0,0,.18);
+}
 
-    /* HERO ART */
+/* VRAI TABLEAU ENCADRÉ */
 
-    .hero-art {
-      position: relative;
+.frame{
+  position:absolute;
+  z-index:2;
 
-      height: 620px;
+  width:45%;
+  max-width:340px;
 
-      display: flex;
+  aspect-ratio:3/4;
 
-      justify-content: center;
-      align-items: center;
-    }
+  left:40%;
+  top:13%;
 
-    .art-glow {
-      position: absolute;
+  padding:12px;
 
-      width: 450px;
-      height: 450px;
+  background:#1a1018;
 
-      border-radius: 50%;
+  border:
+  5px solid #2a1a18;
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(139,92,246,0.45),
-          transparent 65%
-        );
+  box-shadow:
+  0 0 28px #9b4cff,
+  0 0 55px rgba(236,72,153,.5),
+  0 25px 50px rgba(0,0,0,.55);
+}
 
-      filter: blur(30px);
+.frame img{
+  width:100%;
+  height:100%;
 
-      animation: floatingGlow 5s infinite alternate;
-    }
+  object-fit:cover;
+}
 
-    @keyframes floatingGlow {
+/* GENERAL */
 
-      from {
-        transform: scale(0.9);
-      }
+section{
+  padding:70px 0;
 
-      to {
-        transform: scale(1.15);
-      }
+  border-bottom:
+  1px solid var(--line);
+}
 
-    }
+.split-title{
+  display:grid;
 
-    .art-frame {
-      position: relative;
+  grid-template-columns:
+  300px 1fr;
 
-      width: min(100%, 440px);
+  gap:35px;
 
-      aspect-ratio: 4/5;
+  align-items:center;
+}
 
-      padding: 12px;
+.section-title{
+  font-size:36px;
 
-      border-radius: 28px;
+  line-height:1.05;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(255,255,255,0.25),
-          rgba(255,255,255,0.03)
-        );
+  letter-spacing:-1.8px;
 
-      transform: rotate(4deg);
+  margin-top:12px;
+}
 
-      animation: floatingArt 5s ease-in-out infinite;
-    }
+.section-text{
+  color:var(--muted);
 
-    @keyframes floatingArt {
+  line-height:1.7;
 
-      0% {
-        transform: rotate(4deg) translateY(0);
-      }
+  margin-top:16px;
+}
 
-      50% {
-        transform: rotate(2deg) translateY(-20px);
-      }
+/* AVANT APRES */
 
-      100% {
-        transform: rotate(4deg) translateY(0);
-      }
+.compare{
+  position:relative;
 
-    }
+  height:330px;
 
-    .art-frame img {
-      width: 100%;
-      height: 100%;
+  border:
+  1px solid var(--line);
 
-      object-fit: cover;
+  border-radius:20px;
 
-      border-radius: 20px;
-    }
+  overflow:hidden;
 
+  background:#111;
+}
 
-    /* =========================
-       STATS
-    ========================= */
+.compare .before,
+.compare .after{
+  position:absolute;
+  inset:0;
 
-    .stats {
-      max-width: 1200px;
+  background-size:cover;
+  background-position:center;
+}
 
-      margin:
-        0 auto
-        100px;
+.compare .before{
+  background-image:
+  url(
+    "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1400&q=85"
+  );
+}
 
-      padding: 25px;
+.compare .after{
+  background-image:
+  url(
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85"
+  );
 
-      display: grid;
+  clip-path:
+  inset(0 0 0 50%);
+}
 
-      grid-template-columns:
-        repeat(3,1fr);
+.compare .line{
+  position:absolute;
 
-      gap: 20px;
-    }
+  left:50%;
+  top:0;
+  bottom:0;
 
-    .stat {
-      text-align: center;
+  width:2px;
 
-      padding: 25px;
+  background:#fff;
 
-      border: 1px solid var(--border);
+  z-index:3;
+}
 
-      border-radius: 22px;
+.compare .handle{
+  position:absolute;
 
-      background:
-        rgba(255,255,255,0.025);
+  z-index:4;
 
-      transition: 0.3s;
-    }
+  left:50%;
+  top:50%;
 
-    .stat:hover {
-      transform: translateY(-8px);
-      border-color: var(--purple);
-    }
+  transform:
+  translate(-50%,-50%);
 
-    .stat h3 {
-      font-size: 30px;
-    }
+  width:44px;
+  height:44px;
 
-    .stat p {
-      color: var(--muted);
-      margin-top: 8px;
-    }
+  border-radius:50%;
 
+  display:grid;
+  place-items:center;
 
-    /* =========================
-       SECTIONS
-    ========================= */
+  background:#0c0d17;
 
-    .section {
-      max-width: 1200px;
-      margin: auto;
+  border:
+  1px solid #fff;
 
-      padding:
-        100px 7%;
-    }
+  font-size:20px;
+}
 
-    .section-title {
-      font-size:
-        clamp(42px, 6vw, 70px);
+.compare input{
+  position:absolute;
 
-      letter-spacing: -3px;
+  z-index:6;
 
-      margin-bottom: 15px;
-    }
+  bottom:22px;
+  left:12%;
 
-    .section-subtitle {
-      color: var(--muted);
+  width:76%;
+}
 
-      font-size: 19px;
+.pill{
+  position:absolute;
 
-      line-height: 1.6;
+  z-index:5;
 
-      margin-bottom: 45px;
-    }
+  top:15px;
 
+  padding:8px 13px;
 
-    /* ANIMATION SCROLL */
+  border-radius:999px;
 
-    .reveal {
+  background:
+  rgba(10,10,18,.82);
 
-      opacity: 0;
+  border:
+  1px solid var(--line);
 
-      transform:
-        translateY(40px);
+  font-size:12px;
+}
 
-      transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
+.p-before{
+  left:18px;
+}
 
-    }
+.p-after{
+  right:18px;
+}
 
-    .reveal.active {
+/* PRODUITS */
 
-      opacity: 1;
+.cards{
+  display:grid;
 
-      transform:
-        translateY(0);
+  grid-template-columns:
+  repeat(3,1fr);
 
-    }
+  gap:14px;
 
+  margin-top:28px;
+}
 
-    /* =========================
-       GENERATOR
-    ========================= */
+.card{
+  background:
+  linear-gradient(
+    145deg,
+    rgba(19,20,33,.96),
+    rgba(10,11,20,.96)
+  );
 
-    .generator {
-      display: grid;
+  border:
+  1px solid var(--line);
 
-      grid-template-columns:
-        1fr 1fr;
+  border-radius:17px;
 
-      gap: 25px;
+  padding:20px;
+}
 
-      padding: 25px;
+.icon{
+  width:54px;
+  height:54px;
 
-      border: 1px solid var(--border);
+  border-radius:15px;
 
-      border-radius: 35px;
+  display:grid;
+  place-items:center;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(139,92,246,0.09),
-          rgba(236,72,153,0.04)
-        );
-    }
+  font-size:26px;
 
-    .panel {
-      background:
-        rgba(8,8,14,0.7);
+  margin-bottom:15px;
 
-      border: 1px solid var(--border);
+  background:
+  linear-gradient(
+    135deg,
+    rgba(139,92,246,.28),
+    rgba(236,72,153,.18)
+  );
+}
 
-      border-radius: 25px;
+.card h3{
+  font-size:18px;
+  margin-bottom:8px;
+}
 
-      padding: 28px;
-    }
+.card p{
+  color:var(--muted);
 
-    .panel h3 {
-      font-size: 24px;
-      margin-bottom: 22px;
-    }
+  font-size:14px;
 
+  line-height:1.6;
+}
 
-    /* UPLOAD */
+.price{
+  display:block;
 
-    .upload-zone {
-      min-height: 320px;
+  margin-top:14px;
 
-      border:
-        2px dashed
-        rgba(139,92,246,0.45);
+  color:#e899ff;
 
-      border-radius: 22px;
+  font-size:18px;
+  font-weight:800;
+}
 
-      display: flex;
+/* SALON CHAMBRE BUREAU */
 
-      flex-direction: column;
+.room-grid{
+  display:grid;
 
-      justify-content: center;
-      align-items: center;
+  grid-template-columns:
+  300px repeat(3,1fr);
 
-      text-align: center;
+  gap:12px;
+}
 
-      padding: 20px;
+.room{
+  min-height:300px;
 
-      cursor: pointer;
+  border-radius:16px;
 
-      background:
-        rgba(139,92,246,0.04);
+  overflow:hidden;
 
-      overflow: hidden;
+  position:relative;
 
-      transition: 0.3s;
-    }
+  border:
+  1px solid var(--line);
 
-    .upload-zone:hover {
-      border-color: var(--pink);
-      background: rgba(236,72,153,0.05);
-      transform: scale(1.01);
-    }
+  background-size:cover;
+  background-position:center;
+}
 
-    .upload-zone img {
-      max-width: 100%;
-      max-height: 400px;
+.room:after{
+  content:"";
 
-      object-fit: contain;
+  position:absolute;
 
-      border-radius: 15px;
+  inset:auto 0 0 0;
 
-      display: none;
-    }
+  height:40%;
 
-    .upload-icon {
-      font-size: 55px;
-      margin-bottom: 15px;
-    }
+  background:
+  linear-gradient(
+    transparent,
+    rgba(0,0,0,.85)
+  );
+}
 
-    .upload-zone p {
-      color: var(--muted);
-    }
+.room span{
+  position:absolute;
 
-    #imageInput {
-      display: none;
-    }
+  z-index:2;
 
+  bottom:15px;
+  left:15px;
 
-    /* FORM */
+  font-size:15px;
+  font-weight:700;
+}
 
-    label {
-      display: block;
+.r1{
+  background-image:
+  url(
+    "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=800&q=80"
+  );
+}
 
-      font-size: 15px;
+.r2{
+  background-image:
+  url(
+    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
+  );
+}
 
-      margin-bottom: 10px;
+.r3{
+  background-image:
+  url(
+    "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80"
+  );
+}
 
-      color: #d8d8e5;
-    }
+/* ETAPES */
 
-    textarea {
+.steps-led{
+  display:grid;
 
-      width: 100%;
+  grid-template-columns:
+  1.2fr .9fr;
 
-      min-height: 180px;
+  gap:28px;
+}
 
-      resize: vertical;
+.steps{
+  display:grid;
 
-      border: 1px solid var(--border);
+  grid-template-columns:
+  repeat(3,1fr);
 
-      background: #0b0b13;
+  gap:12px;
 
-      color: white;
+  margin-top:24px;
+}
 
-      border-radius: 18px;
+.step{
+  border:
+  1px solid var(--line);
 
-      padding: 18px;
+  border-radius:16px;
 
-      font-size: 17px;
+  padding:18px;
 
-      outline: none;
+  background:#0d0e19;
+}
 
-      font-family: inherit;
+.num{
+  width:31px;
+  height:31px;
 
-    }
+  display:grid;
+  place-items:center;
 
-    textarea:focus {
-      border-color: var(--purple);
-      box-shadow:
-        0 0 20px
-        rgba(139,92,246,0.15);
-    }
+  border-radius:50%;
 
-    .examples {
+  background:
+  linear-gradient(
+    135deg,
+    var(--purple),
+    #bd5cff
+  );
 
-      display: flex;
-      flex-wrap: wrap;
+  font-weight:800;
 
-      gap: 8px;
+  margin-bottom:18px;
+}
 
-      margin-top: 14px;
-      margin-bottom: 22px;
+.step p{
+  color:var(--muted);
 
-    }
+  font-size:13px;
 
-    .example {
+  line-height:1.55;
 
-      padding: 8px 12px;
+  margin-top:8px;
+}
 
-      border-radius: 100px;
+/* LED */
 
-      border: 1px solid var(--border);
+.ledbox{
+  border:
+  1px solid var(--line);
 
-      background:
-        rgba(255,255,255,0.04);
+  border-radius:18px;
 
-      color: var(--muted);
+  padding:20px;
 
-      font-size: 12px;
+  background:
+  linear-gradient(
+    145deg,
+    #0e0e1b,
+    #10101b
+  );
+}
 
-      cursor: pointer;
+.ledimages{
+  display:grid;
 
-      transition: 0.2s;
+  grid-template-columns:
+  1fr 1fr;
 
-    }
+  gap:18px;
 
-    .example:hover {
-      color: white;
-      border-color: var(--purple);
-      transform: translateY(-2px);
-    }
+  margin-top:18px;
 
-    .generate-btn {
+  text-align:center;
+}
 
-      width: 100%;
+.ledimg{
+  border-radius:12px;
 
-      padding: 20px;
+  overflow:hidden;
 
-      border: none;
+  aspect-ratio:1/1.15;
 
-      border-radius: 18px;
+  padding:10px;
 
-      color: white;
+  background:#111;
+}
 
-      font-size: 18px;
-      font-weight: 800;
+.ledimg img{
+  width:100%;
+  height:100%;
 
-      cursor: pointer;
+  object-fit:cover;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          #7c3aed,
-          #db2777
-        );
+.glow{
+  box-shadow:
+  0 0 18px #c05cff,
+  0 0 42px rgba(177,75,255,.5);
+}
 
-    }
+/* COMMANDE */
 
-    .generate-btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+.order{
+  display:grid;
 
+  grid-template-columns:
+  1.1fr 1fr 240px;
 
-    /* RESULT */
+  gap:12px;
+}
 
-    .result-section {
+.order-box{
+  border:
+  1px solid var(--line);
 
-      display: none;
+  border-radius:16px;
 
-      margin-top: 30px;
+  padding:18px;
 
-      padding: 25px;
+  background:#0d0e19;
+}
 
-      border-radius: 25px;
+.order-box h4{
+  margin-bottom:13px;
+}
 
-      border: 1px solid var(--border);
+.choices{
+  display:grid;
 
-      background:
-        rgba(20,20,30,0.8);
+  grid-template-columns:
+  1fr 1fr;
 
-      animation: resultAppear 0.6s ease;
+  gap:10px;
+}
 
-    }
+.choice{
+  border:
+  1px solid var(--line);
 
-    @keyframes resultAppear {
+  border-radius:12px;
 
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
+  padding:15px;
 
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+  cursor:pointer;
 
-    }
+  background:#11121d;
 
-    .result-image {
+  transition:.2s;
+}
 
-      width: 100%;
+.choice.selected{
+  border-color:#dc4ba5;
 
-      max-height: 600px;
+  background:
+  linear-gradient(
+    135deg,
+    rgba(139,92,246,.18),
+    rgba(236,72,153,.1)
+  );
+}
 
-      object-fit: contain;
+.choice small{
+  display:block;
 
-      border-radius: 20px;
+  color:var(--muted);
 
-      background: #050509;
+  margin-top:6px;
+}
 
-    }
+.choice b{
+  display:block;
 
-    .result-actions {
-      margin-top: 20px;
-    }
+  margin-top:8px;
 
+  color:#f08fc5;
+}
 
-    /* =========================
-       AVANT / APRES
-    ========================= */
+.sizes{
+  display:grid;
 
-    .before-after {
+  grid-template-columns:
+  repeat(3,1fr);
 
-      position: relative;
+  gap:8px;
+}
 
-      width: 100%;
+.lights{
+  display:grid;
 
-      max-width: 900px;
+  grid-template-columns:
+  1fr 1fr;
 
-      margin: auto;
+  gap:8px;
+}
 
-      aspect-ratio: 16/9;
+.summary img{
+  width:100%;
+  height:110px;
 
-      border-radius: 28px;
+  object-fit:cover;
 
-      overflow: hidden;
+  border-radius:10px;
 
-      border:
-        1px solid var(--border);
+  margin-bottom:10px;
+}
 
-    }
+.total{
+  font-size:20px;
+  font-weight:900;
 
-    .before-after img {
+  margin:15px 0;
+}
 
-      width: 100%;
-      height: 100%;
+.checkout{
+  width:100%;
 
-      position: absolute;
+  padding:14px;
 
-      object-fit: cover;
+  border:0;
 
-    }
+  border-radius:12px;
 
-    .after-container {
+  color:#fff;
 
-      position: absolute;
+  background:
+  linear-gradient(
+    100deg,
+    #8b5cf6,
+    #ec4899
+  );
 
-      top: 0;
-      left: 0;
+  font-weight:800;
 
-      width: 50%;
-      height: 100%;
+  cursor:pointer;
+}
 
-      overflow: hidden;
+/* TRUST */
 
-    }
+.trust{
+  display:grid;
 
-    .after-container img {
+  grid-template-columns:
+  repeat(4,1fr);
 
-      width: 100%;
+  gap:15px;
 
-      max-width: none;
+  color:#bbb;
 
-    }
+  font-size:12px;
+}
 
-    #comparisonRange {
+.trust b{
+  display:block;
 
-      position: absolute;
+  color:#eee;
 
-      bottom: 25px;
+  margin:5px 0;
+}
 
-      left: 50%;
+/* FOOTER */
 
-      transform:
-        translateX(-50%);
+footer{
+  padding:45px 20px 65px;
 
-      width: 70%;
+  text-align:center;
 
-      z-index: 10;
+  color:#888;
+}
 
-      accent-color:
-        var(--purple);
+/* MODAL */
 
-    }
+.modal{
+  display:none;
 
-    .comparison-label {
+  position:fixed;
+  inset:0;
 
-      position: absolute;
+  z-index:100;
 
-      top: 20px;
+  background:
+  rgba(0,0,0,.7);
 
-      z-index: 5;
+  backdrop-filter:blur(8px);
 
-      padding: 10px 15px;
+  align-items:center;
+  justify-content:center;
 
-      border-radius: 100px;
+  padding:20px;
+}
 
-      background:
-        rgba(0,0,0,0.6);
+.modal.show{
+  display:flex;
+}
 
-      backdrop-filter: blur(10px);
+.modalin{
+  width:min(500px,100%);
 
-      font-size: 14px;
+  background:#12131f;
 
-    }
+  border:
+  1px solid var(--line);
 
-    .before-label {
-      left: 20px;
-    }
+  border-radius:20px;
 
-    .after-label {
-      right: 20px;
-    }
+  padding:24px;
+}
 
+.modalhead{
+  display:flex;
 
-    /* =========================
-       PRODUCTS
-    ========================= */
+  justify-content:space-between;
+  align-items:center;
 
-    .products {
+  margin-bottom:20px;
+}
 
-      display: grid;
+.close{
+  background:transparent;
+  border:0;
 
-      grid-template-columns:
-        repeat(3,1fr);
+  color:#fff;
 
-      gap: 20px;
+  font-size:28px;
 
-      margin-top: 40px;
+  cursor:pointer;
+}
 
-    }
+.cartitem{
+  padding:14px;
 
-    .product {
+  border-radius:12px;
 
-      padding: 28px;
+  background:#191a28;
 
-      border-radius: 24px;
+  margin-bottom:10px;
+}
 
-      border: 1px solid var(--border);
+.carttotal{
+  font-size:22px;
+  font-weight:900;
 
-      background:
-        rgba(255,255,255,0.025);
+  margin:18px 0;
+}
 
-      transition: 0.3s;
+/* TOAST */
 
-    }
+.toast{
+  position:fixed;
 
-    .product:hover {
+  right:20px;
+  bottom:20px;
 
-      transform:
-        translateY(-10px);
+  z-index:200;
 
-      border-color:
-        var(--purple);
+  padding:15px 18px;
 
-      box-shadow:
-        0 20px 50px
-        rgba(139,92,246,0.12);
+  background:#171827;
 
-    }
+  border:
+  1px solid var(--line);
 
-    .product-icon {
-      font-size: 45px;
-      margin-bottom: 18px;
-    }
+  border-radius:12px;
 
-    .product h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
+  transform:
+  translateY(100px);
 
-    .product p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
+  transition:.3s;
+}
 
+.toast.show{
+  transform:none;
+}
 
-    /* =========================
-       ROOM EXAMPLES
-    ========================= */
+/* MOBILE */
 
-    .room-grid {
+@media(max-width:900px){
 
-      display: grid;
+  .links{
+    display:none;
+  }
 
-      grid-template-columns:
-        1fr 1fr;
+  .hero,
+  .split-title,
+  .room-grid,
+  .steps-led,
+  .order{
+    grid-template-columns:1fr;
+  }
 
-      gap: 25px;
+  .hero-copy{
+    padding:55px 0 35px;
+  }
 
-    }
+  .hero-art{
+    min-height:420px;
+  }
 
-    .room-card {
+  .cards,
+  .steps{
+    grid-template-columns:1fr;
+  }
 
-      border-radius: 25px;
+  .trust{
+    grid-template-columns:
+    1fr 1fr;
+  }
 
-      overflow: hidden;
+}
 
-      border:
-        1px solid var(--border);
+@media(max-width:520px){
 
-      background:
-        rgba(255,255,255,0.03);
+  .wrap,
+  .navin{
+    padding:0 18px;
+  }
 
-      transition: 0.3s;
+  h1{
+    font-size:52px;
+  }
 
-    }
+  .hero-art{
+    margin:0 -18px;
+  }
 
-    .room-card:hover {
+  .cards{
+    grid-template-columns:1fr;
+  }
 
-      transform: translateY(-8px);
+  .trust{
+    grid-template-columns:1fr;
+  }
 
-      border-color:
-        var(--pink);
+  .sizes{
+    grid-template-columns:1fr;
+  }
 
-    }
+}
 
-    .room-card img {
-
-      width: 100%;
-
-      height: 400px;
-
-      object-fit: cover;
-
-      display: block;
-
-    }
-
-    .room-info {
-
-      padding: 22px;
-
-    }
-
-    .room-info p {
-
-      color: var(--muted);
-
-      margin-top: 8px;
-
-    }
-
-
-    /* =========================
-       PRINT STEPS
-    ========================= */
-
-    .steps {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 20px;
-
-    }
-
-    .step {
-
-      position: relative;
-
-      padding: 30px;
-
-      border-radius: 25px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,0.025);
-
-      transition: 0.3s;
-
-    }
-
-    .step:hover {
-
-      transform:
-        translateY(-8px);
-
-      border-color:
-        var(--purple);
-
-    }
-
-    .step-number {
-
-      width: 45px;
-      height: 45px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple),
-          var(--pink)
-        );
-
-      margin-bottom: 18px;
-
-      font-weight: bold;
-
-    }
-
-    .step p {
-
-      color: var(--muted);
-
-      margin-top: 10px;
-
-      line-height: 1.6;
-
-    }
-
-
-    /* =========================
-       LED
-    ========================= */
-
-    .led-showcase {
-
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap: 25px;
-
-    }
-
-    .led-card {
-
-      position: relative;
-
-      overflow: hidden;
-
-      padding: 30px;
-
-      min-height: 420px;
-
-      border-radius: 28px;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        rgba(255,255,255,0.03);
-
-    }
-
-    .led-card img {
-
-      width: 100%;
-      height: 260px;
-
-      object-fit: cover;
-
-      border-radius: 18px;
-
-      margin-bottom: 20px;
-
-    }
-
-    .led-glow {
-
-      box-shadow:
-        0 0 25px
-        rgba(139,92,246,0.8),
-        0 0 70px
-        rgba(236,72,153,0.5);
-
-    }
-
-
-    /* =========================
-       ORDER
-    ========================= */
-
-    .options-grid {
-
-      display: grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap: 18px;
-
-    }
-
-    .option {
-
-      padding: 22px;
-
-      border: 1px solid var(--border);
-
-      background:
-        rgba(255,255,255,0.03);
-
-      border-radius: 20px;
-
-      cursor: pointer;
-
-      transition: 0.2s;
-
-    }
-
-    .option:hover,
-    .option.selected {
-
-      border-color:
-        var(--purple);
-
-      background:
-        rgba(139,92,246,0.1);
-
-      transform:
-        translateY(-4px);
-
-    }
-
-    .option h4 {
-      margin-bottom: 8px;
-    }
-
-    .option p {
-
-      color: var(--muted);
-      font-size: 14px;
-
-    }
-
-
-    /* =========================
-       CART
-    ========================= */
-
-    .modal {
-
-      display: none;
-
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 2000;
-
-      background:
-        rgba(0,0,0,0.7);
-
-      backdrop-filter:
-        blur(10px);
-
-      padding: 20px;
-
-      align-items: center;
-      justify-content: center;
-
-    }
-
-    .modal-content {
-
-      width: 100%;
-
-      max-width: 500px;
-
-      max-height: 85vh;
-
-      overflow-y: auto;
-
-      background: #12121d;
-
-      border: 1px solid var(--border);
-
-      border-radius: 28px;
-
-      padding: 28px;
-
-    }
-
-    .modal-header {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      margin-bottom: 25px;
-
-    }
-
-    .close {
-
-      background: transparent;
-
-      border: none;
-
-      color: white;
-
-      font-size: 28px;
-
-      cursor: pointer;
-
-    }
-
-    .cart-item {
-
-      position: relative;
-
-      padding: 18px;
-
-      border-radius: 15px;
-
-      background:
-        rgba(255,255,255,0.05);
-
-      margin-bottom: 12px;
-
-    }
-
-    .remove-item {
-
-      position: absolute;
-
-      top: 12px;
-      right: 12px;
-
-      width: 38px;
-      height: 38px;
-
-      border: none;
-
-      border-radius: 10px;
-
-      background:
-        rgba(255,70,70,0.12);
-
-      color: #ff6b6b;
-
-      font-size: 18px;
-
-      cursor: pointer;
-
-    }
-
-    .cart-price {
-
-      display: block;
-
-      margin-top: 12px;
-
-      font-size: 18px;
-      font-weight: bold;
-
-      color: #d9c7ff;
-
-    }
-
-    .cart-total {
-
-      font-size: 22px;
-      font-weight: bold;
-
-      margin-top: 20px;
-
-      padding-top: 20px;
-
-      border-top:
-        1px solid var(--border);
-
-    }
-
-    .checkout {
-
-      width: 100%;
-
-      margin-top: 15px;
-
-      padding: 18px;
-
-      border: none;
-
-      border-radius: 16px;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--purple),
-          var(--pink)
-        );
-
-      color: white;
-
-      font-size: 17px;
-
-      font-weight: bold;
-
-      cursor: pointer;
-
-    }
-
-
-    /* =========================
-       TOAST
-    ========================= */
-
-    .toast {
-
-      position: fixed;
-
-      bottom: 25px;
-      right: 25px;
-
-      z-index: 5000;
-
-      padding: 17px 22px;
-
-      border-radius: 15px;
-
-      background: #181824;
-
-      border: 1px solid var(--border);
-
-      transform:
-        translateY(150px);
-
-      transition: 0.3s;
-
-    }
-
-    .toast.show {
-
-      transform:
-        translateY(0);
-
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-
-      padding: 70px 7%;
-
-      border-top:
-        1px solid
-        rgba(255,255,255,0.08);
-
-      text-align: center;
-
-      color: var(--muted);
-
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 850px) {
-
-      nav {
-        padding: 16px 20px;
-      }
-
-      .logo {
-        font-size: 20px;
-        letter-spacing: 5px;
-      }
-
-      .hero {
-
-        grid-template-columns: 1fr;
-
-        padding:
-          140px 7%
-          60px;
-
-        gap: 25px;
-
-      }
-
-      .hero-art {
-        height: 450px;
-      }
-
-      .stats,
-      .generator,
-      .products,
-      .options-grid,
-      .room-grid,
-      .steps,
-      .led-showcase {
-
-        grid-template-columns: 1fr;
-
-      }
-
-      .section {
-        padding: 70px 7%;
-      }
-
-      h1 {
-        letter-spacing: -3px;
-      }
-
-      .room-card img {
-        height: 300px;
-      }
-
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
+<nav>
 
-  <!-- NAVIGATION -->
-
-  <nav>
+  <div class="navin">
 
     <div class="logo">
       ART<span>IFY</span>
     </div>
 
-    <button
-      class="cart"
-      onclick="openCart()"
-    >
+    <div class="links">
+
+      <a href="#home">Accueil</a>
+      <a href="#examples">Exemples</a>
+      <a href="#create">Créer</a>
+      <a href="#how">Comment ça marche</a>
+
+    </div>
+
+    <button class="cart" onclick="openCart()">
+
       🛒 Panier
-      <span id="cartCount">0</span>
+
+      <span
+      class="count"
+      id="cartCount"
+      >
+        0
+      </span>
+
     </button>
-
-  </nav>
-
-
-  <!-- HERO -->
-
-  <section class="hero">
-
-    <div class="reveal">
-
-      <div class="badge">
-        ✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
-      </div>
-
-      <h1>
-
-        Transformez votre vision
-
-        <br>
-
-        en
-
-        <span class="gradient-text">
-          œuvre d'art.
-        </span>
-
-      </h1>
-
-      <p>
-
-        Importez votre image.
-        Décrivez votre imagination.
-        L'intelligence artificielle transforme
-        votre vision en une œuvre unique.
-
-      </p>
-
-      <div class="hero-buttons">
-
-        <button
-          class="primary-btn"
-          onclick="document.getElementById('create').scrollIntoView({behavior:'smooth'})"
-        >
-          ✨ Créer mon œuvre
-        </button>
-
-        <button
-          class="secondary-btn"
-          onclick="document.getElementById('beforeAfter').scrollIntoView({behavior:'smooth'})"
-        >
-          Voir des exemples ↓
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <div class="hero-art reveal">
-
-      <div class="art-glow"></div>
-
-      <div class="art-frame">
-
-        <img
-          src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1000&q=80"
-          alt="Œuvre artistique ARTIFY"
-        >
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STATS -->
-
-  <section class="stats reveal">
-
-    <div class="stat">
-
-      <h3>∞</h3>
-
-      <p>
-        Possibilités créatives
-      </p>
-
-    </div>
-
-
-    <div class="stat">
-
-      <h3>AI</h3>
-
-      <p>
-        Transformation intelligente
-      </p>
-
-    </div>
-
-
-    <div class="stat">
-
-      <h3>100%</h3>
-
-      <p>
-        Votre imagination
-      </p>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       GENERATOR
-  ========================= -->
-
-  <section
-    class="section reveal"
-    id="create"
-  >
-
-    <div class="badge">
-      ✨ CRÉEZ MAINTENANT
-    </div>
-
-    <h2 class="section-title">
-
-      Votre imagination
-
-      <span class="gradient-text">
-        sans limites.
-      </span>
-
-    </h2>
-
-    <p class="section-subtitle">
-
-      Ajoutez votre photo et expliquez exactement
-      comment vous voulez la transformer.
-
-    </p>
-
-
-    <div class="generator">
-
-
-      <!-- IMAGE -->
-
-      <div class="panel">
-
-        <h3>
-          🖼️ 1. Importez votre image
-        </h3>
-
-        <label
-          for="imageInput"
-          class="upload-zone"
-        >
-
-          <div id="uploadText">
-
-            <div class="upload-icon">
-              📸
-            </div>
-
-            <h3>
-              Ajoutez votre photo
-            </h3>
-
-            <p>
-              Cliquez ici pour importer une image
-            </p>
-
-          </div>
-
-
-          <img
-            id="previewImage"
-            alt="Votre image"
-          >
-
-        </label>
-
-
-        <input
-          type="file"
-          id="imageInput"
-          accept="image/*"
-        >
-
-      </div>
-
-
-      <!-- PROMPT -->
-
-      <div class="panel">
-
-        <h3>
-          ✨ 2. Décrivez votre vision
-        </h3>
-
-        <label for="prompt">
-          Comment voulez-vous transformer votre image ?
-        </label>
-
-
-        <textarea
-          id="prompt"
-          placeholder="Exemple : transforme cette photo en une œuvre futuriste avec des lumières néon..."
-        ></textarea>
-
-
-        <div class="examples">
-
-          <button
-            class="example"
-            onclick="setPrompt('Transforme cette image en anime japonais 4K très détaillé avec une lumière cinématographique.')"
-          >
-            Anime 4K
-          </button>
-
-
-          <button
-            class="example"
-            onclick="setPrompt('Transforme cette image en peinture artistique luxueuse avec une lumière spectaculaire.')"
-          >
-            Peinture
-          </button>
-
-
-          <button
-            class="example"
-            onclick="setPrompt('Transforme cette image en univers futuriste cyberpunk avec des lumières néon.')"
-          >
-            Cyberpunk
-          </button>
-
-
-          <button
-            class="example"
-            onclick="setPrompt('Transforme cette image en portrait noir et blanc artistique et cinématographique.')"
-          >
-            Noir & Blanc
-          </button>
-
-
-          <button
-            class="example"
-            onclick="setPrompt('Transforme cette image en œuvre fantastique avec un univers magique et spectaculaire.')"
-          >
-            Fantastique
-          </button>
-
-        </div>
-
-
-        <button
-          class="generate-btn"
-          id="generateButton"
-          onclick="generateArt()"
-        >
-          ✨ Créer mon œuvre avec l'IA
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- RESULT -->
-
-    <div
-      class="result-section"
-      id="resultSection"
-    >
-
-      <h2 style="margin-bottom:20px">
-        ✨ Votre œuvre ARTIFY
-      </h2>
-
-
-      <img
-        id="resultImage"
-        class="result-image"
-        alt="Résultat ARTIFY"
-      >
-
-
-      <div class="result-actions">
-
-        <button
-          class="primary-btn"
-          onclick="scrollToOrder()"
-        >
-          🛒 Commander cette œuvre
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       BEFORE AFTER
-  ========================= -->
-
-  <section
-    class="section reveal"
-    id="beforeAfter"
-  >
-
-    <div class="badge">
-      🔄 AVANT / APRÈS
-    </div>
-
-
-    <h2 class="section-title">
-
-      Une photo.
-
-      <span class="gradient-text">
-        Une nouvelle réalité.
-      </span>
-
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Faites glisser le curseur pour découvrir
-      comment une image peut devenir une œuvre.
-
-    </p>
-
-
-    <div class="before-after">
-
-
-      <img
-        src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1200&q=80"
-        alt="Avant"
-      >
-
-
-      <div
-        class="after-container"
-        id="afterContainer"
-      >
-
-        <img
-          src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1200&q=80"
-          alt="Après"
-        >
-
-      </div>
-
-
-      <div
-        class="comparison-label before-label"
-      >
-        📸 AVANT
-      </div>
-
-
-      <div
-        class="comparison-label after-label"
-      >
-        ✨ APRÈS
-      </div>
-
-
-      <input
-        type="range"
-        id="comparisonRange"
-        min="0"
-        max="100"
-        value="50"
-      >
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       PRODUCTS
-  ========================= -->
-
-  <section
-    class="section reveal"
-    id="inspiration"
-  >
-
-    <div class="badge">
-      🎨 PERSONNALISEZ VOTRE ŒUVRE
-    </div>
-
-
-    <h2 class="section-title">
-
-      Choisissez comment
-
-      <span class="gradient-text">
-        recevoir votre œuvre.
-      </span>
-
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Vous pouvez télécharger votre création
-      ou commander un tableau prêt à accrocher.
-
-    </p>
-
-
-    <div class="products">
-
-
-      <div class="product">
-
-        <div class="product-icon">
-          📥
-        </div>
-
-        <h3>
-          Version numérique
-        </h3>
-
-        <p>
-          Téléchargez votre œuvre
-          et imprimez-la vous-même.
-        </p>
-
-        <br>
-
-        <strong>
-          Seulement 4,90 €
-        </strong>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-icon">
-          🖼️
-        </div>
-
-        <h3>
-          Tableau encadré
-        </h3>
-
-        <p>
-          Votre œuvre imprimée
-          et prête à accrocher.
-        </p>
-
-        <br>
-
-        <strong>
-          À partir de 29,90 €
-        </strong>
-
-      </div>
-
-
-      <div class="product">
-
-        <div class="product-icon">
-          💡
-        </div>
-
-        <h3>
-          Option LED
-        </h3>
-
-        <p>
-          Ajoutez une lumière derrière
-          votre tableau pour une ambiance unique.
-        </p>
-
-        <br>
-
-        <strong>
-          +15 €
-        </strong>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       ROOM EXAMPLES
-  ========================= -->
-
-  <section class="section reveal">
-
-    <div class="badge">
-      🏠 CHEZ VOUS
-    </div>
-
-
-    <h2 class="section-title">
-
-      Imaginez votre œuvre
-
-      <span class="gradient-text">
-        dans votre intérieur.
-      </span>
-
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Votre création peut devenir
-      une décoration unique pour votre chambre,
-      votre salon ou votre bureau.
-
-    </p>
-
-
-    <div class="room-grid">
-
-
-      <div class="room-card">
-
-        <img
-          src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1000&q=80"
-          alt="Tableau dans un salon"
-        >
-
-        <div class="room-info">
-
-          <h3>
-            🛋️ Dans votre salon
-          </h3>
-
-          <p>
-            Transformez un mur simple
-            en espace artistique.
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <div class="room-card">
-
-        <img
-          src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=80"
-          alt="Tableau dans une chambre"
-        >
-
-        <div class="room-info">
-
-          <h3>
-            🛏️ Dans votre chambre
-          </h3>
-
-          <p>
-            Une œuvre unique qui vous ressemble.
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       PRINT
-  ========================= -->
-
-  <section class="section reveal">
-
-    <div class="badge">
-      🖨️ VERSION NUMÉRIQUE
-    </div>
-
-
-    <h2 class="section-title">
-
-      Imprimez votre œuvre
-
-      <span class="gradient-text">
-        facilement.
-      </span>
-
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Vous préférez imprimer vous-même ?
-      C'est simple et rapide.
-
-    </p>
-
-
-    <div class="steps">
-
-
-      <div class="step">
-
-        <div class="step-number">
-          1
-        </div>
-
-        <h3>
-          Créez
-        </h3>
-
-        <p>
-          Importez votre image
-          et décrivez votre vision.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          2
-        </div>
-
-        <h3>
-          Téléchargez
-        </h3>
-
-        <p>
-          Après votre paiement,
-          récupérez votre œuvre numérique.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          3
-        </div>
-
-        <h3>
-          Imprimez
-        </h3>
-
-        <p>
-          Imprimez chez vous
-          ou chez un imprimeur près de chez vous.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       LED
-  ========================= -->
-
-  <section class="section reveal">
-
-    <div class="badge">
-      💡 OPTION LED
-    </div>
-
-
-    <h2 class="section-title">
-
-      Le jour, une œuvre.
-
-      <span class="gradient-text">
-        La nuit, une ambiance.
-      </span>
-
-    </h2>
-
-
-    <p class="section-subtitle">
-
-      Choisissez simplement votre tableau
-      avec ou sans éclairage LED.
-
-    </p>
-
-
-    <div class="led-showcase">
-
-
-      <div class="led-card">
-
-        <img
-          src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1000&q=80"
-          alt="Tableau classique"
-        >
-
-        <h3>
-          🖼️ Sans LED
-        </h3>
-
-        <p style="color:#a6a6b5;margin-top:10px">
-
-          Une finition classique,
-          élégante et intemporelle.
-
-        </p>
-
-      </div>
-
-
-      <div class="led-card">
-
-        <img
-          class="led-glow"
-          src="https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?auto=format&fit=crop&w=1000&q=80"
-          alt="Tableau avec LED"
-        >
-
-        <h3>
-          💡 Avec LED
-        </h3>
-
-        <p style="color:#a6a6b5;margin-top:10px">
-
-          Une lumière douce derrière
-          votre œuvre pour créer une ambiance.
-
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =========================
-       ORDER
-  ========================= -->
-
-  <section
-    class="section reveal"
-    id="order"
-  >
-
-    <div class="badge">
-      🛒 VOTRE FUTURE ŒUVRE
-    </div>
-
-
-    <h2 class="section-title">
-
-      Comment voulez-vous
-
-      <span class="gradient-text">
-        votre œuvre ?
-      </span>
-
-    </h2>
-
-
-    <h3
-      style="
-        margin-bottom:20px;
-        font-size:24px;
-      "
-    >
-      📦 Type de commande
-    </h3>
-
-
-    <div
-      class="options-grid"
-      id="typeOptions"
-    >
-
-
-      <div
-        class="option selected"
-        data-value="Numérique"
-        onclick="selectOption(this,'typeOptions'); updateOrderOptions()"
-      >
-
-        <h4>
-          📥 Version numérique
-        </h4>
-
-        <p>
-          Téléchargez et imprimez chez vous
-          — 4,90 €
-        </p>
-
-      </div>
-
-
-      <div
-        class="option"
-        data-value="Tableau encadré"
-        onclick="selectOption(this,'typeOptions'); updateOrderOptions()"
-      >
-
-        <h4>
-          🖼️ Tableau encadré
-        </h4>
-
-        <p>
-          Prêt à accrocher chez vous
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <!-- PHYSICAL OPTIONS -->
-
-    <div
-      id="physicalOptions"
-      style="display:none"
-    >
-
-      <br>
-      <br>
-
-
-      <h3
-        style="
-          margin-bottom:20px;
-          font-size:24px;
-        "
-      >
-        📐 Taille
-      </h3>
-
-
-      <div
-        class="options-grid"
-        id="sizeOptions"
-      >
-
-
-        <div
-          class="option selected"
-          data-value="30 × 40 cm"
-          onclick="selectOption(this,'sizeOptions')"
-        >
-
-          <h4>
-            30 × 40 cm
-          </h4>
-
-          <p>
-            29,90 €
-          </p>
-
-        </div>
-
-
-        <div
-          class="option"
-          data-value="40 × 60 cm"
-          onclick="selectOption(this,'sizeOptions')"
-        >
-
-          <h4>
-            40 × 60 cm
-          </h4>
-
-          <p>
-            39,90 €
-          </p>
-
-        </div>
-
-
-        <div
-          class="option"
-          data-value="60 × 90 cm"
-          onclick="selectOption(this,'sizeOptions')"
-        >
-
-          <h4>
-            60 × 90 cm
-          </h4>
-
-          <p>
-            59,90 €
-          </p>
-
-        </div>
-
-      </div>
-
-
-      <br>
-      <br>
-
-
-      <h3
-        style="
-          margin-bottom:20px;
-          font-size:24px;
-        "
-      >
-        💡 Éclairage
-      </h3>
-
-
-      <div
-        class="options-grid"
-        id="ledOptions"
-      >
-
-
-        <div
-          class="option selected"
-          data-value="Sans LED"
-          onclick="selectOption(this,'ledOptions')"
-        >
-
-          <h4>
-            Sans LED
-          </h4>
-
-          <p>
-            Finition classique
-          </p>
-
-        </div>
-
-
-        <div
-          class="option"
-          data-value="Avec LED"
-          onclick="selectOption(this,'ledOptions')"
-        >
-
-          <h4>
-            💡 Avec LED
-          </h4>
-
-          <p>
-            +15 €
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <br>
-    <br>
-
-
-    <button
-      class="primary-btn"
-      style="
-        width:100%;
-        font-size:20px;
-        padding:22px;
-      "
-      onclick="addToCart()"
-    >
-      🛒 Ajouter mon œuvre au panier
-    </button>
-
-  </section>
-
-
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer>
-
-    <div
-      class="logo"
-      style="margin-bottom:20px"
-    >
-      ART<span>IFY</span>
-    </div>
-
-    <p>
-      Votre vision. Votre œuvre.
-    </p>
-
-    <br>
-
-    <p style="font-size:13px">
-      © 2026 ARTIFY
-    </p>
-
-  </footer>
-
-
-  <!-- =========================
-       CART MODAL
-  ========================= -->
-
-  <div
-    class="modal"
-    id="cartModal"
-  >
-
-    <div class="modal-content">
-
-
-      <div class="modal-header">
-
-        <h2>
-          🛒 Votre panier
-        </h2>
-
-
-        <button
-          class="close"
-          onclick="closeCart()"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <div id="cartItems">
-        Votre panier est vide.
-      </div>
-
-
-      <div
-        class="cart-total"
-        id="cartTotal"
-      >
-        Total : 0,00 €
-      </div>
-
-
-      <button
-        class="checkout"
-        id="checkoutButton"
-        onclick="checkout()"
-      >
-        💳 Continuer vers le paiement
-      </button>
-
-
-      <p
-        style="
-          text-align:center;
-          color:#888;
-          margin-top:15px;
-          font-size:13px;
-        "
-      >
-        🔒 Paiement sécurisé
-      </p>
-
-    </div>
 
   </div>
 
+</nav>
 
-  <!-- TOAST -->
 
-  <div
-    class="toast"
-    id="toast"
-  ></div>
+<main id="home">
 
 
-  <script>
+<!-- HERO -->
 
+<div class="wrap">
 
-    let uploadedImage = null;
-    let cart = [];
+<section class="hero">
 
+<div class="hero-copy">
 
-    /* =========================
-       IMAGE UPLOAD
-    ========================= */
+<div class="tag">
+✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
+</div>
 
-    const imageInput =
-      document.getElementById(
-        "imageInput"
-      );
+<h1>
 
+Transformez<br>
+votre vision en<br>
 
-    imageInput.addEventListener(
-      "change",
-      function(event) {
+<span class="grad">
+œuvre d'art.
+</span>
 
+</h1>
 
-        const file =
-          event.target.files[0];
+<p class="lead">
 
+Importez votre image,
+décrivez votre imagination
+et laissez l'IA créer
+une œuvre unique.
 
-        if (!file) return;
+</p>
 
+<div class="actions">
 
-        const reader =
-          new FileReader();
+<button
+class="primary"
+onclick="document.querySelector('#create').scrollIntoView({behavior:'smooth'})"
+>
+Créer mon œuvre
+</button>
 
+<button
+class="secondary"
+onclick="document.querySelector('#examples').scrollIntoView({behavior:'smooth'})"
+>
+Voir des exemples
+</button>
 
-        reader.onload =
-          function(e) {
+</div>
 
+</div>
 
-            uploadedImage =
-              e.target.result;
 
+<div class="hero-art">
 
-            const preview =
-              document.getElementById(
-                "previewImage"
-              );
+<!-- TABLEAU ENCADRÉ VISIBLE -->
 
+<div class="frame">
 
-            preview.src =
-              uploadedImage;
+<img
+src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=85"
+alt="Œuvre ARTIFY"
+>
 
+</div>
 
-            preview.style.display =
-              "block";
+</div>
 
+</section>
 
-            document.getElementById(
-              "uploadText"
-            ).style.display =
-              "none";
+</div>
 
-          };
 
+<!-- AVANT APRES -->
 
-        reader.readAsDataURL(file);
+<section id="examples">
 
-      }
-    );
+<div class="wrap">
 
+<div class="split-title">
 
-    /* =========================
-       PROMPT
-    ========================= */
+<div>
 
-    function setPrompt(text) {
+<div class="tag">
+AVANT / APRÈS
+</div>
 
-      document.getElementById(
-        "prompt"
-      ).value = text;
+<h2 class="section-title">
 
-    }
+Une photo.<br>
 
+Une
 
-    /* =========================
-       GENERATE ART
-    ========================= */
+<span class="grad">
+nouvelle réalité.
+</span>
 
-    async function generateArt() {
+</h2>
 
+<p class="section-text">
 
-      const prompt =
-        document.getElementById(
-          "prompt"
-        ).value.trim();
+Faites glisser le curseur
+pour découvrir comment
+une image peut devenir
+une œuvre.
 
+</p>
 
-      const button =
-        document.getElementById(
-          "generateButton"
-        );
+</div>
 
 
-      if (!uploadedImage) {
+<div class="compare">
 
-        showToast(
-          "📸 Ajoutez une image avant de commencer."
-        );
+<div class="before"></div>
 
-        return;
+<div
+class="after"
+id="after"
+></div>
 
-      }
+<div
+class="line"
+id="compareLine"
+></div>
 
+<div
+class="handle"
+id="handle"
+>
+↔
+</div>
 
-      if (!prompt) {
+<span class="pill p-before">
+📸 AVANT
+</span>
 
-        showToast(
-          "✍️ Décrivez ce que vous souhaitez créer."
-        );
+<span class="pill p-after">
+✨ APRÈS
+</span>
 
-        return;
+<input
+id="slider"
+type="range"
+min="0"
+max="100"
+value="50"
+>
 
-      }
+</div>
 
+</div>
 
-      button.disabled = true;
 
+<!-- PRIX -->
 
-      button.innerHTML =
-        "⏳ Création de votre œuvre...";
+<div class="cards">
 
+<div class="card">
 
-      try {
+<div class="icon">
+📥
+</div>
 
+<h3>
+Version numérique
+</h3>
 
-        const response =
-          await fetch(
-            "/api/generate",
-            {
+<p>
+Téléchargez votre œuvre
+et imprimez-la chez vous.
+</p>
 
-              method: "POST",
+<span class="price">
+4,90 €
+</span>
 
-              headers: {
-                "Content-Type":
-                  "application/json"
-              },
+</div>
 
 
-              body:
-                JSON.stringify({
+<div class="card">
 
-                  prompt: prompt,
+<div class="icon">
+🖼️
+</div>
 
-                  image: uploadedImage
+<h3>
+Tableau encadré
+</h3>
 
-                })
+<p>
+Imprimé et prêt à accrocher
+dans votre salon,
+votre chambre ou votre bureau.
+</p>
 
-            }
-          );
+<span class="price">
+À partir de 29,90 €
+</span>
 
+</div>
 
-        const data =
-          await response.json();
 
+<div class="card">
 
-        if (!response.ok) {
+<div class="icon">
+💡
+</div>
 
-          throw new Error(
-            data.error ||
-            "Erreur pendant la création"
-          );
+<h3>
+Option LED
+</h3>
 
-        }
+<p>
+Ajoutez une lumière douce
+derrière votre tableau.
+</p>
 
+<span class="price">
++ 15 €
+</span>
 
-        document.getElementById(
-          "resultImage"
-        ).src =
-          data.image || uploadedImage;
+</div>
 
+</div>
 
-        document.getElementById(
-          "resultSection"
-        ).style.display =
-          "block";
+</div>
 
+</section>
 
-        document.getElementById(
-          "resultSection"
-        ).scrollIntoView({
-          behavior: "smooth"
-        });
 
+<!-- SALON CHAMBRE BUREAU -->
 
-        showToast(
-          "✨ Votre œuvre est prête !"
-        );
+<section>
 
-      }
+<div class="wrap room-grid">
 
+<div>
 
-      catch(error) {
+<div class="tag">
+CHEZ VOUS
+</div>
 
+<h2 class="section-title">
 
-        console.error(error);
+Votre œuvre
+dans votre
 
+<span class="grad">
+intérieur.
+</span>
 
-        showToast(
-          "❌ Erreur : " +
-          error.message
-        );
+</h2>
 
-      }
+<p class="section-text">
 
+Imaginez votre création
+comme une véritable décoration
+dans votre maison.
 
-      finally {
+</p>
 
+</div>
 
-        button.disabled = false;
 
+<div class="room r1">
 
-        button.innerHTML =
-          "✨ Créer mon œuvre avec l'IA";
+<span>
+🛋️ Dans votre salon
+</span>
 
-      }
+</div>
 
-    }
 
+<div class="room r2">
 
-    /* =========================
-       BEFORE AFTER
-    ========================= */
+<span>
+🛏️ Dans votre chambre
+</span>
 
-    const comparisonRange =
-      document.getElementById(
-        "comparisonRange"
-      );
+</div>
 
 
-    comparisonRange.addEventListener(
-      "input",
-      function() {
+<div class="room r3">
 
-        document.getElementById(
-          "afterContainer"
-        ).style.width =
-          this.value + "%";
+<span>
+💻 Dans votre bureau
+</span>
 
-      }
-    );
+</div>
 
+</div>
 
-    /* =========================
-       OPTIONS
-    ========================= */
+</section>
 
-    function selectOption(
-      element,
-      groupId
-    ) {
 
+<!-- COMMENT CA MARCHE -->
 
-      const group =
-        document.getElementById(
-          groupId
-        );
+<section id="how">
 
+<div class="wrap steps-led">
 
-      const options =
-        group.querySelectorAll(
-          ".option"
-        );
 
+<div>
 
-      options.forEach(
-        option => {
+<div class="tag">
+COMMENT ÇA MARCHE ?
+</div>
 
-          option.classList.remove(
-            "selected"
-          );
+<h2 class="section-title">
 
-        }
-      );
+3 étapes simples
+</h2>
 
 
-      element.classList.add(
-        "selected"
-      );
+<div class="steps">
 
-    }
+<div class="step">
 
+<div class="num">
+1
+</div>
 
-    function getSelectedValue(groupId) {
+<h4>
+Créez votre œuvre
+</h4>
 
+<p>
+Importez votre image
+et décrivez exactement
+ce que vous souhaitez.
+</p>
 
-      const selected =
-        document
-          .getElementById(groupId)
-          .querySelector(".selected");
+</div>
 
 
-      return selected.dataset.value;
+<div class="step">
 
-    }
+<div class="num">
+2
+</div>
 
+<h4>
+Choisissez votre option
+</h4>
 
-    /* =========================
-       SHOW PHYSICAL OPTIONS
-    ========================= */
+<p>
+Version numérique
+ou tableau encadré.
+</p>
 
-    function updateOrderOptions() {
+</div>
 
 
-      const type =
-        getSelectedValue(
-          "typeOptions"
-        );
+<div class="step">
 
+<div class="num">
+3
+</div>
 
-      const physicalOptions =
-        document.getElementById(
-          "physicalOptions"
-        );
+<h4>
+Profitez
+</h4>
 
+<p>
+Imprimez chez vous
+ou recevez votre tableau.
+</p>
 
-      if (
-        type === "Tableau encadré"
-      ) {
+</div>
 
-        physicalOptions.style.display =
-          "block";
+</div>
 
-      }
+</div>
 
 
-      else {
+<!-- LED VISIBLE -->
 
-        physicalOptions.style.display =
-          "none";
+<div class="ledbox">
 
-      }
+<div class="tag">
+OPTION LED
+</div>
 
-    }
+<h2 class="section-title">
 
+Avec ou sans
 
-    /* =========================
-       PRICE
-    ========================= */
+<span class="grad">
+LED.
+</span>
 
-    function calculatePrice(
-      type,
-      size,
-      led
-    ) {
+</h2>
 
+<p class="section-text">
 
-      if (
-        type === "Numérique"
-      ) {
+Choisissez simplement
+l'ambiance de votre tableau.
 
-        return 4.90;
+</p>
 
-      }
 
+<div class="ledimages">
 
-      const prices = {
 
-        "30 × 40 cm": 29.90,
+<div>
 
-        "40 × 60 cm": 39.90,
+<div class="ledimg">
 
-        "60 × 90 cm": 59.90
+<img
+src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=700&q=80"
+>
 
-      };
+</div>
 
+<p style="margin-top:10px">
+🖼️ Sans LED
+</p>
 
-      let price =
-        prices[size] || 29.90;
+</div>
 
 
-      if (
-        led === "Avec LED"
-      ) {
+<div>
 
-        price += 15;
+<div class="ledimg glow">
 
-      }
+<img
+src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=700&q=80"
+>
 
+</div>
 
-      return price;
+<p style="margin-top:10px">
+💡 Avec LED
+</p>
 
-    }
+</div>
 
 
-    /* =========================
-       ADD TO CART
-    ========================= */
+</div>
 
-    function addToCart() {
+</div>
 
+</div>
 
-      const type =
-        getSelectedValue(
-          "typeOptions"
-        );
+</section>
 
 
-      let size = null;
-      let led = null;
+<!-- CREATE -->
 
+<section id="create">
 
-      if (
-        type === "Tableau encadré"
-      ) {
+<div class="wrap">
 
+<div class="tag">
+✨ CRÉEZ VOTRE ŒUVRE
+</div>
 
-        size =
-          getSelectedValue(
-            "sizeOptions"
-          );
+<h2 class="section-title">
 
+Votre imagination,
 
-        led =
-          getSelectedValue(
-            "ledOptions"
-          );
+<span class="grad">
+sans limites.
+</span>
 
-      }
+</h2>
 
+<p class="section-text">
 
-      const price =
-        calculatePrice(
-          type,
-          size,
-          led
-        );
+Importez une photo et expliquez
+à l'IA exactement la transformation
+que vous souhaitez.
 
+</p>
 
-      cart.push({
 
-        type,
-        size,
-        led,
-        price
+<div
+class="order"
+style="margin-top:28px"
+>
 
-      });
 
+<!-- IMAGE IA -->
 
-      updateCart();
+<div class="order-box">
 
+<h4>
+1. Créez votre œuvre
+</h4>
 
-      showToast(
-        "🛒 Votre œuvre a été ajoutée au panier !"
-      );
+<input
+type="file"
+id="imageInput"
+accept="image/*"
+style="
+width:100%;
+margin-bottom:12px;
+"
+>
 
-    }
 
+<textarea
+id="prompt"
 
-    /* =========================
-       UPDATE CART
-    ========================= */
+placeholder="Exemple : Transforme cette photo en une œuvre artistique luxueuse avec une ambiance futuriste, cinématographique et des couleurs violettes..."
 
-    function updateCart() {
+style="
+width:100%;
+min-height:135px;
+background:#090a12;
+border:1px solid var(--line);
+border-radius:12px;
+color:#fff;
+padding:14px;
+font:inherit;
+"
 
+></textarea>
 
-      document.getElementById(
-        "cartCount"
-      ).textContent =
-        cart.length;
 
-    }
+<button
+class="primary"
+id="generateButton"
 
+style="
+width:100%;
+margin-top:10px;
+"
 
-    /* =========================
-       OPEN CART
-    ========================= */
+onclick="generateArt()"
+>
 
-    function openCart() {
+✨ Créer mon œuvre avec l'IA
 
+</button>
 
-      const container =
-        document.getElementById(
-          "cartItems"
-        );
 
+<img
+id="resultImage"
 
-      const totalElement =
-        document.getElementById(
-          "cartTotal"
-        );
+style="
+display:none;
+width:100%;
+margin-top:14px;
+border-radius:12px;
+max-height:420px;
+object-fit:contain;
+"
 
+>
 
-      if (cart.length === 0) {
+</div>
 
 
-        container.innerHTML =
-          `
-          <p
-            style="
-              color:#aaa;
-              text-align:center;
-              padding:20px;
-            "
-          >
-            🛒 Votre panier est vide.
-          </p>
-          `;
+<!-- OPTIONS -->
 
+<div class="order-box">
 
-        totalElement.textContent =
-          "Total : 0,00 €";
+<h4>
+2. Choisissez votre option
+</h4>
 
-      }
 
+<div
+class="choices"
+id="typeOptions"
+>
 
-      else {
 
+<div
+class="choice selected"
+data-value="Numérique"
+data-price="4.90"
 
-        container.innerHTML =
-          "";
+onclick="
+selectChoice(this,'typeOptions');
+togglePhysical();
+"
+>
 
+<b>
+📥 Version numérique
+</b>
 
-        let total = 0;
+<small>
+Téléchargez et imprimez
+chez vous.
+</small>
 
+<b>
+4,90 €
+</b>
 
-        cart.forEach(
-          function(item, index) {
+</div>
 
 
-            total += item.price;
+<div
+class="choice"
+data-value="Tableau encadré"
 
+onclick="
+selectChoice(this,'typeOptions');
+togglePhysical();
+"
+>
 
-            const div =
-              document.createElement(
-                "div"
-              );
+<b>
+🖼️ Tableau encadré
+</b>
 
+<small>
+Prêt à accrocher
+chez vous.
+</small>
 
-            div.className =
-              "cart-item";
+<b>
+À partir de 29,90 €
+</b>
 
+</div>
 
-            let details = "";
+</div>
 
 
-            if (
-              item.type === "Numérique"
-            ) {
+<!-- OPTIONS PHYSIQUES -->
 
+<div
+id="physical"
+style="
+display:none;
+margin-top:14px;
+"
+>
 
-              details =
-                `
-                📥 Version numérique
+<h4>
+📐 Taille
+</h4>
 
-                <br>
 
-                🖨️ À imprimer chez vous
-                `;
+<div
+class="sizes"
+id="sizeOptions"
+>
 
-            }
+<div
+class="choice selected"
 
+data-value="30 × 40 cm"
+data-price="29.90"
 
-            else {
+onclick="selectChoice(this,'sizeOptions')"
+>
 
+30 × 40 cm
 
-              details =
-                `
-                🖼️ Tableau encadré
+<b>
+29,90 €
+</b>
 
-                <br>
+</div>
 
-                📐 ${item.size}
 
-                <br>
+<div
+class="choice"
 
-                💡 ${item.led}
-                `;
+data-value="40 × 60 cm"
+data-price="39.90"
 
-            }
+onclick="selectChoice(this,'sizeOptions')"
+>
 
+40 × 60 cm
 
-            div.innerHTML =
-              `
+<b>
+39,90 €
+</b>
 
-              <button
-                class="remove-item"
-                onclick="removeFromCart(${index})"
-              >
-                🗑️
-              </button>
+</div>
 
 
-              <strong>
-                🎨 Œuvre ARTIFY
-              </strong>
+<div
+class="choice"
 
+data-value="60 × 90 cm"
+data-price="59.90"
 
-              <br>
-              <br>
+onclick="selectChoice(this,'sizeOptions')"
+>
 
+60 × 90 cm
 
-              ${details}
+<b>
+59,90 €
+</b>
 
+</div>
 
-              <span class="cart-price">
+</div>
 
-                ${item.price
-                  .toFixed(2)
-                  .replace(".", ",")} €
 
-              </span>
+<h4 style="margin-top:15px">
+💡 Éclairage
+</h4>
 
-              `;
 
+<div
+class="lights"
+id="ledOptions"
+>
 
-            container.appendChild(
-              div
-            );
 
-          }
-        );
+<div
+class="choice selected"
 
+data-value="Sans LED"
+data-price="0"
 
-        totalElement.textContent =
-          "Total : " +
-          total
-            .toFixed(2)
-            .replace(".", ",") +
-          " €";
+onclick="selectChoice(this,'ledOptions')"
+>
 
-      }
+Sans LED
 
+<small>
+Finition classique
+</small>
 
-      document.getElementById(
-        "cartModal"
-      ).style.display =
-        "flex";
+</div>
 
-    }
 
+<div
+class="choice"
 
-    /* =========================
-       REMOVE
-    ========================= */
+data-value="Avec LED"
+data-price="15"
 
-    function removeFromCart(index) {
+onclick="selectChoice(this,'ledOptions')"
+>
 
+💡 Avec LED
 
-      cart.splice(
-        index,
-        1
-      );
+<b>
++15 €
+</b>
 
+</div>
 
-      updateCart();
+</div>
 
+</div>
 
-      openCart();
+</div>
 
 
-      showToast(
-        "🗑️ L'œuvre a été supprimée."
-      );
+<!-- APERCU -->
 
-    }
+<div class="order-box summary">
 
+<h4>
+Votre œuvre
+</h4>
 
-    /* =========================
-       CLOSE
-    ========================= */
+<img
+id="summaryImage"
 
-    function closeCart() {
+src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=600&q=80"
+>
 
+<p id="summaryText">
 
-      document.getElementById(
-        "cartModal"
-      ).style.display =
-        "none";
+Version numérique
 
-    }
+</p>
 
 
-    /* =========================
-       CHECKOUT
-    ========================= */
+<div
+class="total"
+id="liveTotal"
+>
 
-    async function checkout() {
+Total : 4,90 €
 
+</div>
 
-      if (
-        cart.length === 0
-      ) {
 
+<button
+class="checkout"
+onclick="addToCart()"
+>
 
-        showToast(
-          "🛒 Votre panier est vide."
-        );
+🛒 Ajouter au panier
 
+</button>
 
-        return;
+</div>
 
-      }
+</div>
 
+</div>
 
-      /*
-        ICI ON CONNECTERA STRIPE.
+</section>
 
-        Le serveur devra recevoir :
 
-        POST /api/checkout
+<!-- TRUST -->
 
-        avec le panier.
+<section>
 
-      */
+<div class="wrap">
 
+<div class="trust">
 
-      showToast(
-        "💳 Paiement sécurisé : Stripe sera connecté ici."
-      );
+<div>
 
-    }
+🛡️
 
+<b>
+Paiement sécurisé
+</b>
 
-    /* =========================
-       NAVIGATION
-    ========================= */
+Stripe & SSL
 
-    function scrollToOrder() {
+</div>
 
 
-      document.getElementById(
-        "order"
-      ).scrollIntoView({
+<div>
 
-        behavior: "smooth"
+🖼️
 
-      });
+<b>
+Création unique
+</b>
 
-    }
+Votre imagination
 
+</div>
 
-    /* =========================
-       TOAST
-    ========================= */
 
-    function showToast(message) {
+<div>
 
+🚚
 
-      const toast =
-        document.getElementById(
-          "toast"
-        );
+<b>
+Livraison rapide
+</b>
 
+Tableaux physiques
 
-      toast.textContent =
-        message;
+</div>
 
 
-      toast.classList.add(
-        "show"
-      );
+<div>
 
+💬
 
-      setTimeout(
-        function() {
+<b>
+Support
+</b>
 
+Nous sommes là
 
-          toast.classList.remove(
-            "show"
-          );
+</div>
 
+</div>
 
-        },
-        3500
-      );
+</div>
 
-    }
+</section>
 
 
-    /* =========================
-       SCROLL ANIMATION
-    ========================= */
+</main>
 
-    const reveals =
-      document.querySelectorAll(
-        ".reveal"
-      );
 
+<footer>
 
-    const observer =
-      new IntersectionObserver(
-        function(entries) {
+<div class="logo">
 
+ART<span>IFY</span>
 
-          entries.forEach(
-            function(entry) {
+</div>
 
+<p style="margin-top:15px">
 
-              if (
-                entry.isIntersecting
-              ) {
+Votre vision.
+Votre œuvre.
 
+</p>
 
-                entry.target.classList.add(
-                  "active"
-                );
+<p style="margin-top:12px">
 
+© 2026 ARTIFY
 
-              }
+</p>
 
-            }
-          );
+</footer>
 
 
-        },
-        {
+<!-- PANIER -->
 
-          threshold: 0.12
+<div
+class="modal"
+id="cartModal"
+>
 
-        }
-      );
+<div class="modalin">
 
+<div class="modalhead">
 
-    reveals.forEach(
-      function(element) {
+<h2>
+🛒 Votre panier
+</h2>
 
-        observer.observe(
-          element
-        );
+<button
+class="close"
+onclick="closeCart()"
+>
+×
+</button>
 
-      }
-    );
+</div>
 
 
-    /* HERO APPEARS */
+<div id="cartItems">
 
-    setTimeout(
-      function() {
+Votre panier est vide.
 
+</div>
 
-        document
-          .querySelectorAll(
-            ".hero .reveal"
-          )
-          .forEach(
-            element => {
 
-              element.classList.add(
-                "active"
-              );
+<div
+class="carttotal"
+id="cartTotal"
+>
 
-            }
-          );
+Total : 0,00 €
 
+</div>
 
-      },
-      200
-    );
 
+<button
+class="checkout"
+onclick="checkout()"
+>
 
-  </script>
+Continuer vers le paiement
+
+</button>
+
+</div>
+
+</div>
+
+
+<div
+class="toast"
+id="toast"
+></div>
+
+
+<script>
+
+
+let uploadedImage = null;
+
+let cart = [];
+
+
+/* AVANT APRES */
+
+const slider =
+document.getElementById("slider");
+
+const after =
+document.getElementById("after");
+
+const compareLine =
+document.getElementById("compareLine");
+
+const handle =
+document.getElementById("handle");
+
+
+slider.addEventListener(
+"input",
+
+function(){
+
+let value =
+slider.value;
+
+after.style.clipPath =
+`inset(0 0 0 ${value}%)`;
+
+compareLine.style.left =
+value + "%";
+
+handle.style.left =
+value + "%";
+
+}
+);
+
+
+/* CHOIX */
+
+function selectChoice(
+element,
+groupId
+){
+
+document
+.querySelectorAll(
+"#" + groupId + " .choice"
+)
+
+.forEach(
+item => {
+
+item.classList.remove(
+"selected"
+);
+
+}
+);
+
+
+element.classList.add(
+"selected"
+);
+
+
+updateTotal();
+
+}
+
+
+function selected(groupId){
+
+return document.querySelector(
+"#" +
+groupId +
+" .selected"
+);
+
+}
+
+
+/* PHYSICAL */
+
+function togglePhysical(){
+
+const type =
+selected(
+"typeOptions"
+).dataset.value;
+
+
+const physical =
+document.getElementById(
+"physical"
+);
+
+
+if(
+type ===
+"Tableau encadré"
+){
+
+physical.style.display =
+"block";
+
+}
+
+else{
+
+physical.style.display =
+"none";
+
+}
+
+
+updateTotal();
+
+}
+
+
+/* PRIX */
+
+function getPrice(){
+
+const type =
+selected(
+"typeOptions"
+).dataset.value;
+
+
+if(
+type ===
+"Numérique"
+){
+
+return 4.90;
+
+}
+
+
+const size =
+parseFloat(
+selected(
+"sizeOptions"
+).dataset.price
+);
+
+
+const led =
+parseFloat(
+selected(
+"ledOptions"
+).dataset.price
+);
+
+
+return size + led;
+
+}
+
+
+function updateTotal(){
+
+const type =
+selected(
+"typeOptions"
+).dataset.value;
+
+
+const price =
+getPrice();
+
+
+document.getElementById(
+"liveTotal"
+).textContent =
+"Total : " +
+price
+.toFixed(2)
+.replace(".",",") +
+" €";
+
+
+let text = type;
+
+
+if(
+type ===
+"Tableau encadré"
+){
+
+text +=
+" — " +
+selected(
+"sizeOptions"
+).dataset.value;
+
+
+text +=
+" — " +
+selected(
+"ledOptions"
+).dataset.value;
+
+}
+
+
+document.getElementById(
+"summaryText"
+).textContent =
+text;
+
+}
+
+
+/* UPLOAD */
+
+document
+.getElementById(
+"imageInput"
+)
+
+.addEventListener(
+
+"change",
+
+function(event){
+
+const file =
+event.target.files[0];
+
+
+if(!file)
+return;
+
+
+const reader =
+new FileReader();
+
+
+reader.onload =
+function(e){
+
+uploadedImage =
+e.target.result;
+
+
+document.getElementById(
+"summaryImage"
+).src =
+uploadedImage;
+
+};
+
+
+reader.readAsDataURL(
+file
+);
+
+}
+);
+
+
+/* GENERATE IA */
+
+async function generateArt(){
+
+const prompt =
+document
+.getElementById(
+"prompt"
+)
+.value
+.trim();
+
+
+const button =
+document
+.getElementById(
+"generateButton"
+);
+
+
+if(!uploadedImage){
+
+toast(
+"📸 Ajoutez une image avant de commencer."
+);
+
+return;
+
+}
+
+
+if(!prompt){
+
+toast(
+"✍️ Décrivez votre vision."
+);
+
+return;
+
+}
+
+
+button.disabled = true;
+
+button.textContent =
+"⏳ Création en cours...";
+
+
+try{
+
+const response =
+await fetch(
+
+"/api/generate",
+
+{
+
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json"
+},
+
+body:
+JSON.stringify({
+
+prompt:prompt,
+
+image:uploadedImage
+
+})
+
+}
+
+);
+
+
+const data =
+await response.json();
+
+
+if(
+!response.ok
+){
+
+throw new Error(
+
+data.error ||
+"Erreur pendant la création"
+
+);
+
+}
+
+
+const image =
+data.image ||
+uploadedImage;
+
+
+const result =
+document.getElementById(
+"resultImage"
+);
+
+
+result.src =
+image;
+
+
+result.style.display =
+"block";
+
+
+document.getElementById(
+"summaryImage"
+).src =
+image;
+
+
+toast(
+"✨ Votre œuvre est prête !"
+);
+
+}
+
+
+catch(error){
+
+console.error(
+error
+);
+
+
+toast(
+"❌ " +
+error.message
+);
+
+}
+
+
+finally{
+
+button.disabled =
+false;
+
+
+button.textContent =
+"✨ Créer mon œuvre avec l'IA";
+
+}
+
+}
+
+
+/* AJOUT PANIER */
+
+function addToCart(){
+
+const type =
+selected(
+"typeOptions"
+).dataset.value;
+
+
+let item = {
+
+type:type,
+
+price:getPrice(),
+
+size:null,
+
+led:null
+
+};
+
+
+if(
+type ===
+"Tableau encadré"
+){
+
+item.size =
+selected(
+"sizeOptions"
+).dataset.value;
+
+
+item.led =
+selected(
+"ledOptions"
+).dataset.value;
+
+}
+
+
+cart.push(
+item
+);
+
+
+document.getElementById(
+"cartCount"
+).textContent =
+cart.length;
+
+
+toast(
+"🛒 Votre œuvre a été ajoutée au panier !"
+);
+
+}
+
+
+/* PANIER */
+
+function openCart(){
+
+const container =
+document.getElementById(
+"cartItems"
+);
+
+
+const total =
+cart.reduce(
+
+function(sum,item){
+
+return sum +
+item.price;
+
+},
+
+0
+
+);
+
+
+if(
+cart.length === 0
+){
+
+container.innerHTML =
+"Votre panier est vide.";
+
+}
+
+else{
+
+
+container.innerHTML =
+cart
+.map(
+
+function(item,index){
+
+return `
+
+<div class="cartitem">
+
+<b>
+🎨 Œuvre ARTIFY
+</b>
+
+<br>
+
+<small>
+
+${item.type}
+
+${item.size ?
+" — " + item.size :
+""}
+
+${item.led ?
+" — " + item.led :
+""}
+
+</small>
+
+<br><br>
+
+<b>
+
+${item.price
+.toFixed(2)
+.replace(".",",")}
+
+€
+
+</b>
+
+
+<button
+
+onclick="removeCart(${index})"
+
+style="
+float:right;
+background:transparent;
+border:0;
+color:#ff8aa8;
+cursor:pointer;
+"
+
+>
+
+🗑️
+
+</button>
+
+</div>
+
+`;
+
+}
+
+)
+
+.join("");
+
+}
+
+
+document.getElementById(
+"cartTotal"
+).textContent =
+
+"Total : " +
+
+total
+.toFixed(2)
+.replace(".",",") +
+
+" €";
+
+
+document.getElementById(
+"cartModal"
+).classList.add(
+"show"
+);
+
+}
+
+
+function closeCart(){
+
+document.getElementById(
+"cartModal"
+).classList.remove(
+"show"
+);
+
+}
+
+
+function removeCart(index){
+
+cart.splice(
+index,
+1
+);
+
+
+document.getElementById(
+"cartCount"
+).textContent =
+cart.length;
+
+
+openCart();
+
+}
+
+
+/* PAIEMENT */
+
+function checkout(){
+
+if(
+cart.length === 0
+){
+
+toast(
+"🛒 Votre panier est vide."
+);
+
+return;
+
+}
+
+
+toast(
+"💳 Le paiement Stripe sera connecté maintenant."
+);
+
+}
+
+
+/* TOAST */
+
+function toast(message){
+
+const element =
+document.getElementById(
+"toast"
+);
+
+
+element.textContent =
+message;
+
+
+element.classList.add(
+"show"
+);
+
+
+setTimeout(
+
+function(){
+
+element.classList.remove(
+"show"
+);
+
+},
+
+3200
+
+);
+
+}
+
+
+</script>
 
 </body>
 </html>
