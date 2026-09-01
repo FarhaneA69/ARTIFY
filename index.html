@@ -1,383 +1,1291 @@
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
+<!DOCTYPE html>
+<html lang="fr">
 
-Deno.serve(async (req) => {
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  // ==============================
-  // CORS
-  // ==============================
+  <title>ARTIFY — Transformez vos photos en œuvres d'art</title>
 
-  if (req.method === "OPTIONS") {
-    return new Response("ok", {
-      headers: corsHeaders,
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #09090b;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      border-bottom: 1px solid #27272a;
+      background: #09090b;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 4px;
+    }
+
+    .logo span {
+      color: #a855f7;
+    }
+
+    nav {
+      display: flex;
+      gap: 25px;
+      color: #a1a1aa;
+    }
+
+    nav a {
+      color: #a1a1aa;
+      text-decoration: none;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .gradient {
+      background: linear-gradient(
+        90deg,
+        #8b5cf6,
+        #ec4899,
+        #6366f1
+      );
+
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 19px;
+      color: #a1a1aa;
+      line-height: 1.6;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .steps {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 20px;
+
+      width: 90%;
+      max-width: 1000px;
+
+      margin:
+        0 auto
+        50px;
+
+    }
+
+    .step {
+
+      background: #18181b;
+
+      border:
+        1px solid
+        #27272a;
+
+      padding: 25px;
+
+      border-radius: 18px;
+
+      text-align: center;
+
+    }
+
+    .step-number {
+
+      width: 40px;
+      height: 40px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7c3aed,
+          #ec4899
+        );
+
+      border-radius: 50%;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      margin:
+        0 auto
+        15px;
+
+      font-weight: bold;
+
+    }
+
+    .step h3 {
+      margin-bottom: 10px;
+    }
+
+    .step p {
+      color: #a1a1aa;
+      line-height: 1.5;
+    }
+
+    .container {
+
+      width: 90%;
+      max-width: 900px;
+
+      margin: auto;
+
+      padding-bottom: 100px;
+
+    }
+
+    .card {
+
+      background: #18181b;
+
+      border:
+        1px solid
+        #27272a;
+
+      border-radius: 20px;
+
+      padding: 30px;
+
+      margin-top: 25px;
+
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .upload-box {
+
+      border:
+        2px dashed
+        #52525b;
+
+      border-radius: 16px;
+
+      padding: 50px 20px;
+
+      text-align: center;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+    }
+
+    .upload-box:hover {
+
+      border-color:
+        #a855f7;
+
+      background:
+        #21152e;
+
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .upload-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+    }
+
+    textarea {
+
+      width: 100%;
+
+      min-height: 130px;
+
+      background: #09090b;
+
+      color: white;
+
+      border:
+        1px solid
+        #3f3f46;
+
+      border-radius: 14px;
+
+      padding: 16px;
+
+      font-size: 16px;
+
+      resize: vertical;
+
+    }
+
+    textarea:focus {
+
+      outline: none;
+
+      border-color:
+        #a855f7;
+
+    }
+
+    button {
+
+      width: 100%;
+
+      border: none;
+
+      border-radius: 14px;
+
+      padding: 17px;
+
+      margin-top: 15px;
+
+      font-size: 17px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      color: white;
+
+    }
+
+    .generate-button {
+
+      background:
+        linear-gradient(
+          90deg,
+          #7c3aed,
+          #db2777
+        );
+
+    }
+
+    .generate-button:hover {
+      opacity: 0.9;
+    }
+
+    .generate-button:disabled {
+
+      opacity: 0.5;
+
+      cursor:
+        not-allowed;
+
+    }
+
+    .status {
+
+      text-align: center;
+
+      margin-top: 18px;
+
+      color: #a1a1aa;
+
+      min-height: 25px;
+
+    }
+
+    #preview {
+
+      width: 100%;
+
+      max-height: 500px;
+
+      object-fit: contain;
+
+      border-radius: 15px;
+
+      margin-top: 20px;
+
+      display: none;
+
+      background: black;
+
+    }
+
+    #resultImage {
+
+      width: 100%;
+
+      max-height: 600px;
+
+      object-fit: contain;
+
+      border-radius: 15px;
+
+      margin-top: 20px;
+
+      background: black;
+
+    }
+
+    .options {
+
+      display: none;
+
+    }
+
+    .choices {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(130px, 1fr)
+        );
+
+      gap: 12px;
+
+      margin-bottom: 25px;
+
+    }
+
+    .choice {
+
+      padding: 16px;
+
+      background: #09090b;
+
+      border:
+        1px solid
+        #3f3f46;
+
+      border-radius: 12px;
+
+      cursor: pointer;
+
+      text-align: center;
+
+      transition: 0.2s;
+
+    }
+
+    .choice:hover {
+
+      border-color:
+        #a855f7;
+
+    }
+
+    .choice.selected {
+
+      background: #5b21b6;
+
+      border-color:
+        #c084fc;
+
+    }
+
+    .section-title {
+
+      margin-bottom: 12px;
+
+      margin-top: 25px;
+
+    }
+
+    .order-button {
+
+      background:
+        linear-gradient(
+          90deg,
+          #16a34a,
+          #22c55e
+        );
+
+    }
+
+    .result-card {
+      display: none;
+    }
+
+    footer {
+
+      text-align: center;
+
+      padding: 40px;
+
+      border-top:
+        1px solid #27272a;
+
+      color: #71717a;
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 18px 6%;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="logo">
+
+    ART<span>IFY</span>
+
+  </div>
+
+
+  <nav>
+
+    <a href="#">Accueil</a>
+
+    <a href="#creation">
+      Créer
+    </a>
+
+    <a href="#comment">
+      Comment ça marche
+    </a>
+
+  </nav>
+
+</header>
+
+
+
+<section class="hero">
+
+  <h1>
+
+    Transformez vos photos en
+
+    <br>
+
+    <span class="gradient">
+
+      œuvres d'art uniques
+
+    </span>
+
+  </h1>
+
+
+  <p>
+
+    Importez votre photo,
+    décrivez votre imagination
+    et laissez l'intelligence
+    artificielle créer votre œuvre.
+
+  </p>
+
+</section>
+
+
+
+<section
+  class="steps"
+  id="comment"
+>
+
+
+  <div class="step">
+
+    <div class="step-number">
+      1
+    </div>
+
+    <h3>
+      Importez
+    </h3>
+
+    <p>
+
+      Choisissez une photo
+      que vous souhaitez
+      transformer.
+
+    </p>
+
+  </div>
+
+
+
+  <div class="step">
+
+    <div class="step-number">
+      2
+    </div>
+
+    <h3>
+      Imaginez
+    </h3>
+
+    <p>
+
+      Décrivez le style,
+      les couleurs et
+      l'univers souhaité.
+
+    </p>
+
+  </div>
+
+
+
+  <div class="step">
+
+    <div class="step-number">
+      3
+    </div>
+
+    <h3>
+      Créez
+    </h3>
+
+    <p>
+
+      L'intelligence artificielle
+      transforme votre photo.
+
+    </p>
+
+  </div>
+
+
+</section>
+
+
+
+<div
+  class="container"
+  id="creation"
+>
+
+
+  <!-- PHOTO -->
+
+
+  <div class="card">
+
+
+    <h2>
+
+      📸 1. Importez votre photo
+
+    </h2>
+
+
+    <label
+      class="upload-box"
+      for="imageInput"
+    >
+
+
+      <div class="upload-icon">
+
+        📷
+
+      </div>
+
+
+      <h3>
+
+        Cliquez pour choisir
+        une photo
+
+      </h3>
+
+
+      <p
+        style="
+        color:#a1a1aa;
+        margin-top:10px;
+        "
+      >
+
+        JPG, PNG ou WEBP
+
+      </p>
+
+
+    </label>
+
+
+
+    <input
+      type="file"
+      id="imageInput"
+      accept="image/*"
+    >
+
+
+    <img
+      id="preview"
+      alt="Aperçu de votre photo"
+    >
+
+
+  </div>
+
+
+
+  <!-- PROMPT -->
+
+
+  <div class="card">
+
+
+    <h2>
+
+      ✨ 2. Décrivez votre œuvre
+
+    </h2>
+
+
+    <textarea
+
+      id="prompt"
+
+      placeholder="Exemple : Transforme cette photo en une peinture futuriste avec des couleurs néon, un style artistique moderne et conserve le sujet principal."
+
+    ></textarea>
+
+
+    <button
+      id="generateButton"
+      class="generate-button"
+    >
+
+      ✨ Générer avec l'IA
+
+    </button>
+
+
+    <div
+      id="status"
+      class="status"
+    ></div>
+
+
+  </div>
+
+
+
+  <!-- RESULTAT -->
+
+
+  <div
+    id="resultCard"
+    class="card result-card"
+  >
+
+
+    <h2>
+
+      🎨 Votre création ARTIFY
+
+    </h2>
+
+
+    <img
+      id="resultImage"
+      alt="Création générée par IA"
+    >
+
+
+  </div>
+
+
+
+  <!-- OPTIONS -->
+
+
+  <div
+    id="options"
+    class="card options"
+  >
+
+
+    <h2>
+
+      🖼️ Personnalisez votre tableau
+
+    </h2>
+
+
+
+    <h3 class="section-title">
+
+      📏 Taille
+
+    </h3>
+
+
+    <div
+      class="choices"
+      id="sizes"
+    >
+
+
+      <div class="choice">
+
+        30 × 40 cm
+
+      </div>
+
+
+      <div class="choice">
+
+        40 × 60 cm
+
+      </div>
+
+
+      <div class="choice">
+
+        50 × 70 cm
+
+      </div>
+
+
+    </div>
+
+
+
+    <h3 class="section-title">
+
+      🖼️ Matière
+
+    </h3>
+
+
+    <div
+      class="choices"
+      id="materials"
+    >
+
+
+      <div class="choice">
+
+        Toile
+
+      </div>
+
+
+      <div class="choice">
+
+        Poster
+
+      </div>
+
+
+      <div class="choice">
+
+        Aluminium
+
+      </div>
+
+
+      <div class="choice">
+
+        Plexiglas
+
+      </div>
+
+
+    </div>
+
+
+
+    <h3 class="section-title">
+
+      💡 Éclairage
+
+    </h3>
+
+
+    <div
+      class="choices"
+      id="led"
+    >
+
+
+      <div class="choice">
+
+        Sans LED
+
+      </div>
+
+
+      <div class="choice">
+
+        Avec LED
+
+      </div>
+
+
+    </div>
+
+
+
+    <button
+      class="order-button"
+      id="orderButton"
+    >
+
+      🛒 Continuer vers la commande
+
+    </button>
+
+
+  </div>
+
+
+</div>
+
+
+
+<footer>
+
+  © 2026 ARTIFY —
+  Transformez vos souvenirs
+  en œuvres d'art.
+
+</footer>
+
+
+
+<script>
+
+
+  let selectedFile = null;
+
+
+  const imageInput =
+    document.getElementById(
+      "imageInput"
+    );
+
+
+  const preview =
+    document.getElementById(
+      "preview"
+    );
+
+
+  const promptInput =
+    document.getElementById(
+      "prompt"
+    );
+
+
+  const generateButton =
+    document.getElementById(
+      "generateButton"
+    );
+
+
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+
+  const resultCard =
+    document.getElementById(
+      "resultCard"
+    );
+
+
+  const resultImage =
+    document.getElementById(
+      "resultImage"
+    );
+
+
+  const options =
+    document.getElementById(
+      "options"
+    );
+
+
+
+  /* =========================
+
+     IMPORTER UNE PHOTO
+
+  ========================= */
+
+
+  imageInput.addEventListener(
+    "change",
+    function(event) {
+
+
+      selectedFile =
+        event.target.files[0];
+
+
+      if (!selectedFile) {
+        return;
+      }
+
+
+      preview.src =
+        URL.createObjectURL(
+          selectedFile
+        );
+
+
+      preview.style.display =
+        "block";
+
+
+    }
+  );
+
+
+
+  /* =========================
+
+     GENERER AVEC IA
+
+  ========================= */
+
+
+  generateButton.addEventListener(
+    "click",
+
+    async function() {
+
+
+      if (!selectedFile) {
+
+
+        alert(
+          "Veuillez importer une photo."
+        );
+
+
+        return;
+
+      }
+
+
+
+      if (
+        !promptInput.value
+          .trim()
+      ) {
+
+
+        alert(
+          "Veuillez décrire ce que vous souhaitez créer."
+        );
+
+
+        return;
+
+      }
+
+
+
+      generateButton.disabled =
+        true;
+
+
+      generateButton.innerText =
+        "⏳ Création en cours...";
+
+
+      status.innerText =
+        "🤖 L'IA transforme votre photo...";
+
+
+
+      try {
+
+
+        const formData =
+          new FormData();
+
+
+
+        formData.append(
+          "image",
+          selectedFile
+        );
+
+
+        formData.append(
+          "prompt",
+          promptInput.value
+        );
+
+
+
+        const response =
+          await fetch(
+            "/api/generate",
+            {
+              method: "POST",
+              body: formData
+            }
+          );
+
+
+
+        const data =
+          await response.json();
+
+
+
+        if (!response.ok) {
+
+
+          throw new Error(
+
+            data.error ||
+
+            "Une erreur est survenue."
+
+          );
+
+        }
+
+
+
+        resultImage.src =
+          data.image;
+
+
+
+        resultCard.style.display =
+          "block";
+
+
+        options.style.display =
+          "block";
+
+
+
+        status.innerText =
+          "✅ Votre œuvre est prête !";
+
+
+
+        resultCard.scrollIntoView({
+
+          behavior: "smooth"
+
+        });
+
+
+
+      }
+
+
+      catch (error) {
+
+
+        console.error(error);
+
+
+        status.innerText =
+
+          "❌ " +
+          error.message;
+
+
+        alert(
+
+          "Erreur : " +
+          error.message
+
+        );
+
+
+      }
+
+
+      finally {
+
+
+        generateButton.disabled =
+          false;
+
+
+        generateButton.innerText =
+          "✨ Générer avec l'IA";
+
+
+      }
+
+
+    }
+
+  );
+
+
+
+  /* =========================
+
+     CHOIX TAILLE / MATIERE / LED
+
+  ========================= */
+
+
+  document
+    .querySelectorAll(
+      ".choices"
+    )
+
+    .forEach(function(group) {
+
+
+      const choices =
+        group.querySelectorAll(
+          ".choice"
+        );
+
+
+
+      choices.forEach(
+        function(choice) {
+
+
+          choice.addEventListener(
+
+            "click",
+
+            function() {
+
+
+
+              choices.forEach(
+                function(item) {
+
+                  item.classList.remove(
+                    "selected"
+                  );
+
+                }
+
+              );
+
+
+
+              choice.classList.add(
+                "selected"
+              );
+
+
+            }
+
+          );
+
+
+        }
+
+      );
+
+
     });
-  }
-
-  try {
-
-    // ==============================
-    // VERIFICATION METHODE
-    // ==============================
-
-    if (req.method !== "POST") {
-      return new Response(
-        JSON.stringify({
-          error: "Méthode non autorisée",
-        }),
-        {
-          status: 405,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
 
 
-    // ==============================
-    // RECUPERATION DES DONNEES
-    // ==============================
-
-    const body = await req.json();
-
-    const imageBase64 = body.image;
-    const prompt = body.prompt;
 
 
-    // ==============================
-    // VERIFICATIONS
-    // ==============================
+  /* =========================
 
-    if (!imageBase64) {
-      return new Response(
-        JSON.stringify({
-          error: "Aucune image reçue",
-        }),
-        {
-          status: 400,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
+     BOUTON COMMANDE
+
+  ========================= */
 
 
-    if (!prompt || prompt.trim().length === 0) {
-      return new Response(
-        JSON.stringify({
-          error: "Veuillez écrire une description",
-        }),
-        {
-          status: 400,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
+  document
+    .getElementById(
+      "orderButton"
+    )
+
+    .addEventListener(
+
+      "click",
+
+      function() {
 
 
-    // ==============================
-    // CLE OPENAI
-    // ==============================
+        alert(
 
-    const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY");
+          "La commande sera ajoutée dans la prochaine étape."
 
-    if (!OPENAI_API_KEY) {
-      console.error("OPENAI_API_KEY manquante");
-
-      return new Response(
-        JSON.stringify({
-          error:
-            "La clé OPENAI_API_KEY est absente dans Supabase.",
-        }),
-        {
-          status: 500,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
+        );
 
 
-    // ==============================
-    // CONVERSION BASE64 EN IMAGE
-    // ==============================
-
-    const matches = imageBase64.match(
-      /^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/
-    );
-
-
-    if (!matches) {
-      return new Response(
-        JSON.stringify({
-          error: "Format de l'image invalide",
-        }),
-        {
-          status: 400,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
-
-
-    const mimeType = matches[1];
-    const base64Data = matches[2];
-
-    const binaryString = atob(base64Data);
-
-    const bytes = new Uint8Array(
-      binaryString.length
-    );
-
-
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-
-
-    const imageBlob = new Blob(
-      [bytes],
-      {
-        type: mimeType,
       }
+
     );
 
 
-    // ==============================
-    // FORM DATA OPENAI
-    // ==============================
-
-    const formData = new FormData();
-
-    formData.append(
-      "image",
-      imageBlob,
-      "photo.png"
-    );
+</script>
 
 
-    // ==============================
-    // PROMPT FINAL
-    // ==============================
+</body>
 
-    const finalPrompt = `
-Transform the uploaded photograph according to the user's request.
-
-IMPORTANT:
-- Preserve the main subject and recognizable composition of the original photo.
-- Transform the image artistically according to the user's instructions.
-- Create a high-quality, visually impressive result.
-- Do not simply add a color filter.
-- Actually transform the visual style, atmosphere, textures, lighting and artistic appearance.
-- Keep the result suitable for printing as wall art.
-
-USER REQUEST:
-${prompt}
-`;
-
-
-    formData.append(
-      "prompt",
-      finalPrompt
-    );
-
-
-    formData.append(
-      "model",
-      "gpt-image-1"
-    );
-
-
-    // 3 résultats
-    formData.append(
-      "n",
-      "3"
-    );
-
-
-    formData.append(
-      "size",
-      "1024x1024"
-    );
-
-
-    // ==============================
-    // APPEL OPENAI
-    // ==============================
-
-    console.log(
-      "Envoi de la demande à OpenAI..."
-    );
-
-
-    const openaiResponse = await fetch(
-      "https://api.openai.com/v1/images/edits",
-      {
-        method: "POST",
-
-        headers: {
-          Authorization:
-            `Bearer ${OPENAI_API_KEY}`,
-        },
-
-        body: formData,
-      }
-    );
-
-
-    const openaiData =
-      await openaiResponse.json();
-
-
-    // ==============================
-    // ERREUR OPENAI
-    // ==============================
-
-    if (!openaiResponse.ok) {
-
-      console.error(
-        "Erreur OpenAI:",
-        JSON.stringify(openaiData)
-      );
-
-
-      return new Response(
-        JSON.stringify({
-          error:
-            openaiData?.error?.message ||
-            "Erreur lors de la génération IA",
-        }),
-        {
-          status: openaiResponse.status,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
-
-
-    // ==============================
-    // RECUPERATION DES IMAGES
-    // ==============================
-
-    const images =
-      openaiData.data
-        ?.map((item: any) => {
-
-          if (item.b64_json) {
-            return (
-              "data:image/png;base64," +
-              item.b64_json
-            );
-          }
-
-          if (item.url) {
-            return item.url;
-          }
-
-          return null;
-
-        })
-        .filter(Boolean);
-
-
-    if (!images || images.length === 0) {
-
-      console.error(
-        "Aucune image retournée:",
-        JSON.stringify(openaiData)
-      );
-
-
-      return new Response(
-        JSON.stringify({
-          error:
-            "L'IA n'a retourné aucune image.",
-        }),
-        {
-          status: 500,
-          headers: {
-            ...corsHeaders,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-    }
-
-
-    // ==============================
-    // REPONSE AU SITE
-    // ==============================
-
-    console.log(
-      `${images.length} image(s) générée(s)`
-    );
-
-
-    return new Response(
-      JSON.stringify({
-        success: true,
-
-        images: images,
-
-        message:
-          "Images générées avec succès",
-      }),
-      {
-        status: 200,
-
-        headers: {
-          ...corsHeaders,
-
-          "Content-Type":
-            "application/json",
-        },
-      }
-    );
-
-
-  } catch (error) {
-
-    console.error(
-      "Erreur fonction:",
-      error
-    );
-
-
-    return new Response(
-      JSON.stringify({
-        error:
-          error?.message ||
-          "Une erreur inconnue est survenue",
-      }),
-      {
-        status: 500,
-
-        headers: {
-          ...corsHeaders,
-
-          "Content-Type":
-            "application/json",
-        },
-      }
-    );
-  }
-
-});
+</html>
