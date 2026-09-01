@@ -8,15 +8,14 @@ export default {
     }
 
     try {
-      // Récupérer la photo et le prompt envoyés par index.html
       const formData = await request.formData();
 
       const image = formData.get("image");
       const prompt = formData.get("prompt");
 
-      if (!image) {
+      if (!image || typeof image === "string") {
         return Response.json(
-          { error: "Aucune image reçue." },
+          { error: "Aucune image valide reçue." },
           { status: 400 }
         );
       }
@@ -28,34 +27,22 @@ export default {
         );
       }
 
-      // Vérifier la clé OpenAI
       if (!process.env.OPENAI_API_KEY) {
         return Response.json(
-          {
-            error:
-              "OPENAI_API_KEY n'est pas configurée dans Vercel."
-          },
+          { error: "OPENAI_API_KEY n'est pas configurée." },
           { status: 500 }
         );
       }
 
-      // Créer les données à envoyer à OpenAI
       const openaiFormData = new FormData();
 
-      openaiFormData.append(
-        "model",
-        "gpt-image-2"
-      );
+      openaiFormData.append("model", "gpt-image-2");
+      openaiFormData.append("prompt", prompt.trim());
 
       openaiFormData.append(
         "image",
         image,
-        image.name || "photo.png"
-      );
-
-      openaiFormData.append(
-        "prompt",
-        prompt
+        image.name || "image.png"
       );
 
       openaiFormData.append(
@@ -63,34 +50,19 @@ export default {
         "1024x1024"
       );
 
-      openaiFormData.append(
-        "quality",
-        "medium"
-      );
-
-      openaiFormData.append(
-        "input_fidelity",
-        "high"
-      );
-
-      // Envoyer la photo + prompt à OpenAI
       const response = await fetch(
         "https://api.openai.com/v1/images/edits",
         {
           method: "POST",
-
           headers: {
-            Authorization:
-              `Bearer ${process.env.OPENAI_API_KEY}`
+            "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`
           },
-
           body: openaiFormData
         }
       );
 
       const data = await response.json();
 
-      // Si OpenAI retourne une erreur
       if (!response.ok) {
         console.error("Erreur OpenAI :", data);
 
@@ -106,26 +78,21 @@ export default {
         );
       }
 
-      // Récupérer l'image générée
-      const generatedImage =
-        data?.data?.[0]?.b64_json;
+      const generatedImage = data?.data?.[0]?.b64_json;
 
       if (!generatedImage) {
-        console.error(data);
+        console.error("Réponse OpenAI :", data);
 
         return Response.json(
           {
-            error:
-              "OpenAI n'a pas retourné d'image."
+            error: "OpenAI n'a pas retourné d'image."
           },
           { status: 500 }
         );
       }
 
-      // Renvoyer l'image au site
       return Response.json({
-        image:
-          `data:image/png;base64,${generatedImage}`
+        image: `data:image/png;base64,${generatedImage}`
       });
 
     } catch (error) {
@@ -134,8 +101,8 @@ export default {
       return Response.json(
         {
           error:
-            error.message ||
-            "Erreur serveur."
+            error?.message ||
+            "Erreur serveur inconnue."
         },
         { status: 500 }
       );
