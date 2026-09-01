@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>ARTISTIFIER — Votre photo. Votre œuvre.</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,50 +16,71 @@
     :root {
       --purple: #7654a8;
       --purple-dark: #57377f;
-      --purple-light: #efe9f7;
+      --purple-light: #eee7f7;
       --black: #171717;
       --gray: #666;
       --light-gray: #f6f5f8;
       --border: #e4dfeb;
       --white: #ffffff;
+      --green: #1f8f5f;
+      --shadow: 0 15px 50px rgba(70, 40, 100, 0.12);
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--black);
       background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
     }
 
     button {
-      font-family: inherit;
+      cursor: pointer;
+      border: none;
+    }
+
+    img {
+      max-width: 100%;
     }
 
     /* =========================
-       NAVIGATION
+       HEADER
     ========================= */
 
     header {
-      width: 100%;
-      border-bottom: 1px solid var(--border);
-      background: white;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #eee;
     }
 
-    nav {
+    .navbar {
       max-width: 1200px;
       margin: auto;
-      padding: 18px 25px;
+      padding: 18px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 3px;
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: 5px;
+      text-decoration: none;
+      color: var(--black);
     }
 
     .logo span {
@@ -70,24 +89,26 @@
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 25px;
       align-items: center;
     }
 
     .nav-links a {
       text-decoration: none;
-      color: var(--black);
-      font-size: 14px;
+      color: var(--gray);
+      font-weight: 600;
+      transition: 0.2s;
     }
 
-    .cart-button {
-      border: none;
+    .nav-links a:hover {
+      color: var(--purple);
+    }
+
+    .nav-button {
       background: var(--purple);
-      color: white;
-      padding: 12px 18px;
+      color: white !important;
+      padding: 10px 18px;
       border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
     }
 
     /* =========================
@@ -95,23 +116,28 @@
     ========================= */
 
     .hero {
-      min-height: 620px;
+      min-height: 650px;
+      padding: 90px 24px;
       background:
-        radial-gradient(circle at 10% 10%, #f3eefe, transparent 35%),
-        radial-gradient(circle at 90% 20%, #eee8ff, transparent 35%),
+        radial-gradient(
+          circle at top right,
+          rgba(118, 84, 168, 0.16),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at bottom left,
+          rgba(118, 84, 168, 0.08),
+          transparent 35%
+        ),
         white;
-
-      display: flex;
-      align-items: center;
     }
 
     .hero-container {
       max-width: 1200px;
       margin: auto;
-      padding: 70px 25px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 60px;
+      gap: 70px;
       align-items: center;
     }
 
@@ -119,28 +145,27 @@
       display: inline-block;
       background: var(--purple-light);
       color: var(--purple-dark);
-      padding: 9px 14px;
-      border-radius: 30px;
-      font-size: 13px;
-      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 50px;
+      font-weight: 700;
       margin-bottom: 20px;
     }
 
-    h1 {
-      font-size: clamp(42px, 6vw, 78px);
-      line-height: 1;
+    .hero h1 {
+      font-size: clamp(48px, 6vw, 78px);
+      line-height: 1.05;
       margin-bottom: 25px;
+      font-weight: 900;
     }
 
-    h1 span {
+    .hero h1 span {
       color: var(--purple);
     }
 
     .hero p {
       color: var(--gray);
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 550px;
+      font-size: 20px;
+      max-width: 600px;
       margin-bottom: 30px;
     }
 
@@ -153,417 +178,769 @@
     .primary-button {
       background: var(--purple);
       color: white;
-      border: none;
-      padding: 16px 25px;
+      padding: 17px 25px;
       border-radius: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
+      font-weight: 800;
+      font-size: 17px;
+      transition: 0.25s;
+      box-shadow: 0 10px 25px rgba(118, 84, 168, 0.25);
+    }
+
+    .primary-button:hover {
+      transform: translateY(-2px);
+      background: var(--purple-dark);
     }
 
     .secondary-button {
       background: white;
-      color: var(--black);
       border: 1px solid var(--border);
-      padding: 16px 25px;
+      color: var(--black);
+      padding: 17px 25px;
       border-radius: 12px;
-      font-size: 16px;
-      cursor: pointer;
+      font-weight: 700;
+      font-size: 17px;
     }
+
+    /* Hero image */
 
     .hero-image {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 25px;
-      overflow: hidden;
-      box-shadow: 0 25px 70px rgba(0,0,0,.12);
-      background: linear-gradient(135deg, #ded3f5, #8b6cc4);
+      position: relative;
     }
 
-    .hero-image img {
+    .hero-card {
+      background: white;
+      border-radius: 28px;
+      padding: 15px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card img {
       width: 100%;
-      height: 100%;
+      height: 500px;
       object-fit: cover;
+      border-radius: 20px;
+      display: block;
+    }
+
+    .floating-card {
+      position: absolute;
+      bottom: -20px;
+      left: -30px;
+      background: white;
+      padding: 18px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      font-weight: 700;
     }
 
     /* =========================
-       CREATE SECTION
+       SECTIONS
     ========================= */
 
-    .create-section {
-      background: var(--light-gray);
-      padding: 100px 25px;
+    section {
+      padding: 100px 24px;
     }
 
-    .section-container {
-      max-width: 1100px;
+    .container {
+      max-width: 1200px;
       margin: auto;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 15px;
-      font-size: 42px;
+      max-width: 750px;
+      margin: 0 auto 60px;
     }
 
-    .section-description {
-      text-align: center;
+    .section-title h2 {
+      font-size: clamp(36px, 5vw, 55px);
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
       color: var(--gray);
-      max-width: 650px;
-      margin: 0 auto 50px;
-      line-height: 1.6;
-    }
-
-    .creator {
-      background: white;
-      border-radius: 25px;
-      padding: 35px;
-      box-shadow: 0 15px 50px rgba(0,0,0,.06);
-    }
-
-    .steps {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 40px;
-      flex-wrap: wrap;
-    }
-
-    .step {
-      padding: 10px 18px;
-      border-radius: 30px;
-      background: #eee;
-      color: #777;
-      font-size: 14px;
-    }
-
-    .step.active {
-      background: var(--purple);
-      color: white;
-    }
-
-    /* =========================
-       UPLOAD
-    ========================= */
-
-    .upload-box {
-      border: 2px dashed #cdbfe1;
-      background: #faf8fd;
-      border-radius: 20px;
-      padding: 50px 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .upload-box:hover {
-      background: #f4effb;
-      border-color: var(--purple);
-    }
-
-    .upload-icon {
-      font-size: 50px;
-      margin-bottom: 15px;
-    }
-
-    #fileInput {
-      display: none;
-    }
-
-    .preview-container {
-      display: none;
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .preview-container img {
-      max-width: 100%;
-      max-height: 500px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.15);
-    }
-
-    /* =========================
-       PROMPT
-    ========================= */
-
-    .prompt-section {
-      display: none;
-      margin-top: 35px;
-    }
-
-    .prompt-section h3 {
-      margin-bottom: 15px;
-      font-size: 24px;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 150px;
-      resize: vertical;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      padding: 18px;
-      font-size: 16px;
-      outline: none;
-    }
-
-    textarea:focus {
-      border-color: var(--purple);
-      box-shadow: 0 0 0 4px var(--purple-light);
-    }
-
-    .prompt-examples {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-
-    .prompt-example {
-      background: var(--purple-light);
-      color: var(--purple-dark);
-      border: none;
-      padding: 10px 15px;
-      border-radius: 30px;
-      cursor: pointer;
-    }
-
-    /* =========================
-       OPTIONS
-    ========================= */
-
-    .options {
-      display: none;
-      margin-top: 35px;
-    }
-
-    .options h3 {
-      margin-bottom: 15px;
-    }
-
-    .option-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 15px;
-    }
-
-    .option {
-      border: 2px solid var(--border);
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      cursor: pointer;
-      text-align: center;
-      transition: .2s;
-    }
-
-    .option:hover {
-      border-color: var(--purple);
-    }
-
-    .option.selected {
-      border-color: var(--purple);
-      background: var(--purple-light);
-    }
-
-    /* =========================
-       AI BUTTON
-    ========================= */
-
-    .ai-button-container {
-      display: none;
-      text-align: center;
-      margin-top: 35px;
-    }
-
-    .ai-button {
-      border: none;
-      background: linear-gradient(
-        135deg,
-        var(--purple),
-        #9b6bd1
-      );
-
-      color: white;
       font-size: 18px;
-      font-weight: bold;
-      padding: 18px 35px;
-      border-radius: 15px;
-      cursor: pointer;
-      box-shadow: 0 12px 30px rgba(118,84,168,.3);
-    }
-
-    .ai-button:disabled {
-      opacity: .6;
-      cursor: not-allowed;
-    }
-
-    .status {
-      margin-top: 20px;
-      font-size: 15px;
-      color: var(--gray);
-      min-height: 25px;
-    }
-
-    /* =========================
-       RESULT
-    ========================= */
-
-    .result-section {
-      display: none;
-      margin-top: 50px;
-    }
-
-    .result-section h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .comparison {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-    }
-
-    .comparison-card {
-      background: var(--light-gray);
-      padding: 20px;
-      border-radius: 20px;
-    }
-
-    .comparison-card h3 {
-      margin-bottom: 15px;
-      text-align: center;
-    }
-
-    .comparison-card img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 15px;
-    }
-
-    .download-button {
-      display: inline-block;
-      margin-top: 25px;
-      background: var(--black);
-      color: white;
-      text-decoration: none;
-      padding: 15px 25px;
-      border-radius: 12px;
-    }
-
-    /* =========================
-       PRODUCTS
-    ========================= */
-
-    .products {
-      display: none;
-      margin-top: 50px;
-      padding-top: 40px;
-      border-top: 1px solid var(--border);
-    }
-
-    .products h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .product-options {
-      display: grid;
-      grid-template-columns:
-        repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      border: 2px solid var(--border);
-      border-radius: 20px;
-      padding: 25px;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    .product-card:hover {
-      border-color: var(--purple);
-    }
-
-    .product-card.selected {
-      border-color: var(--purple);
-      background: var(--purple-light);
-    }
-
-    .product-icon {
-      font-size: 35px;
-      margin-bottom: 15px;
-    }
-
-    .product-card h3 {
-      margin-bottom: 10px;
-    }
-
-    .product-card p {
-      color: var(--gray);
-      font-size: 14px;
-    }
-
-    .checkout {
-      display: none;
-      margin-top: 35px;
-      background: var(--purple-light);
-      padding: 25px;
-      border-radius: 20px;
-      text-align: center;
-    }
-
-    .checkout h3 {
-      margin-bottom: 15px;
     }
 
     /* =========================
        HOW IT WORKS
     ========================= */
 
-    .how {
-      padding: 100px 25px;
-    }
-
-    .how-grid {
-      max-width: 1100px;
-      margin: 50px auto 0;
+    .steps {
       display: grid;
-      grid-template-columns:
-        repeat(3, 1fr);
-      gap: 30px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
     }
 
-    .how-card {
-      padding: 30px;
-      border-radius: 20px;
+    .step {
       background: var(--light-gray);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
     }
 
-    .number {
-      width: 45px;
-      height: 45px;
+    .step-number {
+      width: 50px;
+      height: 50px;
       background: var(--purple);
       color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: bold;
-      margin-bottom: 20px;
+      margin: 0 auto 20px;
+      font-weight: 900;
+      font-size: 20px;
     }
 
-    .how-card h3 {
+    .step h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .step p {
+      color: var(--gray);
+      font-size: 15px;
+    }
+
+    /* =========================
+       BEFORE AFTER
+    ========================= */
+
+    .before-after-section {
+      background: #faf9fc;
+    }
+
+    .comparison-wrapper {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .comparison {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #ddd;
+    }
+
+    .comparison img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+    }
+
+    .before-image {
+      width: 50%;
+      overflow: hidden;
+      position: absolute;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .before-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+    }
+
+    .comparison-slider {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      left: 50%;
+      width: 4px;
+      height: 100%;
+      background: white;
+      transform: translateX(-50%);
+    }
+
+    .slider-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 55px;
+      height: 55px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      color: var(--purple);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .range {
+      width: 100%;
+      margin-top: 30px;
+      accent-color: var(--purple);
+    }
+
+    .comparison-label {
+      position: absolute;
+      top: 20px;
+      padding: 8px 15px;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      border-radius: 50px;
+      z-index: 10;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .label-before {
+      left: 20px;
+    }
+
+    .label-after {
+      right: 20px;
+    }
+
+    /* =========================
+       CREATOR
+    ========================= */
+
+    .creator-section {
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(118, 84, 168, 0.10),
+          transparent 35%
+        ),
+        white;
+    }
+
+    .creator {
+      max-width: 950px;
+      margin: auto;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+    }
+
+    .creator-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .creator-header h2 {
+      font-size: 38px;
       margin-bottom: 10px;
     }
 
-    .how-card p {
+    .creator-header p {
       color: var(--gray);
-      line-height: 1.6;
+    }
+
+    .creator-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    /* UPLOAD */
+
+    .upload-zone {
+      border: 2px dashed #cfc5dc;
+      border-radius: 20px;
+      min-height: 330px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      background: #fcfbfd;
+      transition: 0.2s;
+    }
+
+    .upload-zone:hover {
+      border-color: var(--purple);
+      background: #faf7ff;
+    }
+
+    .upload-content {
+      color: var(--gray);
+    }
+
+    .upload-icon {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    .upload-zone h3 {
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    #imagePreview {
+      display: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .change-image-button {
+      display: none;
+      position: absolute;
+      z-index: 5;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 10px 15px;
+      border-radius: 10px;
+      font-weight: bold;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    #imageInput {
+      display: none;
+    }
+
+    /* FORM */
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      outline: none;
+      background: white;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    textarea:focus,
+    select:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(118,84,168,0.1);
+    }
+
+    .style-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .style-option {
+      border: 1px solid var(--border);
+      background: white;
+      padding: 12px 8px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .style-option.active {
+      background: var(--purple);
+      color: white;
+      border-color: var(--purple);
+    }
+
+    .generate-button {
+      width: 100%;
+      background: var(--purple);
+      color: white;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 17px;
+      font-weight: 900;
+      margin-top: 10px;
+    }
+
+    .generate-button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading {
+      display: none;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid #eee;
+      border-top-color: var(--purple);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================
+       RESULTS
+    ========================= */
+
+    .results-section {
+      display: none;
+      padding-top: 40px;
+    }
+
+    .results-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .results-title h2 {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .results-title p {
+      color: var(--gray);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .result-card {
+      border: 3px solid transparent;
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .result-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .result-card.selected {
+      border-color: var(--purple);
+    }
+
+    .result-image-container {
+      position: relative;
+      height: 320px;
+    }
+
+    .result-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .selected-badge {
+      display: none;
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--purple);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .result-card.selected .selected-badge {
+      display: block;
+    }
+
+    .result-info {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .result-info h3 {
+      margin-bottom: 5px;
+    }
+
+    .result-info p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .regenerate-container {
+      text-align: center;
+      margin-top: 35px;
+    }
+
+    .regenerate-button {
+      background: white;
+      border: 1px solid var(--purple);
+      color: var(--purple);
+      padding: 15px 22px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       PRODUCT CONFIGURATOR
+    ========================= */
+
+    .product-section {
+      display: none;
+      background: #faf9fc;
+    }
+
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    .product-preview {
+      background: white;
+      border-radius: 25px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 100px;
+    }
+
+    .product-preview h3 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .frame-preview {
+      background: #222;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      transition: 0.3s;
+    }
+
+    .frame-preview.no-frame {
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .frame-preview img {
+      display: block;
+      width: 100%;
+      max-height: 500px;
+      object-fit: contain;
+    }
+
+    .options-card {
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .option-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      margin-top: 25px;
+    }
+
+    .option-title:first-child {
+      margin-top: 0;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .option-button {
+      border: 1px solid var(--border);
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: left;
+      transition: 0.2s;
+    }
+
+    .option-button strong {
+      display: block;
+    }
+
+    .option-button span {
+      color: var(--gray);
+      font-size: 13px;
+    }
+
+    .option-button.active {
+      border-color: var(--purple);
+      background: var(--purple-light);
+      color: var(--purple-dark);
+    }
+
+    /* LED */
+
+    .led-option {
+      margin-top: 25px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 18px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .led-option h4 {
+      margin-bottom: 5px;
+    }
+
+    .led-option p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .switch {
+      width: 55px;
+      height: 30px;
+      background: #ddd;
+      border-radius: 50px;
+      position: relative;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: 0.2s;
+    }
+
+    .switch::after {
+      content: "";
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      transition: 0.2s;
+    }
+
+    .switch.active {
+      background: var(--purple);
+    }
+
+    .switch.active::after {
+      left: 28px;
+    }
+
+    /* =========================
+       ORDER SUMMARY
+    ========================= */
+
+    .summary {
+      margin-top: 30px;
+      background: var(--light-gray);
+      border-radius: 18px;
+      padding: 25px;
+    }
+
+    .summary h3 {
+      margin-bottom: 20px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #e6e3e9;
+      color: var(--gray);
+    }
+
+    .summary-row strong {
+      color: var(--black);
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 20px;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .order-button {
+      width: 100%;
+      background: var(--purple);
+      color: white;
+      padding: 18px;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 900;
+      margin-top: 20px;
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .feature {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: white;
+    }
+
+    .feature-icon {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .feature h3 {
+      margin-bottom: 10px;
+    }
+
+    .feature p {
+      color: var(--gray);
     }
 
     /* =========================
@@ -573,11 +950,16 @@
     footer {
       background: var(--black);
       color: white;
-      padding: 50px 25px;
+      padding: 60px 24px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: auto;
       text-align: center;
     }
 
-    footer p {
+    .footer-container p {
       color: #aaa;
       margin-top: 15px;
     }
@@ -586,7 +968,7 @@
        MOBILE
     ========================= */
 
-    @media(max-width: 800px) {
+    @media (max-width: 900px) {
 
       .nav-links {
         display: none;
@@ -594,157 +976,2286 @@
 
       .hero-container {
         grid-template-columns: 1fr;
+        gap: 40px;
       }
 
-      .hero-image {
-        max-width: 500px;
-        margin: auto;
+      .hero {
+        padding-top: 60px;
+      }
+
+      .hero-card img {
+        height: 400px;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .creator-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .product-preview {
+        position: relative;
+        top: 0;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+    @media (max-width: 600px) {
+
+      section {
+        padding: 70px 18px;
+      }
+
+      .navbar {
+        padding: 16px 18px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+
+      .hero {
+        padding: 55px 18px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 18px;
+      }
+
+      .hero-card img {
+        height: 330px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
       }
 
       .comparison {
+        height: 400px;
+      }
+
+      .creator {
+        padding: 20px;
+      }
+
+      .style-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .option-grid {
         grid-template-columns: 1fr;
       }
 
-      .how-grid {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        font-size: 50px;
+      .product-preview {
+        padding: 15px;
       }
 
     }
 
   </style>
-
 </head>
 
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================== -->
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+  <header>
+    <nav class="navbar">
 
-<header>
-
-  <nav>
-
-    <div class="logo">
-      ART<span>ISTIFIER</span>
-    </div>
-
-    <div class="nav-links">
-
-      <a href="#create">
-        Créer mon œuvre
+      <a href="#" class="logo">
+        ARTI<span>STIFIER</span>
       </a>
 
-      <a href="#how">
-        Comment ça marche
-      </a>
+      <div class="nav-links">
+        <a href="#comment">Comment ça marche</a>
+        <a href="#avant-apres">Avant / Après</a>
+        <a href="#creation">Créer</a>
 
-      <a href="#examples">
-        Exemples
-      </a>
-
-      <button
-        class="cart-button"
-        onclick="scrollToProducts()"
-      >
-        Panier <span id="cartCount">0</span>
-      </button>
-
-    </div>
-
-  </nav>
-
-</header>
-
-
-<!-- =========================
-     HERO
-========================= -->
-
-<section class="hero">
-
-  <div class="hero-container">
-
-    <div>
-
-      <div class="badge">
-        ✨ L'intelligence artificielle au service de votre imagination
+        <a href="#creation" class="nav-button">
+          Créer mon œuvre ✨
+        </a>
       </div>
 
-      <h1>
-        Votre photo.<br>
-        <span>Votre œuvre.</span>
-      </h1>
+    </nav>
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <section class="hero">
+
+    <div class="hero-container">
+
+      <div>
+
+        <div class="badge">
+          ✨ L'intelligence artificielle au service de votre imagination
+        </div>
+
+        <h1>
+          Votre photo.<br>
+          <span>Votre œuvre.</span>
+        </h1>
+
+        <p>
+          Transformez vos souvenirs en créations artistiques uniques grâce à
+          l'intelligence artificielle.
+          Vous choisissez votre style. Vous écrivez votre idée.
+          L'IA crée votre œuvre.
+        </p>
+
+        <div class="hero-buttons">
+
+          <button
+            class="primary-button"
+            onclick="document.getElementById('creation').scrollIntoView()"
+          >
+            Créer mon œuvre ✨
+          </button>
+
+          <button
+            class="secondary-button"
+            onclick="document.getElementById('comment').scrollIntoView()"
+          >
+            Comment ça marche
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-image">
+
+        <div class="hero-card">
+
+          <img
+            src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1000&q=80"
+            alt="Exemple artistique"
+          >
+
+        </div>
+
+        <div class="floating-card">
+          🤖 Créé avec l'IA<br>
+          <small style="color:#666">
+            Une œuvre unique
+          </small>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       HOW IT WORKS
+  ========================== -->
+
+  <section id="comment">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>
+          Créez votre œuvre en quelques étapes
+        </h2>
+
+        <p>
+          Simple, rapide et entièrement personnalisé.
+        </p>
+
+      </div>
+
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">1</div>
+
+          <h3>Importez</h3>
+
+          <p>
+            Choisissez la photo que vous souhaitez transformer.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">2</div>
+
+          <h3>Imaginez</h3>
+
+          <p>
+            Choisissez un style et décrivez exactement ce que vous souhaitez.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">3</div>
+
+          <h3>Choisissez</h3>
+
+          <p>
+            Découvrez vos 3 créations générées par l'intelligence artificielle.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">4</div>
+
+          <h3>Personnalisez</h3>
+
+          <p>
+            Choisissez votre format, votre support et l'option LED.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       BEFORE / AFTER
+  ========================== -->
+
+  <section
+    id="avant-apres"
+    class="before-after-section"
+  >
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>
+          Une photo peut devenir une œuvre
+        </h2>
+
+        <p>
+          Faites glisser le curseur pour découvrir la transformation.
+        </p>
+
+      </div>
+
+
+      <div class="comparison-wrapper">
+
+        <div class="comparison">
+
+          <img
+            src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=80"
+            alt="Après"
+          >
+
+          <div
+            class="before-image"
+            id="beforeImage"
+          >
+
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80"
+              alt="Avant"
+            >
+
+          </div>
+
+
+          <div
+            class="comparison-slider"
+            id="comparisonSlider"
+          >
+
+            <div class="slider-circle">
+              ↔
+            </div>
+
+          </div>
+
+
+          <div class="comparison-label label-before">
+            AVANT
+          </div>
+
+          <div class="comparison-label label-after">
+            APRÈS
+          </div>
+
+        </div>
+
+
+        <input
+          type="range"
+          min="0"
+          max="100"
+          value="50"
+          class="range"
+          id="beforeAfterRange"
+        >
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CREATION
+  ========================== -->
+
+  <section
+    id="creation"
+    class="creator-section"
+  >
+
+    <div class="container">
+
+      <div class="creator">
+
+        <div class="creator-header">
+
+          <h2>
+            Créez votre œuvre ✨
+          </h2>
+
+          <p>
+            Importez votre photo et laissez votre imagination parler.
+          </p>
+
+        </div>
+
+
+        <div class="creator-grid">
+
+
+          <!-- UPLOAD -->
+
+          <div>
+
+            <input
+              type="file"
+              id="imageInput"
+              accept="image/*"
+            >
+
+
+            <div
+              class="upload-zone"
+              id="uploadZone"
+            >
+
+              <div
+                class="upload-content"
+                id="uploadContent"
+              >
+
+                <div class="upload-icon">
+                  📸
+                </div>
+
+                <h3>
+                  Importez votre photo
+                </h3>
+
+                <p>
+                  Cliquez ici pour choisir une image
+                </p>
+
+              </div>
+
+
+              <img
+                id="imagePreview"
+                alt="Votre photo"
+              >
+
+
+              <button
+                class="change-image-button"
+                id="changeImageButton"
+              >
+                Changer la photo
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- OPTIONS -->
+
+          <div>
+
+            <div class="form-group">
+
+              <label>
+                🎨 Choisissez un style
+              </label>
+
+
+              <div class="style-grid">
+
+                <button
+                  class="style-option active"
+                  data-style="artistique moderne"
+                >
+                  🎨 Moderne
+                </button>
+
+
+                <button
+                  class="style-option"
+                  data-style="peinture à l'huile"
+                >
+                  🖌️ Peinture
+                </button>
+
+
+                <button
+                  class="style-option"
+                  data-style="aquarelle artistique"
+                >
+                  💧 Aquarelle
+                </button>
+
+
+                <button
+                  class="style-option"
+                  data-style="cinématique"
+                >
+                  🎬 Cinéma
+                </button>
+
+
+                <button
+                  class="style-option"
+                  data-style="futuriste"
+                >
+                  🚀 Futuriste
+                </button>
+
+
+                <button
+                  class="style-option"
+                  data-style="pop art"
+                >
+                  🌈 Pop Art
+                </button>
+
+              </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="colorChoice">
+                🌈 Couleurs souhaitées
+              </label>
+
+
+              <select id="colorChoice">
+
+                <option value="">
+                  Laisser l'IA choisir
+                </option>
+
+                <option value="couleurs chaudes">
+                  🔥 Couleurs chaudes
+                </option>
+
+                <option value="couleurs froides">
+                  ❄️ Couleurs froides
+                </option>
+
+                <option value="tons dorés et luxueux">
+                  ✨ Doré et luxueux
+                </option>
+
+                <option value="noir et blanc">
+                  ⚫ Noir et blanc
+                </option>
+
+                <option value="couleurs vives">
+                  🌈 Couleurs vives
+                </option>
+
+                <option value="tons pastel">
+                  🌸 Pastel
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="promptInput">
+                ✍️ Décrivez votre idée
+              </label>
+
+
+              <textarea
+                id="promptInput"
+                placeholder="Exemple : Transforme cette photo en une œuvre artistique avec une ambiance futuriste, une ville illuminée en arrière-plan, des couleurs violettes et bleues..."
+              ></textarea>
+
+            </div>
+
+
+            <button
+              class="generate-button"
+              id="generateButton"
+            >
+              ✨ Générer mes 3 créations
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- LOADING -->
+
+        <div
+          class="loading"
+          id="loading"
+        >
+
+          <div class="spinner"></div>
+
+          <h3>
+            L'IA crée vos œuvres...
+          </h3>
+
+          <p>
+            Cela peut prendre quelques secondes.
+          </p>
+
+        </div>
+
+
+        <!-- RESULTS -->
+
+        <div
+          class="results-section"
+          id="resultsSection"
+        >
+
+          <div class="results-title">
+
+            <h2>
+              Vos créations ✨
+            </h2>
+
+            <p>
+              Choisissez votre œuvre préférée.
+            </p>
+
+          </div>
+
+
+          <div
+            class="results-grid"
+            id="resultsGrid"
+          >
+          </div>
+
+
+          <div class="regenerate-container">
+
+            <button
+              class="regenerate-button"
+              id="regenerateButton"
+            >
+              🔄 Régénérer 3 nouvelles créations
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PRODUCT
+  ========================== -->
+
+  <section
+    id="productSection"
+    class="product-section"
+  >
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>
+          Personnalisez votre tableau
+        </h2>
+
+        <p>
+          Choisissez le format et le support parfait pour votre œuvre.
+        </p>
+
+      </div>
+
+
+      <div class="product-layout">
+
+
+        <!-- PREVIEW -->
+
+        <div class="product-preview">
+
+          <h3>
+            Aperçu de votre tableau
+          </h3>
+
+          <div
+            class="frame-preview"
+            id="framePreview"
+          >
+
+            <img
+              id="productImage"
+              alt="Votre œuvre"
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- OPTIONS -->
+
+        <div class="options-card">
+
+
+          <!-- SIZE -->
+
+          <h3 class="option-title">
+            📏 Choisissez la taille
+          </h3>
+
+
+          <div
+            class="option-grid"
+            id="sizeOptions"
+          >
+
+            <button
+              class="option-button active"
+              data-size="30 x 40 cm"
+              data-price="29"
+            >
+              <strong>30 × 40 cm</strong>
+              <span>29 €</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-size="40 x 60 cm"
+              data-price="39"
+            >
+              <strong>40 × 60 cm</strong>
+              <span>39 €</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-size="50 x 70 cm"
+              data-price="49"
+            >
+              <strong>50 × 70 cm</strong>
+              <span>49 €</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-size="60 x 90 cm"
+              data-price="69"
+            >
+              <strong>60 × 90 cm</strong>
+              <span>69 €</span>
+            </button>
+
+          </div>
+
+
+          <!-- MATERIAL -->
+
+          <h3 class="option-title">
+            🖼️ Choisissez le support
+          </h3>
+
+
+          <div
+            class="option-grid"
+            id="materialOptions"
+          >
+
+            <button
+              class="option-button active"
+              data-material="Toile classique"
+              data-price="0"
+            >
+              <strong>Toile classique</strong>
+              <span>Inclus</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-material="Toile premium"
+              data-price="10"
+            >
+              <strong>Toile premium</strong>
+              <span>+10 €</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-material="Affiche"
+              data-price="-5"
+            >
+              <strong>Affiche</strong>
+              <span>Économique</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-material="Plexiglas"
+              data-price="20"
+            >
+              <strong>Plexiglas</strong>
+              <span>+20 €</span>
+            </button>
+
+          </div>
+
+
+          <!-- FRAME -->
+
+          <h3 class="option-title">
+            🖼️ Cadre
+          </h3>
+
+
+          <div
+            class="option-grid"
+            id="frameOptions"
+          >
+
+            <button
+              class="option-button active"
+              data-frame="Sans cadre"
+              data-price="0"
+            >
+              <strong>Sans cadre</strong>
+              <span>Inclus</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-frame="Cadre noir"
+              data-price="15"
+            >
+              <strong>Cadre noir</strong>
+              <span>+15 €</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-frame="Cadre blanc"
+              data-price="15"
+            >
+              <strong>Cadre blanc</strong>
+              <span>+15 €</span>
+            </button>
+
+
+            <button
+              class="option-button"
+              data-frame="Cadre bois"
+              data-price="20"
+            >
+              <strong>Cadre bois</strong>
+              <span>+20 €</span>
+            </button>
+
+          </div>
+
+
+          <!-- LED -->
+
+          <div class="led-option">
+
+            <div>
+
+              <h4>
+                💡 Éclairage LED derrière le tableau
+              </h4>
+
+              <p>
+                Donnez une ambiance lumineuse à votre œuvre.
+              </p>
+
+            </div>
+
+
+            <div
+              class="switch"
+              id="ledSwitch"
+            ></div>
+
+          </div>
+
+
+          <!-- SUMMARY -->
+
+          <div class="summary">
+
+            <h3>
+              Votre commande
+            </h3>
+
+
+            <div class="summary-row">
+
+              <span>Taille</span>
+
+              <strong id="summarySize">
+                30 × 40 cm
+              </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>Support</span>
+
+              <strong id="summaryMaterial">
+                Toile classique
+              </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>Cadre</span>
+
+              <strong id="summaryFrame">
+                Sans cadre
+              </strong>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>LED</span>
+
+              <strong id="summaryLed">
+                Non
+              </strong>
+
+            </div>
+
+
+            <div class="summary-total">
+
+              <span>Total</span>
+
+              <span id="totalPrice">
+                29 €
+              </span>
+
+            </div>
+
+
+            <button
+              class="order-button"
+              id="orderButton"
+            >
+              Continuer ma commande 🛒
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FEATURES
+  ========================== -->
+
+  <section>
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <h2>
+          Pourquoi ARTISTIFIER ?
+        </h2>
+
+      </div>
+
+
+      <div class="features">
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            🤖
+          </div>
+
+          <h3>
+            Intelligence artificielle
+          </h3>
+
+          <p>
+            Votre photo est transformée selon vos propres idées.
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            🎨
+          </div>
+
+          <h3>
+            Une œuvre unique
+          </h3>
+
+          <p>
+            Chaque création est personnalisée selon votre prompt.
+          </p>
+
+        </div>
+
+
+        <div class="feature">
+
+          <div class="feature-icon">
+            🖼️
+          </div>
+
+          <h3>
+            Votre tableau
+          </h3>
+
+          <p>
+            Choisissez la taille, le support et même l'éclairage LED.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div class="logo">
+        ARTI<span>STIFIER</span>
+      </div>
 
       <p>
-
-        Transformez vos souvenirs en créations
-        artistiques uniques grâce à l'intelligence
-        artificielle.
-
-        Vous choisissez votre style.
-
-        Vous écrivez votre idée.
-
-        L'IA crée votre œuvre.
-
+        Votre photo. Votre imagination. Votre œuvre.
       </p>
 
-      <div class="hero-buttons">
-
-        <button
-          class="primary-button"
-          onclick="document.getElementById('create').scrollIntoView()"
-        >
-          Créer mon œuvre ✨
-        </button>
-
-        <button
-          class="secondary-button"
-          onclick="document.getElementById('how').scrollIntoView()"
-        >
-          Comment ça marche
-        </button>
-
-      </div>
+      <p>
+        © 2026 ARTISTIFIER
+      </p>
 
     </div>
 
-
-    <div class="hero-image">
-
-      <img
-        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80"
-        alt="Exemple œuvre"
-      >
-
-    </div>
-
-  </div>
-
-</section>
+  </footer>
 
 
-<!-- =========================
-     CREATE
-========================= -->
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
 
-<section
-  class="create-section"
-  id="create"
->
+  <script>
 
-  <div class="section-container">
+    /* =====================================================
+       CONFIGURATION SUPABASE
+    ====================================================== */
 
-    <h2 class="section-title">
-      Créez votre œuvre
-    </h2>
+    /*
+      IMPORTANT :
 
-    <p class="section-description">
+      METS ICI L'URL DE TON PROJET SUPABASE.
 
-      Importez votre photo
+      Exemple :
+
+      const SUPABASE_URL =
+      "https://xxxxxxxx.supabase.co";
+
+      Ton Edge Function est :
+
+      transform-image
+    */
+
+    const SUPABASE_URL = "COLLE_ICI_TON_URL_SUPABASE";
+
+
+
+    /* =====================================================
+       VARIABLES
+    ====================================================== */
+
+    let uploadedImage = null;
+
+    let selectedStyle = "artistique moderne";
+
+    let selectedResult = null;
+
+    let selectedSize = {
+      name: "30 x 40 cm",
+      price: 29
+    };
+
+    let selectedMaterial = {
+      name: "Toile classique",
+      price: 0
+    };
+
+    let selectedFrame = {
+      name: "Sans cadre",
+      price: 0
+    };
+
+    let ledEnabled = false;
+
+
+
+    /* =====================================================
+       AVANT / APRES
+    ====================================================== */
+
+    const beforeAfterRange =
+      document.getElementById("beforeAfterRange");
+
+    const beforeImage =
+      document.getElementById("beforeImage");
+
+    const comparisonSlider =
+      document.getElementById("comparisonSlider");
+
+
+    beforeAfterRange.addEventListener("input", function () {
+
+      const value = this.value;
+
+      beforeImage.style.width =
+        value + "%";
+
+      comparisonSlider.style.left =
+        value + "%";
+
+    });
+
+
+
+    /* =====================================================
+       UPLOAD IMAGE
+    ====================================================== */
+
+    const imageInput =
+      document.getElementById("imageInput");
+
+    const uploadZone =
+      document.getElementById("uploadZone");
+
+    const imagePreview =
+      document.getElementById("imagePreview");
+
+    const uploadContent =
+      document.getElementById("uploadContent");
+
+    const changeImageButton =
+      document.getElementById("changeImageButton");
+
+
+    uploadZone.addEventListener("click", function () {
+
+      imageInput.click();
+
+    });
+
+
+    changeImageButton.addEventListener("click", function (event) {
+
+      event.stopPropagation();
+
+      imageInput.click();
+
+    });
+
+
+    imageInput.addEventListener("change", function (event) {
+
+      const file =
+        event.target.files[0];
+
+      if (!file) return;
+
+
+      if (!file.type.startsWith("image/")) {
+
+        alert("Veuillez sélectionner une image.");
+
+        return;
+
+      }
+
+
+      uploadedImage = file;
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload = function (e) {
+
+        imagePreview.src =
+          e.target.result;
+
+        imagePreview.style.display =
+          "block";
+
+        uploadContent.style.display =
+          "none";
+
+        changeImageButton.style.display =
+          "block";
+
+      };
+
+
+      reader.readAsDataURL(file);
+
+    });
+
+
+
+    /* =====================================================
+       STYLE
+    ====================================================== */
+
+    const styleButtons =
+      document.querySelectorAll(".style-option");
+
+
+    styleButtons.forEach(function (button) {
+
+      button.addEventListener("click", function () {
+
+        styleButtons.forEach(function (item) {
+
+          item.classList.remove("active");
+
+        });
+
+
+        button.classList.add("active");
+
+
+        selectedStyle =
+          button.dataset.style;
+
+      });
+
+    });
+
+
+
+    /* =====================================================
+       GENERATE AI
+    ====================================================== */
+
+    const generateButton =
+      document.getElementById("generateButton");
+
+    const loading =
+      document.getElementById("loading");
+
+    const resultsSection =
+      document.getElementById("resultsSection");
+
+    const resultsGrid =
+      document.getElementById("resultsGrid");
+
+
+
+    generateButton.addEventListener(
+      "click",
+      generateImages
+    );
+
+
+
+    async function generateImages() {
+
+      if (!uploadedImage) {
+
+        alert(
+          "📸 Veuillez importer une photo avant de générer votre œuvre."
+        );
+
+        return;
+
+      }
+
+
+      const userPrompt =
+        document
+          .getElementById("promptInput")
+          .value
+          .trim();
+
+
+      const colors =
+        document
+          .getElementById("colorChoice")
+          .value;
+
+
+      /*
+        PROMPT FINAL
+      */
+
+      const finalPrompt =
+
+        `
+        Transforme cette photo en une œuvre artistique.
+
+        Style :
+        ${selectedStyle}
+
+        Couleurs :
+        ${colors || "libres"}
+
+        Demande du client :
+        ${userPrompt || "Créer une œuvre magnifique et artistique."}
+
+        IMPORTANT :
+
+        Conserver les éléments principaux de la photo originale.
+
+        Créer une véritable transformation artistique.
+
+        Le résultat doit être esthétique,
+        professionnel,
+        détaillé,
+        de haute qualité
+        et prêt à être imprimé sur un tableau.
+        `;
+
+
+      /*
+        AFFICHAGE CHARGEMENT
+      */
+
+      loading.style.display =
+        "block";
+
+      resultsSection.style.display =
+        "none";
+
+      generateButton.disabled =
+        true;
+
+      generateButton.textContent =
+        "✨ Création en cours...";
+
+
+      try {
+
+        /*
+          ON CONVERTIT L'IMAGE EN BASE64
+        */
+
+        const base64Image =
+          await fileToBase64(uploadedImage);
+
+
+
+        /*
+          ON DEMANDE 3 GENERATIONS
+
+          La fonction Edge doit recevoir :
+
+          image
+          prompt
+        */
+
+
+        const promises = [];
+
+
+        for (
+          let i = 0;
+          i < 3;
+          i++
+        ) {
+
+          promises.push(
+
+            callAI(
+              base64Image,
+              finalPrompt
+            )
+
+          );
+
+        }
+
+
+        const results =
+          await Promise.all(promises);
+
+
+
+        /*
+          AFFICHER LES RESULTATS
+        */
+
+        displayResults(results);
+
+
+      }
+
+      catch (error) {
+
+        console.error(error);
+
+
+        alert(
+
+          "❌ Une erreur est survenue lors de la génération.\n\n" +
+
+          "Vérifie que ton URL Supabase est correctement configurée " +
+
+          "et que la fonction transform-image fonctionne."
+
+        );
+
+      }
+
+
+      finally {
+
+        loading.style.display =
+          "none";
+
+        generateButton.disabled =
+          false;
+
+        generateButton.textContent =
+          "✨ Générer mes 3 créations";
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       APPEL SUPABASE
+    ====================================================== */
+
+    async function callAI(
+      image,
+      prompt
+    ) {
+
+
+      /*
+        VERIFICATION URL
+      */
+
+      if (
+        SUPABASE_URL ===
+        "COLLE_ICI_TON_URL_SUPABASE"
+      ) {
+
+        throw new Error(
+          "URL Supabase non configurée."
+        );
+
+      }
+
+
+      const response =
+        await fetch(
+
+          SUPABASE_URL +
+          "/functions/v1/transform-image",
+
+          {
+
+            method: "POST",
+
+            headers: {
+
+              "Content-Type":
+                "application/json"
+
+            },
+
+
+            body:
+
+              JSON.stringify({
+
+                image: image,
+
+                prompt: prompt
+
+              })
+
+          }
+
+        );
+
+
+      if (!response.ok) {
+
+        const errorText =
+          await response.text();
+
+
+        console.error(
+          errorText
+        );
+
+
+        throw new Error(
+          "Erreur Edge Function"
+        );
+
+      }
+
+
+      const data =
+        await response.json();
+
+
+      console.log(
+        "Réponse IA :",
+        data
+      );
+
+
+      /*
+        DIFFERENTS FORMATS POSSIBLES
+      */
+
+      return (
+
+        data.image ||
+
+        data.imageUrl ||
+
+        data.url ||
+
+        data.output ||
+
+        data.result
+
+      );
+
+    }
+
+
+
+    /* =====================================================
+       FILE TO BASE64
+    ====================================================== */
+
+    function fileToBase64(file) {
+
+      return new Promise(
+
+        function (
+          resolve,
+          reject
+        ) {
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload =
+            function () {
+
+              resolve(
+                reader.result
+              );
+
+            };
+
+
+          reader.onerror =
+            reject;
+
+
+          reader.readAsDataURL(
+            file
+          );
+
+        }
+
+      );
+
+    }
+
+
+
+    /* =====================================================
+       DISPLAY RESULTS
+    ====================================================== */
+
+    function displayResults(results) {
+
+      resultsGrid.innerHTML =
+        "";
+
+
+      results.forEach(
+
+        function (
+          imageUrl,
+          index
+        ) {
+
+
+          if (!imageUrl) {
+
+            return;
+
+          }
+
+
+          const card =
+            document.createElement("div");
+
+
+          card.className =
+            "result-card";
+
+
+          card.innerHTML =
+
+            `
+
+            <div class="result-image-container">
+
+              <img
+                src="${imageUrl}"
+                alt="Création ${index + 1}"
+              >
+
+              <div class="selected-badge">
+                ✓ Sélectionnée
+              </div>
+
+            </div>
+
+
+            <div class="result-info">
+
+              <h3>
+                Création ${index + 1}
+              </h3>
+
+              <p>
+                Cliquez pour sélectionner cette œuvre.
+              </p>
+
+            </div>
+
+            `;
+
+
+          card.addEventListener(
+
+            "click",
+
+            function () {
+
+              selectResult(
+                imageUrl,
+                card
+              );
+
+            }
+
+          );
+
+
+          resultsGrid.appendChild(
+            card
+          );
+
+        }
+
+      );
+
+
+      resultsSection.style.display =
+        "block";
+
+
+      resultsSection.scrollIntoView({
+
+        behavior: "smooth"
+
+      });
+
+    }
+
+
+
+    /* =====================================================
+       SELECT RESULT
+    ====================================================== */
+
+    function selectResult(
+      imageUrl,
+      selectedCard
+    ) {
+
+
+      const cards =
+        document.querySelectorAll(
+          ".result-card"
+        );
+
+
+      cards.forEach(
+        function (card) {
+
+          card.classList.remove(
+            "selected"
+          );
+
+        }
+      );
+
+
+      selectedCard.classList.add(
+        "selected"
+      );
+
+
+      selectedResult =
+        imageUrl;
+
+
+      /*
+        IMAGE PRODUIT
+      */
+
+      document
+        .getElementById(
+          "productImage"
+        )
+        .src =
+        imageUrl;
+
+
+      /*
+        AFFICHER CONFIGURATION
+      */
+
+      const productSection =
+        document.getElementById(
+          "productSection"
+        );
+
+
+      productSection.style.display =
+        "block";
+
+
+      setTimeout(
+
+        function () {
+
+          productSection.scrollIntoView({
+
+            behavior:
+              "smooth"
+
+          });
+
+        },
+
+        200
+
+      );
+
+    }
+
+
+
+    /* =====================================================
+       REGENERATE
+    ====================================================== */
+
+    const regenerateButton =
+      document.getElementById(
+        "regenerateButton"
+      );
+
+
+    regenerateButton.addEventListener(
+
+      "click",
+
+      function () {
+
+        generateImages();
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       SIZE OPTIONS
+    ====================================================== */
+
+    const sizeButtons =
+      document.querySelectorAll(
+        "#sizeOptions .option-button"
+      );
+
+
+    sizeButtons.forEach(
+
+      function (
+        button
+      ) {
+
+        button.addEventListener(
+
+          "click",
+
+          function () {
+
+
+            sizeButtons.forEach(
+
+              function (
+                item
+              ) {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+
+            );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            selectedSize = {
+
+              name:
+                button.dataset.size,
+
+              price:
+                Number(
+                  button.dataset.price
+                )
+
+            };
+
+
+            updateSummary();
+
+          }
+
+        );
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       MATERIAL OPTIONS
+    ====================================================== */
+
+    const materialButtons =
+      document.querySelectorAll(
+        "#materialOptions .option-button"
+      );
+
+
+    materialButtons.forEach(
+
+      function (
+        button
+      ) {
+
+        button.addEventListener(
+
+          "click",
+
+          function () {
+
+
+            materialButtons.forEach(
+
+              function (
+                item
+              ) {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+
+            );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            selectedMaterial = {
+
+              name:
+                button.dataset.material,
+
+              price:
+                Number(
+                  button.dataset.price
+                )
+
+            };
+
+
+            updateSummary();
+
+          }
+
+        );
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       FRAME OPTIONS
+    ====================================================== */
+
+    const frameButtons =
+      document.querySelectorAll(
+        "#frameOptions .option-button"
+      );
+
+
+    frameButtons.forEach(
+
+      function (
+        button
+      ) {
+
+        button.addEventListener(
+
+          "click",
+
+          function () {
+
+
+            frameButtons.forEach(
+
+              function (
+                item
+              ) {
+
+                item.classList.remove(
+                  "active"
+                );
+
+              }
+
+            );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            selectedFrame = {
+
+              name:
+                button.dataset.frame,
+
+              price:
+                Number(
+                  button.dataset.price
+                )
+
+            };
+
+
+            updateFrame();
+
+
+            updateSummary();
+
+          }
+
+        );
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       FRAME PREVIEW
+    ====================================================== */
+
+    function updateFrame() {
+
+      const framePreview =
+        document.getElementById(
+          "framePreview"
+        );
+
+
+      if (
+        selectedFrame.name ===
+        "Sans cadre"
+      ) {
+
+        framePreview.classList.add(
+          "no-frame"
+        );
+
+        return;
+
+      }
+
+
+      framePreview.classList.remove(
+        "no-frame"
+      );
+
+
+      if (
+        selectedFrame.name ===
+        "Cadre noir"
+      ) {
+
+        framePreview.style.background =
+          "#171717";
+
+      }
+
+
+      if (
+        selectedFrame.name ===
+        "Cadre blanc"
+      ) {
+
+        framePreview.style.background =
+          "#ffffff";
+
+      }
+
+
+      if (
+        selectedFrame.name ===
+        "Cadre bois"
+      ) {
+
+        framePreview.style.background =
+          "#8B5A2B";
+
+      }
+
+    }
+
+
+
+    /* =====================================================
+       LED
+    ====================================================== */
+
+    const ledSwitch =
+      document.getElementById(
+        "ledSwitch"
+      );
+
+
+    ledSwitch.addEventListener(
+
+      "click",
+
+      function () {
+
+
+        ledEnabled =
+          !ledEnabled;
+
+
+        ledSwitch.classList.toggle(
+          "active"
+        );
+
+
+        updateSummary();
+
+      }
+
+    );
+
+
+
+    /* =====================================================
+       SUMMARY
+    ====================================================== */
+
+    function updateSummary() {
+
+
+      document
+        .getElementById(
+          "summarySize"
+        )
+        .textContent =
+        selectedSize.name;
+
+
+      document
+        .getElementById(
+          "summaryMaterial"
+        )
+        .textContent =
+        selectedMaterial.name;
+
+
+      document
+        .getElementById(
+          "summaryFrame"
+        )
+        .textContent =
+        selectedFrame.name;
+
+
+      document
+        .getElementById(
+          "summaryLed"
+        )
+        .textContent =
+
+        ledEnabled
+
+          ? "Oui (+15 €)"
+
+          : "Non";
+
+
+      const ledPrice =
+
+        ledEnabled
+
+          ? 15
+
+          : 0;
+
+
+      const total =
+
+        selectedSize.price +
+
+        selectedMaterial.price +
+
+        selectedFrame.price +
+
+        ledPrice;
+
+
+      document
+        .getElementById(
+          "totalPrice"
+        )
+        .textContent =
+        total + " €";
+
+    }
+
+
+
+    /* =====================================================
+       ORDER
+    ====================================================== */
+
+    const orderButton =
+      document.getElementById(
+        "orderButton"
+      );
+
+
+    orderButton.addEventListener(
+
+      "click",
+
+      function () {
+
+
+        if (!selectedResult) {
+
+          alert(
+            "Veuillez sélectionner une création."
+          );
+
+          return;
+
+        }
+
+
+        alert(
+
+          "🎉 Votre œuvre a été ajoutée à votre commande !\n\n" +
+
+          "Taille : " +
+          selectedSize.name +
+
+          "\nSupport : " +
+          selectedMaterial.name +
+
+          "\nCadre : " +
+          selectedFrame.name +
+
+          "\nLED : " +
+          (
+            ledEnabled
+              ? "Oui"
+              : "Non"
+          )
+
+        );
+
+
+        /*
+          PLUS TARD :
+
+          ICI ON POURRA CONNECTER :
+
+          - Stripe
+          - Shopify
+          - WooCommerce
+          - Un système de paiement
+          - Une base de données Supabase
+
+        */
+
+      }
+
+    );
+
+
+  </script>
+
+</body>
+
+</html>
