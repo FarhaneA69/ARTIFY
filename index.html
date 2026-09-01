@@ -1,248 +1,677 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ARTIFY — Une vision. Une œuvre.</title>
+  <title>ARTIFY - Transformez vos photos en œuvres d'art</title>
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      font-family: Arial, sans-serif;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #08080d;
+      background: #0b0b0f;
       color: white;
-      min-height: 100vh;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 25px 8%;
-      border-bottom: 1px solid #25252d;
+      padding: 20px 8%;
+      border-bottom: 1px solid #252530;
     }
 
     .logo {
       font-size: 28px;
       font-weight: bold;
-      letter-spacing: 6px;
+      letter-spacing: 4px;
     }
 
     .logo span {
       color: #a855f7;
     }
 
-    .cart {
-      padding: 12px 20px;
-      border: 1px solid #393944;
-      border-radius: 14px;
-      background: #11111a;
+    nav {
+      display: flex;
+      gap: 25px;
+      color: #aaa;
     }
 
-    main {
-      max-width: 900px;
+    .hero {
+      text-align: center;
+      padding: 80px 20px 50px;
+      max-width: 1000px;
       margin: auto;
-      padding: 80px 25px;
     }
 
-    h1 {
-      font-size: clamp(40px, 8vw, 80px);
+    .hero h1 {
+      font-size: 55px;
       margin-bottom: 20px;
     }
 
-    h1 span {
-      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    .gradient {
+      background: linear-gradient(90deg, #a855f7, #ec4899, #6366f1);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    .subtitle {
+    .hero p {
+      font-size: 19px;
       color: #aaa;
-      font-size: 20px;
       line-height: 1.6;
-      margin-bottom: 45px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding-bottom: 80px;
     }
 
     .card {
-      background: #101018;
-      border: 1px solid #292935;
-      border-radius: 25px;
+      background: #15151d;
+      border: 1px solid #282833;
+      border-radius: 20px;
       padding: 30px;
+      margin-top: 25px;
     }
 
-    label {
-      display: block;
-      margin-bottom: 12px;
-      font-size: 18px;
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .upload-box {
+      border: 2px dashed #555;
+      border-radius: 15px;
+      padding: 45px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .upload-box:hover {
+      border-color: #a855f7;
+      background: #1b1723;
+    }
+
+    input[type="file"] {
+      display: none;
     }
 
     textarea {
       width: 100%;
-      min-height: 150px;
-      background: #08080d;
-      border: 1px solid #353543;
-      border-radius: 15px;
-      padding: 20px;
+      min-height: 120px;
+      background: #0c0c12;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 15px;
       color: white;
-      font-size: 17px;
+      font-size: 16px;
       resize: vertical;
     }
 
+    textarea:focus {
+      outline: none;
+      border-color: #a855f7;
+    }
+
     button {
-      width: 100%;
-      margin-top: 20px;
-      padding: 18px;
       border: none;
-      border-radius: 15px;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: bold;
+      border-radius: 12px;
+      padding: 16px 25px;
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    .generate {
       background: linear-gradient(90deg, #7c3aed, #db2777);
       color: white;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
     }
 
-    button:disabled {
-      opacity: 0.6;
+    .generate:hover {
+      opacity: 0.9;
     }
 
-    #result {
-      margin-top: 25px;
+    .generate:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    #preview,
+    #resultImage {
+      width: 100%;
+      max-height: 550px;
+      object-fit: contain;
+      border-radius: 15px;
+      margin-top: 20px;
+      display: none;
+      background: #000;
+    }
+
+    .status {
+      text-align: center;
+      margin-top: 15px;
       color: #bbb;
     }
 
-    #imageResult {
-      margin-top: 25px;
-      width: 100%;
-      border-radius: 20px;
+    .options {
       display: none;
     }
 
-    .loading {
-      color: #a855f7;
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
     }
+
+    .choice {
+      background: #0c0c12;
+      border: 1px solid #333;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .choice:hover {
+      border-color: #a855f7;
+    }
+
+    .choice.selected {
+      background: #5b21b6;
+      border-color: #c084fc;
+    }
+
+    .section-title {
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+
+    .order {
+      background: #22c55e;
+      color: white;
+      margin-top: 30px;
+    }
+
+    .images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .image-label {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 10px;
+    }
+
+    @media(max-width: 700px) {
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .images {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
   </style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">
-      ART<span>I</span>FY
+<header>
+
+  <div class="logo">
+    ART<span>IFY</span>
+  </div>
+
+  <nav>
+    <div>Accueil</div>
+    <div>Comment ça marche</div>
+    <div>Mes créations</div>
+  </nav>
+
+</header>
+
+
+<section class="hero">
+
+  <h1>
+    Transformez vos photos en
+    <span class="gradient">œuvres d'art</span>
+  </h1>
+
+  <p>
+    Importez votre photo, décrivez ce que vous imaginez
+    et notre intelligence artificielle transforme votre image.
+  </p>
+
+</section>
+
+
+<div class="container">
+
+
+  <!-- ETAPE 1 -->
+
+  <div class="card">
+
+    <h2>📸 1. Importez votre photo</h2>
+
+    <label class="upload-box">
+
+      <div style="font-size:45px;">📷</div>
+
+      <h3>Choisissez votre photo</h3>
+
+      <p style="color:#999;margin-top:10px;">
+        JPG, PNG ou WEBP
+      </p>
+
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+      >
+
+    </label>
+
+    <img id="preview">
+
+  </div>
+
+
+  <!-- ETAPE 2 -->
+
+  <div class="card">
+
+    <h2>✨ 2. Décrivez votre œuvre</h2>
+
+    <textarea
+      id="prompt"
+      placeholder="Exemple : Transforme cette photo en peinture artistique futuriste avec des couleurs néon, tout en conservant le sujet principal."
+    ></textarea>
+
+    <button
+      class="generate"
+      id="generateButton"
+    >
+      ✨ Générer avec l'IA
+    </button>
+
+    <div
+      class="status"
+      id="status"
+    ></div>
+
+  </div>
+
+
+  <!-- RESULTAT -->
+
+  <div
+    class="card"
+    id="resultCard"
+    style="display:none;"
+  >
+
+    <h2>🎨 Votre création ARTIFY</h2>
+
+    <img id="resultImage">
+
+  </div>
+
+
+  <!-- OPTIONS -->
+
+  <div
+    class="card options"
+    id="options"
+  >
+
+    <h2>🖼️ Personnalisez votre tableau</h2>
+
+
+    <h3 class="section-title">
+      📏 Taille
+    </h3>
+
+    <div
+      class="choices"
+      id="sizes"
+    >
+
+      <div class="choice">
+        30 × 40 cm
+      </div>
+
+      <div class="choice">
+        40 × 60 cm
+      </div>
+
+      <div class="choice">
+        50 × 70 cm
+      </div>
+
     </div>
 
-    <div class="cart">
-      🛒 Panier (0)
-    </div>
-  </header>
 
-  <main>
+    <h3 class="section-title">
+      🖼️ Matière
+    </h3>
 
-    <h1>
-      Transformez votre vision<br>
-      en <span>œuvre d'art.</span>
-    </h1>
+    <div
+      class="choices"
+      id="materials"
+    >
 
-    <p class="subtitle">
-      Décrivez l'œuvre que vous imaginez et laissez ARTIFY
-      créer votre vision grâce à l'intelligence artificielle.
-    </p>
+      <div class="choice">
+        Toile
+      </div>
 
-    <div class="card">
+      <div class="choice">
+        Poster
+      </div>
 
-      <label for="prompt">
-        ✨ Décrivez votre œuvre
-      </label>
+      <div class="choice">
+        Aluminium
+      </div>
 
-      <textarea
-        id="prompt"
-        placeholder="Exemple : Un dragon futuriste dans le style anime 4K..."
-      ></textarea>
-
-      <button id="generateButton">
-        ✨ Créer mon œuvre
-      </button>
-
-      <div id="result"></div>
-
-      <img id="imageResult" />
+      <div class="choice">
+        Plexiglas
+      </div>
 
     </div>
 
-  </main>
 
-  <script>
+    <h3 class="section-title">
+      💡 Éclairage
+    </h3>
 
-    const button = document.getElementById("generateButton");
-    const promptInput = document.getElementById("prompt");
-    const result = document.getElementById("result");
-    const imageResult = document.getElementById("imageResult");
+    <div
+      class="choices"
+      id="led"
+    >
 
-    button.addEventListener("click", async () => {
+      <div class="choice">
+        Sans LED
+      </div>
 
-      const prompt = promptInput.value.trim();
+      <div class="choice">
+        Avec LED
+      </div>
 
-      if (!prompt) {
-        result.textContent = "⚠️ Veuillez décrire votre œuvre.";
-        return;
+    </div>
+
+
+    <button class="order">
+
+      🛒 Continuer vers la commande
+
+    </button>
+
+  </div>
+
+
+</div>
+
+
+<script>
+
+const imageInput =
+  document.getElementById("imageInput");
+
+const preview =
+  document.getElementById("preview");
+
+const generateButton =
+  document.getElementById("generateButton");
+
+const promptInput =
+  document.getElementById("prompt");
+
+const status =
+  document.getElementById("status");
+
+const resultImage =
+  document.getElementById("resultImage");
+
+const resultCard =
+  document.getElementById("resultCard");
+
+const options =
+  document.getElementById("options");
+
+
+let selectedFile = null;
+
+
+
+/* PREVIEW IMAGE */
+
+imageInput.addEventListener(
+  "change",
+  function(event) {
+
+    selectedFile =
+      event.target.files[0];
+
+    if (!selectedFile) return;
+
+    preview.src =
+      URL.createObjectURL(selectedFile);
+
+    preview.style.display =
+      "block";
+
+  }
+);
+
+
+
+/* GENERER AVEC IA */
+
+generateButton.addEventListener(
+  "click",
+  async function() {
+
+    if (!selectedFile) {
+
+      alert(
+        "Veuillez importer une photo."
+      );
+
+      return;
+
+    }
+
+
+    if (!promptInput.value.trim()) {
+
+      alert(
+        "Veuillez écrire ce que vous souhaitez."
+      );
+
+      return;
+
+    }
+
+
+    generateButton.disabled =
+      true;
+
+    generateButton.innerText =
+      "⏳ Création en cours...";
+
+    status.innerText =
+      "🤖 L'intelligence artificielle transforme votre image...";
+
+
+    try {
+
+
+      const formData =
+        new FormData();
+
+
+      formData.append(
+        "image",
+        selectedFile
+      );
+
+
+      formData.append(
+        "prompt",
+        promptInput.value
+      );
+
+
+      const response =
+        await fetch(
+          "/api/generate",
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+
+
+      const data =
+        await response.json();
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          data.error ||
+          "Erreur lors de la génération."
+        );
+
       }
 
-      button.disabled = true;
-      button.textContent = "Création en cours...";
-      result.innerHTML =
-        '<div class="loading">✨ L’IA crée votre œuvre...</div>';
 
-      imageResult.style.display = "none";
+      resultImage.src =
+        data.image;
 
-      try {
 
-        const response = await fetch("/api/generate", {
+      resultImage.style.display =
+        "block";
 
-          method: "POST",
 
-          headers: {
-            "Content-Type": "application/json"
-          },
+      resultCard.style.display =
+        "block";
 
-          body: JSON.stringify({
-            prompt: prompt
-          })
+
+      options.style.display =
+        "block";
+
+
+      status.innerText =
+        "✅ Votre œuvre est prête !";
+
+
+      resultCard.scrollIntoView({
+        behavior: "smooth"
+      });
+
+
+    }
+
+    catch (error) {
+
+
+      console.error(error);
+
+
+      status.innerText =
+        "❌ " + error.message;
+
+
+      alert(
+        "Erreur : " +
+        error.message
+      );
+
+    }
+
+
+    finally {
+
+
+      generateButton.disabled =
+        false;
+
+
+      generateButton.innerText =
+        "✨ Générer avec l'IA";
+
+    }
+
+  }
+);
+
+
+
+/* BOUTONS OPTIONS */
+
+document
+.querySelectorAll(".choices")
+.forEach(group => {
+
+
+  group
+  .querySelectorAll(".choice")
+  .forEach(choice => {
+
+
+    choice.addEventListener(
+      "click",
+      function() {
+
+
+        group
+        .querySelectorAll(".choice")
+        .forEach(item => {
+
+          item.classList.remove(
+            "selected"
+          );
 
         });
 
-        const data = await response.json();
 
-        if (!response.ok) {
-          throw new Error(data.error || "Erreur lors de la génération");
-        }
+        choice.classList.add(
+          "selected"
+        );
 
-        result.textContent = "✅ Votre œuvre a été créée !";
-
-        if (data.imageUrl) {
-
-          imageResult.src = data.imageUrl;
-          imageResult.style.display = "block";
-
-        }
-
-      } catch (error) {
-
-        result.textContent =
-          "❌ Erreur : " + error.message;
 
       }
+    );
 
-      button.disabled = false;
-      button.textContent = "✨ Créer mon œuvre";
 
-    });
+  });
 
-  </script>
+
+});
+
+</script>
 
 </body>
 </html>
