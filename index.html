@@ -3,662 +3,417 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ARTIFY — Créez. Personnalisez. Illuminez.</title>
+<title>ARTIFY — Sublimez vos images</title>
+<link rel="preconnect" href="https://images.unsplash.com">
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-font-family:Inter,Arial,sans-serif;
-background:#08080d;
-color:white;
-overflow-x:hidden;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
---purple:#8b3dff;
---pink:#ef4cb7;
---bg:#08080d;
---card:#11111a;
---border:rgba(255,255,255,.10);
---text2:#aaa9b5;
---gradient:linear-gradient(90deg,#813cff,#b14cff,#f14db7);
+--bg:#080808;
+--card:#111;
+--text:#fff;
+--muted:#a8a8a8;
+--line:rgba(255,255,255,.1);
+--accent:#8b5cf6
 }
 
-button{
-font-family:inherit;
-cursor:pointer;
+html{scroll-behavior:smooth}
+
+body{
+font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.5
 }
 
-/* NAV */
+a{text-decoration:none;color:inherit}
 
-nav{
-height:78px;
+.nav{
+position:sticky;
+top:0;
+z-index:10;
 display:flex;
 align-items:center;
 justify-content:space-between;
-padding:0 7%;
-border-bottom:1px solid rgba(255,255,255,.06);
-background:rgba(8,8,13,.92);
-backdrop-filter:blur(20px);
-position:sticky;
-top:0;
-z-index:100;
+padding:18px 7%;
+background:rgba(8,8,8,.8);
+backdrop-filter:blur(16px);
+border-bottom:1px solid var(--line)
 }
 
 .logo{
-font-size:25px;
+font-size:24px;
 font-weight:900;
-letter-spacing:7px;
+letter-spacing:-1px
 }
 
-.cart{
-background:#15151f;
-border:1px solid var(--border);
-color:white;
-padding:12px 17px;
-border-radius:14px;
-font-size:14px;
-}
+.logo span{color:#a78bfa}
 
-.cart span{
-background:var(--gradient);
-padding:5px 9px;
-border-radius:50%;
-margin-left:5px;
-}
-
-/* HERO */
-
-.hero{
-min-height:760px;
+.navlinks{
 display:flex;
-flex-direction:column;
+gap:26px;
+color:#d0d0d0;
+font-size:14px
+}
+
+.navlinks a:hover{color:#fff}
+
+.btn{
+display:inline-flex;
 align-items:center;
 justify-content:center;
-text-align:center;
-padding:80px 20px;
-background:
-radial-gradient(circle at 50% 25%,rgba(130,55,255,.20),transparent 35%),
-radial-gradient(circle at 70% 40%,rgba(255,70,180,.08),transparent 25%);
+border:none;
+cursor:pointer;
+padding:13px 20px;
+border-radius:999px;
+font-weight:750;
+transition:.2s
+}
+
+.btn-primary{
+background:#fff;
+color:#111
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 30px rgba(255,255,255,.12)
+}
+
+.btn-dark{
+background:#1b1b1b;
+border:1px solid var(--line);
+color:#fff
+}
+
+.hero{
+min-height:88vh;
+padding:80px 7% 50px;
+display:grid;
+grid-template-columns:1.05fr .95fr;
+gap:50px;
+align-items:center;
+max-width:1450px;
+margin:auto
 }
 
 .badge{
-border:1px solid rgba(160,90,255,.45);
-background:rgba(140,60,255,.08);
-color:#d5b6ff;
-padding:11px 18px;
-border-radius:30px;
-font-size:12px;
-letter-spacing:1px;
-margin-bottom:28px;
+display:inline-flex;
+padding:7px 12px;
+border:1px solid rgba(167,139,250,.35);
+background:rgba(139,92,246,.1);
+color:#c4b5fd;
+border-radius:999px;
+font-size:13px;
+font-weight:700;
+margin-bottom:22px
 }
 
-.hero h1{
-font-size:clamp(52px,9vw,105px);
-line-height:1.02;
-letter-spacing:-5px;
-max-width:900px;
+h1{
+font-size:clamp(48px,7vw,92px);
+line-height:.96;
+letter-spacing:-.065em;
+max-width:760px
 }
 
 .gradient{
-background:var(--gradient);
+background:linear-gradient(90deg,#fff,#a78bfa 45%,#ec4899);
 -webkit-background-clip:text;
 background-clip:text;
-color:transparent;
+color:transparent
 }
 
 .hero p{
-color:var(--text2);
 font-size:18px;
-line-height:1.7;
-max-width:620px;
-margin:28px 0;
+color:var(--muted);
+max-width:590px;
+margin:25px 0 30px
 }
 
-.primary{
-border:none;
-background:var(--gradient);
-color:white;
-font-weight:700;
-font-size:16px;
-padding:17px 25px;
-border-radius:15px;
-box-shadow:0 10px 40px rgba(130,50,255,.25);
-}
-
-.secondary{
-margin-top:15px;
-background:transparent;
-border:none;
-color:#d2b7ff;
-font-size:15px;
-}
-
-/* STATS */
-
-.stats{
+.actions{
 display:flex;
-gap:55px;
-margin-top:60px;
-flex-wrap:wrap;
-justify-content:center;
+gap:12px;
+flex-wrap:wrap
 }
 
-.stat{
-text-align:center;
-}
-
-.stat b{
-font-size:25px;
-display:block;
-margin-bottom:8px;
-}
-
-.stat span{
-font-size:13px;
-color:#aaa;
-}
-
-/* SECTION */
-
-.section{
-width:min(1180px,92%);
-margin:0 auto 100px;
-}
-
-.section-title{
-font-size:clamp(35px,5vw,65px);
-line-height:1.05;
-letter-spacing:-2px;
-margin-bottom:15px;
-}
-
-.section-text{
-color:var(--text2);
-font-size:17px;
-line-height:1.7;
-max-width:700px;
-margin-bottom:35px;
-}
-
-.tag{
-display:inline-block;
-padding:10px 16px;
-border-radius:12px;
-border:1px solid rgba(160,90,255,.35);
-color:#d1b1ff;
-font-size:13px;
-margin-bottom:24px;
-}
-
-/* CARD */
-
-.card{
-background:linear-gradient(145deg,#12121c,#0d0d15);
-border:1px solid var(--border);
-border-radius:28px;
-padding:35px;
-}
-
-/* BEFORE AFTER */
-
-.before-after{
-height:600px;
-width:100%;
+.hero-card{
 position:relative;
+min-height:520px;
+border-radius:28px;
 overflow:hidden;
-border-radius:22px;
-background:#15151c;
-touch-action:none;
-user-select:none;
+border:1px solid var(--line);
+background:#111;
+box-shadow:0 40px 90px rgba(0,0,0,.45)
 }
 
-.before-after img{
+.hero-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+position:absolute;
+inset:0
+}
+
+.floating{
+position:absolute;
+left:22px;
+bottom:22px;
+right:22px;
+padding:18px;
+background:rgba(10,10,10,.68);
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,.15);
+border-radius:18px;
+display:flex;
+justify-content:space-between;
+align-items:center
+}
+
+.floating strong{
+display:block;
+font-size:16px
+}
+
+.floating small{color:#b7b7b7}
+
+section{
+padding:95px 7%;
+max-width:1450px;
+margin:auto
+}
+
+.section-top{
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:25px;
+margin-bottom:35px
+}
+
+.eyebrow{
+color:#a78bfa;
+text-transform:uppercase;
+letter-spacing:.14em;
+font-size:12px;
+font-weight:800
+}
+
+.section-top h2{
+font-size:clamp(34px,4vw,58px);
+letter-spacing:-.05em;
+margin-top:7px
+}
+
+.section-top p{
+max-width:480px;
+color:var(--muted)
+}
+
+.features{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:16px
+}
+
+.feature{
+padding:28px;
+border:1px solid var(--line);
+background:linear-gradient(145deg,#121212,#0d0d0d);
+border-radius:22px
+}
+
+.icon{
+font-size:28px;
+margin-bottom:18px
+}
+
+.feature h3{
+font-size:19px;
+margin-bottom:8px
+}
+
+.feature p{
+color:var(--muted);
+font-size:14px
+}
+
+.compare{
+border:1px solid var(--line);
+border-radius:26px;
+overflow:hidden;
+background:#111
+}
+
+.compare-top{
+display:flex;
+justify-content:space-between;
+padding:16px 20px;
+border-bottom:1px solid var(--line);
+font-size:13px;
+color:#c9c9c9
+}
+
+.compare-wrap{
+position:relative;
+height:620px;
+overflow:hidden;
+user-select:none
+}
+
+.compare-wrap img{
 position:absolute;
 inset:0;
 width:100%;
 height:100%;
-object-fit:cover;
-pointer-events:none;
+object-fit:cover
 }
 
-.before{
-z-index:1;
-}
-
-.after-container{
-position:absolute;
-left:0;
-top:0;
-height:100%;
+.after{
 width:50%;
 overflow:hidden;
-z-index:2;
-}
-
-.after-container img{
-width:100%;
-max-width:none;
-}
-
-.slider-line{
 position:absolute;
-height:100%;
-width:3px;
-background:white;
-left:50%;
-top:0;
-z-index:4;
-transform:translateX(-50%);
-pointer-events:none;
+inset:0 auto 0 0;
+border-right:2px solid #fff
+}
+
+.after img{
+width:100vw;
+max-width:none
 }
 
 .slider{
 position:absolute;
 left:50%;
-top:50%;
-width:58px;
-height:58px;
-border-radius:50%;
-background:white;
-color:#333;
-z-index:5;
-transform:translate(-50%,-50%);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:25px;
-box-shadow:0 5px 30px rgba(0,0,0,.5);
-pointer-events:none;
-}
-
-.label{
-position:absolute;
-top:20px;
-z-index:10;
-background:rgba(10,10,15,.85);
-border:1px solid rgba(255,255,255,.15);
-padding:10px 15px;
-border-radius:20px;
-font-size:13px;
-backdrop-filter:blur(10px);
-}
-
-.label-before{
-left:20px;
-}
-
-.label-after{
-right:20px;
-}
-
-/* IA */
-
-.ai-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-}
-
-.ai-panel{
-background:#101019;
-border:1px solid var(--border);
-border-radius:22px;
-padding:25px;
-}
-
-.upload-area{
-border:2px dashed rgba(150,75,255,.4);
-border-radius:18px;
-padding:35px 20px;
-text-align:center;
-margin-bottom:20px;
-background:rgba(130,60,255,.04);
-}
-
-.upload-area input{
-display:none;
-}
-
-.upload-button{
-display:inline-block;
-background:#20202c;
-border:1px solid var(--border);
-padding:13px 18px;
-border-radius:12px;
-margin-top:15px;
-cursor:pointer;
-}
-
-.preview{
-width:100%;
-max-height:300px;
-object-fit:contain;
-display:none;
-border-radius:15px;
-margin-bottom:15px;
-}
-
-textarea{
-width:100%;
-min-height:110px;
-resize:vertical;
-background:#090910;
-border:1px solid var(--border);
-border-radius:15px;
-color:white;
-padding:15px;
-font-family:inherit;
-margin-top:12px;
-outline:none;
-}
-
-textarea:focus{
-border-color:#974bff;
-}
-
-.styles{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin:15px 0;
-}
-
-.style{
-border:1px solid var(--border);
-background:#191923;
-color:white;
-padding:10px 13px;
-border-radius:12px;
-font-size:13px;
-}
-
-.style.active{
-border-color:#9c50ff;
-background:rgba(140,65,255,.20);
-}
-
-.ai-result{
-height:100%;
-min-height:390px;
-border-radius:20px;
-overflow:hidden;
-background:#09090f;
-display:flex;
-align-items:center;
-justify-content:center;
-border:1px solid var(--border);
-}
-
-.ai-result img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.placeholder{
-text-align:center;
-color:#777;
-padding:30px;
-}
-
-/* CHEZ VOUS */
-
-.room-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-}
-
-.room{
-position:relative;
-height:460px;
-border-radius:22px;
-overflow:hidden;
-border:1px solid var(--border);
-background:#111;
-}
-
-.room img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.4s;
-}
-
-.room:hover img{
-transform:scale(1.04);
-}
-
-.room-label{
-position:absolute;
-bottom:20px;
-left:20px;
-background:rgba(10,10,15,.85);
-border:1px solid var(--border);
-padding:13px 17px;
-border-radius:13px;
-}
-
-/* LED */
-
-.led-room{
-position:relative;
-height:560px;
-border-radius:22px;
-overflow:hidden;
-margin-bottom:25px;
-background:#111;
-}
-
-.led-room img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:.4s;
-}
-
-.led-glow{
-position:absolute;
-inset:0;
-opacity:0;
-pointer-events:none;
-transition:.4s;
-background:
-radial-gradient(circle at 50% 45%,rgba(135,60,255,.7),transparent 25%),
-radial-gradient(circle at 50% 50%,rgba(255,50,180,.25),transparent 50%);
-mix-blend-mode:screen;
-}
-
-.led-room.active .led-glow{
-opacity:1;
-}
-
-.led-room.active img{
-filter:brightness(1.12) contrast(1.06);
-}
-
-.led-buttons{
-position:absolute;
-bottom:20px;
-left:50%;
+top:0;
+bottom:0;
+width:44px;
 transform:translateX(-50%);
+cursor:ew-resize;
 display:flex;
-background:rgba(10,10,15,.9);
-padding:7px;
-border:1px solid var(--border);
-border-radius:17px;
-width:min(550px,88%);
-z-index:5;
+align-items:center;
+justify-content:center
 }
 
-.led-button{
-flex:1;
-padding:14px;
-border:none;
-background:transparent;
-color:#bbb;
-border-radius:12px;
+.slider:before{
+content:"";
+position:absolute;
+top:0;
+bottom:0;
+width:2px;
+background:#fff
 }
 
-.led-button.active{
-background:var(--gradient);
-color:white;
-font-weight:700;
-}
-
-/* CUSTOM */
-
-.custom-grid{
+.slider span{
+z-index:1;
+width:44px;
+height:44px;
+border-radius:50%;
+background:#fff;
+color:#111;
 display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
-}
-
-.options{
-display:flex;
-flex-direction:column;
-gap:17px;
-}
-
-.option-box{
-background:#11111a;
-border:1px solid var(--border);
-border-radius:18px;
-padding:20px;
-}
-
-.option-box h3{
-margin-bottom:15px;
-}
-
-.option-list{
-display:flex;
-flex-wrap:wrap;
-gap:9px;
-}
-
-.option{
-background:#0a0a10;
-border:1px solid var(--border);
-color:#ddd;
-padding:11px 14px;
-border-radius:11px;
-}
-
-.option.selected{
-background:rgba(140,65,255,.22);
-border-color:#9b50ff;
-color:white;
-}
-
-.pricebox{
-padding:23px;
-border-radius:20px;
-background:linear-gradient(135deg,rgba(125,50,255,.2),rgba(245,60,180,.1));
-border:1px solid var(--border);
-}
-
-.price{
-font-size:42px;
+place-items:center;
 font-weight:900;
-margin:7px 0;
+box-shadow:0 10px 30px rgba(0,0,0,.4)
 }
 
-/* BENEFITS */
-
-.benefits{
+.gallery{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-margin-top:45px;
+grid-template-columns:repeat(3,1fr);
+gap:16px
 }
 
-.benefit{
+.gallery .item{
+height:360px;
+border-radius:20px;
+overflow:hidden;
+border:1px solid var(--line);
+position:relative
+}
+
+.gallery img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.45s
+}
+
+.gallery .item:hover img{
+transform:scale(1.05)
+}
+
+.gallery .label{
+position:absolute;
+left:14px;
+bottom:14px;
+background:rgba(0,0,0,.62);
+backdrop-filter:blur(10px);
+padding:7px 11px;
+border-radius:10px;
+font-size:12px
+}
+
+.cta{
 text-align:center;
-padding:20px 10px;
+padding:85px 20px;
+border:1px solid var(--line);
+border-radius:28px;
+background:
+radial-gradient(circle at top,rgba(139,92,246,.18),transparent 42%),
+#101010
 }
 
-.benefit div{
-font-size:27px;
-margin-bottom:10px;
+.cta h2{
+font-size:clamp(38px,5vw,68px);
+letter-spacing:-.06em
 }
 
-.benefit b{
-display:block;
-font-size:14px;
-margin-bottom:5px;
+.cta p{
+color:var(--muted);
+margin:16px auto 28px;
+max-width:560px
 }
-
-.benefit span{
-color:#888;
-font-size:12px;
-}
-
-/* FOOTER */
 
 footer{
-padding:55px 20px;
-border-top:1px solid rgba(255,255,255,.07);
-text-align:center;
+border-top:1px solid var(--line);
+padding:28px 7%;
+display:flex;
+justify-content:space-between;
 color:#888;
+font-size:13px
 }
 
-/* MOBILE */
+@media(max-width:850px){
 
-@media(max-width:800px){
-
-nav{
-padding:0 5%;
-}
-
-.logo{
-font-size:20px;
-letter-spacing:5px;
-}
+.navlinks{display:none}
 
 .hero{
-min-height:670px;
-}
-
-.hero h1{
-letter-spacing:-3px;
-}
-
-.card{
-padding:20px;
-}
-
-.before-after{
-height:430px;
-}
-
-.ai-grid,
-.room-grid,
-.custom-grid{
 grid-template-columns:1fr;
+padding-top:55px
 }
 
-.led-room{
-height:440px;
+.hero-card{min-height:430px}
+
+.features,.gallery{
+grid-template-columns:1fr
 }
 
-.benefits{
-grid-template-columns:1fr 1fr;
+.section-top{display:block}
+
+.section-top p{margin-top:14px}
+
+.compare-wrap{height:440px}
+
+.nav{padding:16px 5%}
+
+section,.hero{
+padding-left:5%;
+padding-right:5%
 }
+
+.after img{width:130vw}
+
+footer{padding:25px 5%}
 
 }
 
@@ -667,56 +422,85 @@ grid-template-columns:1fr 1fr;
 
 <body>
 
-<nav>
+<nav class="nav">
 
-<div class="logo">ARTIFY</div>
+<a href="#" class="logo">
+ART<span>IFY</span>
+</a>
 
-<button class="cart">
-🛒 Panier <span id="cartCount">0</span>
-</button>
+<div class="navlinks">
+
+<a href="#features">Fonctionnalités</a>
+<a href="#avant-apres">Avant / Après</a>
+<a href="#galerie">Galerie</a>
+
+</div>
+
+<a class="btn btn-primary" href="#commencer">
+Commencer
+</a>
 
 </nav>
 
 
+<main>
+
 <section class="hero">
 
+<div>
+
 <div class="badge">
-✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
+✦ L'IA au service de vos images
 </div>
 
 <h1>
-Transformez<br>
-votre vision en<br>
-<span class="gradient">œuvre d'art.</span>
+Transformez vos photos en
+<span class="gradient">
+œuvres d'art.
+</span>
 </h1>
 
 <p>
-Importez votre image, décrivez votre imagination et laissez l'IA créer une œuvre unique.
+ARTIFY améliore, restaure et sublime vos images grâce à une expérience simple, rapide et moderne.
 </p>
 
-<button class="primary" onclick="document.getElementById('creation').scrollIntoView()">
-Créer mon œuvre
-</button>
+<div class="actions">
 
-<button class="secondary" onclick="document.getElementById('avant-apres').scrollIntoView()">
-▷ Voir des exemples
-</button>
+<a class="btn btn-primary" href="#commencer">
+✨ Essayer maintenant
+</a>
 
-<div class="stats">
+<a class="btn btn-dark" href="#avant-apres">
+Voir le résultat ↓
+</a>
 
-<div class="stat">
-<b>∞</b>
-<span>Possibilités créatives</span>
 </div>
 
-<div class="stat">
-<b>✦</b>
-<span>Transformation intelligente</span>
 </div>
 
-<div class="stat">
-<b>⬡</b>
-<span>100% Votre imagination</span>
+
+<div class="hero-card">
+
+<img
+src="https://images.unsplash.com/photo-1496440737103-cd596325d314?auto=format&fit=crop&w=1400&q=95"
+alt="Portrait artistique">
+
+<div class="floating">
+
+<div>
+
+<strong>
+Amélioration intelligente
+</strong>
+
+<small>
+Plus nette • Plus détaillée • Plus belle
+</small>
+
+</div>
+
+<div>✦</div>
+
 </div>
 
 </div>
@@ -724,124 +508,133 @@ Créer mon œuvre
 </section>
 
 
-<section class="section" id="avant-apres">
+<section id="features">
 
-<div class="card">
+<div class="section-top">
 
-<div class="tag">🖼️ AVANT / APRÈS</div>
+<div>
 
-<h2 class="section-title">
-Une photo.<br>
-<span class="gradient">Une nouvelle réalité.</span>
+<div class="eyebrow">
+Pourquoi ARTIFY ?
+</div>
+
+<h2>
+Une nouvelle façon de sublimer vos images.
 </h2>
 
-<p class="section-text">
-Importez une photo et l'IA peut la transformer selon votre imagination.
+</div>
+
+<p>
+Une interface pensée pour aller droit au résultat, sans complexité.
 </p>
 
-<div class="before-after" id="beforeAfter">
+</div>
 
-<img class="before"
-src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=90"
-alt="Avant">
 
-<div class="after-container" id="afterContainer">
+<div class="features">
+
+<div class="feature">
+
+<div class="icon">✦</div>
+
+<h3>
+Amélioration IA
+</h3>
+
+<p>
+Redonnez de la netteté et des détails à vos images en quelques secondes.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="icon">◉</div>
+
+<h3>
+Qualité maximale
+</h3>
+
+<p>
+Une présentation optimisée pour des visuels propres et impressionnants.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="icon">⚡</div>
+
+<h3>
+Simple & rapide
+</h3>
+
+<p>
+Choisissez votre image, lancez le traitement et admirez le résultat.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="avant-apres">
+
+<div class="section-top">
+
+<div>
+
+<div class="eyebrow">
+Avant / Après
+</div>
+
+<h2>
+Faites glisser pour comparer.
+</h2>
+
+</div>
+
+<p>
+Un aperçu interactif du type de transformation que peut proposer ARTIFY.
+</p>
+
+</div>
+
+
+<div class="compare">
+
+<div class="compare-top">
+
+<span>← AVANT</span>
+
+<span>APRÈS →</span>
+
+</div>
+
+
+<div class="compare-wrap" id="compare">
 
 <img
-src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=90"
+src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=60"
+alt="Avant">
+
+
+<div class="after" id="after">
+
+<img
+src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=100"
 alt="Après">
 
 </div>
 
-<div class="slider-line" id="sliderLine"></div>
 
-<div class="slider" id="sliderHandle">‹›</div>
+<div class="slider" id="slider">
 
-<div class="label label-before">🖼️ AVANT</div>
-
-<div class="label label-after">✨ APRÈS</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section class="section" id="creation">
-
-<div class="card">
-
-<div class="tag">🤖 CRÉATION IA</div>
-
-<h2 class="section-title">
-Créez votre <span class="gradient">propre œuvre.</span>
-</h2>
-
-<p class="section-text">
-Ajoutez une photo, décrivez votre idée et choisissez un style.
-</p>
-
-<div class="ai-grid">
-
-<div class="ai-panel">
-
-<div class="upload-area">
-
-<img id="preview" class="preview">
-
-<div id="uploadText">
-
-<div style="font-size:40px">🖼️</div>
-
-<h3>Ajoutez votre photo</h3>
-
-<p style="color:#888;margin-top:8px">
-Appuyez ici pour choisir une image
-</p>
-
-</div>
-
-<label for="upload" class="upload-button">
-Choisir une image
-</label>
-
-<input type="file" id="upload" accept="image/*">
-
-</div>
-
-<h3>Décrivez votre œuvre</h3>
-
-<textarea
-id="prompt"
-placeholder="Exemple : Transforme cette photo en œuvre futuriste avec des lumières violettes..."></textarea>
-
-<h3 style="margin-top:18px">Choisissez un style</h3>
-
-<div class="styles">
-
-<button class="style active">🎨 Artistique</button>
-<button class="style">🎬 Cinématographique</button>
-<button class="style">🖌️ Peinture</button>
-<button class="style">🌌 Futuriste</button>
-
-</div>
-
-<button class="primary" style="width:100%" onclick="generateAI()">
-✨ Générer mon œuvre avec l'IA
-</button>
-
-<p id="status" style="color:#999;margin-top:12px;text-align:center"></p>
-
-</div>
-
-<div class="ai-result" id="aiResult">
-
-<div class="placeholder">
-🤖
-<br><br>
-Votre œuvre apparaîtra ici.
-</div>
+<span>↔</span>
 
 </div>
 
@@ -852,624 +645,193 @@ Votre œuvre apparaîtra ici.
 </section>
 
 
-<section class="section">
+<section id="galerie">
 
-<div class="card">
+<div class="section-top">
 
-<div class="tag">CHEZ VOUS</div>
+<div>
 
-<h2 class="section-title">
-Imaginez votre œuvre dans votre <span class="gradient">intérieur.</span>
+<div class="eyebrow">
+Inspiration
+</div>
+
+<h2>
+Des images qui attirent le regard.
 </h2>
 
-<p class="section-text">
-Des objets décoratifs uniques pour votre salon, chambre ou bureau.
+</div>
+
+<p>
+Un univers visuel premium, moderne et immersif.
 </p>
 
-<button class="primary" onclick="document.getElementById('creation').scrollIntoView()">
-Créer mon œuvre
-</button>
+</div>
 
-<br><br>
 
-<div class="room-grid">
+<div class="gallery">
 
-<div class="room">
 
-<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=90">
+<div class="item">
 
-<div class="room-label">
-🛋 Salon moderne
+<img
+src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=95"
+alt="">
+
+<div class="label">
+Paysage
 </div>
 
 </div>
 
-<div class="room">
 
-<img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=90">
+<div class="item">
 
-<div class="room-label">
-🪑 Bureau créatif
+<img
+src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=95"
+alt="">
+
+<div class="label">
+Portrait
 </div>
 
 </div>
 
+
+<div class="item">
+
+<img
+src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=95"
+alt="">
+
+<div class="label">
+Création
 </div>
 
+</div>
+
+
+</div>
+
+</section>
+
+
+<section id="commencer">
+
+<div class="cta">
+
+<div class="eyebrow">
+Prêt ?
+</div>
+
+<h2>
+Donnez une nouvelle vie
 <br>
+à vos images.
+</h2>
 
-<div class="led-room" id="ledRoom">
+<p>
+Commencez votre expérience ARTIFY dès maintenant.
+</p>
 
-<img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=90">
-
-<div class="led-glow"></div>
-
-<div class="led-buttons">
-
-<button
-class="led-button active"
-id="withoutLED"
-onclick="setLED(false)">
-Sans LED
-</button>
-
-<button
-class="led-button"
-id="withLED"
-onclick="setLED(true)">
-Avec LED
-</button>
-
-</div>
-
-</div>
+<a class="btn btn-primary" href="#">
+Commencer gratuitement ✦
+</a>
 
 </div>
 
 </section>
 
-
-<section class="section">
-
-<div class="card">
-
-<div class="tag">PERSONNALISATION</div>
-
-<h2 class="section-title">
-Personnalisez votre tableau
-</h2>
-
-<p class="section-text">
-Choisissez le format, la matière et l'option LED.
-</p>
-
-<div class="custom-grid">
-
-<div class="ai-panel">
-
-<div style="font-size:55px;text-align:center;margin:40px 0">
-🎨
-</div>
-
-<h2 style="text-align:center">
-Votre œuvre.
-</h2>
-
-<p style="text-align:center;color:#999;margin-top:15px">
-Configurez votre tableau exactement comme vous le souhaitez.
-</p>
-
-</div>
-
-
-<div class="options">
-
-<div class="option-box">
-
-<h3>📐 Taille</h3>
-
-<div class="option-list" id="sizes">
-
-<button class="option selected" data-price="49">
-30 × 40
-</button>
-
-<button class="option" data-price="69">
-40 × 60
-</button>
-
-<button class="option" data-price="99">
-60 × 80
-</button>
-
-<button class="option" data-price="149">
-80 × 120
-</button>
-
-</div>
-
-</div>
-
-
-<div class="option-box">
-
-<h3>🎨 Matière</h3>
-
-<div class="option-list" id="materials">
-
-<button class="option selected" data-extra="0">
-Canvas
-</button>
-
-<button class="option" data-extra="20">
-Aluminium
-</button>
-
-<button class="option" data-extra="30">
-Plexiglas
-</button>
-
-</div>
-
-</div>
-
-
-<div class="option-box">
-
-<h3>💡 Option LED</h3>
-
-<div class="option-list" id="ledOptions">
-
-<button class="option selected" data-extra="0">
-Sans LED
-</button>
-
-<button class="option" data-extra="30">
-LED +30 €
-</button>
-
-</div>
-
-</div>
-
-
-<div class="pricebox">
-
-<div style="color:#aaa">Prix estimé</div>
-
-<div class="price" id="price">
-49 €
-</div>
-
-<button class="primary" style="width:100%" onclick="addCart()">
-Continuer vers la commande
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="benefits">
-
-<div class="benefit">
-<div>⬡</div>
-<b>Paiement 100% sécurisé</b>
-<span>Stripe & SSL</span>
-</div>
-
-<div class="benefit">
-<div>↻</div>
-<b>Satisfait ou remboursé</b>
-<span>14 jours</span>
-</div>
-
-<div class="benefit">
-<div>▣</div>
-<b>Livraison rapide</b>
-<span>3 à 5 jours ouvrés</span>
-</div>
-
-<div class="benefit">
-<div>◉</div>
-<b>Support 7j/7</b>
-<span>Nous sommes là</span>
-</div>
-
-</div>
-
-</div>
-
-</section>
+</main>
 
 
 <footer>
 
-<div class="logo" style="margin-bottom:15px">
-ARTIFY
+<div>
+© 2026 ARTIFY
 </div>
 
-<p>
-Créez. Personnalisez. Illuminez.
-</p>
+<div>
+Créé pour sublimer vos images ✦
+</div>
 
 </footer>
 
 
 <script>
 
-/* AVANT / APRÈS */
+const wrap =
+document.getElementById('compare');
 
-const beforeAfter =
-document.getElementById("beforeAfter");
+const after =
+document.getElementById('after');
 
-const afterContainer =
-document.getElementById("afterContainer");
+const slider =
+document.getElementById('slider');
 
-const sliderLine =
-document.getElementById("sliderLine");
-
-const sliderHandle =
-document.getElementById("sliderHandle");
-
-let dragging = false;
+let dragging=false;
 
 
-function updateSlider(x){
+function setPosition(clientX){
 
-const rect =
-beforeAfter.getBoundingClientRect();
+const r=
+wrap.getBoundingClientRect();
 
-let percent =
-((x - rect.left) / rect.width) * 100;
+let x=
+Math.max(
+0,
+Math.min(
+clientX-r.left,
+r.width
+)
+);
 
-percent =
-Math.max(0,Math.min(100,percent));
+const p=
+(x/r.width)*100;
 
-afterContainer.style.width =
-percent + "%";
+after.style.width=
+p+'%';
 
-sliderLine.style.left =
-percent + "%";
-
-sliderHandle.style.left =
-percent + "%";
+slider.style.left=
+p+'%';
 
 }
 
 
-beforeAfter.addEventListener("pointerdown",function(e){
+slider.addEventListener(
+'pointerdown',
+e=>{
 
-dragging = true;
+dragging=true;
 
-beforeAfter.setPointerCapture(e.pointerId);
-
-updateSlider(e.clientX);
-
-});
-
-
-beforeAfter.addEventListener("pointermove",function(e){
-
-if(!dragging) return;
-
-updateSlider(e.clientX);
-
-});
-
-
-beforeAfter.addEventListener("pointerup",function(){
-
-dragging = false;
-
-});
-
-
-beforeAfter.addEventListener("pointercancel",function(){
-
-dragging = false;
-
-});
-
-
-/* LED */
-
-function setLED(enabled){
-
-const room =
-document.getElementById("ledRoom");
-
-const without =
-document.getElementById("withoutLED");
-
-const withLed =
-document.getElementById("withLED");
-
-
-if(enabled){
-
-room.classList.add("active");
-
-withLed.classList.add("active");
-
-without.classList.remove("active");
-
-}
-
-else{
-
-room.classList.remove("active");
-
-without.classList.add("active");
-
-withLed.classList.remove("active");
-
-}
-
-}
-
-
-/* UPLOAD */
-
-const upload =
-document.getElementById("upload");
-
-const preview =
-document.getElementById("preview");
-
-const uploadText =
-document.getElementById("uploadText");
-
-
-upload.addEventListener("change",function(){
-
-const file =
-this.files[0];
-
-if(!file) return;
-
-const reader =
-new FileReader();
-
-reader.onload =
-function(e){
-
-preview.src =
-e.target.result;
-
-preview.style.display =
-"block";
-
-uploadText.style.display =
-"none";
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-
-/* STYLES */
-
-document.querySelectorAll(".style").forEach(button=>{
-
-button.addEventListener("click",function(){
-
-document.querySelectorAll(".style").forEach(b=>{
-
-b.classList.remove("active");
-
-});
-
-this.classList.add("active");
-
-});
-
-});
-
-
-/* PRIX */
-
-let basePrice = 49;
-
-let materialPrice = 0;
-
-let ledPrice = 0;
-
-
-function updatePrice(){
-
-const total =
-basePrice +
-materialPrice +
-ledPrice;
-
-document.getElementById("price").textContent =
-total + " €";
-
-}
-
-
-function setupOptions(selector,type){
-
-document.querySelectorAll(selector).forEach(button=>{
-
-button.addEventListener("click",function(){
-
-document.querySelectorAll(selector).forEach(b=>{
-
-b.classList.remove("selected");
-
-});
-
-this.classList.add("selected");
-
-if(type === "size"){
-
-basePrice =
-Number(this.dataset.price);
-
-}
-
-if(type === "material"){
-
-materialPrice =
-Number(this.dataset.extra);
-
-}
-
-if(type === "led"){
-
-ledPrice =
-Number(this.dataset.extra);
-
-}
-
-updatePrice();
-
-});
-
-});
-
-}
-
-
-setupOptions("#sizes .option","size");
-
-setupOptions("#materials .option","material");
-
-setupOptions("#ledOptions .option","led");
-
-
-/* PANIER */
-
-let cart = 0;
-
-
-function addCart(){
-
-cart++;
-
-document.getElementById("cartCount").textContent =
-cart;
-
-alert("✨ Votre tableau a été ajouté au panier !");
-
-}
-
-
-/* IA */
-
-async function generateAI(){
-
-const prompt =
-document.getElementById("prompt").value.trim();
-
-const status =
-document.getElementById("status");
-
-const result =
-document.getElementById("aiResult");
-
-
-if(!prompt){
-
-alert("Décrivez votre œuvre avant de continuer ✨");
-
-return;
-
-}
-
-
-status.textContent =
-"🤖 L'IA crée votre œuvre...";
-
-
-result.innerHTML = `
-<div class="placeholder">
-🤖
-<br><br>
-Création en cours...
-</div>
-`;
-
-
-try{
-
-const response =
-await fetch("/api/generate",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-prompt:prompt
-})
-
-});
-
-
-const data =
-await response.json();
-
-
-if(!response.ok){
-
-throw new Error(
-data.error || "Erreur IA"
+slider.setPointerCapture(
+e.pointerId
 );
 
 }
-
-
-const image =
-data.image ||
-data.url ||
-data.imageUrl;
-
-
-if(!image){
-
-throw new Error(
-"Aucune image reçue"
 );
 
-}
 
+window.addEventListener(
+'pointermove',
+e=>{
 
-result.innerHTML =
-`<img src="${image}" alt="Création IA">`;
-
-
-status.textContent =
-"✨ Votre œuvre est prête !";
-
+if(dragging)
+setPosition(e.clientX);
 
 }
+);
 
-catch(error){
 
-console.error(error);
+window.addEventListener(
+'pointerup',
+()=>dragging=false
+);
 
-status.textContent =
-"❌ " + error.message;
 
-result.innerHTML = `
-<div class="placeholder">
-❌
-<br><br>
-Impossible de générer l'image.
-</div>
-`;
-
-}
-
-}
+wrap.addEventListener(
+'click',
+e=>setPosition(e.clientX)
+);
 
 </script>
 
