@@ -2,2110 +2,1110 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ARTIFY — Créez. Personnalisez. Illuminez.</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    font-family:"Inter",sans-serif;
-    background:
-    radial-gradient(circle at 50% 0%,rgba(118,45,255,.13),transparent 35%),
-    #07070d;
-    color:#f5f3ff;
-    overflow-x:hidden;
+font-family:Inter,Arial,sans-serif;
+background:#08080d;
+color:white;
+overflow-x:hidden;
 }
 
-button,
-input,
-select{
-    font-family:inherit;
+:root{
+--purple:#8b3dff;
+--pink:#ef4cb7;
+--bg:#08080d;
+--card:#11111a;
+--border:rgba(255,255,255,.10);
+--text2:#aaa9b5;
+--gradient:linear-gradient(90deg,#813cff,#b14cff,#f14db7);
 }
 
 button{
-    cursor:pointer;
+font-family:inherit;
+cursor:pointer;
 }
 
-img{
-    max-width:100%;
-    display:block;
-}
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-:root{
-
-    --bg:#07070d;
-
-    --card:#10101a;
-
-    --card2:#151522;
-
-    --border:rgba(255,255,255,.11);
-
-    --text:#f5f3ff;
-
-    --muted:#aaa8b5;
-
-    --purple:#8b3dff;
-
-    --purple2:#b34cff;
-
-    --pink:#f348b7;
-
-    --gradient:
-    linear-gradient(
-        90deg,
-        #8d42ff,
-        #b64dff,
-        #f348b7
-    );
-
-}
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* NAV */
 
 nav{
-
-    width:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:22px 6%;
-
-    position:sticky;
-
-    top:0;
-
-    z-index:100;
-
-    background:rgba(7,7,13,.88);
-
-    backdrop-filter:blur(18px);
-
-    border-bottom:1px solid rgba(255,255,255,.05);
-
+height:78px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 7%;
+border-bottom:1px solid rgba(255,255,255,.06);
+background:rgba(8,8,13,.92);
+backdrop-filter:blur(20px);
+position:sticky;
+top:0;
+z-index:100;
 }
 
 .logo{
-
-    font-size:28px;
-
-    font-weight:900;
-
-    letter-spacing:9px;
-
-    color:white;
-
-}
-
-.logo span{
-
-    background:var(--gradient);
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    color:transparent;
-
-}
-
-.nav-right{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
+font-size:25px;
+font-weight:900;
+letter-spacing:7px;
 }
 
 .cart{
-
-    background:#11111b;
-
-    border:1px solid var(--border);
-
-    color:white;
-
-    border-radius:16px;
-
-    padding:14px 20px;
-
-    font-size:16px;
-
-    transition:.25s;
-
+background:#15151f;
+border:1px solid var(--border);
+color:white;
+padding:12px 17px;
+border-radius:14px;
+font-size:14px;
 }
 
-.cart:hover{
-
-    border-color:#9b55ff;
-
-    transform:translateY(-2px);
-
+.cart span{
+background:var(--gradient);
+padding:5px 9px;
+border-radius:50%;
+margin-left:5px;
 }
 
-.cart-count{
-
-    display:inline-flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    width:30px;
-
-    height:30px;
-
-    border-radius:50%;
-
-    margin-left:8px;
-
-    background:var(--gradient);
-
-    font-weight:700;
-
-}
-
-/* =====================================================
-   HERO
-===================================================== */
+/* HERO */
 
 .hero{
-
-    min-height:760px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-    padding:80px 20px 100px;
-
+min-height:760px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:80px 20px;
+background:
+radial-gradient(circle at 50% 25%,rgba(130,55,255,.20),transparent 35%),
+radial-gradient(circle at 70% 40%,rgba(255,70,180,.08),transparent 25%);
 }
 
 .badge{
-
-    border:1px solid rgba(167,80,255,.5);
-
-    background:rgba(120,50,255,.08);
-
-    padding:12px 22px;
-
-    border-radius:999px;
-
-    color:#d8baff;
-
-    margin-bottom:30px;
-
-    font-size:14px;
-
-    letter-spacing:1px;
-
+border:1px solid rgba(160,90,255,.45);
+background:rgba(140,60,255,.08);
+color:#d5b6ff;
+padding:11px 18px;
+border-radius:30px;
+font-size:12px;
+letter-spacing:1px;
+margin-bottom:28px;
 }
 
 .hero h1{
-
-    font-size:clamp(48px,9vw,105px);
-
-    line-height:1.02;
-
-    letter-spacing:-4px;
-
-    max-width:1000px;
-
+font-size:clamp(52px,9vw,105px);
+line-height:1.02;
+letter-spacing:-5px;
+max-width:900px;
 }
 
-.hero h1 .gradient{
-
-    background:var(--gradient);
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    color:transparent;
-
+.gradient{
+background:var(--gradient);
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
 }
 
 .hero p{
-
-    color:var(--muted);
-
-    font-size:19px;
-
-    line-height:1.8;
-
-    max-width:650px;
-
-    margin:30px auto;
-
+color:var(--text2);
+font-size:18px;
+line-height:1.7;
+max-width:620px;
+margin:28px 0;
 }
 
-.primary-btn{
-
-    border:none;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:700;
-
-    padding:18px 28px;
-
-    border-radius:16px;
-
-    background:var(--gradient);
-
-    box-shadow:
-    0 10px 45px rgba(137,59,255,.25);
-
-    transition:.25s;
-
+.primary{
+border:none;
+background:var(--gradient);
+color:white;
+font-weight:700;
+font-size:16px;
+padding:17px 25px;
+border-radius:15px;
+box-shadow:0 10px 40px rgba(130,50,255,.25);
 }
 
-.primary-btn:hover{
-
-    transform:translateY(-3px) scale(1.02);
-
+.secondary{
+margin-top:15px;
+background:transparent;
+border:none;
+color:#d2b7ff;
+font-size:15px;
 }
 
-/* =====================================================
-   SECTION
-===================================================== */
+/* STATS */
+
+.stats{
+display:flex;
+gap:55px;
+margin-top:60px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.stat{
+text-align:center;
+}
+
+.stat b{
+font-size:25px;
+display:block;
+margin-bottom:8px;
+}
+
+.stat span{
+font-size:13px;
+color:#aaa;
+}
+
+/* SECTION */
 
 .section{
-
-    width:min(1200px,92%);
-
-    margin:0 auto 100px;
-
-}
-
-.section-card{
-
-    background:
-
-    linear-gradient(
-        145deg,
-        rgba(255,255,255,.035),
-        rgba(255,255,255,.01)
-    ),
-
-    #0d0d16;
-
-    border:1px solid var(--border);
-
-    border-radius:30px;
-
-    padding:32px;
-
-    box-shadow:
-    0 25px 100px rgba(0,0,0,.25);
-
-}
-
-.section-tag{
-
-    display:inline-block;
-
-    border:1px solid rgba(174,87,255,.6);
-
-    padding:12px 20px;
-
-    border-radius:16px;
-
-    color:#d7b8ff;
-
-    margin-bottom:28px;
-
-    letter-spacing:1px;
-
+width:min(1180px,92%);
+margin:0 auto 100px;
 }
 
 .section-title{
-
-    font-size:clamp(38px,6vw,65px);
-
-    line-height:1.05;
-
-    letter-spacing:-2px;
-
-    margin-bottom:18px;
-
-}
-
-.section-title .gradient{
-
-    background:var(--gradient);
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    color:transparent;
-
+font-size:clamp(35px,5vw,65px);
+line-height:1.05;
+letter-spacing:-2px;
+margin-bottom:15px;
 }
 
 .section-text{
-
-    color:var(--muted);
-
-    font-size:18px;
-
-    line-height:1.7;
-
-    max-width:750px;
-
-    margin-bottom:35px;
-
+color:var(--text2);
+font-size:17px;
+line-height:1.7;
+max-width:700px;
+margin-bottom:35px;
 }
 
-/* =====================================================
-   AVANT / APRES
-===================================================== */
-
-.before-after-container{
-
-    position:relative;
-
-    width:100%;
-
-    height:600px;
-
-    overflow:hidden;
-
-    border-radius:24px;
-
-    background:#111;
-
-    user-select:none;
-
-    touch-action:none;
-
+.tag{
+display:inline-block;
+padding:10px 16px;
+border-radius:12px;
+border:1px solid rgba(160,90,255,.35);
+color:#d1b1ff;
+font-size:13px;
+margin-bottom:24px;
 }
 
-.before-after-container img{
+/* CARD */
 
-    position:absolute;
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
-    pointer-events:none;
-
+.card{
+background:linear-gradient(145deg,#12121c,#0d0d15);
+border:1px solid var(--border);
+border-radius:28px;
+padding:35px;
 }
 
-.before-image{
+/* BEFORE AFTER */
 
-    z-index:1;
-
+.before-after{
+height:600px;
+width:100%;
+position:relative;
+overflow:hidden;
+border-radius:22px;
+background:#15151c;
+touch-action:none;
+user-select:none;
 }
 
-.after-wrapper{
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:50%;
-
-    height:100%;
-
-    overflow:hidden;
-
-    z-index:2;
-
+.before-after img{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+pointer-events:none;
 }
 
-.after-image{
+.before{
+z-index:1;
+}
 
-    width:100% !important;
+.after-container{
+position:absolute;
+left:0;
+top:0;
+height:100%;
+width:50%;
+overflow:hidden;
+z-index:2;
+}
 
-    max-width:none !important;
-
-    position:absolute !important;
-
-    top:0;
-
-    left:0;
-
+.after-container img{
+width:100%;
+max-width:none;
 }
 
 .slider-line{
-
-    position:absolute;
-
-    left:50%;
-
-    top:0;
-
-    width:3px;
-
-    height:100%;
-
-    background:white;
-
-    z-index:4;
-
-    transform:translateX(-50%);
-
-    pointer-events:none;
-
+position:absolute;
+height:100%;
+width:3px;
+background:white;
+left:50%;
+top:0;
+z-index:4;
+transform:translateX(-50%);
+pointer-events:none;
 }
 
-.slider-handle{
-
-    position:absolute;
-
-    left:50%;
-
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:62px;
-
-    height:62px;
-
-    border-radius:50%;
-
-    background:white;
-
-    color:#444;
-
-    z-index:5;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:30px;
-
-    font-weight:300;
-
-    box-shadow:0 10px 40px rgba(0,0,0,.35);
-
-    pointer-events:none;
-
+.slider{
+position:absolute;
+left:50%;
+top:50%;
+width:58px;
+height:58px;
+border-radius:50%;
+background:white;
+color:#333;
+z-index:5;
+transform:translate(-50%,-50%);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+box-shadow:0 5px 30px rgba(0,0,0,.5);
+pointer-events:none;
 }
 
-.before-label,
-.after-label{
-
-    position:absolute;
-
-    z-index:6;
-
-    top:25px;
-
-    padding:13px 20px;
-
-    border-radius:999px;
-
-    background:rgba(8,8,15,.9);
-
-    border:1px solid rgba(255,255,255,.15);
-
-    font-size:15px;
-
-    backdrop-filter:blur(10px);
-
+.label{
+position:absolute;
+top:20px;
+z-index:10;
+background:rgba(10,10,15,.85);
+border:1px solid rgba(255,255,255,.15);
+padding:10px 15px;
+border-radius:20px;
+font-size:13px;
+backdrop-filter:blur(10px);
 }
 
-.before-label{
-
-    left:25px;
-
+.label-before{
+left:20px;
 }
 
-.after-label{
-
-    right:25px;
-
+.label-after{
+right:20px;
 }
 
-/* =====================================================
-   CREATION IA
-===================================================== */
+/* IA */
 
 .ai-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:25px;
-
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
 }
 
-.ai-box{
-
-    background:#11111b;
-
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
-    padding:24px;
-
+.ai-panel{
+background:#101019;
+border:1px solid var(--border);
+border-radius:22px;
+padding:25px;
 }
 
-.ai-box label{
-
-    display:block;
-
-    margin-bottom:12px;
-
-    font-weight:600;
-
+.upload-area{
+border:2px dashed rgba(150,75,255,.4);
+border-radius:18px;
+padding:35px 20px;
+text-align:center;
+margin-bottom:20px;
+background:rgba(130,60,255,.04);
 }
 
-.ai-box textarea{
-
-    width:100%;
-
-    min-height:150px;
-
-    resize:vertical;
-
-    background:#090910;
-
-    color:white;
-
-    border:1px solid var(--border);
-
-    border-radius:16px;
-
-    padding:17px;
-
-    outline:none;
-
-    font-size:16px;
-
+.upload-area input{
+display:none;
 }
 
-.ai-box textarea:focus{
+.upload-button{
+display:inline-block;
+background:#20202c;
+border:1px solid var(--border);
+padding:13px 18px;
+border-radius:12px;
+margin-top:15px;
+cursor:pointer;
+}
 
-    border-color:#9d53ff;
+.preview{
+width:100%;
+max-height:300px;
+object-fit:contain;
+display:none;
+border-radius:15px;
+margin-bottom:15px;
+}
 
+textarea{
+width:100%;
+min-height:110px;
+resize:vertical;
+background:#090910;
+border:1px solid var(--border);
+border-radius:15px;
+color:white;
+padding:15px;
+font-family:inherit;
+margin-top:12px;
+outline:none;
+}
+
+textarea:focus{
+border-color:#974bff;
+}
+
+.styles{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+margin:15px 0;
+}
+
+.style{
+border:1px solid var(--border);
+background:#191923;
+color:white;
+padding:10px 13px;
+border-radius:12px;
+font-size:13px;
+}
+
+.style.active{
+border-color:#9c50ff;
+background:rgba(140,65,255,.20);
 }
 
 .ai-result{
-
-    min-height:350px;
-
-    background:#090910;
-
-    border:1px solid var(--border);
-
-    border-radius:20px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    overflow:hidden;
-
+height:100%;
+min-height:390px;
+border-radius:20px;
+overflow:hidden;
+background:#09090f;
+display:flex;
+align-items:center;
+justify-content:center;
+border:1px solid var(--border);
 }
 
 .ai-result img{
-
-    width:100%;
-
-    height:100%;
-
-    object-fit:cover;
-
+width:100%;
+height:100%;
+object-fit:cover;
 }
 
-.ai-placeholder{
-
-    color:#777;
-
-    text-align:center;
-
-    padding:30px;
-
+.placeholder{
+text-align:center;
+color:#777;
+padding:30px;
 }
 
-/* =====================================================
-   LED
-===================================================== */
+/* CHEZ VOUS */
 
-.led-demo{
-
-    position:relative;
-
-    border-radius:24px;
-
-    overflow:hidden;
-
-    background:#09090f;
-
+.room-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
 }
 
-.led-image{
-
-    width:100%;
-
-    height:650px;
-
-    object-fit:cover;
-
-    transition:.4s ease;
-
+.room{
+position:relative;
+height:460px;
+border-radius:22px;
+overflow:hidden;
+border:1px solid var(--border);
+background:#111;
 }
 
-.led-overlay{
-
-    position:absolute;
-
-    inset:0;
-
-    pointer-events:none;
-
-    opacity:0;
-
-    transition:.4s ease;
-
-    background:
-
-    radial-gradient(
-        circle at 50% 25%,
-        rgba(143,55,255,.8),
-        transparent 25%
-    ),
-
-    radial-gradient(
-        circle at 55% 28%,
-        rgba(255,65,180,.4),
-        transparent 40%
-    );
-
-    mix-blend-mode:screen;
-
+.room img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.4s;
 }
 
-.led-demo.led-active .led-overlay{
-
-    opacity:1;
-
+.room:hover img{
+transform:scale(1.04);
 }
 
-.led-demo.led-active .led-image{
-
-    filter:brightness(1.08) contrast(1.08);
-
+.room-label{
+position:absolute;
+bottom:20px;
+left:20px;
+background:rgba(10,10,15,.85);
+border:1px solid var(--border);
+padding:13px 17px;
+border-radius:13px;
 }
 
-.led-controls{
+/* LED */
 
-    display:flex;
-
-    position:absolute;
-
-    left:50%;
-
-    bottom:20px;
-
-    transform:translateX(-50%);
-
-    width:min(700px,90%);
-
-    background:rgba(8,8,15,.9);
-
-    border:1px solid rgba(255,255,255,.15);
-
-    padding:8px;
-
-    border-radius:18px;
-
-    backdrop-filter:blur(20px);
-
-    z-index:10;
-
+.led-room{
+position:relative;
+height:560px;
+border-radius:22px;
+overflow:hidden;
+margin-bottom:25px;
+background:#111;
 }
 
-.led-btn{
-
-    flex:1;
-
-    border:none;
-
-    background:transparent;
-
-    color:#ddd;
-
-    padding:17px;
-
-    font-size:16px;
-
-    border-radius:13px;
-
-    transition:.25s;
-
+.led-room img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.4s;
 }
 
-.led-btn.active{
-
-    background:var(--gradient);
-
-    color:white;
-
-    font-weight:700;
-
-    box-shadow:
-    0 5px 25px rgba(155,60,255,.3);
-
+.led-glow{
+position:absolute;
+inset:0;
+opacity:0;
+pointer-events:none;
+transition:.4s;
+background:
+radial-gradient(circle at 50% 45%,rgba(135,60,255,.7),transparent 25%),
+radial-gradient(circle at 50% 50%,rgba(255,50,180,.25),transparent 50%);
+mix-blend-mode:screen;
 }
 
-/* =====================================================
-   AMBIANCES
-===================================================== */
-
-.ambiance-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(2,1fr);
-
-    gap:25px;
-
+.led-room.active .led-glow{
+opacity:1;
 }
 
-.ambiance-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-    border-radius:24px;
-
-    border:1px solid var(--border);
-
+.led-room.active img{
+filter:brightness(1.12) contrast(1.06);
 }
 
-.ambiance-card img{
-
-    width:100%;
-
-    height:450px;
-
-    object-fit:cover;
-
-    transition:.4s;
-
+.led-buttons{
+position:absolute;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+background:rgba(10,10,15,.9);
+padding:7px;
+border:1px solid var(--border);
+border-radius:17px;
+width:min(550px,88%);
+z-index:5;
 }
 
-.ambiance-card:hover img{
-
-    transform:scale(1.04);
-
+.led-button{
+flex:1;
+padding:14px;
+border:none;
+background:transparent;
+color:#bbb;
+border-radius:12px;
 }
 
-.ambiance-name{
-
-    position:absolute;
-
-    bottom:20px;
-
-    left:20px;
-
-    background:rgba(8,8,15,.9);
-
-    border:1px solid rgba(255,255,255,.14);
-
-    border-radius:15px;
-
-    padding:14px 18px;
-
-    backdrop-filter:blur(10px);
-
+.led-button.active{
+background:var(--gradient);
+color:white;
+font-weight:700;
 }
 
-/* =====================================================
-   PERSONNALISATION
-===================================================== */
+/* CUSTOM */
 
 .custom-grid{
-
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:25px;
-
-}
-
-.upload-box{
-
-    min-height:500px;
-
-    border:2px dashed rgba(160,80,255,.5);
-
-    border-radius:24px;
-
-    background:rgba(120,50,255,.04);
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    justify-content:center;
-
-    padding:30px;
-
-    text-align:center;
-
-}
-
-.upload-icon{
-
-    font-size:60px;
-
-    margin-bottom:20px;
-
-}
-
-.upload-preview{
-
-    width:100%;
-
-    max-height:350px;
-
-    object-fit:contain;
-
-    display:none;
-
-    border-radius:15px;
-
-    margin-bottom:20px;
-
-}
-
-.upload-box input{
-
-    display:none;
-
-}
-
-.upload-label{
-
-    display:inline-block;
-
-    margin-top:20px;
-
-    padding:15px 23px;
-
-    border-radius:14px;
-
-    background:var(--gradient);
-
-    cursor:pointer;
-
-    font-weight:700;
-
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
 }
 
 .options{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:20px;
-
+display:flex;
+flex-direction:column;
+gap:17px;
 }
 
-.option-group{
-
-    background:#11111b;
-
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    padding:20px;
-
+.option-box{
+background:#11111a;
+border:1px solid var(--border);
+border-radius:18px;
+padding:20px;
 }
 
-.option-group h3{
-
-    margin-bottom:15px;
-
+.option-box h3{
+margin-bottom:15px;
 }
 
-.option-buttons{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:10px;
-
+.option-list{
+display:flex;
+flex-wrap:wrap;
+gap:9px;
 }
 
 .option{
-
-    border:1px solid var(--border);
-
-    background:#090910;
-
-    color:#ddd;
-
-    padding:12px 16px;
-
-    border-radius:12px;
-
-    transition:.2s;
-
-}
-
-.option:hover{
-
-    border-color:#9850ff;
-
+background:#0a0a10;
+border:1px solid var(--border);
+color:#ddd;
+padding:11px 14px;
+border-radius:11px;
 }
 
 .option.selected{
-
-    background:rgba(143,61,255,.25);
-
-    border-color:#a254ff;
-
-    color:white;
-
+background:rgba(140,65,255,.22);
+border-color:#9b50ff;
+color:white;
 }
 
-.price-box{
-
-    margin-top:10px;
-
-    padding:24px;
-
-    border-radius:18px;
-
-    background:
-
-    linear-gradient(
-        135deg,
-        rgba(137,55,255,.18),
-        rgba(243,72,183,.12)
-    );
-
-    border:1px solid rgba(255,255,255,.1);
-
+.pricebox{
+padding:23px;
+border-radius:20px;
+background:linear-gradient(135deg,rgba(125,50,255,.2),rgba(245,60,180,.1));
+border:1px solid var(--border);
 }
 
 .price{
-
-    font-size:42px;
-
-    font-weight:800;
-
-    margin-top:8px;
-
+font-size:42px;
+font-weight:900;
+margin:7px 0;
 }
 
-/* =====================================================
-   WHY
-===================================================== */
+/* BENEFITS */
 
-.why-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(3,1fr);
-
-    gap:20px;
-
+.benefits{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-top:45px;
 }
 
-.why-card{
-
-    padding:28px;
-
-    background:#10101a;
-
-    border:1px solid var(--border);
-
-    border-radius:22px;
-
+.benefit{
+text-align:center;
+padding:20px 10px;
 }
 
-.why-card .emoji{
-
-    font-size:35px;
-
-    margin-bottom:16px;
-
+.benefit div{
+font-size:27px;
+margin-bottom:10px;
 }
 
-.why-card h3{
-
-    margin-bottom:10px;
-
+.benefit b{
+display:block;
+font-size:14px;
+margin-bottom:5px;
 }
 
-.why-card p{
-
-    color:var(--muted);
-
-    line-height:1.6;
-
+.benefit span{
+color:#888;
+font-size:12px;
 }
 
-/* =====================================================
-   FOOTER
-===================================================== */
+/* FOOTER */
 
 footer{
-
-    padding:60px 20px;
-
-    text-align:center;
-
-    border-top:1px solid rgba(255,255,255,.07);
-
-    color:#777;
-
+padding:55px 20px;
+border-top:1px solid rgba(255,255,255,.07);
+text-align:center;
+color:#888;
 }
 
-footer .logo{
-
-    margin-bottom:15px;
-
-}
-
-/* =====================================================
-   LOADING
-===================================================== */
-
-.loading{
-
-    animation:pulse 1s infinite alternate;
-
-}
-
-@keyframes pulse{
-
-    from{
-        opacity:.45;
-    }
-
-    to{
-        opacity:1;
-    }
-
-}
-
-/* =====================================================
-   MOBILE
-===================================================== */
+/* MOBILE */
 
 @media(max-width:800px){
 
-    nav{
+nav{
+padding:0 5%;
+}
 
-        padding:18px 5%;
+.logo{
+font-size:20px;
+letter-spacing:5px;
+}
 
-    }
+.hero{
+min-height:670px;
+}
 
-    .logo{
+.hero h1{
+letter-spacing:-3px;
+}
 
-        font-size:22px;
+.card{
+padding:20px;
+}
 
-        letter-spacing:6px;
+.before-after{
+height:430px;
+}
 
-    }
+.ai-grid,
+.room-grid,
+.custom-grid{
+grid-template-columns:1fr;
+}
 
-    .cart{
+.led-room{
+height:440px;
+}
 
-        padding:11px 14px;
-
-    }
-
-    .hero{
-
-        min-height:650px;
-
-        padding:70px 20px;
-
-    }
-
-    .hero h1{
-
-        letter-spacing:-2px;
-
-    }
-
-    .section{
-
-        width:94%;
-
-        margin-bottom:70px;
-
-    }
-
-    .section-card{
-
-        padding:18px;
-
-        border-radius:24px;
-
-    }
-
-    .before-after-container{
-
-        height:430px;
-
-    }
-
-    .led-image{
-
-        height:500px;
-
-    }
-
-    .ai-grid,
-    .custom-grid,
-    .ambiance-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .why-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .ambiance-card img{
-
-        height:400px;
-
-    }
-
-    .before-label,
-    .after-label{
-
-        top:15px;
-
-        padding:10px 14px;
-
-        font-size:12px;
-
-    }
-
-    .before-label{
-
-        left:15px;
-
-    }
-
-    .after-label{
-
-        right:15px;
-
-    }
-
-    .slider-handle{
-
-        width:52px;
-
-        height:52px;
-
-        font-size:24px;
-
-    }
+.benefits{
+grid-template-columns:1fr 1fr;
+}
 
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
-
 <nav>
 
-    <div class="logo">
-        ART<span>I</span>FY
-    </div>
+<div class="logo">ARTIFY</div>
 
-    <div class="nav-right">
-
-        <button class="cart">
-            🛒 Panier
-            <span class="cart-count" id="cartCount">0</span>
-        </button>
-
-    </div>
+<button class="cart">
+🛒 Panier <span id="cartCount">0</span>
+</button>
 
 </nav>
 
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
 
-    <div class="badge">
-        ✨ VOTRE ART. VOTRE STYLE.
-    </div>
+<div class="badge">
+✨ L'INTELLIGENCE ARTISTIQUE EST ARRIVÉE
+</div>
 
-    <h1>
+<h1>
+Transformez<br>
+votre vision en<br>
+<span class="gradient">œuvre d'art.</span>
+</h1>
 
-        Une photo.<br>
+<p>
+Importez votre image, décrivez votre imagination et laissez l'IA créer une œuvre unique.
+</p>
 
-        Une <span class="gradient">nouvelle réalité.</span>
+<button class="primary" onclick="document.getElementById('creation').scrollIntoView()">
+Créer mon œuvre
+</button>
 
-    </h1>
+<button class="secondary" onclick="document.getElementById('avant-apres').scrollIntoView()">
+▷ Voir des exemples
+</button>
 
-    <p>
+<div class="stats">
 
-        Importez une photo ou créez une œuvre avec l'intelligence
-        artificielle. Personnalisez votre tableau et transformez
-        votre intérieur.
+<div class="stat">
+<b>∞</b>
+<span>Possibilités créatives</span>
+</div>
 
-    </p>
+<div class="stat">
+<b>✦</b>
+<span>Transformation intelligente</span>
+</div>
 
-    <button
-        class="primary-btn"
-        onclick="document.getElementById('creation').scrollIntoView()">
+<div class="stat">
+<b>⬡</b>
+<span>100% Votre imagination</span>
+</div>
 
-        Commencer maintenant ✨
-
-    </button>
+</div>
 
 </section>
 
 
+<section class="section" id="avant-apres">
 
-<!-- =====================================================
-     AVANT / APRES
-===================================================== -->
+<div class="card">
+
+<div class="tag">🖼️ AVANT / APRÈS</div>
+
+<h2 class="section-title">
+Une photo.<br>
+<span class="gradient">Une nouvelle réalité.</span>
+</h2>
+
+<p class="section-text">
+Importez une photo et l'IA peut la transformer selon votre imagination.
+</p>
+
+<div class="before-after" id="beforeAfter">
+
+<img class="before"
+src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=90"
+alt="Avant">
+
+<div class="after-container" id="afterContainer">
+
+<img
+src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=90"
+alt="Après">
+
+</div>
+
+<div class="slider-line" id="sliderLine"></div>
+
+<div class="slider" id="sliderHandle">‹›</div>
+
+<div class="label label-before">🖼️ AVANT</div>
+
+<div class="label label-after">✨ APRÈS</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="creation">
+
+<div class="card">
+
+<div class="tag">🤖 CRÉATION IA</div>
+
+<h2 class="section-title">
+Créez votre <span class="gradient">propre œuvre.</span>
+</h2>
+
+<p class="section-text">
+Ajoutez une photo, décrivez votre idée et choisissez un style.
+</p>
+
+<div class="ai-grid">
+
+<div class="ai-panel">
+
+<div class="upload-area">
+
+<img id="preview" class="preview">
+
+<div id="uploadText">
+
+<div style="font-size:40px">🖼️</div>
+
+<h3>Ajoutez votre photo</h3>
+
+<p style="color:#888;margin-top:8px">
+Appuyez ici pour choisir une image
+</p>
+
+</div>
+
+<label for="upload" class="upload-button">
+Choisir une image
+</label>
+
+<input type="file" id="upload" accept="image/*">
+
+</div>
+
+<h3>Décrivez votre œuvre</h3>
+
+<textarea
+id="prompt"
+placeholder="Exemple : Transforme cette photo en œuvre futuriste avec des lumières violettes..."></textarea>
+
+<h3 style="margin-top:18px">Choisissez un style</h3>
+
+<div class="styles">
+
+<button class="style active">🎨 Artistique</button>
+<button class="style">🎬 Cinématographique</button>
+<button class="style">🖌️ Peinture</button>
+<button class="style">🌌 Futuriste</button>
+
+</div>
+
+<button class="primary" style="width:100%" onclick="generateAI()">
+✨ Générer mon œuvre avec l'IA
+</button>
+
+<p id="status" style="color:#999;margin-top:12px;text-align:center"></p>
+
+</div>
+
+<div class="ai-result" id="aiResult">
+
+<div class="placeholder">
+🤖
+<br><br>
+Votre œuvre apparaîtra ici.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 
 <section class="section">
 
-    <div class="section-card">
+<div class="card">
 
-        <div class="section-tag">
-            🖼️ AVANT / APRÈS
-        </div>
+<div class="tag">CHEZ VOUS</div>
 
-        <h2 class="section-title">
+<h2 class="section-title">
+Imaginez votre œuvre dans votre <span class="gradient">intérieur.</span>
+</h2>
 
-            Une photo.<br>
+<p class="section-text">
+Des objets décoratifs uniques pour votre salon, chambre ou bureau.
+</p>
 
-            Une <span class="gradient">nouvelle réalité.</span>
+<button class="primary" onclick="document.getElementById('creation').scrollIntoView()">
+Créer mon œuvre
+</button>
 
-        </h2>
+<br><br>
 
-        <p class="section-text">
+<div class="room-grid">
 
-            Importez une photo et l'IA peut la transformer selon
-            votre imagination.
+<div class="room">
 
-        </p>
+<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=90">
 
+<div class="room-label">
+🛋 Salon moderne
+</div>
 
-        <div
-        class="before-after-container"
-        id="beforeAfter">
+</div>
 
-            <img
-            class="before-image"
-            src="Avant.png"
-            alt="Avant">
+<div class="room">
 
+<img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=90">
 
-            <div
-            class="after-wrapper"
-            id="afterWrapper">
+<div class="room-label">
+🪑 Bureau créatif
+</div>
 
-                <img
-                class="after-image"
-                id="afterImage"
-                src="Après.png"
-                alt="Après">
+</div>
 
-            </div>
+</div>
 
+<br>
 
-            <div
-            class="slider-line"
-            id="sliderLine"></div>
+<div class="led-room" id="ledRoom">
 
+<img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=90">
 
-            <div
-            class="slider-handle"
-            id="sliderHandle">
+<div class="led-glow"></div>
 
-                ‹›
+<div class="led-buttons">
 
-            </div>
+<button
+class="led-button active"
+id="withoutLED"
+onclick="setLED(false)">
+Sans LED
+</button>
 
+<button
+class="led-button"
+id="withLED"
+onclick="setLED(true)">
+Avec LED
+</button>
 
-            <div class="before-label">
+</div>
 
-                🖼️ AVANT
+</div>
 
-            </div>
-
-
-            <div class="after-label">
-
-                ✨ APRÈS
-
-            </div>
-
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
-
-
-<!-- =====================================================
-     CREATION IA
-===================================================== -->
-
-<section
-class="section"
-id="creation">
-
-    <div class="section-card">
-
-        <div class="section-tag">
-            🤖 CRÉATION IA
-        </div>
-
-        <h2 class="section-title">
-
-            Créez votre <span class="gradient">propre œuvre.</span>
-
-        </h2>
-
-        <p class="section-text">
-
-            Ajoutez une photo, décrivez votre idée et créez une
-            œuvre unique grâce à l'intelligence artificielle.
-
-        </p>
-
-
-        <div class="ai-grid">
-
-
-            <!-- CONTROLES IA -->
-
-            <div class="ai-box">
-
-                <label>
-
-                    ✨ Décrivez votre création
-
-                </label>
-
-
-                <textarea
-                id="aiPrompt"
-                placeholder="Exemple : Transforme cette personne en portrait artistique futuriste, avec des couleurs violettes et roses..."></textarea>
-
-
-                <br><br>
-
-
-                <button
-                class="primary-btn"
-                style="width:100%"
-                onclick="generateAI()">
-
-                    ✨ Générer avec l'IA
-
-                </button>
-
-
-                <p
-                id="aiStatus"
-                style="
-                margin-top:15px;
-                color:#aaa8b5;
-                font-size:14px;
-                ">
-
-                </p>
-
-
-            </div>
-
-
-
-            <!-- RESULTAT -->
-
-            <div
-            class="ai-result"
-            id="aiResult">
-
-                <div
-                class="ai-placeholder"
-                id="aiPlaceholder">
-
-                    🤖
-
-                    <br><br>
-
-                    Votre création IA apparaîtra ici.
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     LED
-===================================================== -->
 
 <section class="section">
 
-    <div class="section-card">
+<div class="card">
 
-        <div class="section-tag">
-            💡 OPTION LED
-        </div>
+<div class="tag">PERSONNALISATION</div>
 
-        <h2 class="section-title">
+<h2 class="section-title">
+Personnalisez votre tableau
+</h2>
 
-            Illuminez votre <span class="gradient">œuvre.</span>
+<p class="section-text">
+Choisissez le format, la matière et l'option LED.
+</p>
 
-        </h2>
+<div class="custom-grid">
 
-        <p class="section-text">
+<div class="ai-panel">
 
-            Choisissez une ambiance classique ou ajoutez
-            une lumière LED derrière votre tableau.
+<div style="font-size:55px;text-align:center;margin:40px 0">
+🎨
+</div>
 
-        </p>
+<h2 style="text-align:center">
+Votre œuvre.
+</h2>
 
+<p style="text-align:center;color:#999;margin-top:15px">
+Configurez votre tableau exactement comme vous le souhaitez.
+</p>
 
-        <div
-        class="led-demo"
-        id="ledDemo">
-
-
-            <img
-            class="led-image"
-            id="ledImage"
-            src="chambre à coucher.png"
-            alt="Tableau">
-
-
-            <div class="led-overlay"></div>
+</div>
 
 
-            <div class="led-controls">
+<div class="options">
+
+<div class="option-box">
+
+<h3>📐 Taille</h3>
+
+<div class="option-list" id="sizes">
+
+<button class="option selected" data-price="49">
+30 × 40
+</button>
+
+<button class="option" data-price="69">
+40 × 60
+</button>
+
+<button class="option" data-price="99">
+60 × 80
+</button>
+
+<button class="option" data-price="149">
+80 × 120
+</button>
+
+</div>
+
+</div>
 
 
-                <button
-                class="led-btn active"
-                id="withoutLedBtn"
-                onclick="setLed(false)">
+<div class="option-box">
 
-                    Sans LED
+<h3>🎨 Matière</h3>
 
-                </button>
+<div class="option-list" id="materials">
+
+<button class="option selected" data-extra="0">
+Canvas
+</button>
+
+<button class="option" data-extra="20">
+Aluminium
+</button>
+
+<button class="option" data-extra="30">
+Plexiglas
+</button>
+
+</div>
+
+</div>
 
 
-                <button
-                class="led-btn"
-                id="withLedBtn"
-                onclick="setLed(true)">
+<div class="option-box">
 
-                    Avec LED
+<h3>💡 Option LED</h3>
 
-                </button>
+<div class="option-list" id="ledOptions">
+
+<button class="option selected" data-extra="0">
+Sans LED
+</button>
+
+<button class="option" data-extra="30">
+LED +30 €
+</button>
+
+</div>
+
+</div>
 
 
-            </div>
+<div class="pricebox">
 
+<div style="color:#aaa">Prix estimé</div>
 
-        </div>
+<div class="price" id="price">
+49 €
+</div>
 
-    </div>
+<button class="primary" style="width:100%" onclick="addCart()">
+Continuer vers la commande
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="benefits">
+
+<div class="benefit">
+<div>⬡</div>
+<b>Paiement 100% sécurisé</b>
+<span>Stripe & SSL</span>
+</div>
+
+<div class="benefit">
+<div>↻</div>
+<b>Satisfait ou remboursé</b>
+<span>14 jours</span>
+</div>
+
+<div class="benefit">
+<div>▣</div>
+<b>Livraison rapide</b>
+<span>3 à 5 jours ouvrés</span>
+</div>
+
+<div class="benefit">
+<div>◉</div>
+<b>Support 7j/7</b>
+<span>Nous sommes là</span>
+</div>
+
+</div>
+
+</div>
 
 </section>
 
-
-
-<!-- =====================================================
-     AMBIANCES
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-card">
-
-        <div class="section-tag">
-            🏠 AMBIANCES
-        </div>
-
-        <h2 class="section-title">
-
-            Imaginez-le chez <span class="gradient">vous.</span>
-
-        </h2>
-
-        <p class="section-text">
-
-            Votre œuvre peut transformer complètement une pièce.
-
-        </p>
-
-
-        <div class="ambiance-grid">
-
-
-            <div class="ambiance-card">
-
-                <img
-                src="chambre à coucher.png"
-                alt="Chambre">
-
-                <div class="ambiance-name">
-
-                    🛏️ Chambre élégante
-
-                </div>
-
-            </div>
-
-
-            <div class="ambiance-card">
-
-                <img
-                src="Bureau.png"
-                alt="Bureau">
-
-                <div class="ambiance-name">
-
-                    🪑 Bureau créatif
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     PERSONNALISATION
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-card">
-
-        <div class="section-tag">
-            🎨 PERSONNALISATION
-        </div>
-
-
-        <h2 class="section-title">
-
-            Personnalisez votre <span class="gradient">œuvre.</span>
-
-        </h2>
-
-
-        <p class="section-text">
-
-            Importez votre image et choisissez votre format,
-            votre matière et votre option LED.
-
-        </p>
-
-
-        <div class="custom-grid">
-
-
-            <!-- UPLOAD -->
-
-            <div class="upload-box">
-
-                <img
-                id="uploadPreview"
-                class="upload-preview"
-                alt="Aperçu">
-
-
-                <div
-                id="uploadContent">
-
-                    <div class="upload-icon">
-
-                        🖼️
-
-                    </div>
-
-
-                    <h3>
-
-                        Ajoutez votre image
-
-                    </h3>
-
-
-                    <p
-                    style="
-                    color:#aaa8b5;
-                    margin-top:10px;
-                    ">
-
-                        JPG, PNG ou WEBP
-
-                    </p>
-
-                </div>
-
-
-                <label
-                class="upload-label"
-                for="imageUpload">
-
-                    Choisir une image
-
-                </label>
-
-
-                <input
-                type="file"
-                id="imageUpload"
-                accept="image/*">
-
-
-            </div>
-
-
-
-            <!-- OPTIONS -->
-
-            <div class="options">
-
-
-                <!-- TAILLE -->
-
-                <div class="option-group">
-
-                    <h3>
-
-                        📐 Taille
-
-                    </h3>
-
-
-                    <div
-                    class="option-buttons"
-                    id="sizeOptions">
-
-
-                        <button
-                        class="option selected"
-                        data-price="49">
-
-                            30 × 40 cm
-
-                        </button>
-
-
-                        <button
-                        class="option"
-                        data-price="69">
-
-                            40 × 60 cm
-
-                        </button>
-
-
-                        <button
-                        class="option"
-                        data-price="99">
-
-                            60 × 80 cm
-
-                        </button>
-
-
-                        <button
-                        class="option"
-                        data-price="149">
-
-                            80 × 120 cm
-
-                        </button>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- MATIERE -->
-
-                <div class="option-group">
-
-                    <h3>
-
-                        🎨 Matière
-
-                    </h3>
-
-
-                    <div
-                    class="option-buttons"
-                    id="materialOptions">
-
-
-                        <button
-                        class="option selected"
-                        data-extra="0">
-
-                            Canvas
-
-                        </button>
-
-
-                        <button
-                        class="option"
-                        data-extra="20">
-
-                            Aluminium
-
-                        </button>
-
-
-                        <button
-                        class="option"
-                        data-extra="30">
-
-                            Plexiglas
-
-                        </button>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- LED -->
-
-                <div class="option-group">
-
-                    <h3>
-
-                        💡 Option LED
-
-                    </h3>
-
-
-                    <div
-                    class="option-buttons"
-                    id="ledOptions">
-
-
-                        <button
-                        class="option selected"
-                        data-extra="0">
-
-                            Sans LED
-
-                        </button>
-
-
-                        <button
-                        class="option"
-                        data-extra="30">
-
-                            LED +30 €
-
-                        </button>
-
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- PRIX -->
-
-                <div class="price-box">
-
-                    <div
-                    style="color:#aaa8b5">
-
-                        Prix estimé
-
-                    </div>
-
-
-                    <div
-                    class="price"
-                    id="price">
-
-                        49 €
-
-                    </div>
-
-
-                    <button
-                    class="primary-btn"
-                    style="
-                    width:100%;
-                    margin-top:20px;
-                    "
-                    onclick="addToCart()">
-
-                        Ajouter au panier 🛒
-
-                    </button>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     POURQUOI ARTIFY
-===================================================== -->
-
-<section class="section">
-
-    <div class="section-card">
-
-        <div class="section-tag">
-            ✨ ARTIFY
-        </div>
-
-        <h2 class="section-title">
-
-            Pourquoi <span class="gradient">ARTIFY ?</span>
-
-        </h2>
-
-
-        <br>
-
-
-        <div class="why-grid">
-
-
-            <div class="why-card">
-
-                <div class="emoji">
-
-                    ✨
-
-                </div>
-
-                <h3>
-
-                    Personnalisé
-
-                </h3>
-
-                <p>
-
-                    Chaque tableau est créé selon vos choix
-                    et votre imagination.
-
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <div class="emoji">
-
-                    🏠
-
-                </div>
-
-                <h3>
-
-                    Décoration
-
-                </h3>
-
-                <p>
-
-                    Une pièce unique pour votre intérieur
-                    ou pour offrir.
-
-                </p>
-
-            </div>
-
-
-            <div class="why-card">
-
-                <div class="emoji">
-
-                    💡
-
-                </div>
-
-                <h3>
-
-                    Moderne
-
-                </h3>
-
-                <p>
-
-                    L'option LED apporte une ambiance
-                    élégante le soir.
-
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
-    <div class="logo">
+<div class="logo" style="margin-bottom:15px">
+ARTIFY
+</div>
 
-        ART<span>I</span>FY
-
-    </div>
-
-
-    <p>
-
-        Créez. Personnalisez. Illuminez.
-
-    </p>
+<p>
+Créez. Personnalisez. Illuminez.
+</p>
 
 </footer>
 
 
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
-
-/* =====================================================
-   AVANT / APRES
-===================================================== */
+/* AVANT / APRÈS */
 
 const beforeAfter =
 document.getElementById("beforeAfter");
 
-const afterWrapper =
-document.getElementById("afterWrapper");
+const afterContainer =
+document.getElementById("afterContainer");
 
 const sliderLine =
 document.getElementById("sliderLine");
@@ -2113,781 +1113,365 @@ document.getElementById("sliderLine");
 const sliderHandle =
 document.getElementById("sliderHandle");
 
-
-let isDragging = false;
-
-
-function moveSlider(event){
-
-    const rect =
-    beforeAfter.getBoundingClientRect();
+let dragging = false;
 
 
-    let clientX;
+function updateSlider(x){
 
+const rect =
+beforeAfter.getBoundingClientRect();
 
-    if(event.touches){
+let percent =
+((x - rect.left) / rect.width) * 100;
 
-        clientX =
-        event.touches[0].clientX;
+percent =
+Math.max(0,Math.min(100,percent));
 
-    }else{
+afterContainer.style.width =
+percent + "%";
 
-        clientX =
-        event.clientX;
+sliderLine.style.left =
+percent + "%";
 
-    }
-
-
-    let position =
-    clientX - rect.left;
-
-
-    let percentage =
-    (position / rect.width) * 100;
-
-
-    percentage =
-    Math.max(
-        0,
-        Math.min(
-            100,
-            percentage
-        )
-    );
-
-
-    afterWrapper.style.width =
-    percentage + "%";
-
-
-    sliderLine.style.left =
-    percentage + "%";
-
-
-    sliderHandle.style.left =
-    percentage + "%";
+sliderHandle.style.left =
+percent + "%";
 
 }
 
 
-/* SOURIS */
+beforeAfter.addEventListener("pointerdown",function(e){
 
-beforeAfter.addEventListener(
+dragging = true;
 
-    "mousedown",
+beforeAfter.setPointerCapture(e.pointerId);
 
-    function(event){
+updateSlider(e.clientX);
 
-        isDragging = true;
+});
 
-        moveSlider(event);
 
-    }
+beforeAfter.addEventListener("pointermove",function(e){
 
-);
+if(!dragging) return;
 
+updateSlider(e.clientX);
 
-document.addEventListener(
+});
 
-    "mousemove",
 
-    function(event){
+beforeAfter.addEventListener("pointerup",function(){
 
-        if(isDragging){
+dragging = false;
 
-            moveSlider(event);
+});
 
-        }
 
-    }
+beforeAfter.addEventListener("pointercancel",function(){
 
-);
+dragging = false;
 
+});
 
-document.addEventListener(
 
-    "mouseup",
+/* LED */
 
-    function(){
+function setLED(enabled){
 
-        isDragging = false;
+const room =
+document.getElementById("ledRoom");
 
-    }
+const without =
+document.getElementById("withoutLED");
 
-);
+const withLed =
+document.getElementById("withLED");
 
 
-/* IPHONE / TACTILE */
+if(enabled){
 
-beforeAfter.addEventListener(
+room.classList.add("active");
 
-    "touchstart",
+withLed.classList.add("active");
 
-    function(event){
+without.classList.remove("active");
 
-        isDragging = true;
+}
 
-        moveSlider(event);
+else{
 
-    },
+room.classList.remove("active");
 
-    {
-        passive:true
-    }
+without.classList.add("active");
 
-);
+withLed.classList.remove("active");
 
-
-beforeAfter.addEventListener(
-
-    "touchmove",
-
-    function(event){
-
-        if(isDragging){
-
-            moveSlider(event);
-
-        }
-
-    },
-
-    {
-        passive:true
-    }
-
-);
-
-
-beforeAfter.addEventListener(
-
-    "touchend",
-
-    function(){
-
-        isDragging = false;
-
-    }
-
-);
-
-
-
-
-
-/* =====================================================
-   LED
-===================================================== */
-
-function setLed(enabled){
-
-    const ledDemo =
-    document.getElementById("ledDemo");
-
-
-    const withoutLedBtn =
-    document.getElementById("withoutLedBtn");
-
-
-    const withLedBtn =
-    document.getElementById("withLedBtn");
-
-
-    const ledImage =
-    document.getElementById("ledImage");
-
-
-    if(enabled){
-
-
-        ledDemo.classList.add(
-            "led-active"
-        );
-
-
-        withLedBtn.classList.add(
-            "active"
-        );
-
-
-        withoutLedBtn.classList.remove(
-            "active"
-        );
-
-
-        /*
-        IMAGE AVEC LED
-        */
-
-        ledImage.src =
-        "portrait-led.png";
-
-
-        /*
-        SI TON FICHIER portrait-led.png
-        N'EXISTE PAS, L'EFFET LUMIERE
-        RESTE QUAND MEME ACTIF.
-        */
-
-
-        ledImage.onerror =
-        function(){
-
-            ledImage.src =
-            "chambre à coucher.png";
-
-        };
-
-
-    }else{
-
-
-        ledDemo.classList.remove(
-            "led-active"
-        );
-
-
-        withoutLedBtn.classList.add(
-            "active"
-        );
-
-
-        withLedBtn.classList.remove(
-            "active"
-        );
-
-
-        ledImage.src =
-        "chambre à coucher.png";
-
-
-    }
+}
 
 }
 
 
+/* UPLOAD */
+
+const upload =
+document.getElementById("upload");
+
+const preview =
+document.getElementById("preview");
+
+const uploadText =
+document.getElementById("uploadText");
 
 
+upload.addEventListener("change",function(){
 
-/* =====================================================
-   UPLOAD IMAGE
-===================================================== */
+const file =
+this.files[0];
 
-const imageUpload =
-document.getElementById("imageUpload");
+if(!file) return;
 
+const reader =
+new FileReader();
 
-const uploadPreview =
-document.getElementById("uploadPreview");
+reader.onload =
+function(e){
 
+preview.src =
+e.target.result;
 
-const uploadContent =
-document.getElementById("uploadContent");
+preview.style.display =
+"block";
 
+uploadText.style.display =
+"none";
 
-imageUpload.addEventListener(
+};
 
-    "change",
+reader.readAsDataURL(file);
 
-    function(){
-
-
-        const file =
-        this.files[0];
-
-
-        if(!file){
-
-            return;
-
-        }
+});
 
 
-        const reader =
-        new FileReader();
+/* STYLES */
+
+document.querySelectorAll(".style").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+document.querySelectorAll(".style").forEach(b=>{
+
+b.classList.remove("active");
+
+});
+
+this.classList.add("active");
+
+});
+
+});
 
 
-        reader.onload =
-        function(event){
-
-
-            uploadPreview.src =
-            event.target.result;
-
-
-            uploadPreview.style.display =
-            "block";
-
-
-            uploadContent.style.display =
-            "none";
-
-
-        };
-
-
-        reader.readAsDataURL(file);
-
-
-    }
-
-);
-
-
-
-
-
-/* =====================================================
-   OPTIONS PERSONNALISATION
-===================================================== */
+/* PRIX */
 
 let basePrice = 49;
 
-let materialExtra = 0;
+let materialPrice = 0;
 
-let ledExtra = 0;
-
-
-const priceElement =
-document.getElementById("price");
-
+let ledPrice = 0;
 
 
 function updatePrice(){
 
+const total =
+basePrice +
+materialPrice +
+ledPrice;
 
-    const total =
-
-    basePrice +
-
-    materialExtra +
-
-    ledExtra;
-
-
-    priceElement.textContent =
-
-    total + " €";
-
+document.getElementById("price").textContent =
+total + " €";
 
 }
 
 
+function setupOptions(selector,type){
 
+document.querySelectorAll(selector).forEach(button=>{
 
+button.addEventListener("click",function(){
 
-/* =====================================================
-   TAILLE
-===================================================== */
+document.querySelectorAll(selector).forEach(b=>{
 
-document.querySelectorAll(
+b.classList.remove("selected");
 
-    "#sizeOptions .option"
+});
 
-).forEach(
+this.classList.add("selected");
 
-    function(button){
+if(type === "size"){
 
+basePrice =
+Number(this.dataset.price);
 
-        button.addEventListener(
+}
 
-            "click",
+if(type === "material"){
 
-            function(){
+materialPrice =
+Number(this.dataset.extra);
 
+}
 
-                document
-                .querySelectorAll(
-                    "#sizeOptions .option"
-                )
-                .forEach(
+if(type === "led"){
 
-                    function(item){
+ledPrice =
+Number(this.dataset.extra);
 
-                        item.classList.remove(
-                            "selected"
-                        );
+}
 
-                    }
+updatePrice();
 
-                );
+});
 
-
-                button.classList.add(
-                    "selected"
-                );
-
-
-                basePrice =
-                Number(
-                    button.dataset.price
-                );
-
-
-                updatePrice();
-
-
-            }
-
-        );
-
-
-    }
-
-);
-
-
-
-
-
-/* =====================================================
-   MATIERE
-===================================================== */
-
-document.querySelectorAll(
-
-    "#materialOptions .option"
-
-).forEach(
-
-    function(button){
-
-
-        button.addEventListener(
-
-            "click",
-
-            function(){
-
-
-                document
-                .querySelectorAll(
-                    "#materialOptions .option"
-                )
-                .forEach(
-
-                    function(item){
-
-                        item.classList.remove(
-                            "selected"
-                        );
-
-                    }
-
-                );
-
-
-                button.classList.add(
-                    "selected"
-                );
-
-
-                materialExtra =
-                Number(
-                    button.dataset.extra
-                );
-
-
-                updatePrice();
-
-
-            }
-
-        );
-
-
-    }
-
-);
-
-
-
-
-
-/* =====================================================
-   OPTION LED PERSONNALISATION
-===================================================== */
-
-document.querySelectorAll(
-
-    "#ledOptions .option"
-
-).forEach(
-
-    function(button){
-
-
-        button.addEventListener(
-
-            "click",
-
-            function(){
-
-
-                document
-                .querySelectorAll(
-                    "#ledOptions .option"
-                )
-                .forEach(
-
-                    function(item){
-
-                        item.classList.remove(
-                            "selected"
-                        );
-
-                    }
-
-                );
-
-
-                button.classList.add(
-                    "selected"
-                );
-
-
-                ledExtra =
-                Number(
-                    button.dataset.extra
-                );
-
-
-                updatePrice();
-
-
-            }
-
-        );
-
-
-    }
-
-);
-
-
-
-
-
-/* =====================================================
-   PANIER
-===================================================== */
-
-let cartCount = 0;
-
-
-function addToCart(){
-
-
-    cartCount++;
-
-
-    document.getElementById(
-
-        "cartCount"
-
-    ).textContent =
-
-    cartCount;
-
-
-    alert(
-
-        "✨ Votre tableau a été ajouté au panier !"
-
-    );
-
+});
 
 }
 
 
+setupOptions("#sizes .option","size");
+
+setupOptions("#materials .option","material");
+
+setupOptions("#ledOptions .option","led");
 
 
+/* PANIER */
 
-/* =====================================================
-   IA
-===================================================== */
+let cart = 0;
+
+
+function addCart(){
+
+cart++;
+
+document.getElementById("cartCount").textContent =
+cart;
+
+alert("✨ Votre tableau a été ajouté au panier !");
+
+}
+
+
+/* IA */
 
 async function generateAI(){
 
+const prompt =
+document.getElementById("prompt").value.trim();
 
-    const prompt =
+const status =
+document.getElementById("status");
 
-    document
-    .getElementById("aiPrompt")
-    .value
-    .trim();
+const result =
+document.getElementById("aiResult");
 
 
-    const aiResult =
+if(!prompt){
 
-    document
-    .getElementById("aiResult");
+alert("Décrivez votre œuvre avant de continuer ✨");
 
-
-    const aiStatus =
-
-    document
-    .getElementById("aiStatus");
-
-
-    if(!prompt){
-
-
-        alert(
-
-            "Décrivez d'abord votre création ✨"
-
-        );
-
-
-        return;
-
-
-    }
-
-
-    aiStatus.textContent =
-
-    "🤖 L'IA crée votre œuvre...";
-
-
-    aiResult.innerHTML =
-
-    `
-    <div class="ai-placeholder loading">
-
-        🤖
-
-        <br><br>
-
-        Création de votre œuvre...
-
-    </div>
-    `;
-
-
-    try{
-
-
-        const response =
-
-        await fetch(
-
-            "/api/generate",
-
-            {
-
-                method:"POST",
-
-                headers:{
-
-                    "Content-Type":
-                    "application/json"
-
-                },
-
-                body:
-
-                JSON.stringify({
-
-                    prompt:prompt
-
-                })
-
-            }
-
-        );
-
-
-        const data =
-
-        await response.json();
-
-
-        if(!response.ok){
-
-            throw new Error(
-
-                data.error ||
-                "Erreur de génération"
-
-            );
-
-        }
-
-
-        const imageUrl =
-
-        data.image ||
-        data.url ||
-        data.imageUrl;
-
-
-        if(!imageUrl){
-
-            throw new Error(
-
-                "Aucune image reçue"
-
-            );
-
-        }
-
-
-        aiResult.innerHTML =
-
-        `<img src="${imageUrl}" alt="Création IA">`;
-
-
-        aiStatus.textContent =
-
-        "✨ Votre œuvre est prête !";
-
-
-    }
-
-
-    catch(error){
-
-
-        console.error(error);
-
-
-        aiResult.innerHTML =
-
-        `
-        <div class="ai-placeholder">
-
-            ❌
-
-            <br><br>
-
-            Une erreur est survenue.
-
-            <br><br>
-
-            Vérifiez votre configuration IA.
-
-        </div>
-        `;
-
-
-        aiStatus.textContent =
-
-        "Erreur : " +
-        error.message;
-
-
-    }
-
+return;
 
 }
 
 
+status.textContent =
+"🤖 L'IA crée votre œuvre...";
+
+
+result.innerHTML = `
+<div class="placeholder">
+🤖
+<br><br>
+Création en cours...
+</div>
+`;
+
+
+try{
+
+const response =
+await fetch("/api/generate",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+prompt:prompt
+})
+
+});
+
+
+const data =
+await response.json();
+
+
+if(!response.ok){
+
+throw new Error(
+data.error || "Erreur IA"
+);
+
+}
+
+
+const image =
+data.image ||
+data.url ||
+data.imageUrl;
+
+
+if(!image){
+
+throw new Error(
+"Aucune image reçue"
+);
+
+}
+
+
+result.innerHTML =
+`<img src="${image}" alt="Création IA">`;
+
+
+status.textContent =
+"✨ Votre œuvre est prête !";
+
+
+}
+
+catch(error){
+
+console.error(error);
+
+status.textContent =
+"❌ " + error.message;
+
+result.innerHTML = `
+<div class="placeholder">
+❌
+<br><br>
+Impossible de générer l'image.
+</div>
+`;
+
+}
+
+}
+
 </script>
 
-
 </body>
-
 </html>
